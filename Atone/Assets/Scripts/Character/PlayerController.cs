@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     CharacterController controller;
     Vector3 playerVelocity;
 
-    bool isGrounded;
+    public bool isGrounded;
 
     [Header("Physics parameters")]
     [SerializeField]
@@ -17,37 +17,66 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float gravityValue = -9.81f;
 
+    // Var for fast acceleration
+    [Header("Acceleration params")]
+    private float accelerationValue = 20;
+    private float currentAccelerationValue;
+    private float decelerationFactor = 1;
+
     // Start is called before the first frame update
     void Start()
     {
-        controller = gameObject.AddComponent<CharacterController>();
+        controller = gameObject.GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
+        CheckGround();
+
+        Move();
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+            Jump();
+
+        ApplyGravity();
+
+        // vertical mvt
+        controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    void CheckGround()
+    {
         isGrounded = controller.isGrounded;
 
-        if(isGrounded && playerVelocity.y < 0)
+        if (isGrounded && playerVelocity.y < 0)
         {
-            playerVelocity.y = 0f;
+            playerVelocity.y = -0.5f;
         }
+    }
 
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical"));
+    void Move()
+    {
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         controller.Move(move * Time.deltaTime * playerSpeed);
 
-        if(move != Vector3.zero)
+        if (move != Vector3.zero)
         {
             gameObject.transform.forward = move;
         }
 
-        // change the height position of the player
-        if(Input.GetButtonDown("Jump") && isGrounded)
-        {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-        }
+    }
 
+    void Jump()
+    {
+        // change the height position of the player
+        playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+    }
+
+    void ApplyGravity()
+    {
+        // apply gravity
         playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
     }
 }
