@@ -7,7 +7,15 @@ public class PlayerController : MonoBehaviour
     CharacterController controller;
     Vector3 playerVelocity;
 
+    [Header("Status")]
     public bool isGrounded;
+
+    [Header("Input parameters")]
+    [SerializeField]
+    bool canJump = false;
+    [SerializeField]
+    bool isAutorunActivated = true;
+
 
     [Header("Physics parameters")]
     [SerializeField]
@@ -37,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
         Move();
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (canJump && isGrounded && Input.GetButtonDown("Jump"))
             Jump();
 
         ApplyGravity();
@@ -56,19 +64,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Move()
+    void Move() // peut être à refaire pour qu'on ait une vitesse en BPM ?
     {
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 move;
+        if (isAutorunActivated)
+            move = new Vector3(0, 0, 1);
+        else
+            move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
         controller.Move(move * Time.deltaTime * playerSpeed);
-
-        if (move != Vector3.zero)
-        {
-            gameObject.transform.forward = move;
-        }
-
     }
 
-    void Jump()
+    void Jump() // à remplacer par le saut pour changer de lane
     {
         // change the height position of the player
         playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
