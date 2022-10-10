@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Road_mat_test_00
-  m_Shader: {fileID: -6465566751694194690, guid: cd937e031d039814b907634752f07741,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 28f0bd0ea4fede8449fde9cf2e0ee342, type: 3}
   m_ValidKeywords:
   - ENABLE_BENDING
   - _RECEIVE_SHADOWS_OFF
@@ -100,17 +99,18 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _H_Curvature: -0.025
+    - _H_Curvature: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 0
-    - _Rotation_Amount: 16
+    - _Rotation_Amount: 0
     - _Smoothness: 0.235
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Spiral_Multiplier: -3.15
     - _SrcBlend: 1
     - _Stretch_Start_Dist: 0
     - _Surface: 0
@@ -123,7 +123,10 @@ Material:
     - _BaseColor: {r: 0, g: 0.11066675, b: 1, a: 1}
     - _Color: {r: 0.30647025, g: 0.6698113, b: 0.3985849, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _NormalMap: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _Spiral_Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _Spiral_World_Axis: {r: 0, g: 0, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1671020719647377323
 MonoBehaviour:
