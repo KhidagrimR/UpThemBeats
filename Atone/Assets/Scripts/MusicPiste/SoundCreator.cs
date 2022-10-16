@@ -5,87 +5,48 @@ using UnityEngine;
 using TMPro;
 
 
-public class SoundCreator : Singleton<SoundCreator> 
+public class SoundCreator : Singleton<SoundCreator>
 {
-    #region Sound variables
-        [Header("Sounds Settings")]
-        //Song beats per minute
-        //This is determined by the song you're trying to sync up to
-        public float songBpm;
+    [Header("Setup Generation vars")]
+    //Song beats per minute
+    public float songBpm; //This is determined by the song you're trying to sync up to
+    public float firstBeatOffset; //The offset to the first beat of the song in seconds
+    public float distanceBetweenNotes; // La distance physique séparant 2 beats
 
-        //The number of seconds for each song beat
-        public float secPerBeat;
+    [Header("LevelDesign Settings")]
+    public Vector3 noteSpawnDirection; // direction on x, y and z axis to spawn notes;
+    public Vector3 noteSpawnAngle; // rotation on x, y and z axis to spawn notes;
 
-        //Current song position, in seconds
-        public float songPosition;
+    [Header("Component Settings")]
+    public GameObject notePrefab;
+    public GameObject halfNotePrefab;
+    public Transform noteParent;
 
-        //Current song position, in beats
-        public float songPositionInBeats;
+    [Header("Sounds Vars")]
+    public AudioSource musicSource; //an AudioSource attached to this GameObject that will play the music.
+    public AudioClip musicClip; //the music itself
 
-        //How many seconds have passed since the song started
-        public float dspSongTime;
 
-        //an AudioSource attached to this GameObject that will play the music.
-        public AudioSource musicSource;
 
-        //the music itself
-        public AudioClip musicClip;
+    [Header("Sounds Info")]
+    public float secPerBeat; //The number of seconds for each song beat
+    public float songPosition; //Current song position, in seconds
+    public float songPositionInBeats; //Current song position, in beats
+    public float dspSongTime; //How many seconds have passed since the song started
+    public int numberOfBeatsInTrack; //the number of beats in the track
 
-        //The offset to the first beat of the song in seconds
-        public float firstBeatOffset;
-
-        //the number of beats in the track
-        public int numberOfBeatsInTrack;
+    #region GO Variables
+    public MusicNote[] musicNoteArray;
+    public MusicNote[] musicHalfNoteArray;
     #endregion
 
-    #region 
-        [Header("Component Settings")]
-        public GameObject notePrefab;
-        public Transform noteParent;
-
-        // La distance physique séparant 2 beats
-        public float distanceBetweenNotes;
-
-        // direction on x, y and z axis to spawn notes;
-        public Vector3 noteSpawnDirection;
-    #endregion
-
-    #region Game Variables
-        public MusicNote[] musicNoteArray;
-
-
-    #endregion
-
-    void Start()
+    #region UnityMethods
+    private void Start()
     {
-        // set the clip to the source
-        musicSource.clip = musicClip;
-
-        //Load the AudioSource attached to the Conductor GameObject
-        musicSource = GetComponent<AudioSource>();
-
-        //Calculate the number of seconds in each beat
-        secPerBeat = 60f / songBpm;
-
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
 
-        numberOfBeatsInTrack = (int)(musicClip.length * (songBpm / 60));
-
-        musicNoteArray = new MusicNote[numberOfBeatsInTrack];
-
-        for(int i = 0; i < numberOfBeatsInTrack; i++) {
-            float notePosition = i * distanceBetweenNotes;
-            MusicNote note = Instantiate(notePrefab, noteSpawnDirection * notePosition, Quaternion.identity).GetComponent<MusicNote>();
-            note.transform.SetParent(noteParent);
-
-            musicNoteArray[i] = note;
-        }
-
-
-        //Start the music
-        musicSource.Play();
-
+        PlayMusic();
     }
 
     void Update()
@@ -98,9 +59,77 @@ public class SoundCreator : Singleton<SoundCreator>
 
         // Show note color 
         musicNoteArray[(int)songPositionInBeats].GetComponent<SpriteRenderer>().color = Color.red;
+        
 
-        if((int)songPositionInBeats - 1 >= 0)
+        if ((int)songPositionInBeats - 1 >= 0)
             musicNoteArray[(int)songPositionInBeats - 1].GetComponent<SpriteRenderer>().color = Color.grey;
+    }
+    #endregion
+
+    #region Generate Level Note
+
+    public void GenerateMusicSheet()
+    {
+        for (int i = 0; i < numberOfBeatsInTrack; i++)
+        {
+            float notePosition = i * distanceBetweenNotes;
+            float halfNotePosition = i * distanceBetweenNotes + distanceBetweenNotes / 2;
+
+            GenerateCompleteBeat(notePosition, i);
+
+            if (i < numberOfBeatsInTrack - 1)
+                GenerateHalfBeat(halfNotePosition, i);
+        }
+    }
+
+    void GenerateCompleteBeat(float notePosition, int index)
+    {
+        MusicNote note = Instantiate(notePrefab, noteSpawnDirection * notePosition, Quaternion.identity).GetComponent<MusicNote>();
+        note.transform.SetParent(noteParent);
+        note.transform.eulerAngles = noteSpawnAngle;
+
+        musicNoteArray[index] = note;
+    }
+
+    void GenerateHalfBeat(float halfNotePosition, int index)
+    {
+        MusicNote note = Instantiate(halfNotePrefab, noteSpawnDirection * halfNotePosition, Quaternion.identity).GetComponent<MusicNote>();
+        note.transform.SetParent(noteParent);
+        note.transform.eulerAngles = noteSpawnAngle;
+
+        musicHalfNoteArray[index] = note;
+    }
+    #endregion
+
+    public void SetupVars()
+    {
+        // set the clip to the source
+        musicSource.clip = musicClip;
+
+        //Load the AudioSource attached to the Conductor GameObject
+        musicSource = GetComponent<AudioSource>();
+
+        //Calculate the number of seconds between each beat
+        secPerBeat = 60f / songBpm;
+
+        numberOfBeatsInTrack = (int)(musicClip.length * (songBpm / 60));
+
+        musicNoteArray = new MusicNote[numberOfBeatsInTrack];
+        musicHalfNoteArray = new MusicNote[numberOfBeatsInTrack - 1];
+    }
+
+    public void PlayMusic()
+    {
+        //Start the music
+        musicSource.Play();
+    }
+
+    public void ResetMusicSheet()
+    {
+        foreach (Transform child in noteParent)
+        {
+            DestroyImmediate(child.gameObject);
+        }
     }
 
 }
