@@ -27,7 +27,6 @@ public class SoundCreator : Singleton<SoundCreator>
     public AudioClip musicClip; //the music itself
 
 
-
     [Header("Sounds Info")]
     public float secPerBeat; //The number of seconds for each song beat
     public float songPosition; //Current song position, in seconds
@@ -40,17 +39,27 @@ public class SoundCreator : Singleton<SoundCreator>
     public MusicNote[] musicHalfNoteArray;
     #endregion
 
-    #region UnityMethods
-    private void Start()
+    private bool _isReady;
+    public bool isReady
+    {
+        get{return _isReady;}
+    }
+
+    public void Init()
     {
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
+        //SetupVars();
 
-        PlayMusic();
+        _isReady = true;
     }
+
+    #region UnityMethods
 
     void Update()
     {
+        if(!GameManager.Instance.isReady) return;
+
         //determine how many seconds since the song started
         songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
 
@@ -60,7 +69,6 @@ public class SoundCreator : Singleton<SoundCreator>
         // Show note color 
         musicNoteArray[(int)songPositionInBeats].GetComponent<SpriteRenderer>().color = Color.red;
         
-
         if ((int)songPositionInBeats - 1 >= 0)
             musicNoteArray[(int)songPositionInBeats - 1].GetComponent<SpriteRenderer>().color = Color.grey;
     }
@@ -118,12 +126,6 @@ public class SoundCreator : Singleton<SoundCreator>
         musicHalfNoteArray = new MusicNote[numberOfBeatsInTrack - 1];
     }
 
-    public void PlayMusic()
-    {
-        //Start the music
-        musicSource.Play();
-    }
-
     public void ResetMusicSheet()
     {
         foreach (Transform child in noteParent)
@@ -132,4 +134,10 @@ public class SoundCreator : Singleton<SoundCreator>
         }
     }
 
+    public void PlayMusic()
+    {
+        //Start the music
+        Debug.Log("StartMusic");
+        musicSource.Play();
+    }
 }

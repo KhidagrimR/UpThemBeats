@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Physics parameters")]
     [SerializeField]
-    float playerSpeed = 2.0f;
+    float _playerSpeed = 2.0f;
     [SerializeField]
     float jumpHeight = 1.0f;
     [SerializeField]
@@ -31,8 +31,17 @@ public class PlayerController : MonoBehaviour
     private float currentAccelerationValue;
     private float decelerationFactor = 1;
 
+    #region Setter
+    public float playerSpeed
+    {
+        get {return _playerSpeed;}
+        set {_playerSpeed = value;}
+    }
+    #endregion
+    
+
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -41,6 +50,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!GameManager.Instance.isReady) return; 
+
         CheckGround();
 
         Move();
