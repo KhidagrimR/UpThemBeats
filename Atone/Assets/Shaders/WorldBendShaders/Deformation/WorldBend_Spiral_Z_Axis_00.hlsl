@@ -1,5 +1,5 @@
-#ifndef WORLDBEND_SPIRAL_Z_AXIS_00_CGINC
-#define WORLDBEND_SPIRAL_Z_AXIS_00_CGINC
+#ifndef WORLDBEND_SPIRAL_Z_AXIS_00_INCLUDED
+#define WORLDBEND_SPIRAL_Z_AXIS_00_INCLUDED
 
 uniform float3 Z_Deformation_PivotPoint;
 uniform float3 Z_Deformation_RotationAxis;
@@ -7,7 +7,8 @@ uniform float3 Z_Deformation_BendSize;
 uniform float3 Z_Deformation_BendOffset;
   
                  
-#include "../Core/Core.cginc"                           
+#include "../Core/Core.hlsl"        
+// Cause de l'erreur de redéfinition avec son appel à Utility.cginc qui appelle une librairie et cause une redéfinition
              
       
 ////////////////////////////////////////////////////////////////////////////////
