@@ -3,6 +3,7 @@ Shader "Atone/WorldBend/Lit"
     // C'est une copie du Lit.shader de Unity, avec des modification pour incorporer le WorldBend de Atone
     Properties
     {
+        [AtoneBendSettings]_AtoneBendSettings("AffectNormals|1", Vector) = (0, 0, 0, 0) // Utilise un Vector si à l'avenir on utilise plus de paramètres
         // Specular (0) vs Metallic (1) workflow
         [HideInInspector] _WorkflowMode("WorkflowMode", Float) = 1.0
 

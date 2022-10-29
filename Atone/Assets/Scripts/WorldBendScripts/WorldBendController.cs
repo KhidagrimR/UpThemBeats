@@ -77,7 +77,7 @@ namespace AtoneWorldBend
         void UpdateShaderdata()
         {
             if (isActiveAndEnabled == true)
-            {
+            {                
                 if (disableInEditor && Application.isEditor && Application.isPlaying == false)
                 {
                     DisableShaderUpdate();
@@ -147,10 +147,10 @@ namespace AtoneWorldBend
 
         void GenerateShaderPropertyIDs()
         {
-            materialPropertyID_PivotPoint = Shader.PropertyToID("Z_Deformation__PivotPoint");
-            materialPropertyID_RotationAxis = Shader.PropertyToID("Z_Deformation__RotationAxis");
-            materialPropertyID_BendSize = Shader.PropertyToID("Z_Deformation__BendSize");
-            materialPropertyID_BendOffset = Shader.PropertyToID("Z_Deformation__BendOffset");
+            materialPropertyID_PivotPoint = Shader.PropertyToID("Z_Deformation_PivotPoint");
+            materialPropertyID_RotationAxis = Shader.PropertyToID("Z_Deformation_RotationAxis");
+            materialPropertyID_BendSize = Shader.PropertyToID("Z_Deformation_BendSize");
+            materialPropertyID_BendOffset = Shader.PropertyToID("Z_Deformation_BendOffset");
         }
         #endregion
 

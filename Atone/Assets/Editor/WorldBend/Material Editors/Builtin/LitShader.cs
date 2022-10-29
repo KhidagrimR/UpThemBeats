@@ -18,11 +18,11 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
             litProperties = new LitGUI.LitProperties(properties);
 
 
-            MaterialProperties.InitCurvedWorldMaterialProperties(properties);
+            MaterialProperties.InitWorldBendMaterialProperties(properties);
         }
 
         // material changed check
-        public override void MaterialChanged(Material material) // MaterialChanged est obsolete, mais ValidateMaterial n'est pas encore testé pour voir
+        public override void ValidateMaterial(Material material) // MaterialChanged est obsolete, mais ValidateMaterial n'est pas encore testé pour voir
         {
             if (material == null)
                 throw new ArgumentNullException("material");
@@ -41,7 +41,7 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
             materialEditor = materialEditorIn;
             Material material = materialEditor.target as Material;
 
-            MaterialProperties.DrawCurvedWorldMaterialProperties(materialEditorIn, MaterialProperties.STYLE.Foldout, false, false);
+            MaterialProperties.DrawWorldBendMaterialProperties(materialEditorIn, MaterialProperties.STYLE.Foldout);
 
             base.OnGUI(materialEditorIn, properties);
         }
@@ -64,7 +64,7 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
             if (EditorGUI.EndChangeCheck())
             {
                 foreach (var obj in blendModeProp.targets)
-                    MaterialChanged((Material)obj);
+                    ValidateMaterial((Material)obj);
             }
             base.DrawSurfaceOptions(material);
         }
@@ -88,7 +88,7 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
                 materialEditor.ShaderProperty(litProperties.reflections, LitGUI.Styles.reflectionsText);
                 if(EditorGUI.EndChangeCheck())
                 {
-                    MaterialChanged(material);
+                    ValidateMaterial(material);
                 }
             }
 
@@ -147,7 +147,7 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
                     material.SetTexture("_MetallicSpecGlossMap", texture);
             }
 
-            MaterialChanged(material);
+            ValidateMaterial(material);
         }
     }
 }
