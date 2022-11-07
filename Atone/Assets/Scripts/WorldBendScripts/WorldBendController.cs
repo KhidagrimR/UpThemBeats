@@ -23,18 +23,31 @@ namespace AtoneWorldBend
         // CustomNormalised :  le vecteur de direction conserve une norme de 1. Principe similaire à celui d'un widget de rotation d'éditeur 3D
 
         public Transform bendPivotPoint; public Vector3 bendPivotPointPosition;
-        public AXIS_TYPE bendRotationAxisType; public Vector3 bendRotationAxis; 
+        public AXIS_TYPE bendRotationAxisType; 
+        [SerializeField]private Vector3 bendRotationAxis;
 
-        public float bendVerticalSize, bendVerticalOffset;
-        public float bendHorizontalSize, bendHorizontalOffset;
-        public float bendCurvatureSize, bendCurvatureOffset;
+        [SerializeField]private float bendVerticalSize, bendVerticalOffset;
+        [SerializeField]private float bendHorizontalSize, bendHorizontalOffset;
+        [SerializeField]private float bendCurvatureSize, bendCurvatureOffset;
 
         public bool disableInEditor = false;
 
         int materialPropertyID_PivotPoint;
         int materialPropertyID_RotationAxis;
         int materialPropertyID_BendSize;
-        int materialPropertyID_BendOffset;
+        int materialPropertyID_BendOffset;        
+
+        #endregion
+
+        #region PROPERTIES
+        
+        public float BendVerticalSize {get => bendVerticalSize; set => bendVerticalSize = value;}
+        public float BendVerticalOffset {get => bendVerticalOffset; set => bendVerticalOffset = value;}
+        public float BendHorizontalSize {get => bendHorizontalSize; set => bendHorizontalSize = value;}
+        public float BendHorizontalOffset {get => bendHorizontalOffset; set => bendHorizontalOffset = value;}
+        public Vector3 BendCurvatureAxis { get => bendRotationAxis; set => bendRotationAxis = value; }
+        public float BendCurvatureSize {get => bendCurvatureSize; set => bendCurvatureSize = value;}
+        public float BendCurvatureOffset {get => bendCurvatureOffset; set => bendCurvatureOffset = value;}
 
         #endregion
 
@@ -125,10 +138,10 @@ namespace AtoneWorldBend
             Shader.SetGlobalVector(materialPropertyID_RotationAxis, Vector3.zero);
 
             Shader.SetGlobalVector(materialPropertyID_BendSize, Vector3.zero);
-            Shader.SetGlobalFloat(materialPropertyID_BendSize, 0);
+            //Shader.SetGlobalFloat(materialPropertyID_BendSize, 0);
 
             Shader.SetGlobalVector(materialPropertyID_BendOffset, Vector3.zero);
-            Shader.SetGlobalFloat(materialPropertyID_BendOffset, 0);
+            //Shader.SetGlobalFloat(materialPropertyID_BendOffset, 0);
         }
 
         public void EnableBend()
@@ -155,36 +168,42 @@ namespace AtoneWorldBend
         #endregion
 
         #region SETTER_METHODS
-        // Des setters style Java par flemme de faire des propriétés C# pour l'instant
-        public void SetBendVerticalSize(float value)
-        {
-            bendVerticalSize = value;
-        }
+        // Des setters style Java. Remplacées par des propriétés C#
 
-        public void SetBendVerticalOffset(float value)
-        {
-            bendVerticalOffset = value;
-        }
+        // public void SetBendVerticalSize(float value)
+        // {
+        //     bendVerticalSize = value;
+        // }
 
-        public void SetBendHorizontalSize(float value)
-        {
-            bendHorizontalSize = value;
-        }
+        // public void SetBendVerticalOffset(float value)
+        // {
+        //     bendVerticalOffset = value;
+        // }
 
-        public void SetBendHorizontalOffset(float value)
-        {
-            bendHorizontalOffset = value;
-        }
+        // public void SetBendHorizontalSize(float value)
+        // {
+        //     bendHorizontalSize = value;
+        // }
 
-        public void SetBendCurvatureSize(float value)
-        {
-            bendCurvatureSize = value;
-        }
+        // public void SetBendHorizontalOffset(float value)
+        // {
+        //     bendHorizontalOffset = value;
+        // }
 
-        public void SetBendCurvatureOffset(float value)
-        {
-            bendCurvatureOffset = value;
-        }
+        // public void SetBendCurvatureSize(float value)
+        // {
+        //     bendCurvatureSize = value;
+        // }
+
+        // public void SetBendCurvatureOffset(float value)
+        // {
+        //     bendCurvatureOffset = value;
+        // }
+
+        // public void SetBendRotationAxis(Vector3 value)
+        // {
+        //     bendRotationAxis = value;
+        // }
 
         #endregion
     }
