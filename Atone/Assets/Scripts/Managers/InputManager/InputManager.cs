@@ -17,12 +17,12 @@ public class InputManager : Singleton<InputManager>
 
     [Header("Destroy Action")]
 
-    public static Action destoyAction;
+    public static Action destroyAction = new Action("destroy",KeyCode.W,KeyCode.E);
 
     public delegate void OnDestroy();
-    public static OnJump onDestroy;
+    public OnJump onDestroy;
     public delegate void OnDestroyPressed();
-    public static OnJumpPressed onDestroyPressed;
+    public OnJumpPressed onDestroyPressed;
 
 
     void Update()
@@ -35,12 +35,12 @@ public class InputManager : Singleton<InputManager>
             if(onJumpPressed != null)
                 onJumpPressed();
         
-        /*if(destoyAction.GetAction(onController))
+        if(destroyAction.GetAction(onController))
             if(onDestroy != null)
                 onDestroy();
-        if(destoyAction.GetActionPressed(onController))
+        if(destroyAction.GetActionPressed(onController))
             if(onDestroyPressed != null)
-                onDestroyPressed();*/
+                onDestroyPressed();
     }
 
 
