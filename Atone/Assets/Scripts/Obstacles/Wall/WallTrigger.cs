@@ -12,38 +12,33 @@ public class WallTrigger : MonoBehaviour
 
     public GameObject visualWall;
 
-    public void Start()
-    {
-        InputManager.Instance.onDestroy += wallAction;
-    }
     void OnTriggerEnter(Collider col)
     {
-        if (col.name == "Player")
-        {
+        if (col.name == "Player"){
             isTrigger = true;
             visualWall.GetComponent<MeshRenderer>().material = materials[1];
+            PlayerController.gameObjectCollinding = gameObject;
         }
     }
 
     void OnTriggerExit(Collider col)
     {
-        if (col.name == "Player")
-        {
+        if (col.name == "Player"){
+            PlayerController.gameObjectCollinding = null;
             isTrigger = false;
             if (!isDestroy)
                 visualWall.GetComponent<MeshRenderer>().material = materials[0];
         }
     }
 
-    void wallAction()
+    public void WallAction()
     {
-        if (isTrigger)
-        {
+        print("wallAction");
+        if (isTrigger){
             Destroy(visualWall);
             isDestroy = true;
         }
-
         else
-            print("raté");
+            print("mur raté");
     }
 }
