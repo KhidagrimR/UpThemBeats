@@ -13,7 +13,7 @@ public class BopTrigger : MonoBehaviour
     public GameObject bopVisuel;
 
     public void Start(){
-        InputManager.onJump += bopAction;
+        InputManager.Instance.onJump += bopAction;
     }
     void OnTriggerEnter(Collider col){
         if(col.name == "Player"){
@@ -32,7 +32,8 @@ public class BopTrigger : MonoBehaviour
 
     void bopAction(){
         if(isTrigger){
-            bopVisuel.GetComponent<MeshRenderer>().material = materials[2];
+            //bopVisuel.GetComponent<MeshRenderer>().material = materials[2];
+            bopVisuel.SetActive(false);
             isBlue = true;
         }
             

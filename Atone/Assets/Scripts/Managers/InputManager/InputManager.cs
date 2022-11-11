@@ -11,9 +11,9 @@ public class InputManager : Singleton<InputManager>
     public static Action jumpAction = new Action("jump",KeyCode.Space,KeyCode.A);
 
     public delegate void OnJump();
-    public static OnJump onJump;
+    public OnJump onJump;
     public delegate void OnJumpPressed();
-    public static OnJumpPressed onJumpPressed;
+    public OnJumpPressed onJumpPressed;
 
     [Header("Destroy Action")]
 
