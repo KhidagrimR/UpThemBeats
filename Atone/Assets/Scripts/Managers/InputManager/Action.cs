@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
+[Serializable]
 public class Action
 {
+    [SerializeField]
     private string name;
+    [SerializeField]
     private KeyCode actionKeyBoard;
+    [SerializeField]
     private KeyCode actionController;
 
     public Action(string name, KeyCode actionKeyBoard, KeyCode actionController){

@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     float jumpHeight = 1.0f;
     [SerializeField]
     float gravityValue = -9.81f;
+    [SerializeField]
+    float changeLaneDuration = 0.25f;
 
     private float startingPlayerY;
 
@@ -53,6 +55,12 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.onJump += CheckIfBopToDestroy;
     }
 
+    void OnDisable()
+    {
+        InputManager.Instance.onDestroy -= CheckIfWallToDestroy;
+        InputManager.Instance.onJump -= CheckIfBopToDestroy;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -60,16 +68,6 @@ public class PlayerController : MonoBehaviour
 
         CheckGround();
         Move();
-
-        if (Input.GetKeyDown(KeyCode.A) && !isChangingLane)
-        {
-            PlayerManager.Instance.MovePlayerToLeftLane();
-        }
-
-        if (Input.GetKeyDown(KeyCode.E) && !isChangingLane)
-        {
-            PlayerManager.Instance.MovePlayerToRightLane();
-        }
 
         if (canJump && isGrounded && Input.GetButtonDown("Jump"))
             Jump();
@@ -108,15 +106,16 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeLane(Vector3 lanePosition)
     {
+        if(isChangingLane) return;
+
         isChangingLane = true;
 
         Vector3 target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
-        float tweenDuration = 0.25f;
-        float distanceZ = playerSpeed * tweenDuration ; //v * t
+        float distanceZ = playerSpeed * changeLaneDuration ; //v * t
 
         target.z += distanceZ;
 
-        transform.DOMove(target, tweenDuration).OnComplete(()=> 
+        transform.DOMove(target, changeLaneDuration).OnComplete(()=> 
         {
             isChangingLane = false;
         });

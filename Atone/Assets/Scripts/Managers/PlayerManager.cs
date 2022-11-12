@@ -19,8 +19,16 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         SetupPlayerSpeed();
 
+        InputManager.Instance.onGoLeftLanePressed += MovePlayerToLeftLane;
+        InputManager.Instance.onGoRightLanePressed += MovePlayerToRightLane;
+
         _isReady = true;
         playerCurrentLane = 1;
+    }
+
+    private void OnDisable() {
+        InputManager.Instance.onGoLeftLanePressed -= MovePlayerToLeftLane;
+        InputManager.Instance.onGoRightLanePressed -= MovePlayerToRightLane;
     }
 
     void SetupPlayerSpeed()
