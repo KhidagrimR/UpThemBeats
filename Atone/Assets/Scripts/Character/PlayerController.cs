@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    public static GameObject gameObjectCollinding; 
 
     // Start is called before the first frame update
     public void Start()
@@ -45,7 +46,11 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         controller = gameObject.GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+
         startingPlayerY = transform.position.y;
+        
+        InputManager.Instance.onDestroy += CheckIfWallToDestroy;
+        InputManager.Instance.onJump += CheckIfBopToDestroy;
     }
 
     // Update is called once per frame
@@ -116,6 +121,28 @@ public class PlayerController : MonoBehaviour
             isChangingLane = false;
         });
     }
+    public void CheckIfWallToDestroy(){
+        if (gameObjectCollinding != null)
+            if (gameObjectCollinding.GetComponent<WallTrigger>() != null)
+                gameObjectCollinding.GetComponent<WallTrigger>().WallAction();
+            else
+                print("coolDown - mur raté PC");
+        else
+            print("cooldown");
+    }
+
+    public void CheckIfBopToDestroy()
+    {
+        if (gameObjectCollinding != null)
+            if (gameObjectCollinding.GetComponent<BopTrigger>() != null)
+                gameObjectCollinding.GetComponent<BopTrigger>().BopAction();
+            else
+                print("coolDown - bop raté PC");
+        else
+            print("cooldown");
+    }
+
+
 }
 
 /*

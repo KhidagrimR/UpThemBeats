@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class Action : MonoBehaviour
+public class Action
 {
     private string name;
     private KeyCode actionKeyBoard;

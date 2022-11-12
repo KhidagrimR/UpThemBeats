@@ -5,38 +5,37 @@ using UnityEngine;
 public class BopTrigger : MonoBehaviour
 {
     public bool isTrigger = false;
-    public bool isBlue = false;
+    public bool isDestroy = false;
 
     public List<Material> materials;
 
 
     public GameObject bopVisuel;
 
-    public void Start(){
-        InputManager.onJump += bopAction;
-    }
     void OnTriggerEnter(Collider col){
         if(col.name == "Player"){
             isTrigger = true;
             bopVisuel.GetComponent<MeshRenderer>().material = materials[1];
+            PlayerController.gameObjectCollinding = gameObject;
         }
     }
 
     void OnTriggerExit(Collider col){
         if(col.name == "Player"){
+            PlayerController.gameObjectCollinding = null;
             isTrigger = false;
-            if(!isBlue)
+            if(!isDestroy)
                 bopVisuel.GetComponent<MeshRenderer>().material = materials[0];
         }
     }
 
-    void bopAction(){
+    public void BopAction(){
         if(isTrigger){
-            bopVisuel.GetComponent<MeshRenderer>().material = materials[2];
-            isBlue = true;
+            bopVisuel.SetActive(false);
+            isDestroy = true;
         }
             
         else
-            print("raté");
+            print("bop raté");
     }
 }
