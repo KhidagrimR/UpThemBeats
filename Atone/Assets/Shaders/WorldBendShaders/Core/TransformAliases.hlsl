@@ -6,7 +6,7 @@
 // Les noms des fonctions doivent bien correspondre
 #include "../Deformation/WorldBend_Spiral_Z_Axis_00.hlsl"
 // Vrai Cause de l'erreur "Redefinition of _Time at File [...] (40)" Voir le problème dans Utility.cginc
-#define WORLDBEND_TRANSFORM_VERTEX_AND_NORMAL(v, n, t) WorldBend_Spiral_Z(v, n, t);
-#define WORLDBEND_TRANSFORM_VERTEX(v)                  WorldBend_Spiral_Z(v);
+#define WORLDBEND_TRANSFORM_VERTEX_AND_NORMAL(v, n, t) WorldBend_Spiral_Z_Axis_00(v, n, t); // WorldBend_Spiral_Z
+#define WORLDBEND_TRANSFORM_VERTEX(v)                  WorldBend_Spiral_Z_Axis_00(v);   // WorldBend_Spiral_Z
 
 #endif

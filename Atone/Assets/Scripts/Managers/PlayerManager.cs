@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerManager : Singleton<PlayerManager>
 {
     public PlayerController playerController;
+
+    public PivotPointAlignment rootPivot; // "Root" parce qu'il n'est pas censé être enfant d'un autre objet
     
     private bool _isReady;
     public bool isReady
@@ -30,6 +32,10 @@ public class PlayerManager : Singleton<PlayerManager>
         playerSpeed = distanceBetweenBeats / secPerBeat;
 
         playerController.playerSpeed = playerSpeed;
+
+        if(rootPivot){
+            rootPivot.pSpeed = playerSpeed;
+        }
     }
 
     void SetupPlayerAnimationSpeed()

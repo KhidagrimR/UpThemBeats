@@ -17,7 +17,7 @@ public class InputManager : Singleton<InputManager>
 
     [Header("Destroy Action")]
 
-    public static Action destoyAction;
+    public static Action destroyAction;
 
     public delegate void OnDestroy();
     public static OnJump onDestroy;

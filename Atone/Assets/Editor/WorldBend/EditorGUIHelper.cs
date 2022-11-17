@@ -27,6 +27,27 @@ namespace AtoneWorldBendEditor
                 UnityEditor.EditorGUIUtility.labelWidth = PreviousWidth;
             }
         }
+
+        public class EditorGUIIndentLevel : IDisposable
+        {
+            [SerializeField]
+            private int PreviousIndent
+            {
+                get;
+                set;
+            }
+
+            public EditorGUIIndentLevel(int newIndent)
+            {
+                PreviousIndent = EditorGUI.indentLevel;
+                EditorGUI.indentLevel = EditorGUI.indentLevel + newIndent;
+            }
+
+            public void Dispose()
+            {
+                EditorGUI.indentLevel = PreviousIndent;
+            }
+        }
     }
 }
 
