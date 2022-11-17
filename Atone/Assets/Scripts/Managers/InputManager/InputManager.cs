@@ -8,70 +8,47 @@ public class InputManager : Singleton<InputManager>
     public static bool onController = false;
 
     [Header("Jump Action")]
-
-    #region jump
-    public Action jumpAction = new Action("jump", KeyCode.Space, KeyCode.A);
+    public static Action jumpAction = new Action("jump",KeyCode.Space,KeyCode.A);
 
     public delegate void OnJump();
-    public OnJump onJump;
+    public static OnJump onJump;
     public delegate void OnJumpPressed();
-    public OnJumpPressed onJumpPressed;
-
-    #endregion
-
-    #region switchlane
-    // RIGHT LANE
-    public Action goToRightLane = new Action("rightLane", KeyCode.A, KeyCode.A);
-    public delegate void OnGoRightLanePressed();
-    public OnGoRightLanePressed onGoRightLanePressed;
-    // LEFT LANE
-    public Action goToLeftLane = new Action("leftLane", KeyCode.E, KeyCode.A);
-    public delegate void OnGoLeftLanePressed();
-    public OnGoLeftLanePressed onGoLeftLanePressed;
-    #endregion
+    public static OnJumpPressed onJumpPressed;
 
     [Header("Destroy Action")]
-    public static Action destroyAction = new Action("destroy", KeyCode.W, KeyCode.E);
+
+    public static Action destroyAction;
+
     public delegate void OnDestroy();
-    public OnJump onDestroy;
+    public static OnJump onDestroy;
     public delegate void OnDestroyPressed();
-    public OnJumpPressed onDestroyPressed;
+    public static OnJumpPressed onDestroyPressed;
 
 
     void Update()
     {
-        if (jumpAction.GetAction(onController))
-            if (onJump != null)
+        if(jumpAction.GetAction(onController))
+            if(onJump != null)
                 onJump();
 
         if (jumpAction.GetActionPressed(onController))
-            if (onJumpPressed != null)
+            if(onJumpPressed != null)
                 onJumpPressed();
-
-        if (destroyAction.GetAction(onController))
-            if (onDestroy != null)
+        
+        /*if(destoyAction.GetAction(onController))
+            if(onDestroy != null)
                 onDestroy();
-        if (destroyAction.GetActionPressed(onController))
-            if (onDestroyPressed != null)
-                onDestroyPressed();
-
-        if (goToLeftLane.GetActionPressed(onController))
-            if (onGoLeftLanePressed != null)
-                onGoLeftLanePressed();
-
-        if (goToRightLane.GetActionPressed(onController))
-            if (onGoRightLanePressed != null)
-                onGoRightLanePressed();
+        if(destoyAction.GetActionPressed(onController))
+            if(onDestroyPressed != null)
+                onDestroyPressed();*/
     }
 
 
-    public static void SetOnController()
-    {
+    public static void SetOnController(){
         onController = true;
     }
 
-    public static void SetOnKeyboard()
-    {
+    public static void SetOnKeyboard(){
         onController = false;
     }
 }

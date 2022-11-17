@@ -19,6 +19,11 @@ namespace AtoneWorldBend
         public bool nearClipPlaneSameAsCamera = true;
         public float nearClipPlaneCustom = 0.3f;
 
+        public bool alignYRotationWithCamera;
+        // Note: recréer manuellement la fonction cameraToWorldMatrix en indiquant manuellement la direction du "regard" pour le culling
+        // https://docs.unity3d.com/ScriptReference/Rendering.CommandBuffer.SetViewMatrix.html
+        public Vector3 customLookDirection = Vector3.forward; // N'est utilisé que si alignYRotationWithCamera est vrai. valeur par défaut: (0,0,1)
+
 
 #if UNITY_EDITOR
         public bool visualizeInEditor;
@@ -73,7 +78,14 @@ namespace AtoneWorldBend
             else
             {
                 size = size < 1 ? 1 : size;
-                activeCamera.cullingMatrix = Matrix4x4.Ortho(-size, size, -size, size, (nearClipPlaneSameAsCamera ? activeCamera.nearClipPlane : nearClipPlaneCustom), activeCamera.farClipPlane) * activeCamera.worldToCameraMatrix;
+                activeCamera.cullingMatrix = Matrix4x4.Ortho(
+                    -size, 
+                    size, 
+                    -size, 
+                    size, 
+                    (nearClipPlaneSameAsCamera ? activeCamera.nearClipPlane : nearClipPlaneCustom), 
+                    activeCamera.farClipPlane) 
+                * (alignYRotationWithCamera ? activeCamera.worldToCameraMatrix : CustomWorldToCameraMatrix());
             }
         }
 
@@ -87,6 +99,17 @@ namespace AtoneWorldBend
                 size = activeCamera.orthographicSize;
                 nearClipPlaneCustom = activeCamera.nearClipPlane;
             }
+        }
+
+        private Matrix4x4 CustomWorldToCameraMatrix()
+        {
+            // Matrix that looks from camera's position, along the forward axis. Edit the Vector3.forward to manually modify the look direction
+            Matrix4x4 lookMatrix = Matrix4x4.LookAt(transform.position, transform.position + customLookDirection, transform.up);
+            // Matrix that mirrors along Z axis, to match the camera space convention.
+            Matrix4x4 scaleMatrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(1, 1, -1));
+            // Final view matrix is inverse of the LookAt matrix, and then mirrored along Z.
+            Matrix4x4 viewMatrix = scaleMatrix * lookMatrix.inverse;
+            return viewMatrix;
         }
 #if UNITY_EDITOR
         private void OnDrawGizmos()
@@ -105,7 +128,7 @@ namespace AtoneWorldBend
             else
             {
                 //Top
-                Vector3 c = transform.position + transform.forward * (nearClipPlaneSameAsCamera ? activeCamera.nearClipPlane : nearClipPlaneCustom);
+                Vector3 c = transform.position + (alignYRotationWithCamera ? transform.forward : customLookDirection) * (nearClipPlaneSameAsCamera ? activeCamera.nearClipPlane : nearClipPlaneCustom);
 
                 Vector3 t1 = c + transform.up * size - transform.right * size;
                 Vector3 t2 = c + transform.up * size + transform.right * size;
@@ -119,7 +142,7 @@ namespace AtoneWorldBend
 
 
                 //Bottom
-                c = transform.position + transform.forward * activeCamera.farClipPlane;
+                c = transform.position + (alignYRotationWithCamera ? transform.forward : customLookDirection) * activeCamera.farClipPlane;
 
                 Vector3 b1 = c + transform.up * size - transform.right * size;
                 Vector3 b2 = c + transform.up * size + transform.right * size;
