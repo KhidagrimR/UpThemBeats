@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class Action : MonoBehaviour
+[Serializable]
+public class Action
 {
+    [SerializeField]
     private string m_Name;
+    [SerializeField]
     private KeyCode m_ActionKeyBoard;
+    [SerializeField]
     private KeyCode m_ActionController;
 
     public Action(string name, KeyCode actionKeyBoard, KeyCode actionController){
