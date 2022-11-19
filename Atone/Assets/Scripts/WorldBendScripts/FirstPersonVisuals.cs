@@ -51,6 +51,11 @@ public class FirstPersonVisuals : MonoBehaviour
        DOVirtual.Float(m_wbc.BendCurvatureSize, -10, 2,v =>{m_wbc.BendCurvatureSize = v;}); // 
     }
 
+    void FirstTweenTestBeats(float beatAmount) {
+        float duration = beatAmount * secsPerBeat;
+       DOVirtual.Float(m_wbc.BendCurvatureSize, -10, duration,v =>{m_wbc.BendCurvatureSize = v;}); // 
+    }
+
     void SynchronizedTweenTest_00(float beatAmount){
         Vector3 temp = new Vector3(0,0.1f,0);
         float duration = beatAmount * secsPerBeat;
