@@ -15,7 +15,7 @@ public class FirstPersonVisuals : MonoBehaviour
     {        
         secsPerBeat = 60f/132;// valeurs test. Utiliser "SoundCreator.Instance.secPerBeat;" à l'avenir
         DOTween.Init();
-        WBCReset_Test();
+        //WBCReset_Test();
     }
 
     // G H J K L M

@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
     public PlayerController playerController;
+    public Transform playerHead;
 
     public PivotPointAlignment rootPivot; // "Root" parce qu'il n'est pas censé être enfant d'un autre objet
+
+    public CinemachineVirtualCamera cvm;
 
     private bool _isReady;
     public bool isReady
@@ -28,6 +32,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
         _isReady = true;
         playerCurrentLane = 1;
+
     }
 
     private void OnDisable()
@@ -64,15 +69,43 @@ public class PlayerManager : Singleton<PlayerManager>
     public void MovePlayerToRightLane()
     {
         playerCurrentLane++;
+        ChangeDutch(playerCurrentLane);
+
         playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
         playerController.ChangeLane(GetLanePosition(playerCurrentLane));
+        
     }
 
     public void MovePlayerToLeftLane()
     {
         playerCurrentLane--;
+        ChangeDutch(playerCurrentLane);
+
         playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
         playerController.ChangeLane(GetLanePosition(playerCurrentLane));
+    }
+
+    private void ChangeDutch(int lane)
+    {
+        Debug.Log("switch lane on = "+lane);
+        switch(lane)
+        {
+            case 0 : 
+                cvm.m_Lens.Dutch = -20;
+                playerHead.localPosition = new Vector3(1,playerHead.localPosition.y,playerHead.localPosition.z); 
+            break;
+
+            case 1 : 
+                cvm.m_Lens.Dutch = 0;
+                playerHead.localPosition = new Vector3(0, playerHead.localPosition.y, playerHead.localPosition.z);
+            break;
+
+            case 2 : 
+                cvm.m_Lens.Dutch = 20;
+                playerHead.localPosition = new Vector3(-1,playerHead.localPosition.y,playerHead.localPosition.z); 
+            break;
+        }
+
     }
 
     public Vector3 GetLanePosition(int targetLane)

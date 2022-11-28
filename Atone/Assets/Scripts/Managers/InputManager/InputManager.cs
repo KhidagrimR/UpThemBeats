@@ -55,11 +55,11 @@ public class InputManager : Singleton<InputManager>
             if (onDestroyPressed != null)
                 onDestroyPressed();
 
-        if (goToLeftLane.GetActionPressed(onController))
+        if (goToLeftLane.GetAction(onController))
             if (onGoLeftLanePressed != null)
                 onGoLeftLanePressed();
 
-        if (goToRightLane.GetActionPressed(onController))
+        if (goToRightLane.GetAction(onController))
             if (onGoRightLanePressed != null)
                 onGoRightLanePressed();
     }

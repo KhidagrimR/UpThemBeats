@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    public static GameObject gameObjectCollinding; 
+    public static GameObject gameObjectColliding; 
 
     // Start is called before the first frame update
     public void Start()
@@ -121,9 +121,9 @@ public class PlayerController : MonoBehaviour
         });
     }
     public void CheckIfWallToDestroy(){
-        if (gameObjectCollinding != null)
-            if (gameObjectCollinding.GetComponent<WallTrigger>() != null)
-                gameObjectCollinding.GetComponent<WallTrigger>().WallAction();
+        if (gameObjectColliding != null)
+            if (gameObjectColliding.GetComponent<WallTrigger>() != null)
+                gameObjectColliding.GetComponent<WallTrigger>().WallAction();
             else
                 print("coolDown - mur raté PC");
         else
@@ -132,9 +132,9 @@ public class PlayerController : MonoBehaviour
 
     public void CheckIfBopToDestroy()
     {
-        if (gameObjectCollinding != null)
-            if (gameObjectCollinding.GetComponent<BopTrigger>() != null)
-                gameObjectCollinding.GetComponent<BopTrigger>().BopAction();
+        if (gameObjectColliding != null)
+            if (gameObjectColliding.GetComponent<BopTrigger>() != null)
+                gameObjectColliding.GetComponent<BopTrigger>().BopAction();
             else
                 print("coolDown - bop raté PC");
         else
