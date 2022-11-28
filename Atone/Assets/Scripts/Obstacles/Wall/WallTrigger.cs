@@ -14,7 +14,7 @@ public class WallTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.name == "Player"){
+        if (col.CompareTag(PlayerManager.PLAYER_TAG)){
             isTrigger = true;
             visualWall.GetComponent<MeshRenderer>().material = materials[1];
             PlayerController.gameObjectColliding = gameObject;
@@ -23,7 +23,7 @@ public class WallTrigger : MonoBehaviour
 
     void OnTriggerExit(Collider col)
     {
-        if (col.name == "Player"){
+        if (col.CompareTag(PlayerManager.PLAYER_TAG)){
             PlayerController.gameObjectColliding = null;
             isTrigger = false;
             if (!isDestroy)

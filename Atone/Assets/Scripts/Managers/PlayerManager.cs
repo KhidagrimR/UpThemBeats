@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
+    public static string PLAYER_TAG = "Player";
     public PlayerController playerController;
     public Transform playerHead;
 

@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class WallAnimationTrigger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public AnimationTrigger.AnimationEnum animationToTrigger;
+    public AnimationTrigger animationTrigger;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        
+        Debug.Log("Player Trigger");
+        //si c est le joueur
+        if(other.CompareTag(PlayerManager.PLAYER_TAG))
+        {
+            Debug.Log("tag is ok");
+            animationTrigger.PlayAnimation(animationToTrigger);
+        }
     }
 }
