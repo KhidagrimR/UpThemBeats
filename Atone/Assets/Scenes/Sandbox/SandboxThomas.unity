@@ -18070,6 +18070,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1849739923}
     m_Modifications:
+    - target: {fileID: 864468430, guid: 4b414c0cfdfdd2a1389a6f959df146fb, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961546201222616587, guid: 4b414c0cfdfdd2a1389a6f959df146fb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3607614243795058289, guid: 4b414c0cfdfdd2a1389a6f959df146fb, type: 3}
       propertyPath: m_Name
       value: BopCollider (1)
@@ -18120,6 +18128,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b414c0cfdfdd2a1389a6f959df146fb, type: 3}
+--- !u!1 &1181107497 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5986324296590488610, guid: 4b414c0cfdfdd2a1389a6f959df146fb, type: 3}
+  m_PrefabInstance: {fileID: 1181107496}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1181107498 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3569183565070336910, guid: 4b414c0cfdfdd2a1389a6f959df146fb, type: 3}
+  m_PrefabInstance: {fileID: 1181107496}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1181107499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181107497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f097d97d5d60f03438b156ccca991538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  travelTimeToCenter: 0
+  bopTrigger: {fileID: 1181107498}
+  playerController: {fileID: 514661545}
 --- !u!1 &1186763729
 GameObject:
   m_ObjectHideFlags: 0
