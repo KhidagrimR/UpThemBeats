@@ -3,6 +3,7 @@ Shader "Atone/WorldBend/Lit"
     // C'est une copie du Lit.shader de Unity, avec des modification pour incorporer le WorldBend de Atone
     Properties
     {
+        [AtoneBendSettings]_AtoneBendSettings("AffectNormals|1", Vector) = (0, 0, 0, 0) // Utilise un Vector si à l'avenir on utilise plus de paramètres
         // Specular (0) vs Metallic (1) workflow
         [HideInInspector] _WorkflowMode("WorkflowMode", Float) = 1.0
 
@@ -53,7 +54,6 @@ Shader "Atone/WorldBend/Lit"
         [HideInInspector] _Glossiness("Smoothness", Float) = 0.0
         [HideInInspector] _GlossyReflections("EnvironmentReflections", Float) = 0.0
     }
-
     SubShader
     {
         // Universal Pipeline tag is required. If Universal render pipeline is not set in the graphics settings
@@ -62,7 +62,7 @@ Shader "Atone/WorldBend/Lit"
         Tags{"RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" "IgnoreProjector" = "True"}
         LOD 300
 
-        // ------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------------------------------------------------------
         //  Forward pass. Shades all light in a single pass. GI + emission + Fog
         Pass
         {
@@ -78,8 +78,9 @@ Shader "Atone/WorldBend/Lit"
             HLSLPROGRAM
             // Required to compile gles 2.0 with standard SRP library
             // All shaders must be compiled with HLSLcc and currently only gles is not using HLSLcc by default
-            #pragma prefer_hlslcc gles
-            #pragma exclude_renderers d3d11_9x
+            // #pragma prefer_hlslcc gles
+            // #pragma exclude_renderers d3d11_9x
+            #pragma only_renderers gles gles3 glcore d3d11
             #pragma target 2.0
 
             // -------------------------------------
@@ -120,15 +121,18 @@ Shader "Atone/WorldBend/Lit"
             #pragma fragment LitPassFragment
 
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-            // Cause de l'erreur "Redefinition of _Time at File [...] (40)" Car Unity se mélange les pinceaux entre urp et le shaderlab du standard.
 
-#pragma shader_feature_local WORLDBEND_DISABLED_ON
-#pragma shader_feature_local WORLDBEND_NORMAL_TRANSFORMATION_ON
-#include "../Core/TransformAliases.cginc"
+    #pragma shader_feature_local WORLDBEND_DISABLED_ON
+    #pragma shader_feature_local WORLDBEND_NORMAL_TRANSFORMATION_ON
+    #include "../Core/TransformAliases.hlsl"
+    // Source de l'erreur "Redefinition of _Time at File [...] (40)".
 
             #include "LitForwardPass.hlsl"
             ENDHLSL
         }
+
+        // ----------------------------------------------------------------------------------------------------------------------------------------
+        //  ShadowCaster
 
         Pass
         {
@@ -142,8 +146,9 @@ Shader "Atone/WorldBend/Lit"
 
             HLSLPROGRAM
             // Required to compile gles 2.0 with standard srp library
-            #pragma prefer_hlslcc gles
-            #pragma exclude_renderers d3d11_9x
+            // #pragma prefer_hlslcc gles
+            // #pragma exclude_renderers d3d11_9x
+            #pragma only_renderers gles gles3 glcore d3d11
             #pragma target 2.0
 
             // -------------------------------------
@@ -160,13 +165,16 @@ Shader "Atone/WorldBend/Lit"
 
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
 
-#pragma shader_feature_local WORLDBEND_DISABLED_ON
-#pragma shader_feature_local WORLDBEND_NORMAL_TRANSFORMATION_ON
-#include "../Core/TransformAliases.cginc"
+    #pragma shader_feature_local WORLDBEND_DISABLED_ON
+    #pragma shader_feature_local WORLDBEND_NORMAL_TRANSFORMATION_ON
+    #include "../Core/TransformAliases.hlsl"
 
             #include "ShadowCasterPass.hlsl"
             ENDHLSL
         }
+
+        // ----------------------------------------------------------------------------------------------------------------------------------------
+        //  DepthOnly
 
         Pass
         {
@@ -179,8 +187,9 @@ Shader "Atone/WorldBend/Lit"
 
             HLSLPROGRAM
             // Required to compile gles 2.0 with standard srp library
-            #pragma prefer_hlslcc gles
-            #pragma exclude_renderers d3d11_9x
+            //#pragma prefer_hlslcc gles
+            // #pragma exclude_renderers d3d11_9x
+            #pragma only_renderers gles gles3 glcore d3d11
             #pragma target 2.0
 
             #pragma vertex DepthOnlyVertex
@@ -197,15 +206,17 @@ Shader "Atone/WorldBend/Lit"
 
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
             
-#pragma shader_feature_local WORLDBEND_DISABLED_ON
-// #pragma shader_feature_local WORLDBEND_NORMAL_TRANSFORMATION_ON    //Depth does need Normal Transform
-#include "../Core/TransformAliases.cginc"
+    #pragma shader_feature_local WORLDBEND_DISABLED_ON
+    // #pragma shader_feature_local WORLDBEND_NORMAL_TRANSFORMATION_ON    //Depth does need Normal Transform
+    #include "../Core/TransformAliases.hlsl"
 
             #include "DepthOnlyPass.hlsl"
             ENDHLSL
         }
 
-        // This pass it not used during regular rendering, only for lightmap baking.
+        // ----------------------------------------------------------------------------------------------------------------------------------------
+        //  Meta
+        //  This pass it not used during regular rendering, only for lightmap baking.
         Pass
         {
             Name "Meta"
@@ -215,8 +226,9 @@ Shader "Atone/WorldBend/Lit"
 
             HLSLPROGRAM
             // Required to compile gles 2.0 with standard srp library
-            #pragma prefer_hlslcc gles
-            #pragma exclude_renderers d3d11_9x
+            // #pragma prefer_hlslcc gles
+            // #pragma exclude_renderers d3d11_9x
+            #pragma only_renderers gles gles3 glcore d3d11
 
             #pragma vertex UniversalVertexMeta
             #pragma fragment UniversalFragmentMetaLit // previously UniversalFragmentMeta
@@ -234,103 +246,112 @@ Shader "Atone/WorldBend/Lit"
 
             ENDHLSL
         }
-        // Pass
-        // {
-        //     // Utilisé pour l'éclairage 2D, pas utile en principe
-        //     Name "Universal2D"
-        //     Tags{ "LightMode" = "Universal2D" }
+        // ----------------------------------------------------------------------------------------------------------------------------------------
+        //  Universal2D
+        //  Utilisé pour l'éclairage 2D, pas utile en principe
+        Pass
+        {            
+            Name "Universal2D"
+            Tags{ "LightMode" = "Universal2D" }
 
-        //     Blend[_SrcBlend][_DstBlend]
-        //     ZWrite[_ZWrite]
-        //     Cull[_Cull]
+            Blend[_SrcBlend][_DstBlend]
+            ZWrite[_ZWrite]
+            Cull[_Cull]
 
-        //     HLSLPROGRAM
-        //     // Required to compile gles 2.0 with standard srp library
-        //     #pragma prefer_hlslcc gles
-        //     #pragma exclude_renderers d3d11_9x
+            HLSLPROGRAM
+            // Required to compile gles 2.0 with standard srp library
+            // #pragma prefer_hlslcc gles
+            // #pragma exclude_renderers d3d11_9x
+            #pragma only_renderers gles gles3 glcore d3d11
 
-        //     #pragma vertex vert
-        //     #pragma fragment frag
-        //     #pragma shader_feature _ALPHATEST_ON
-        //     #pragma shader_feature _ALPHAPREMULTIPLY_ON
+            #pragma vertex vert
+            #pragma fragment frag
+            #pragma shader_feature _ALPHATEST_ON
+            #pragma shader_feature _ALPHAPREMULTIPLY_ON
 
-        //     #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-        //     #include "Packages/com.unity.render-pipelines.universal/Shaders/Utils/Universal2D.hlsl"
-        //     ENDHLSL
-        // }
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/Utils/Universal2D.hlsl"
+            ENDHLSL
+        }
 
+        // NOTE: Les pass scene picking et scene selection causent des erreurs
 
-        //PassName "ScenePickingPass"
-		
-//         Pass
-//         {
-//             // Pour la sélection des objets dans la scène
-//             Name "ScenePickingPass"
-//             Tags { "LightMode" = "Picking" }
+    //     // ----------------------------------------------------------------------------------------------------------------------------------------
+    //     //  ScenePickingPass
+    //     //  PassName "ScenePickingPass"	
+    //     // Pour la sélection des objets dans la scène. Voir: https://light11.hatenadiary.com/entry/2021/11/04/195940	
+    //     Pass
+    //     {
+            
+    //         Name "ScenePickingPass"
+    //         Tags { "LightMode" = "Picking" }
 
-//             BlendOp Add
-//             Blend One Zero
-//             ZWrite On
-//             Cull Off
+    //         BlendOp Add
+    //         Blend One Zero
+    //         ZWrite On
+    //         Cull Off
 
-//             CGPROGRAM
-// 			#include "HLSLSupport.cginc"
-// 			#include "UnityShaderVariables.cginc"
-// 			#include "UnityShaderUtilities.cginc"
-
-
-//             #pragma target 3.0
-
-//             #pragma shader_feature _ALPHATEST_ON
-//             #pragma shader_feature _ALPHAPREMULTIPLY_ON
-//             #pragma multi_compile_instancing
-
-//             #pragma vertex vertEditorPass
-//             #pragma fragment fragScenePickingPass
+    //         CGPROGRAM
+	// 		#include "HLSLSupport.cginc"
+	// 		#include "UnityShaderVariables.cginc"
+	// 		#include "UnityShaderUtilities.cginc"
 
 
-// #pragma shader_feature_local WORLDBEND_DISABLED_ON
+    //         #pragma target 3.5
+
+    //         #pragma shader_feature _ALPHATEST_ON
+    //         #pragma shader_feature _ALPHAPREMULTIPLY_ON
+    //         #pragma multi_compile_instancing
+
+    //         #pragma vertex vertEditorPass
+    //         #pragma fragment fragScenePickingPass
 
 
-//             #include "../Core/SceneSelection.cginc" 
-//             ENDCG
-//         }	//Pass "ScenePickingPass"		
-
-		//PassName "SceneSelectionPass"
-// 		Pass
-//         {
-//             Name "SceneSelectionPass"
-//             Tags { "LightMode" = "SceneSelectionPass" }
-
-//             BlendOp Add
-//             Blend One Zero
-//             ZWrite On
-//             Cull Off
-
-//             CGPROGRAM
-// 			#include "HLSLSupport.cginc"
-// 			#include "UnityShaderVariables.cginc"
-// 			#include "UnityShaderUtilities.cginc"
+    // #pragma shader_feature_local WORLDBEND_DISABLED_ON
 
 
-//             #pragma target 3.0
+    //         #include "../Core/SceneSelection.cginc" 
+    //         ENDCG
+    //     }	//Pass "ScenePickingPass"	
 
-//             #pragma shader_feature _ALPHATEST_ON
-//             #pragma shader_feature _ALPHAPREMULTIPLY_ON
-//             #pragma multi_compile_instancing
+    //     // ----------------------------------------------------------------------------------------------------------------------------------------
+    //     //  SceneSelectionPass
+    //     //PassName "SceneSelectionPass"        		
+	// 	Pass
+    //     {
+    //         Name "SceneSelectionPass"
+    //         Tags { "LightMode" = "SceneSelectionPass" }
 
-//             #pragma vertex vertEditorPass
-//             #pragma fragment fragSceneHighlightPass
+    //         BlendOp Add
+    //         Blend One Zero
+    //         ZWrite On
+    //         Cull Off
+
+    //         CGPROGRAM
+	// 		#include "HLSLSupport.cginc"
+	// 		#include "UnityShaderVariables.cginc"
+	// 		#include "UnityShaderUtilities.cginc"
 
 
-// #pragma shader_feature_local WORLDBEND_DISABLED_ON
+    //         #pragma target 3.5
+
+    //         #pragma shader_feature _ALPHATEST_ON
+    //         #pragma shader_feature _ALPHAPREMULTIPLY_ON
+    //         #pragma multi_compile_instancing
+
+    //         #pragma vertex vertEditorPass
+    //         #pragma fragment fragSceneHighlightPass
 
 
-//             #include "../Core/SceneSelection.cginc" 
-//             ENDCG
-//         }	//Pass "SceneSelectionPass"		
+    // #pragma shader_feature_local WORLDBEND_DISABLED_ON
+
+
+    //         #include "../Core/SceneSelection.cginc" 
+    //         ENDCG
+    //     }	//Pass "SceneSelectionPass"		
+
+
     }
-    
-    //FallBack Off
-    //"Hidden/Universal Render Pipeline/FallbackError"
+    FallBack "Hidden/Universal Render Pipeline/FallbackError"
+    CustomEditor "UnityEditor.Rendering.Universal.ShaderGUI.AtoneWorldBend_LitShader" // LitShader"
 }

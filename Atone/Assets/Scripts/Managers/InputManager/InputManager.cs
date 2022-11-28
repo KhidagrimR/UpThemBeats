@@ -21,11 +21,11 @@ public class InputManager : Singleton<InputManager>
 
     #region switchlane
     // RIGHT LANE
-    public Action goToRightLane = new Action("rightLane", KeyCode.A, KeyCode.A);
+    public Action goToRightLane = new Action("rightLane", KeyCode.E, KeyCode.A);
     public delegate void OnGoRightLanePressed();
     public OnGoRightLanePressed onGoRightLanePressed;
     // LEFT LANE
-    public Action goToLeftLane = new Action("leftLane", KeyCode.E, KeyCode.A);
+    public Action goToLeftLane = new Action("leftLane", KeyCode.A, KeyCode.A);
     public delegate void OnGoLeftLanePressed();
     public OnGoLeftLanePressed onGoLeftLanePressed;
     #endregion

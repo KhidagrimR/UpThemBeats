@@ -1,9 +1,9 @@
-#ifndef ATONE_SCENE_SELECTION_CGINC
-#define ATONE_SCENE_SELECTION_CGINC
+#ifndef ATONE_SCENE_SELECTION_CG_INCLUDED
+#define ATONE_SCENE_SELECTION_CG_INCLUDED
 #include "UnityCG.cginc"
 
 //#include "../CGINC/WorldBend_Spiral_Z_Axis_00.cginc" 
-#include "TransformAliases.cginc"
+#include "TransformAliases.hlsl"
 
 
 //Variables/////////////////////////////////////////////////////////////

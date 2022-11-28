@@ -1,8 +1,8 @@
-#ifndef ATONE_CORE_CGINC
-#define ATONE_CORE_CGINC
-// Apparemment les cginc pour urp commencent tous de cette manière. Je ne prends pas de risques
+#ifndef ATONE_CORE_INCLUDED
+#define ATONE_CORE_INCLUDED
+// Pratique en hlsl pour éviter les doublons. Appelés en anglais "Guard keywords"
 
-#include "Utility.cginc"
+#include "Utility.hlsl"
 
 
 ////////////////////////////////////////////////////////////////////////////////
