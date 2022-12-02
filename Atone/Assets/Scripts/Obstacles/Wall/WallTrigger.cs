@@ -16,7 +16,7 @@ public class WallTrigger : MonoBehaviour
     {
         if (col.CompareTag(PlayerManager.PLAYER_TAG)){
             isTrigger = true;
-            visualWall.GetComponent<MeshRenderer>().material = materials[1];
+            //visualWall.GetComponent<MeshRenderer>().material = materials[1];
             PlayerController.gameObjectColliding = gameObject;
         }
     }
@@ -26,16 +26,17 @@ public class WallTrigger : MonoBehaviour
         if (col.CompareTag(PlayerManager.PLAYER_TAG)){
             PlayerController.gameObjectColliding = null;
             isTrigger = false;
-            if (!isDestroy)
-                visualWall.GetComponent<MeshRenderer>().material = materials[0];
+            //if (!isDestroy)
+                //visualWall.GetComponent<MeshRenderer>().material = materials[0];
         }
     }
 
     public void WallAction()
     {
         print("wallAction");
-        if (isTrigger){
+        if (isTrigger && !isDestroy){
             Destroy(visualWall);
+            transform.parent.GetComponent<AnimationTrigger>().PlayAnimation(AnimationTrigger.AnimationEnum.Death);
             isDestroy = true;
         }
         else

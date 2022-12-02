@@ -8,10 +8,8 @@ public class InputManager : Singleton<InputManager>
     public static bool onController = false;
 
     [Header("Jump Action")]
-
     #region jump
     public Action jumpAction = new Action("jump", KeyCode.Space, KeyCode.A);
-
     public delegate void OnJump();
     public OnJump onJump;
     public delegate void OnJumpPressed();
@@ -31,7 +29,7 @@ public class InputManager : Singleton<InputManager>
     #endregion
 
     [Header("Destroy Action")]
-    public static Action destroyAction = new Action("destroy", KeyCode.W, KeyCode.E);
+    public Action destroyAction = new Action("destroy", KeyCode.Z, KeyCode.E);
     public delegate void OnDestroy();
     public OnJump onDestroy;
     public delegate void OnDestroyPressed();
@@ -51,6 +49,7 @@ public class InputManager : Singleton<InputManager>
         if (destroyAction.GetAction(onController))
             if (onDestroy != null)
                 onDestroy();
+                
         if (destroyAction.GetActionPressed(onController))
             if (onDestroyPressed != null)
                 onDestroyPressed();
