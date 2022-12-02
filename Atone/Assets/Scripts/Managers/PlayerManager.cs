@@ -27,6 +27,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public void Init()
     {
         SetupPlayerSpeed();
+        InitDistanceBop();
 
         InputManager.Instance.onGoLeftLanePressed += MovePlayerToLeftLane;
         InputManager.Instance.onGoRightLanePressed += MovePlayerToRightLane;
@@ -114,5 +115,13 @@ public class PlayerManager : Singleton<PlayerManager>
         //Debug.Log("<color=green>go to lane "+targetLane+"</color>");
         //Debug.Log("<color=green>lane position = "+lanes[targetLane].position+"</color>");
         return lanes[targetLane].position;
+    }
+
+    public void InitDistanceBop(){
+        print("InitBop");
+        foreach(GameObject bop in GameObject.FindGameObjectsWithTag("Bop")){
+            bop.GetComponentInChildren<SpeedDrone>().InitDistance();
+        }
+
     }
 }

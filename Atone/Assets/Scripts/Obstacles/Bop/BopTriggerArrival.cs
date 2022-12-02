@@ -7,9 +7,16 @@ public class BopTriggerArrival : MonoBehaviour
 {
     public GameObject bopVisuel;
     public GameObject arrivalPointBop;
+    
+    public float travelTimeToCenter;
+
+    public void Start(){
+        gameObject.GetComponent<SpeedDrone>().travelTimeToCenter = travelTimeToCenter;
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         bopVisuel.SetActive(true);
-        bopVisuel.gameObject.transform.DOMove(arrivalPointBop.gameObject.transform.position, 2.5f);
+        bopVisuel.gameObject.transform.DOMove(arrivalPointBop.gameObject.transform.position, travelTimeToCenter*2);
     }
 }
