@@ -51,14 +51,17 @@ public class PlayerController : MonoBehaviour
 
         startingPlayerY = transform.position.y;
         
-        InputManager.Instance.onDestroy += CheckIfWallToDestroy;
+        InputManager.Instance.onDestroyObstacle += CheckIfWallToDestroy;
         InputManager.Instance.onJump += CheckIfBopToDestroy;
     }
 
     void OnDisable()
     {
-        InputManager.Instance.onDestroy -= CheckIfWallToDestroy;
-        InputManager.Instance.onJump -= CheckIfBopToDestroy;
+        if(InputManager.Instance != null){
+            InputManager.Instance.onDestroyObstacle -= CheckIfWallToDestroy;
+            InputManager.Instance.onJump -= CheckIfBopToDestroy;
+        }
+        
     }
 
     // Update is called once per frame

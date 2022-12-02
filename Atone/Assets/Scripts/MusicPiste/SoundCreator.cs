@@ -3,36 +3,49 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using TMPro;
+using FMODUnity;
 
 
 public class SoundCreator : Singleton<SoundCreator>
 {
     [Header("Setup Generation vars")]
     //Song beats per minute
-    public float songBpm; //This is determined by the song you're trying to sync up to
-    public float firstBeatOffset; //The offset to the first beat of the song in seconds
-    public float distanceBetweenNotes; // La distance physique séparant 2 beats
+    [SerializeField] private float songBpm; //This is determined by the song you're trying to sync up to // test value 80
+    [SerializeField] private float firstBeatOffset; //The offset to the first beat of the song in seconds
+    [SerializeField] private float distanceBetweenNotes; // La distance physique séparant 2 beats // test value 10
+    public float DistanceBetweenNotes {get {return distanceBetweenNotes;}}
 
     [Header("LevelDesign Settings")]
-    public Vector3 noteSpawnDirection; // direction on x, y and z axis to spawn notes;
-    public Vector3 noteSpawnAngle; // rotation on x, y and z axis to spawn notes;
+    [SerializeField] private Vector3 noteSpawnDirection; // direction on x, y and z axis to spawn notes;
+    [SerializeField] private Vector3 noteSpawnAngle; // rotation on x, y and z axis to spawn notes;
 
     [Header("Component Settings")]
-    public GameObject notePrefab;
-    public GameObject halfNotePrefab;
-    public Transform noteParent;
+    [SerializeField] private GameObject notePrefab;
+    [SerializeField] private GameObject halfNotePrefab;
+    [SerializeField] private Transform noteParent;
 
     [Header("Sounds Vars")]
-    public AudioSource musicSource; //an AudioSource attached to this GameObject that will play the music.
-    public AudioClip musicClip; //the music itself
+    [SerializeField] private AudioSource musicSource; //an AudioSource attached to this GameObject that will play the music.
+    [SerializeField] private AudioClip musicClip; //the music itself
+
+    [Header("Sounds Vars (FMOD) Test for now")]
+    [SerializeField] private EventReference musicFMODEvent; //FMOD Event reference.
+    private static FMOD.Studio.EventInstance musicFMODInstance; //FMOD event instance that allows us to interact with it.
+    public static FMOD.Studio.EventInstance MusicFMODInstance{get{return musicFMODInstance;} set{musicFMODInstance = value;}}
 
 
     [Header("Sounds Info")]
-    public float secPerBeat; //The number of seconds for each song beat
-    public float songPosition; //Current song position, in seconds
-    public float songPositionInBeats; //Current song position, in beats
-    public float dspSongTime; //How many seconds have passed since the song started
-    public int numberOfBeatsInTrack; //the number of beats in the track
+    [SerializeField][InspectorReadOnly] private float secPerBeat; //The number of seconds for each song beat.
+    [SerializeField][InspectorReadOnly] private float songPosition; //Current song position, in seconds
+    [SerializeField][InspectorReadOnly] private float songPositionInBeats; //Current song position, in beats
+    [SerializeField][InspectorReadOnly] private float dspSongTime; //How many seconds have passed since the song started
+    [SerializeField][InspectorReadOnly] private int numberOfBeatsInTrack; //the number of beats in the track
+    // Properties for read-only access
+    public float SecPerBeat {get{return secPerBeat;}}
+    public float SongPosition {get{return songPosition;}}
+    public float SongPositionInBeats {get{return songPositionInBeats;}}
+    public float DspSongTime {get{return dspSongTime;}}
+    public float NumberOfBeatsInTrack {get{return numberOfBeatsInTrack;}}
 
     #region GO Variables
     public MusicNote[] musicNoteArray;
@@ -49,7 +62,8 @@ public class SoundCreator : Singleton<SoundCreator>
     {
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
-        //SetupVars();
+        SetupVars();
+        GenerateMusicSheet();
 
         _isReady = true;
     }
@@ -109,23 +123,70 @@ public class SoundCreator : Singleton<SoundCreator>
     }
     #endregion
 
-    public void SetupVars()
+    public void SetupVars() 
     {
-        // set the clip to the source
-        musicSource.clip = musicClip;
+        musicFMODInstance = RuntimeManager.CreateInstance(musicFMODEvent); // FMOD Test Julien
 
         //Load the AudioSource attached to the Conductor GameObject
         musicSource = GetComponent<AudioSource>();
 
+        // set the clip to the source
+        musicSource.clip = musicClip;        
+
         //Calculate the number of seconds between each beat
         secPerBeat = 60f / songBpm;
 
-        numberOfBeatsInTrack = (int)(musicClip.length * (songBpm / 60));
+        numberOfBeatsInTrack = (int)(musicClip.length * (songBpm / 60));    // Length in seconds
+
+        musicNoteArray = new MusicNote[numberOfBeatsInTrack];
+        musicHalfNoteArray = new MusicNote[numberOfBeatsInTrack - 1];
+
+        // Moved to PlayMusic for now
+        // musicFMODInstance.start();      // FMOD Test Julien
+        // musicFMODInstance.release();    // FMOD Test Julien
+    }
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------
+    #region FMOD METHODS
+    public void SetupVarsFMOD()
+    {
+        musicFMODInstance = RuntimeManager.CreateInstance(musicFMODEvent);
+
+        //Calculate the number of seconds between each beat
+        secPerBeat = 60f / songBpm;
+
+        FMOD.Studio.EventDescription evt;
+        musicFMODInstance.getDescription(out evt);
+
+        // numberOfBeatsInTrack = (int)(musicClip.length * (songBpm / 60));
 
         musicNoteArray = new MusicNote[numberOfBeatsInTrack];
         musicHalfNoteArray = new MusicNote[numberOfBeatsInTrack - 1];
     }
 
+    [AOT.MonoPInvokeCallback(typeof (FMOD.Studio.EVENT_CALLBACK))]
+    static FMOD.RESULT SoundCallback(FMOD.Studio.EVENT_CALLBACK_TYPE type, System.IntPtr instancePtr, System.IntPtr paramPtr)
+    {
+        FMOD.RESULT result;
+        FMOD.Studio.EventInstance instance = new FMOD.Studio.EventInstance(instancePtr);
+
+        switch(type)
+        {
+            case FMOD.Studio.EVENT_CALLBACK_TYPE.SOUND_PLAYED:
+                {
+                    FMOD.Sound sound = new FMOD.Sound(paramPtr);
+                    result = sound.getLength(out uint length, FMOD.TIMEUNIT.MS);
+                    if(result == FMOD.RESULT.OK)
+                    {
+                        return result;
+                    }
+                    Debug.Log("Sound Played. Length in ms: " + length);
+                    break;
+                }
+        }
+        return FMOD.RESULT.OK;
+    }
+    #endregion
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------
     public void ResetMusicSheet()
     {
         foreach (Transform child in noteParent)
@@ -138,6 +199,8 @@ public class SoundCreator : Singleton<SoundCreator>
     {
         //Start the music
         Debug.Log("StartMusic");
-        musicSource.Play();
+        musicFMODInstance.start();      // FMOD Test Julien
+        //musicFMODInstance.release();    // FMOD Test Julien
+        //musicSource.Play();
     }
 }

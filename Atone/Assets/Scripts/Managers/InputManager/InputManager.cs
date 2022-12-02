@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -7,10 +8,17 @@ public class InputManager : Singleton<InputManager>
 {
     public static bool onController = false;
 
+    [Header("Pause menu / return")]
+
+    public PlayerAction menuOrReturn = new PlayerAction("menuOrReturn", KeyCode.Escape, KeyCode.Joystick1Button7);
+
+    public delegate void OnMenu(bool isPaused);
+    public static event OnMenu onMenu; // Needs to be static to not mess things up when communicating to the additive scene
+
     [Header("Jump Action")]
 
     #region jump
-    public Action jumpAction = new Action("jump", KeyCode.Space, KeyCode.A);
+    public PlayerAction jumpAction = new PlayerAction("jump", KeyCode.Space, KeyCode.A);
 
     public delegate void OnJump();
     public OnJump onJump;
@@ -21,19 +29,19 @@ public class InputManager : Singleton<InputManager>
 
     #region switchlane
     // RIGHT LANE
-    public Action goToRightLane = new Action("rightLane", KeyCode.E, KeyCode.A);
+    public PlayerAction goToRightLane = new PlayerAction("rightLane", KeyCode.E, KeyCode.A);
     public delegate void OnGoRightLanePressed();
     public OnGoRightLanePressed onGoRightLanePressed;
     // LEFT LANE
-    public Action goToLeftLane = new Action("leftLane", KeyCode.A, KeyCode.A);
+    public PlayerAction goToLeftLane = new PlayerAction("leftLane", KeyCode.A, KeyCode.A);
     public delegate void OnGoLeftLanePressed();
     public OnGoLeftLanePressed onGoLeftLanePressed;
     #endregion
 
     [Header("Destroy Action")]
-    public static Action destroyAction = new Action("destroy", KeyCode.W, KeyCode.E);
-    public delegate void OnDestroy();
-    public OnJump onDestroy;
+    public static PlayerAction destroyAction = new PlayerAction("destroy", KeyCode.W, KeyCode.E);
+    public delegate void OnDestroyObstacle();
+    public OnJump onDestroyObstacle;
     public delegate void OnDestroyPressed();
     public OnJumpPressed onDestroyPressed;
 
@@ -49,8 +57,8 @@ public class InputManager : Singleton<InputManager>
                 onJumpPressed();
 
         if (destroyAction.GetAction(onController))
-            if (onDestroy != null)
-                onDestroy();
+            if (onDestroyObstacle != null)
+                onDestroyObstacle();
         if (destroyAction.GetActionPressed(onController))
             if (onDestroyPressed != null)
                 onDestroyPressed();
@@ -62,6 +70,15 @@ public class InputManager : Singleton<InputManager>
         if (goToRightLane.GetActionPressed(onController))
             if (onGoRightLanePressed != null)
                 onGoRightLanePressed();
+
+        if(menuOrReturn.GetAction(onController)){
+            // Current setup is super horrible and hacky, need to change it later
+            
+            GameManager.Instance.isGameCurrentlyPaused = !GameManager.Instance.isGameCurrentlyPaused;
+            SoundCreator.MusicFMODInstance.setPaused(GameManager.Instance.isGameCurrentlyPaused);
+            Time.timeScale = GameManager.Instance.isGameCurrentlyPaused ? 0 : 1;
+            onMenu?.Invoke(GameManager.Instance.isGameCurrentlyPaused);
+        }
     }
 
 

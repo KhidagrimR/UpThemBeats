@@ -2,10 +2,10 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{ef2469a1-44f6-456d-821f-182a0425c30c}">
 		<property name="name">
-			<value>Julien_Test_event_00</value>
+			<value>Julien_Test_Music_00</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{b36b4559-f2a6-4e75-9291-77193e1ec317}</destination>
@@ -31,6 +31,9 @@
 		<relationship name="timeline">
 			<destination>{9c622f77-7546-4495-8e3e-ce4183b9fabc}</destination>
 		</relationship>
+		<relationship name="banks">
+			<destination>{29deea74-3c03-4257-bd3c-a1d260b33c3f}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixer" id="{b140c0c2-1eed-4623-9ca6-5a9c4ab85bf3}">
 		<relationship name="masterBus">
@@ -50,14 +53,14 @@
 			<destination>{59238410-abe0-4af1-b741-88c7c7c16229}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{aec73cfa-8b77-4f29-9542-b9d4c5be8bc5}</destination>
+			<destination>{8ceb5511-10fb-485c-84d4-376e13a6c118}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{b73d4f50-b585-4955-bf46-e63b29ae2d8a}" />
 	<object class="MarkerTrack" id="{0c9fc30e-0782-4123-9f6d-81fc87bda813}" />
 	<object class="GroupTrack" id="{273f904e-e29b-4add-85e3-4b003a47adca}">
 		<relationship name="modules">
-			<destination>{5a2cc9cd-19e2-447d-abd5-51b756d30b93}</destination>
+			<destination>{42c31df1-246f-407f-8fea-2da89aab2640}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{721e79e7-4f9a-4ea3-9179-becf70648309}</destination>
@@ -65,7 +68,10 @@
 	</object>
 	<object class="Timeline" id="{9c622f77-7546-4495-8e3e-ce4183b9fabc}">
 		<relationship name="modules">
-			<destination>{5a2cc9cd-19e2-447d-abd5-51b756d30b93}</destination>
+			<destination>{42c31df1-246f-407f-8fea-2da89aab2640}</destination>
+		</relationship>
+		<relationship name="markers">
+			<destination>{c124d3bc-6c4d-4c65-ad0d-6c9ae1d6be7e}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{3e93ca3b-2d85-46a0-add9-d2b6d2fd1ac1}">
@@ -85,13 +91,16 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{59238410-abe0-4af1-b741-88c7c7c16229}" />
-	<object class="ProgrammerSound" id="{5a2cc9cd-19e2-447d-abd5-51b756d30b93}">
+	<object class="SingleSound" id="{42c31df1-246f-407f-8fea-2da89aab2640}">
 		<property name="length">
-			<value>2</value>
+			<value>273.97632653061225</value>
 		</property>
-		<property name="name">
-			<value>【Haiyore! Nyaruko-san Opening】Taiyou Iwaku Moeyo Chaos 【Off-Vocal+Lyrics】 - Copy (2)</value>
+		<property name="timelockedOffset">
+			<value>0.44000000000000006</value>
 		</property>
+		<relationship name="audioFile">
+			<destination>{289a950f-896e-4775-b237-caab6c15d02f}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{721e79e7-4f9a-4ea3-9179-becf70648309}">
 		<property name="name">
@@ -107,10 +116,23 @@
 			<destination>{3e93ca3b-2d85-46a0-add9-d2b6d2fd1ac1}</destination>
 		</relationship>
 	</object>
+	<object class="TempoMarker" id="{c124d3bc-6c4d-4c65-ad0d-6c9ae1d6be7e}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="tempo">
+			<value>140</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{9c622f77-7546-4495-8e3e-ce4183b9fabc}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{0c9fc30e-0782-4123-9f6d-81fc87bda813}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{939a2385-c084-4177-92ff-cb6a3fe80aa6}">
 		<relationship name="effects">
 			<destination>{c70935d1-21c0-4b10-be62-023aba2f4822}</destination>
-			<destination>{4d73d41b-bfa3-4437-af9a-6d624498d9d9}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{e958e906-a6ab-4f58-b646-7e9c74d799e4}" />
@@ -122,6 +144,5 @@
 	</object>
 	<object class="MixerBusPanner" id="{12daa6d5-cb3b-42de-ae57-cc5fa347128d}" />
 	<object class="MixerBusFader" id="{c70935d1-21c0-4b10-be62-023aba2f4822}" />
-	<object class="SpatialiserEffect" id="{4d73d41b-bfa3-4437-af9a-6d624498d9d9}" />
 	<object class="MixerBusFader" id="{df6bb016-b075-4cca-9de9-f6cae5e32ebe}" />
 </objects>

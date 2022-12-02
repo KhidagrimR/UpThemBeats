@@ -10,6 +10,8 @@ public class GameManager : Singleton<GameManager>
         get { return _isReady; }
     }
 
+    public bool isGameCurrentlyPaused {get; set;}
+
     void Awake()
     {
         // do starting setup stuff here
@@ -20,6 +22,8 @@ public class GameManager : Singleton<GameManager>
 
     IEnumerator Init()
     {
+        isGameCurrentlyPaused = false;
+
         if (SoundCreator.Instance != null)
         {
             SoundCreator.Instance.Init();
