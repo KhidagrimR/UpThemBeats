@@ -120,7 +120,8 @@ public class PlayerController : MonoBehaviour
             isChangingLane = false;
         });
     }
-    public void CheckIfWallToDestroy(){
+    public void CheckIfWallToDestroy()
+    {
         if (gameObjectColliding != null)
             if (gameObjectColliding.GetComponent<WallTrigger>() != null)
                 gameObjectColliding.GetComponent<WallTrigger>().WallAction();
