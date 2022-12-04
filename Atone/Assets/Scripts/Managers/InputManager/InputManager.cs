@@ -72,11 +72,8 @@ public class InputManager : Singleton<InputManager>
                 onGoRightLanePressed();
 
         if(menuOrReturn.GetAction(onController)){
-            // Current setup is super horrible and hacky, need to change it later
-            
-            GameManager.Instance.isGameCurrentlyPaused = !GameManager.Instance.isGameCurrentlyPaused;
-            SoundCreator.MusicFMODInstance.setPaused(GameManager.Instance.isGameCurrentlyPaused);
-            Time.timeScale = GameManager.Instance.isGameCurrentlyPaused ? 0 : 1;
+            // Current setup is hacky, need to change it later. Might need to add a future check to verify that we are not in the main menu scene            
+            GameManager.Instance.TogglePauseState();
             onMenu?.Invoke(GameManager.Instance.isGameCurrentlyPaused);
         }
     }

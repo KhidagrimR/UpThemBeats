@@ -34,7 +34,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -109,8 +109,8 @@ RectTransform:
   m_Father: {fileID: 1233990673760553626}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -358,7 +358,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -433,8 +433,8 @@ RectTransform:
   m_Father: {fileID: 1233990674375234936}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -747,7 +747,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 20
   m_TargetDisplay: 0
@@ -862,7 +862,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -952,6 +952,7 @@ GameObject:
   - component: {fileID: 1233990673475285247}
   - component: {fileID: 1233990673475285233}
   - component: {fileID: 1233990673475285232}
+  - component: {fileID: 1585256919}
   m_Layer: 5
   m_Name: UI slider
   m_TagString: Untagged
@@ -1046,7 +1047,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6984568dc5ce74fb363317618bb27a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderTextValue: {fileID: 1233990673614151536}
+  sliderText: {fileID: 1233990673614151536}
+--- !u!114 &1585256919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233990673475285246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abdd6338f850c8049af9d4dc0d7c19f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  busPath: bus:/Julien_Test_Master/UI
 --- !u!1 &1233990673501797246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,6 +1146,7 @@ GameObject:
   - component: {fileID: 1233990673557186719}
   - component: {fileID: 1233990673557186704}
   - component: {fileID: 1233990673557186705}
+  - component: {fileID: 216713806}
   m_Layer: 5
   m_Name: SFX slider
   m_TagString: Untagged
@@ -1226,7 +1241,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6984568dc5ce74fb363317618bb27a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderTextValue: {fileID: 1233990672457725496}
+  sliderText: {fileID: 1233990672457725496}
+--- !u!114 &216713806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233990673557186718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abdd6338f850c8049af9d4dc0d7c19f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  busPath: bus:/Julien_Test_Master/SFX
 --- !u!1 &1233990673580233183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,8 +1288,8 @@ RectTransform:
   m_Father: {fileID: 1233990673501797247}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1548,7 +1576,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1638,6 +1666,7 @@ GameObject:
   - component: {fileID: 1233990673770921881}
   - component: {fileID: 1233990673770921882}
   - component: {fileID: 1233990673770921883}
+  - component: {fileID: 1608993280}
   m_Layer: 5
   m_Name: Master slider
   m_TagString: Untagged
@@ -1732,7 +1761,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6984568dc5ce74fb363317618bb27a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderTextValue: {fileID: 1233990672907131636}
+  sliderText: {fileID: 1233990672907131636}
+--- !u!114 &1608993280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233990673770921880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abdd6338f850c8049af9d4dc0d7c19f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  busPath: bus:/Julien_Test_Master
 --- !u!1 &1233990674094528528
 GameObject:
   m_ObjectHideFlags: 0
@@ -2090,8 +2132,8 @@ RectTransform:
   m_Father: {fileID: 1233990674456770303}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2144,6 +2186,7 @@ GameObject:
   - component: {fileID: 1233990674425113747}
   - component: {fileID: 1233990674425113748}
   - component: {fileID: 1233990674425113749}
+  - component: {fileID: 737289346}
   m_Layer: 5
   m_Name: Music slider
   m_TagString: Untagged
@@ -2238,7 +2281,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6984568dc5ce74fb363317618bb27a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderTextValue: {fileID: 1233990674195565462}
+  sliderText: {fileID: 1233990674195565462}
+--- !u!114 &737289346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233990674425113746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abdd6338f850c8049af9d4dc0d7c19f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  busPath: bus:/Julien_Test_Master/Music
 --- !u!1 &1233990674456770302
 GameObject:
   m_ObjectHideFlags: 0
@@ -2291,7 +2347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2535249878446440422
 Transform:
   m_ObjectHideFlags: 0
@@ -2777,7 +2833,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 19
   m_TargetDisplay: 0

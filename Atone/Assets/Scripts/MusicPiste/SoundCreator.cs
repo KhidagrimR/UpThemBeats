@@ -149,7 +149,7 @@ public class SoundCreator : Singleton<SoundCreator>
     #region FMOD METHODS
     public void SetupVarsFMOD()
     {
-        musicFMODInstance = RuntimeManager.CreateInstance(musicFMODEvent);
+        musicFMODInstance = MusicManager.MusicFMODInstance;// RuntimeManager.CreateInstance(musicFMODEvent);
 
         //Calculate the number of seconds between each beat
         secPerBeat = 60f / songBpm;
@@ -198,8 +198,8 @@ public class SoundCreator : Singleton<SoundCreator>
     public void PlayMusic()
     {
         //Start the music
-        Debug.Log("StartMusic");
-        musicFMODInstance.start();      // FMOD Test Julien
+        // Debug.Log("StartMusic from SOUND CREATOR");
+        // musicFMODInstance.start();      // FMOD Test Julien
         //musicFMODInstance.release();    // FMOD Test Julien
         //musicSource.Play();
     }

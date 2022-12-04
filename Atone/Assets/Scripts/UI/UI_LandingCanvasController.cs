@@ -7,25 +7,25 @@ namespace Atone_UI
     public class UI_LandingCanvasController : MonoBehaviour
     {
         // This is to determine whether to display the pause canvas or the main menu canvas
-        [SerializeField]private GameObject m_mainMenuLanding;
-        [SerializeField]private GameObject m_pauseMenuLanding;
+        [SerializeField]private GameObject mainMenuLanding;
+        [SerializeField]private GameObject pauseMenuLanding;
 
-        [SerializeField]private GameObject m_VolumeSettings;
-        [SerializeField]private GameObject m_GraphicSettings;
-        [SerializeField]private GameObject m_GameplaySettings;
+        [SerializeField]private GameObject volumeSettings;
+        [SerializeField]private GameObject graphicSettings;
+        [SerializeField]private GameObject gameplaySettings;
 
-        private Dictionary<SubMenuType, GameObject> m_MenuComponentsDict;
-        private GameObject m_CurrrentlyActiveSettings = null;
-        private SubMenuType m_CurrentSubMenu = SubMenuType.NONE;
-        private MenuType m_CurrentMenuState = MenuType.NONE_GAME_PLAYING;
+        private Dictionary<SubMenuType, GameObject> menuComponentsDict;
+        private GameObject currrentlyActiveSettings = null;
+        private SubMenuType currentSubMenu = SubMenuType.NONE;
+        private MenuType currentMenuLanding = MenuType.NONE_GAME_PLAYING;
 
 
 
         private void Awake(){
-            m_MenuComponentsDict = new Dictionary<SubMenuType, GameObject>(){
-                {SubMenuType.GAMEPLAY, m_GameplaySettings},
-                {SubMenuType.GRAPHICS, m_GraphicSettings},
-                {SubMenuType.VOLUME, m_VolumeSettings}
+            menuComponentsDict = new Dictionary<SubMenuType, GameObject>(){
+                {SubMenuType.GAMEPLAY, gameplaySettings},
+                {SubMenuType.GRAPHICS, graphicSettings},
+                {SubMenuType.VOLUME, volumeSettings}
             };
         }      
 
@@ -40,27 +40,49 @@ namespace Atone_UI
             }
         }
 
-        public void TogglePauseMenu(bool isGameBeingPaused){
+        private void TogglePauseMenu(bool isGameBeingPaused){
             if(isGameBeingPaused){
                 SetLandingCanvas(MenuType.PAUSE_MENU);
+                Cursor.lockState = CursorLockMode.None; // Frees the cursor in order to navigate menu
             } else {
                 SetLandingCanvas(MenuType.NONE_GAME_PLAYING);
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
         private void SetLandingCanvas(MenuType menuType){
-            m_pauseMenuLanding.SetActive(menuType == MenuType.PAUSE_MENU);
-            m_mainMenuLanding.SetActive(menuType == MenuType.MAIN_MENU);
+            pauseMenuLanding.SetActive(menuType == MenuType.PAUSE_MENU);
+            mainMenuLanding.SetActive(menuType == MenuType.MAIN_MENU);
         }
 
-        public void DisplayMenuSettings(SubMenuType submenu){
-            if(m_CurrentSubMenu != submenu){
-                m_CurrrentlyActiveSettings.SetActive(false);
-                m_CurrrentlyActiveSettings = m_MenuComponentsDict[submenu];
+        private void DisplayMenuSettings(SubMenuType submenu){
+            if(currentSubMenu != submenu){ 
+                if(currrentlyActiveSettings != null) { 
+                    Debug.Log("current active settings not null");
+                    currrentlyActiveSettings.SetActive(false); 
+                }
+
+                currentSubMenu = submenu;        
+
                 if(submenu != SubMenuType.NONE){
-                    m_CurrrentlyActiveSettings.SetActive(true);
+                    currrentlyActiveSettings = menuComponentsDict[submenu];   
+                    currrentlyActiveSettings.SetActive(true);
                 }
             }
         }
+
+        #region function called by menu buttons
+        public void DisplayMenuSettingsFromClickEvent(int submenuIndex){
+            DisplayMenuSettings((SubMenuType)submenuIndex);
+        }
+        public void ResumeGameFromClickEvent()
+        {
+            DisplayMenuSettings(SubMenuType.NONE);
+            TogglePauseMenu(false);
+            GameManager.Instance.TogglePauseState();
+            
+        }
+
+        #endregion
     }
 
     public enum MenuType {

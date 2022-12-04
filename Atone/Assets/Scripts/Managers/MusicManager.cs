@@ -19,7 +19,8 @@ public class MusicManager : Singleton<MusicManager>
     private GCHandle timelineHandle; // needed to access a managed object (the timeline info) from unmanaged memory.
     // https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.gchandle?view=net-7.0
     private FMOD.Studio.EVENT_CALLBACK beatCallback;
-    private FMOD.Studio.EventInstance musicFMODInstance; //FMOD event instance that allows us to interact with it.
+    private static FMOD.Studio.EventInstance musicFMODInstance; //FMOD event instance that allows us to interact with it.
+    public static FMOD.Studio.EventInstance MusicFMODInstance{get{return musicFMODInstance;} set{musicFMODInstance = value;}}
     
     #endregion
     
@@ -41,6 +42,7 @@ public class MusicManager : Singleton<MusicManager>
             musicFMODInstance = RuntimeManager.CreateInstance(musicFMODEvent);
             //musicFMODInstance.start(); // Only if we want to start playing on Awake
         }
+        else {Debug.LogError("No music Instance could be created because musicFMODEvent is null.");}
     }
     private void Start(){
         if(!musicFMODEvent.IsNull){
@@ -54,6 +56,10 @@ public class MusicManager : Singleton<MusicManager>
 
         }
     }
+    private void Update(){
+       
+    }
+    
 
     private void OnDestroy(){
         musicFMODInstance.setUserData(IntPtr.Zero);
@@ -62,6 +68,22 @@ public class MusicManager : Singleton<MusicManager>
         timelineHandle.Free();
     }
     #endregion
+
+    public void PlayMusic()
+    {
+        //Start the music
+        Debug.Log("StartMusic from MUSIC MANAGER");
+        musicFMODInstance.start();      // FMOD Test Julien
+        //musicFMODInstance.release();    // FMOD Test Julien
+    }
+
+    public static void ToggleMusicPause(bool isPausing){
+        MusicFMODInstance.setPaused(isPausing);
+    }
+
+
+
+
     //-----------------------------------------------------------------------------------------------------------------------------------------------------
 
     // Il faut s'assurer que les info ne soient pas supprimées par le GC
@@ -96,7 +118,8 @@ public class MusicManager : Singleton<MusicManager>
                 case FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER: // 0x00000800
                     {
                         var parameter = (FMOD.Studio.TIMELINE_MARKER_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_MARKER_PROPERTIES));
-                        timelineInfo.lastMarker = parameter.name;             
+                        timelineInfo.lastMarker = parameter.name;
+                        Debug.Log("Marker name = " + parameter.name);
                     }
                     break;
             }

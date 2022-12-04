@@ -7,18 +7,24 @@ namespace Atone_UI
     public class UISliderValueWrite : MonoBehaviour
     {
         private Slider attachedSlider;
-        [SerializeField]private TMP_Text sliderTextValue;
+        [SerializeField]private TMP_Text sliderText;
 
         void Awake(){
             attachedSlider = GetComponent<Slider>();
         }
         void Start(){
-            attachedSlider.onValueChanged.AddListener(delegate{UpdateTextValue();});
-            sliderTextValue.text = attachedSlider.value.ToString();
+            try {
+                attachedSlider.onValueChanged.AddListener(delegate{UpdateTextValue();});
+                UpdateTextValue();
+                // sliderText.text = attachedSlider.value.ToString();
+            }
+            catch(System.ArgumentNullException ex){
+                Debug.LogError(ex.Message);
+            }
         }
         void UpdateTextValue()
-        {
-            sliderTextValue.text = attachedSlider.value.ToString();
+        {            
+            sliderText.text = attachedSlider.value.ToString("F0");
         }
     }
 }
