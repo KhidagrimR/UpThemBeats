@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using DG.Tweening;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
@@ -23,6 +24,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public int playerCurrentLane = 1;
 
+    [Header("To Tweak")]
+    public float tweenDutchDuration = 0.4f;
 
     public void Init()
     {
@@ -93,17 +96,26 @@ public class PlayerManager : Singleton<PlayerManager>
         switch(lane)
         {
             case 0 : 
-                cvm.m_Lens.Dutch = -20;
+                DOVirtual.Float(cvm.m_Lens.Dutch, -20f, tweenDutchDuration, (float x) => {
+                    cvm.m_Lens.Dutch = x;
+                });
+                //cvm.m_Lens.Dutch = -20;
                 playerHead.localPosition = new Vector3(1,playerHead.localPosition.y,playerHead.localPosition.z); 
             break;
 
             case 1 : 
-                cvm.m_Lens.Dutch = 0;
+                //cvm.m_Lens.Dutch = 0;
+                DOVirtual.Float(cvm.m_Lens.Dutch, 0, tweenDutchDuration, (float x) => {
+                    cvm.m_Lens.Dutch = x;
+                });
                 playerHead.localPosition = new Vector3(0, playerHead.localPosition.y, playerHead.localPosition.z);
             break;
 
             case 2 : 
-                cvm.m_Lens.Dutch = 20;
+                //cvm.m_Lens.Dutch = 20;
+                DOVirtual.Float(cvm.m_Lens.Dutch, 20f, tweenDutchDuration, (float x) => {
+                    cvm.m_Lens.Dutch = x;
+                });
                 playerHead.localPosition = new Vector3(-1,playerHead.localPosition.y,playerHead.localPosition.z); 
             break;
         }
