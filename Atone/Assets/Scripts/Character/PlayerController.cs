@@ -51,14 +51,14 @@ public class PlayerController : MonoBehaviour
 
         startingPlayerY = transform.position.y;
         
-        InputManager.Instance.onDestroy += CheckIfWallToDestroy;
-        InputManager.Instance.onJump += CheckIfBopToDestroy;
+        InputManager.Instance.onDestroyWall += CheckIfWallToDestroy;
+        InputManager.Instance.onDestroyBop += CheckIfBopToDestroy;
     }
 
     void OnDisable()
     {
-        InputManager.Instance.onDestroy -= CheckIfWallToDestroy;
-        InputManager.Instance.onJump -= CheckIfBopToDestroy;
+        InputManager.Instance.onDestroyWall -= CheckIfWallToDestroy;
+        InputManager.Instance.onDestroyBop -= CheckIfBopToDestroy;
     }
 
     // Update is called once per frame
@@ -141,8 +141,6 @@ public class PlayerController : MonoBehaviour
         else
             print("cooldown");
     }
-
-
 }
 
 /*

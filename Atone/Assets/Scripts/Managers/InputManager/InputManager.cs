@@ -7,13 +7,13 @@ public class InputManager : Singleton<InputManager>
 {
     public static bool onController = false;
 
-    [Header("Jump Action")]
-    #region jump
-    public Action jumpAction = new Action("jump", KeyCode.Space, KeyCode.A);
-    public delegate void OnJump();
-    public OnJump onJump;
-    public delegate void OnJumpPressed();
-    public OnJumpPressed onJumpPressed;
+    [Header("Break Bop Action")]
+    #region BreakBop
+    public Action destroyBopAction = new Action("jump", KeyCode.S, KeyCode.S);
+    public delegate void OnDestroyBop();
+    public OnDestroyBop onDestroyBop;
+    public delegate void OnDestroyBopPressed();
+    public OnDestroyBopPressed onDestroyBopPressed;
 
     #endregion
 
@@ -28,31 +28,31 @@ public class InputManager : Singleton<InputManager>
     public OnGoLeftLanePressed onGoLeftLanePressed;
     #endregion
 
-    [Header("Destroy Action")]
-    public Action destroyAction = new Action("destroy", KeyCode.Z, KeyCode.E);
-    public delegate void OnDestroy();
-    public OnJump onDestroy;
-    public delegate void OnDestroyPressed();
-    public OnJumpPressed onDestroyPressed;
+    [Header("Destroy Wall Action")]
+    public Action destroyWallAction = new Action("destroy", KeyCode.Z, KeyCode.E);
+    public delegate void OnDestroyWall();
+    public OnDestroyWall onDestroyWall;
+    public delegate void OnDestroyWallPressed();
+    public OnDestroyWallPressed onDestroyWallPressed;
 
 
     void Update()
     {
-        if (jumpAction.GetAction(onController))
-            if (onJump != null)
-                onJump();
+        if (destroyWallAction.GetAction(onController))
+            if (onDestroyWall != null)
+                onDestroyWall();
 
-        if (jumpAction.GetActionPressed(onController))
-            if (onJumpPressed != null)
-                onJumpPressed();
+        if (destroyWallAction.GetActionPressed(onController))
+            if (onDestroyWallPressed != null)
+                onDestroyWallPressed();
 
-        if (destroyAction.GetAction(onController))
-            if (onDestroy != null)
-                onDestroy();
+        if (destroyBopAction.GetAction(onController))
+            if (onDestroyBop != null)
+                onDestroyBop();
                 
-        if (destroyAction.GetActionPressed(onController))
-            if (onDestroyPressed != null)
-                onDestroyPressed();
+        if (destroyBopAction.GetActionPressed(onController))
+            if (onDestroyBopPressed != null)
+                onDestroyBopPressed();
 
         if (goToLeftLane.GetAction(onController))
             if (onGoLeftLanePressed != null)
