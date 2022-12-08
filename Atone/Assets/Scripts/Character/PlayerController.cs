@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    public static GameObject gameObjectColliding; 
+    public static List<GameObject> gameObjectsColliding; 
 
     // Start is called before the first frame update
     public void Start()
@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour
         
         InputManager.Instance.onDestroyWall += CheckIfWallToDestroy;
         InputManager.Instance.onDestroyBop += CheckIfBopToDestroy;
+
+        gameObjectsColliding = new List<GameObject>();
     }
 
     void OnDisable()
@@ -122,22 +124,29 @@ public class PlayerController : MonoBehaviour
     }
     public void CheckIfWallToDestroy()
     {
-        if (gameObjectColliding != null)
-            if (gameObjectColliding.GetComponent<WallTrigger>() != null)
-                gameObjectColliding.GetComponent<WallTrigger>().WallAction();
-            else
-                print("coolDown - mur raté PC");
+        if (gameObjectsColliding.Count != 0)
+            for(int i = 0; i < gameObjectsColliding.Count; i+= 1){
+                if (gameObjectsColliding[i].GetComponent<WallTrigger>() != null)
+                        gameObjectsColliding[i].GetComponent<WallTrigger>().WallAction();
+                    else
+                        print("coolDown - mur raté PC");
+            }
+                
         else
             print("cooldown");
     }
 
     public void CheckIfBopToDestroy()
     {
-        if (gameObjectColliding != null)
-            if (gameObjectColliding.GetComponent<BopTrigger>() != null)
-                gameObjectColliding.GetComponent<BopTrigger>().BopAction();
-            else
-                print("coolDown - bop raté PC");
+        if (gameObjectsColliding.Count != 0)
+            for (int i = 0; i < gameObjectsColliding.Count; i += 1)
+            {
+                if (gameObjectsColliding[i].GetComponent<BopTrigger>() != null)
+                    gameObjectsColliding[i].GetComponent<BopTrigger>().BopAction();
+                else
+                    print("coolDown - bop raté PC");
+            }
+
         else
             print("cooldown");
     }
