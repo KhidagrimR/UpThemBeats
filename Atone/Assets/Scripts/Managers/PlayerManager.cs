@@ -32,8 +32,8 @@ public class PlayerManager : Singleton<PlayerManager>
         SetupPlayerSpeed();
         InitDistanceBop();
 
-        InputManager.Instance.onGoLeftLanePressed += MovePlayerToLeftLane;
-        InputManager.Instance.onGoRightLanePressed += MovePlayerToRightLane;
+        InputManager.Instance.onGoLeftLane += MovePlayerToLeftLane;
+        InputManager.Instance.onGoRightLane += MovePlayerToRightLane;
 
         _isReady = true;
         playerCurrentLane = 1;
@@ -43,8 +43,8 @@ public class PlayerManager : Singleton<PlayerManager>
     private void OnDisable()
     {
         if(InputManager.Instance != null){            
-            InputManager.Instance.onGoLeftLanePressed -= MovePlayerToLeftLane;
-            InputManager.Instance.onGoRightLanePressed -= MovePlayerToRightLane;
+            InputManager.Instance.onGoLeftLane -= MovePlayerToLeftLane;
+            InputManager.Instance.onGoRightLane -= MovePlayerToRightLane;
         }
     }
 
@@ -94,7 +94,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void ChangeDutch(int lane)
     {
-        Debug.Log("switch lane on = "+lane);
+//        Debug.Log("CALLED");
         switch(lane)
         {
             case 0 : 
@@ -107,7 +107,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
             case 1 : 
                 //cvm.m_Lens.Dutch = 0;
-                DOVirtual.Float(cvm.m_Lens.Dutch, 0, tweenDutchDuration, (float x) => {
+                DOVirtual.Float(cvm.m_Lens.Dutch, 0f, tweenDutchDuration, (float x) => {
                     cvm.m_Lens.Dutch = x;
                 });
                 playerHead.localPosition = new Vector3(0, playerHead.localPosition.y, playerHead.localPosition.z);

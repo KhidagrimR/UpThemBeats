@@ -28,12 +28,12 @@ public class InputManager : Singleton<InputManager>
     #region switchlane
     // RIGHT LANE
     public PlayerAction goToRightLane = new PlayerAction("rightLane", KeyCode.E, KeyCode.A);
-    public delegate void OnGoRightLanePressed();
-    public OnGoRightLanePressed onGoRightLanePressed;
+    public delegate void OnGoRightLane();
+    public OnGoRightLane onGoRightLane;
     // LEFT LANE
     public PlayerAction goToLeftLane = new PlayerAction("leftLane", KeyCode.A, KeyCode.A);
-    public delegate void OnGoLeftLanePressed();
-    public OnGoLeftLanePressed onGoLeftLanePressed;
+    public delegate void OnGoLeftLane();
+    public OnGoLeftLane onGoLeftLane;
     #endregion
 
     [Header("Destroy Wall Action")]
@@ -50,25 +50,17 @@ public class InputManager : Singleton<InputManager>
             if (onDestroyWall != null)
                 onDestroyWall();
 
-        if (destroyWallAction.GetActionPressed(onController))
-            if (onDestroyWallPressed != null)
-                onDestroyWallPressed();
-
         if (destroyBopAction.GetAction(onController))
             if (onDestroyBop != null)
                 onDestroyBop();
-                
-        if (destroyBopAction.GetActionPressed(onController))
-            if (onDestroyBopPressed != null)
-                onDestroyBopPressed();
 
-        if (goToLeftLane.GetActionPressed(onController))
-            if (onGoLeftLanePressed != null)
-                onGoLeftLanePressed();
+        if (goToLeftLane.GetAction(onController))
+            if (onGoLeftLane != null)
+                onGoLeftLane();
 
         if (goToRightLane.GetAction(onController))
-            if (onGoRightLanePressed != null)
-                onGoRightLanePressed();
+            if (onGoRightLane != null)
+                onGoRightLane();
 
         if(menuOrReturn.GetAction(onController)){
             // Current setup is hacky, need to change it later. Might need to add a future check to verify that we are not in the main menu scene            
