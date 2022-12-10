@@ -97,28 +97,31 @@ public class PlayerManager : Singleton<PlayerManager>
 //        Debug.Log("CALLED");
         switch(lane)
         {
-            case 0 : 
+            case 0 : // Gauche
                 DOVirtual.Float(cvm.m_Lens.Dutch, -20f, tweenDutchDuration, (float x) => {
                     cvm.m_Lens.Dutch = x;
                 });
                 //cvm.m_Lens.Dutch = -20;
                 playerHead.localPosition = new Vector3(1,playerHead.localPosition.y,playerHead.localPosition.z); 
+                playerController.animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.LeftRun);
             break;
 
-            case 1 : 
+            case 1 : // centre
                 //cvm.m_Lens.Dutch = 0;
                 DOVirtual.Float(cvm.m_Lens.Dutch, 0f, tweenDutchDuration, (float x) => {
                     cvm.m_Lens.Dutch = x;
                 });
                 playerHead.localPosition = new Vector3(0, playerHead.localPosition.y, playerHead.localPosition.z);
+                playerController.animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.Run);
             break;
 
-            case 2 : 
+            case 2 : // droite
                 //cvm.m_Lens.Dutch = 20;
                 DOVirtual.Float(cvm.m_Lens.Dutch, 20f, tweenDutchDuration, (float x) => {
                     cvm.m_Lens.Dutch = x;
                 });
                 playerHead.localPosition = new Vector3(-1,playerHead.localPosition.y,playerHead.localPosition.z); 
+                playerController.animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.RightRun); 
             break;
         }
 
