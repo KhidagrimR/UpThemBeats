@@ -21,14 +21,15 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: moveable_blue
-  m_Shader: {fileID: -6465566751694194690, guid: d27aafaebf8a67e45abf401f4c77362f, type: 3}
+  m_Shader: {fileID: 4800000, guid: 10b7c5afb7fd8a5448ff7b570ae7f265, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -119,9 +120,10 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 0, b: 0, a: 1}
-    - _Color: {r: 0, g: 0.34345746, b: 1, a: 1}
+    - _AtoneBendSettings: {r: 0, g: 0, b: 0, a: 0}
+    - _BaseColor: {r: 0, g: 0.57601166, b: 1, a: 1}
+    - _Color: {r: 0, g: 0.57601166, b: 1, a: 1}
     - _Emission: {r: 0, g: 0.34509805, b: 1, a: 1}
-    - _EmissionColor: {r: 2, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0, g: 0.34509802, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
