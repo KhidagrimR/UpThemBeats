@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     private float startingPlayerY;
 
+    public AnimationTrigger animationTrigger;
+
     #region Setter
     public float playerSpeed
     {

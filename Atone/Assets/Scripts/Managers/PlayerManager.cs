@@ -92,19 +92,22 @@ public class PlayerManager : Singleton<PlayerManager>
         Debug.Log("switch lane on = "+lane);
         switch(lane)
         {
-            case 0 : 
+            case 0 : // Gauche
                 cvm.m_Lens.Dutch = -20;
                 playerHead.localPosition = new Vector3(1,playerHead.localPosition.y,playerHead.localPosition.z); 
+                playerController.animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.LeftRun);
             break;
 
-            case 1 : 
+            case 1 : // centre
                 cvm.m_Lens.Dutch = 0;
                 playerHead.localPosition = new Vector3(0, playerHead.localPosition.y, playerHead.localPosition.z);
+                playerController.animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.Run);
             break;
 
-            case 2 : 
+            case 2 : // droite
                 cvm.m_Lens.Dutch = 20;
-                playerHead.localPosition = new Vector3(-1,playerHead.localPosition.y,playerHead.localPosition.z); 
+                playerHead.localPosition = new Vector3(-1,playerHead.localPosition.y,playerHead.localPosition.z);
+                playerController.animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.RightRun); 
             break;
         }
 
