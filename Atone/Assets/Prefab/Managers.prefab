@@ -44,6 +44,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9c6ab4a3669ac5e85d346e68b7a712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyBopAction:
+    m_Name: bop
+    m_ActionKeyBoard: 115
+    m_ActionController: 115
+  goToRightLane:
+    m_Name: rightLane
+    m_ActionKeyBoard: 101
+    m_ActionController: 335
+  goToLeftLane:
+    m_Name: leftLane
+    m_ActionKeyBoard: 97
+    m_ActionController: 333
+  destroyWallAction:
+    m_Name: destroy
+    m_ActionKeyBoard: 122
+    m_ActionController: 101
 --- !u!1 &6341438436592442146
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,3 +183,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
+  playerHead: {fileID: 0}
+  rootPivot: {fileID: 0}
+  cvm: {fileID: 0}
+  lanes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerCurrentLane: 1
+  tweenDutchDuration: 0.4
