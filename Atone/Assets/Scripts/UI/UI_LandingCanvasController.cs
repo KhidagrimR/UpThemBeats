@@ -46,6 +46,7 @@ namespace Atone_UI
                 Cursor.lockState = CursorLockMode.None; // Frees the cursor in order to navigate menu
             } else {
                 SetLandingCanvas(MenuType.NONE_GAME_PLAYING);
+                DisplayMenuSettings(SubMenuType.NONE);
                 Cursor.lockState = CursorLockMode.Locked;
             }
         }

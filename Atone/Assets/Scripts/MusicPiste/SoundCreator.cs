@@ -125,7 +125,7 @@ public class SoundCreator : Singleton<SoundCreator>
 
     public void SetupVars() 
     {
-        musicFMODInstance = RuntimeManager.CreateInstance(musicFMODEvent); // FMOD Test Julien
+        //musicFMODInstance = RuntimeManager.CreateInstance(musicFMODEvent); // FMOD Test Julien
 
         //Load the AudioSource attached to the Conductor GameObject
         musicSource = GetComponent<AudioSource>();

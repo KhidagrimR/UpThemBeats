@@ -1,5 +1,56 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &794377114544737474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6668483747726264853}
+  - component: {fileID: 4082829038795663901}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6668483747726264853
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794377114544737474}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6341438436953146819}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4082829038795663901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794377114544737474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1956a412dc7584f9b5aa607a14c0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicFMODEvent:
+    Guid:
+      Data1: -282826335
+      Data2: 1164788982
+      Data3: 706224002
+      Data4: 214115588
+    Path: event:/Julien_Test_Music_00
 --- !u!1 &6341438436302581879
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,6 +95,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9c6ab4a3669ac5e85d346e68b7a712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuOrReturn:
+    m_Name: menuOrReturn
+    m_ActionKeyBoard: 27
+    m_ActionController: 357
   destroyBopAction:
     m_Name: bop
     m_ActionKeyBoard: 115
@@ -70,6 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6341438436592442147}
   - component: {fileID: 6341438436592442144}
+  - component: {fileID: 1172588192285575461}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -104,6 +160,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eca1367beb476b4c9ea36896c9421f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1172588192285575461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6341438436592442146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea32ad7b4e8e724a88da26d46d9b83a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6341438436953146818
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +203,7 @@ Transform:
   - {fileID: 6341438436302581876}
   - {fileID: 6341438437020692616}
   - {fileID: 6341438436592442147}
+  - {fileID: 6668483747726264853}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
