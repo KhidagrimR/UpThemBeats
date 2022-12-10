@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Status")]
     public bool isGrounded;
-    public  bool isChangingLane;
+    public bool isChangingLane;
 
     [Header("Input parameters")]
     [SerializeField]
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    public static GameObject gameObjectColliding; 
+    public static GameObject gameObjectColliding;
 
     // Start is called before the first frame update
     public void Start()
@@ -50,15 +50,19 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         startingPlayerY = transform.position.y;
-        
+
         InputManager.Instance.onDestroyWall += CheckIfWallToDestroy;
         InputManager.Instance.onDestroyBop += CheckIfBopToDestroy;
     }
 
     void OnDisable()
     {
-        InputManager.Instance.onDestroyWall -= CheckIfWallToDestroy;
-        InputManager.Instance.onDestroyBop -= CheckIfBopToDestroy;
+        if (InputManager.Instance != null)
+        {
+            InputManager.Instance.onDestroyWall -= CheckIfWallToDestroy;
+            InputManager.Instance.onDestroyBop -= CheckIfBopToDestroy;
+        }
+
     }
 
     // Update is called once per frame
@@ -106,16 +110,16 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeLane(Vector3 lanePosition)
     {
-        if(isChangingLane) return;
+        if (isChangingLane) return;
 
         isChangingLane = true;
 
         Vector3 target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
-        float distanceZ = playerSpeed * changeLaneDuration ; //v * t
+        float distanceZ = playerSpeed * changeLaneDuration; //v * t
 
         target.z += distanceZ;
 
-        transform.DOMove(target, changeLaneDuration).OnComplete(()=> 
+        transform.DOMove(target, changeLaneDuration).OnComplete(() =>
         {
             isChangingLane = false;
         });

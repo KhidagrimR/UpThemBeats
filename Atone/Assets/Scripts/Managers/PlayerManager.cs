@@ -42,15 +42,17 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void OnDisable()
     {
-        InputManager.Instance.onGoLeftLanePressed -= MovePlayerToLeftLane;
-        InputManager.Instance.onGoRightLanePressed -= MovePlayerToRightLane;
+        if(InputManager.Instance != null){            
+            InputManager.Instance.onGoLeftLanePressed -= MovePlayerToLeftLane;
+            InputManager.Instance.onGoRightLanePressed -= MovePlayerToRightLane;
+        }
     }
 
     void SetupPlayerSpeed()
     {
         float playerSpeed = 1f;
-        float distanceBetweenBeats = SoundCreator.Instance.distanceBetweenNotes;
-        float secPerBeat = SoundCreator.Instance.secPerBeat;
+        float distanceBetweenBeats = SoundCreator.Instance.DistanceBetweenNotes;
+        float secPerBeat = SoundCreator.Instance.SecPerBeat;
 
         // here you calculate the speed to reach the next "beat" point
         // v = d / t => d = distanceBetweenBeats and t => secPerBeat
