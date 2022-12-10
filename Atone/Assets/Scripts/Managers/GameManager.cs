@@ -23,6 +23,7 @@ public class GameManager : Singleton<GameManager>
     IEnumerator Init()
     {
         isGameCurrentlyPaused = false;
+        
 
         if (SoundCreator.Instance != null)
         {
