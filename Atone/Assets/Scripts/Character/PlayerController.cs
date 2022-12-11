@@ -42,6 +42,9 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    [Header("References")]
+    public GameObject playerVisual;
+
     public static GameObject gameObjectColliding;
 
     // Start is called before the first frame update
@@ -71,13 +74,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (!GameManager.Instance.isReady) return;
-
         CheckGround();
         Move();
-
-        if (canJump && isGrounded && Input.GetButtonDown("Jump"))
-            Jump();
-
         ApplyGravity();
 
         // vertical mvt
@@ -93,21 +91,28 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = -0.5f;
         }
     }
-
     void Move()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (playerSpeed * Time.deltaTime));
-    }
-
-    void Jump()
-    {
-
     }
 
     void ApplyGravity()
     {
         // apply gravity
         playerVelocity.y += gravityValue * Time.deltaTime;
+    }
+
+    public void BendOnLeft()
+    {
+        transform.position = new Vector3(-0.5f, transform.position.y, transform.position.z);
+    }
+    public void ResetBend()
+    {
+        transform.position = new Vector3(0f, transform.position.y, transform.position.z);
+    }
+    public void BendOnRight()
+    {
+        transform.position = new Vector3(0.5f, transform.position.y, transform.position.z);
     }
 
     public void ChangeLane(Vector3 lanePosition)
@@ -129,8 +134,8 @@ public class PlayerController : MonoBehaviour
     public void CheckIfWallToDestroy()
     {
         if (gameObjectColliding != null)
-            if (gameObjectColliding.GetComponent<WallTrigger>() != null)
-                gameObjectColliding.GetComponent<WallTrigger>().WallAction();
+            if (gameObjectColliding.TryGetComponent<WallTrigger>(out WallTrigger wallTrigger))
+                wallTrigger.WallAction();
             else
                 print("coolDown - mur raté PC");
         else
@@ -140,34 +145,11 @@ public class PlayerController : MonoBehaviour
     public void CheckIfBopToDestroy()
     {
         if (gameObjectColliding != null)
-            if (gameObjectColliding.GetComponent<BopTrigger>() != null)
-                gameObjectColliding.GetComponent<BopTrigger>().BopAction();
+            if (gameObjectColliding.TryGetComponent<BopTrigger>(out BopTrigger bopTrigger))
+                bopTrigger.BopAction();
             else
                 print("coolDown - bop raté PC");
         else
             print("cooldown");
     }
 }
-
-/*
-    void Jump() // à remplacer par le saut pour changer de lane
-    {
-        // change the height position of the player
-        playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-    }
-
-
-    void Move() // peut être à refaire pour qu'on ait une vitesse en BPM ?
-    {
-        Vector3 move;
-        if (isAutorunActivated)
-            move = new Vector3(0, 0, 1);
-        else
-            move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-        controller.Move(move * Time.deltaTime * playerSpeed);
-
-    }
-
-
-*/

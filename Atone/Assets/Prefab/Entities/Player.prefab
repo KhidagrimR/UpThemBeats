@@ -99,7 +99,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -165,6 +165,7 @@ MonoBehaviour:
   gravityValue: -9.81
   changeLaneDuration: 0.25
   animationTrigger: {fileID: 1230556914}
+  playerVisual: {fileID: 4322100285024687133}
 --- !u!143 &4322100284170343566
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1450,8 +1451,20 @@ PrefabInstance:
       value: 0.00000017881393
       objectReference: {fileID: 0}
     - target: {fileID: 3190652070161953515, guid: d9196cca3eae1b34899a6c7bfe7bbc1a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9459107
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190652070161953515, guid: d9196cca3eae1b34899a6c7bfe7bbc1a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.029391013
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190652070161953515, guid: d9196cca3eae1b34899a6c7bfe7bbc1a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.051584467
+      value: 0.051516265
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190652070161953515, guid: d9196cca3eae1b34899a6c7bfe7bbc1a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.31895941
       objectReference: {fileID: 0}
     - target: {fileID: 3350247303177706173, guid: d9196cca3eae1b34899a6c7bfe7bbc1a, type: 3}
       propertyPath: m_Layer

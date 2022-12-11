@@ -32,4 +32,12 @@ public class PlayerAction
         else
             return Input.GetKey(m_ActionKeyBoard);
     }
+
+    public bool GetActionReleased(bool onController)
+    {
+        if(onController)
+            return Input.GetKeyUp(m_ActionController);
+        else
+            return Input.GetKeyUp(m_ActionKeyBoard);
+    }
 }

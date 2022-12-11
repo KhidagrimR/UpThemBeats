@@ -35,6 +35,9 @@ public class PlayerManager : Singleton<PlayerManager>
         InputManager.Instance.onGoLeftLane += MovePlayerToLeftLane;
         InputManager.Instance.onGoRightLane += MovePlayerToRightLane;
 
+        InputManager.Instance.onBendLeftLane += BendPlayerTowardDirection;
+        InputManager.Instance.onBendRightLane += BendPlayerTowardDirection;
+
         _isReady = true;
         playerCurrentLane = 1;
 
@@ -42,9 +45,13 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void OnDisable()
     {
-        if(InputManager.Instance != null){            
+        if (InputManager.Instance != null)
+        {
             InputManager.Instance.onGoLeftLane -= MovePlayerToLeftLane;
             InputManager.Instance.onGoRightLane -= MovePlayerToRightLane;
+
+            InputManager.Instance.onBendLeftLane -= BendPlayerTowardDirection;
+            InputManager.Instance.onBendRightLane -= BendPlayerTowardDirection;
         }
     }
 
@@ -76,53 +83,88 @@ public class PlayerManager : Singleton<PlayerManager>
     public void MovePlayerToRightLane()
     {
         playerCurrentLane++;
-        ChangeDutch(playerCurrentLane);
+        ChangeLaneDutch(playerCurrentLane);
 
         playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
         playerController.ChangeLane(GetLanePosition(playerCurrentLane));
-        
+
     }
 
     public void MovePlayerToLeftLane()
     {
         playerCurrentLane--;
-        ChangeDutch(playerCurrentLane);
+        ChangeLaneDutch(playerCurrentLane);
 
         playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
         playerController.ChangeLane(GetLanePosition(playerCurrentLane));
     }
 
-    private void ChangeDutch(int lane)
+    public void BendPlayerTowardDirection(int direction)
     {
-//        Debug.Log("CALLED");
-        switch(lane)
+        Debug.Log("Bend on : "+direction);
+        switch (direction)
         {
-            case 0 : // Gauche
-                DOVirtual.Float(cvm.m_Lens.Dutch, -20f, tweenDutchDuration, (float x) => {
+            case 0:
+                playerController.BendOnLeft();
+                DOVirtual.Float(cvm.m_Lens.Dutch, -10f, tweenDutchDuration/2f, (float x) =>
+                {
+                    cvm.m_Lens.Dutch = x;
+                });
+                break;
+            case 1:
+                playerController.ResetBend();
+                DOVirtual.Float(cvm.m_Lens.Dutch, 0f, tweenDutchDuration/2f, (float x) =>
+                {
+                    cvm.m_Lens.Dutch = x;
+                });
+
+                if(playerCurrentLane <= 0) MovePlayerToRightLane();
+                else if(playerCurrentLane >= 2) MovePlayerToLeftLane();
+                break;
+            case 2:
+                playerController.BendOnRight();
+                DOVirtual.Float(cvm.m_Lens.Dutch, 10f, tweenDutchDuration/2f, (float x) =>
+                {
+                    cvm.m_Lens.Dutch = x;
+                });
+                break;
+        }
+    }
+
+    private void ChangeLaneDutch(int lane)
+    {
+        //        Debug.Log("CALLED");
+        switch (lane)
+        {
+            case 0: // Gauche
+                DOVirtual.Float(cvm.m_Lens.Dutch, -20f, tweenDutchDuration, (float x) =>
+                {
                     cvm.m_Lens.Dutch = x;
                 });
                 //cvm.m_Lens.Dutch = -20;
-                playerHead.localPosition = new Vector3(1,playerHead.localPosition.y,playerHead.localPosition.z); 
+                playerHead.localPosition = new Vector3(1, playerHead.localPosition.y, playerHead.localPosition.z);
                 playerController.animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.LeftRun);
-            break;
+                break;
 
-            case 1 : // centre
+            case 1: // centre
                 //cvm.m_Lens.Dutch = 0;
-                DOVirtual.Float(cvm.m_Lens.Dutch, 0f, tweenDutchDuration, (float x) => {
+                DOVirtual.Float(cvm.m_Lens.Dutch, 0f, tweenDutchDuration, (float x) =>
+                {
                     cvm.m_Lens.Dutch = x;
                 });
                 playerHead.localPosition = new Vector3(0, playerHead.localPosition.y, playerHead.localPosition.z);
                 playerController.animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.Run);
-            break;
+                break;
 
-            case 2 : // droite
+            case 2: // droite
                 //cvm.m_Lens.Dutch = 20;
-                DOVirtual.Float(cvm.m_Lens.Dutch, 20f, tweenDutchDuration, (float x) => {
+                DOVirtual.Float(cvm.m_Lens.Dutch, 20f, tweenDutchDuration, (float x) =>
+                {
                     cvm.m_Lens.Dutch = x;
                 });
-                playerHead.localPosition = new Vector3(-1,playerHead.localPosition.y,playerHead.localPosition.z); 
-                playerController.animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.RightRun); 
-            break;
+                playerHead.localPosition = new Vector3(-1, playerHead.localPosition.y, playerHead.localPosition.z);
+                playerController.animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.RightRun);
+                break;
         }
 
     }
@@ -134,9 +176,11 @@ public class PlayerManager : Singleton<PlayerManager>
         return lanes[targetLane].position;
     }
 
-    public void InitDistanceBop(){
+    public void InitDistanceBop()
+    {
         print("InitBop");
-        foreach(GameObject bop in GameObject.FindGameObjectsWithTag("Bop")){
+        foreach (GameObject bop in GameObject.FindGameObjectsWithTag("Bop"))
+        {
             bop.GetComponentInChildren<SpeedDrone>().InitDistance();
         }
 
