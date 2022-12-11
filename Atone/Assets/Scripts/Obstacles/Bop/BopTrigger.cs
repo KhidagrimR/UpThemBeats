@@ -16,13 +16,13 @@ public class BopTrigger : MonoBehaviour
         if(col.name == "Player"){
             isTrigger = true;
             bopVisuel.GetComponent<MeshRenderer>().material = materials[1];
-            PlayerController.gameObjectColliding = gameObject;
+            PlayerController.gameObjectsColliding.Add(gameObject);
         }
     }
 
     void OnTriggerExit(Collider col){
         if(col.name == "Player"){
-            PlayerController.gameObjectColliding = null;
+            PlayerController.gameObjectsColliding.Remove(gameObject);
             isTrigger = false;
             if(!isDestroy)
                 bopVisuel.GetComponent<MeshRenderer>().material = materials[0];
