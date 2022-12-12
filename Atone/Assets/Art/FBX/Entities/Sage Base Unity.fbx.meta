@@ -21,12 +21,30 @@ ModelImporter:
   - first:
       74: -6061320294665918003
     second: "Op\u0302ession Eyes|CubeAction.001"
+  - first:
+      74: 4618681100099352830
+    second: metarig|Neutral (2)
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Base
     second: {fileID: 2100000, guid: 0acd9b1117725694da33831d0a9b0f09, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Carbon Bright
+    second: {fileID: 2100000, guid: 2bbcca109f414884cb4705826c947720, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Carbon Dark
+    second: {fileID: 2100000, guid: e285d249227f66c479222e187f3624f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Carbon Mid
+    second: {fileID: 2100000, guid: 980fd98e38ec76f49ac68e2fd859341d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -51,7 +69,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 1
+    optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
     rigImportErrors: 
@@ -71,8 +89,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: metarig|Idle
-      takeName: metarig|Idle
+      name: metarig|Neutral
+      takeName: metarig|Neutral
       internalID: 0
       firstFrame: 0
       lastFrame: 59
@@ -82,7 +100,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -100,18 +118,18 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: metarig|Neutral
-      takeName: metarig|Neutral
+      name: metarig|Idle
+      takeName: metarig|Idle
       internalID: 0
       firstFrame: 0
-      lastFrame: 59
+      lastFrame: 179
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -152,7 +170,7 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 12
     minBoneWeight: 0.001
-    optimizeBones: 1
+    optimizeBones: 0
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -193,7 +211,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
