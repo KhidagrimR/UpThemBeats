@@ -152,8 +152,16 @@ public class PlayerController : MonoBehaviour
         if (gameObjectsColliding.Count != 0)
             for (int i = 0; i < gameObjectsColliding.Count; i += 1)
             {
-                if (gameObjectsColliding[i].GetComponent<BopTrigger>() != null)
-                    gameObjectsColliding[i].GetComponent<BopTrigger>().BopAction();
+                if (gameObjectsColliding[i].TryGetComponent<BopTrigger>(out BopTrigger bop))
+                {
+                    bop.BopAction();
+
+                    int rd = Random.Range(0, 1);
+                    if(rd == 0)
+                        animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.LeftSnap);
+                    else
+                        animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.LeftSnap);
+                }
                 else
                     print("coolDown - bop raté PC");
             }
