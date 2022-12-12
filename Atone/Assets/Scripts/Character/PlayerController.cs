@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Status")]
     public bool isGrounded;
-    public  bool isChangingLane;
+    public bool isChangingLane;
 
     [Header("Input parameters")]
     [SerializeField]
@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     private float startingPlayerY;
 
+    public AnimationTrigger animationTrigger;
+
     #region Setter
     public float playerSpeed
     {
@@ -40,7 +42,10 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    public static GameObject gameObjectCollinding; 
+    [Header("References")]
+    public GameObject playerVisual;
+
+    public static List<GameObject> gameObjectsColliding; 
 
     // Start is called before the first frame update
     public void Start()
@@ -50,28 +55,29 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         startingPlayerY = transform.position.y;
-        
-        InputManager.Instance.onDestroy += CheckIfWallToDestroy;
-        InputManager.Instance.onJump += CheckIfBopToDestroy;
+
+        InputManager.Instance.onDestroyWall += CheckIfWallToDestroy;
+        InputManager.Instance.onDestroyBop += CheckIfBopToDestroy;
+
+        gameObjectsColliding = new List<GameObject>();
     }
 
     void OnDisable()
     {
-        InputManager.Instance.onDestroy -= CheckIfWallToDestroy;
-        InputManager.Instance.onJump -= CheckIfBopToDestroy;
+        if (InputManager.Instance != null)
+        {
+            InputManager.Instance.onDestroyWall -= CheckIfWallToDestroy;
+            InputManager.Instance.onDestroyBop -= CheckIfBopToDestroy;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!GameManager.Instance.isReady) return;
-
         CheckGround();
         Move();
-
-        if (canJump && isGrounded && Input.GetButtonDown("Jump"))
-            Jump();
-
         ApplyGravity();
 
         // vertical mvt
@@ -87,15 +93,9 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = -0.5f;
         }
     }
-
     void Move()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (playerSpeed * Time.deltaTime));
-    }
-
-    void Jump()
-    {
-
     }
 
     void ApplyGravity()
@@ -104,65 +104,61 @@ public class PlayerController : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
     }
 
+    public void BendOnLeft()
+    {
+        transform.position = new Vector3(-0.5f, transform.position.y, transform.position.z);
+    }
+    public void ResetBend()
+    {
+        transform.position = new Vector3(0f, transform.position.y, transform.position.z);
+    }
+    public void BendOnRight()
+    {
+        transform.position = new Vector3(0.5f, transform.position.y, transform.position.z);
+    }
+
     public void ChangeLane(Vector3 lanePosition)
     {
-        if(isChangingLane) return;
+        if (isChangingLane) return;
 
         isChangingLane = true;
 
         Vector3 target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
-        float distanceZ = playerSpeed * changeLaneDuration ; //v * t
+        float distanceZ = playerSpeed * changeLaneDuration; //v * t
 
         target.z += distanceZ;
 
-        transform.DOMove(target, changeLaneDuration).OnComplete(()=> 
+        transform.DOMove(target, changeLaneDuration).OnComplete(() =>
         {
             isChangingLane = false;
         });
     }
-    public void CheckIfWallToDestroy(){
-        if (gameObjectCollinding != null)
-            if (gameObjectCollinding.GetComponent<WallTrigger>() != null)
-                gameObjectCollinding.GetComponent<WallTrigger>().WallAction();
-            else
-                print("coolDown - mur raté PC");
+    public void CheckIfWallToDestroy()
+    {
+        if (gameObjectsColliding.Count != 0)
+            for(int i = 0; i < gameObjectsColliding.Count; i+= 1){
+                if (gameObjectsColliding[i].GetComponent<WallTrigger>() != null)
+                        gameObjectsColliding[i].GetComponent<WallTrigger>().WallAction();
+                    else
+                        print("coolDown - mur raté PC");
+            }
+                
         else
             print("cooldown");
     }
 
     public void CheckIfBopToDestroy()
     {
-        if (gameObjectCollinding != null)
-            if (gameObjectCollinding.GetComponent<BopTrigger>() != null)
-                gameObjectCollinding.GetComponent<BopTrigger>().BopAction();
-            else
-                print("coolDown - bop raté PC");
+        if (gameObjectsColliding.Count != 0)
+            for (int i = 0; i < gameObjectsColliding.Count; i += 1)
+            {
+                if (gameObjectsColliding[i].GetComponent<BopTrigger>() != null)
+                    gameObjectsColliding[i].GetComponent<BopTrigger>().BopAction();
+                else
+                    print("coolDown - bop raté PC");
+            }
+
         else
             print("cooldown");
     }
-
-
 }
-
-/*
-    void Jump() // à remplacer par le saut pour changer de lane
-    {
-        // change the height position of the player
-        playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-    }
-
-
-    void Move() // peut être à refaire pour qu'on ait une vitesse en BPM ?
-    {
-        Vector3 move;
-        if (isAutorunActivated)
-            move = new Vector3(0, 0, 1);
-        else
-            move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-        controller.Move(move * Time.deltaTime * playerSpeed);
-
-    }
-
-
-*/

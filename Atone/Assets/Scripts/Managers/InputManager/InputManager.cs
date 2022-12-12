@@ -1,67 +1,104 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
 public class InputManager : Singleton<InputManager>
 {
     public static bool onController = false;
+    [Header("Pause menu / return")]
 
-    [Header("Jump Action")]
+    public PlayerAction menuOrReturn = new PlayerAction("menuOrReturn", KeyCode.Escape, KeyCode.Joystick1Button7);
 
-    #region jump
-    public Action jumpAction = new Action("jump", KeyCode.Space, KeyCode.A);
+    public delegate void OnMenu(bool isPaused);
+    public static event OnMenu onMenu; // Needs to be static to not mess things up when communicating to the additive scene
 
-    public delegate void OnJump();
-    public OnJump onJump;
-    public delegate void OnJumpPressed();
-    public OnJumpPressed onJumpPressed;
+
+    [Header("Break Bop Action")]
+    #region BreakBop
+    public PlayerAction destroyBopAction = new PlayerAction("jump", KeyCode.S, KeyCode.S);
+    public delegate void OnDestroyBop();
+    public OnDestroyBop onDestroyBop;
+    public delegate void OnDestroyBopPressed();
+    public OnDestroyBopPressed onDestroyBopPressed;
 
     #endregion
-
+    [Header("Switch Action")]
     #region switchlane
+    //     SWITCH
     // RIGHT LANE
-    public Action goToRightLane = new Action("rightLane", KeyCode.E, KeyCode.A);
-    public delegate void OnGoRightLanePressed();
-    public OnGoRightLanePressed onGoRightLanePressed;
+    public PlayerAction goToRightLane = new PlayerAction("rightLane", KeyCode.Space, KeyCode.A);
+    public delegate void OnGoRightLane();
+    public OnGoRightLane onGoRightLane;
     // LEFT LANE
-    public Action goToLeftLane = new Action("leftLane", KeyCode.A, KeyCode.A);
-    public delegate void OnGoLeftLanePressed();
-    public OnGoLeftLanePressed onGoLeftLanePressed;
+    public PlayerAction goToLeftLane = new PlayerAction("leftLane", KeyCode.Space, KeyCode.A);
+    public delegate void OnGoLeftLane();
+    public OnGoLeftLane onGoLeftLane;
+
+    //    BEND
+    // RIGHT LANE
+    public PlayerAction bendToRightLane = new PlayerAction("bendRightLane", KeyCode.E, KeyCode.A);
+    public delegate void OnBendRightLane(int direction);
+    public OnBendRightLane onBendRightLane;
+    // LEFT LANE
+    public PlayerAction bendToLeftLane = new PlayerAction("bendLeftLane", KeyCode.A, KeyCode.A);
+    public delegate void OnBendLeftLane(int direction);
+    public OnBendLeftLane onBendLeftLane;
     #endregion
 
-    [Header("Destroy Action")]
-    public static Action destroyAction = new Action("destroy", KeyCode.W, KeyCode.E);
-    public delegate void OnDestroy();
-    public OnJump onDestroy;
-    public delegate void OnDestroyPressed();
-    public OnJumpPressed onDestroyPressed;
+    [Header("Destroy Wall Action")]
+    public PlayerAction destroyWallAction = new PlayerAction("destroy", KeyCode.Z, KeyCode.E);
+    public delegate void OnDestroyWall();
+    public OnDestroyWall onDestroyWall;
+    public delegate void OnDestroyWallPressed();
+    public OnDestroyWallPressed onDestroyWallPressed;
 
 
     void Update()
     {
-        if (jumpAction.GetAction(onController))
-            if (onJump != null)
-                onJump();
+        // DESTROY WALL
+        if (destroyWallAction.GetAction(onController))
+            if (onDestroyWall != null)
+                onDestroyWall();
 
-        if (jumpAction.GetActionPressed(onController))
-            if (onJumpPressed != null)
-                onJumpPressed();
+        // DESTROY BOP
+        if (destroyBopAction.GetAction(onController))
+            if (onDestroyBop != null)
+                onDestroyBop();
 
-        if (destroyAction.GetAction(onController))
-            if (onDestroy != null)
-                onDestroy();
-        if (destroyAction.GetActionPressed(onController))
-            if (onDestroyPressed != null)
-                onDestroyPressed();
+        // SWITCH LANE
+        if (goToLeftLane.GetAction(onController) && bendToLeftLane.GetActionPressed(onController))
+            if (onGoLeftLane != null)
+                onGoLeftLane();
 
-        if (goToLeftLane.GetActionPressed(onController))
-            if (onGoLeftLanePressed != null)
-                onGoLeftLanePressed();
+        if (goToRightLane.GetAction(onController) && bendToRightLane.GetActionPressed(onController))
+            if (onGoRightLane != null)
+                onGoRightLane();
+        
+        // BEND ON RIGHT/LEFT LANE
+        if (bendToRightLane.GetAction(onController))
+            if (onBendRightLane != null)
+                onBendRightLane(2);
 
-        if (goToRightLane.GetActionPressed(onController))
-            if (onGoRightLanePressed != null)
-                onGoRightLanePressed();
+        if (bendToLeftLane.GetAction(onController))
+            if (onBendLeftLane != null)
+                onBendLeftLane(0);
+        
+        if (bendToRightLane.GetActionReleased(onController))
+            if (onBendRightLane != null)
+                onBendRightLane(1);
+
+        if (bendToLeftLane.GetActionReleased(onController))
+            if (onBendLeftLane != null)
+                onBendLeftLane(1);
+
+        // OPEN MENU
+        if(menuOrReturn.GetAction(onController)){
+            // Current setup is hacky, need to change it later. Might need to add a future check to verify that we are not in the main menu scene            
+            GameManager.Instance.TogglePauseState();
+            onMenu?.Invoke(GameManager.Instance.isGameCurrentlyPaused);
+        }
     }
 
 
