@@ -36,7 +36,7 @@ public class WallTrigger : MonoBehaviour
         print("wallAction");
         if (isTrigger && !isDestroy){
             Destroy(visualWall);
-            transform.parent.GetComponent<AnimationTrigger>().PlayAnimation(AnimationTrigger.AnimationEnum.Death);
+            transform.parent.GetComponent<AnimationTrigger>().PlayAnimation(AnimationEnum.Death);  // AnimationTrigger.AnimationEnum.Death
             isDestroy = true;
         }
         else
