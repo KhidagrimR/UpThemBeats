@@ -6,7 +6,7 @@ public class AnimationTrigger : MonoBehaviour
 {
     public Animator animator;
 
-    public enum AnimationEnum {Spawn, Jump, Death, Hit, Idle, Run, Disactivated, LeftRun, RightRun, LeftSnapPrepare };
+    public enum AnimationEnum {Spawn, Jump, Death, Hit, Idle, Run, Disactivated, LeftRun, RightRun, LeftSnapPrepare, LeftSnap };
 
     private AnimationEnum currentAnimation;
 
@@ -58,6 +58,10 @@ public class AnimationTrigger : MonoBehaviour
 
             case AnimationEnum.LeftSnapPrepare:
                 animator.SetTrigger("LeftSnapPrepare");
+            break;
+
+            case AnimationEnum.LeftSnap:
+                animator.SetTrigger("LeftSnap");
             break;
         }
         
