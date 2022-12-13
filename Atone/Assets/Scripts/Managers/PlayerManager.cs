@@ -143,7 +143,7 @@ public class PlayerManager : Singleton<PlayerManager>
                 });
                 //cvm.m_Lens.Dutch = -20;
                 playerHead.localPosition = new Vector3(1, playerHead.localPosition.y, playerHead.localPosition.z);
-                playerController.animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.LeftRun);
+                playerController.animationTrigger.PlayAnimation(AnimationEnum.LeftRun);    // AnimationTrigger.AnimationEnum.LeftRun
                 break;
 
             case 1: // centre
@@ -153,7 +153,7 @@ public class PlayerManager : Singleton<PlayerManager>
                     cvm.m_Lens.Dutch = x;
                 });
                 playerHead.localPosition = new Vector3(0, playerHead.localPosition.y, playerHead.localPosition.z);
-                playerController.animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.Run);
+                playerController.animationTrigger.PlayAnimation(AnimationEnum.Run);
                 break;
 
             case 2: // droite
@@ -163,7 +163,7 @@ public class PlayerManager : Singleton<PlayerManager>
                     cvm.m_Lens.Dutch = x;
                 });
                 playerHead.localPosition = new Vector3(-1, playerHead.localPosition.y, playerHead.localPosition.z);
-                playerController.animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.RightRun);
+                playerController.animationTrigger.PlayAnimation(AnimationEnum.RightRun);
                 break;
         }
 
