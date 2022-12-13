@@ -14,8 +14,11 @@ public class GameManager : Singleton<GameManager>
     {
         // do starting setup stuff here
 
+        PlayerAnimatorParams.BuildDictionary();
+        
         // init other manager
         StartCoroutine(Init());
+
     }
 
     IEnumerator Init()
