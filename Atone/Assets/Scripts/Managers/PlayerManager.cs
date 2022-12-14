@@ -181,7 +181,7 @@ public class PlayerManager : Singleton<PlayerManager>
         print("InitBop");
         foreach (GameObject bop in GameObject.FindGameObjectsWithTag("Bop"))
         {
-            bop.GetComponentInChildren<SpeedDrone>().InitDistance();
+            bop.GetComponentInChildren<BopTriggerArrival>().InitDistance();
         }
 
     }

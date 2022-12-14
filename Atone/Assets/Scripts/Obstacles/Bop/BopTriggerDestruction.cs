@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BopTrigger : MonoBehaviour
+public class BopTriggerDestruction : MonoBehaviour
 {
     public bool isTrigger = false;
     public bool isDestroy = false;
 
-    public List<Material> materials;
+    public Material materialTrigger;
+    public Material initMaterial;
+
 
 
     public GameObject bopVisuel;
@@ -15,17 +17,18 @@ public class BopTrigger : MonoBehaviour
     void OnTriggerEnter(Collider col){
         if(col.name == "Player"){
             isTrigger = true;
-            bopVisuel.GetComponent<MeshRenderer>().material = materials[1];
+            bopVisuel.GetComponent<MeshRenderer>().materials[2] = materialTrigger;
             PlayerController.gameObjectsColliding.Add(gameObject);
         }
     }
 
     void OnTriggerExit(Collider col){
+        print("exit");
         if(col.name == "Player"){
-            PlayerController.gameObjectsColliding.Remove(gameObject);
             isTrigger = false;
-            if(!isDestroy)
-                bopVisuel.GetComponent<MeshRenderer>().material = materials[0];
+            bopVisuel.GetComponent<MeshRenderer>().materials[2] = initMaterial;
+            print(bopVisuel.GetComponent<MeshRenderer>().materials[2]);
+            PlayerController.gameObjectsColliding.Remove(gameObject);
         }
     }
 
