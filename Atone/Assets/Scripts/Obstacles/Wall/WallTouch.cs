@@ -6,7 +6,7 @@ public class WallTouch : MonoBehaviour
 {
     public void OnTriggerEnter(Collider col){
         if(col.CompareTag(PlayerManager.PLAYER_TAG)){
-            print("perte d'une vie");
+            GameObject.Find("Player").GetComponent<PlayerController>().TakeDamage();
         }
     }
 }
