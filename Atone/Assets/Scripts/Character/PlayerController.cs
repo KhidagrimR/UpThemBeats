@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     [Header("Status (can't be modified in inspector)")]
     [InspectorReadOnly]
     public bool isGrounded;
+    public int initHp;
+    [InspectorReadOnly]
+    public static int hp;
 
     [InspectorReadOnly]
     public bool isChangingLane;
@@ -47,7 +50,8 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     public GameObject playerVisual;
 
-    public static List<GameObject> gameObjectsColliding; 
+    public static List<GameObject> gameObjectsColliding;
+    public static Vector3 checkpoint;
 
     // Start is called before the first frame update
     public void Start()
@@ -62,6 +66,8 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.onDestroyBop += CheckIfBopToDestroy;
 
         gameObjectsColliding = new List<GameObject>();
+        hp = initHp;
+        checkpoint = gameObject.transform.position;
     }
 
     void OnDisable()
@@ -170,5 +176,18 @@ public class PlayerController : MonoBehaviour
 
         else
             print("cooldown");
+    }
+
+    public void TakeDamage(){
+        if ((hp -= 1) == 0){
+            gameObject.transform.position = checkpoint;
+            hp = initHp;
+        }
+            
+        else{
+            print("take damage");
+            print("new HP : " + hp);
+        }
+            
     }
 }

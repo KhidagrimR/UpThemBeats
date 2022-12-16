@@ -12,8 +12,9 @@ public class WallAnimationTrigger : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         //si c est le joueur
-        if(other.CompareTag(PlayerManager.PLAYER_TAG))
+        if (other.CompareTag(PlayerManager.PLAYER_TAG))
         {
+            
             if(targetPlayerAnim) // si l'animation est pour le joueur
             {
                 other.GetComponent<PlayerController>().animationTrigger.PlayAnimation(animationToTrigger);
