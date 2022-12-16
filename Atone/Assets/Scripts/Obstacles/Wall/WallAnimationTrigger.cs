@@ -22,8 +22,6 @@ public class WallAnimationTrigger : MonoBehaviour
             {
                 animationTrigger.PlayAnimation(animationToTrigger);
             }
-
-            
         }
     }
 }

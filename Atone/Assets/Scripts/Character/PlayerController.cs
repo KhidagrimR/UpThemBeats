@@ -9,22 +9,24 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     Vector3 playerVelocity;
 
-    [Header("Status")]
+    [Header("Status (can't be modified in inspector)")]
+    [InspectorReadOnly]
     public bool isGrounded;
+
+    [InspectorReadOnly]
     public bool isChangingLane;
+    [InspectorReadOnly]
+    public bool isAbleToChangeLane = false;
 
     [Header("Input parameters")]
-    [SerializeField]
-    bool canJump = false;
     [SerializeField]
     bool isAutorunActivated = true;
 
 
     [Header("Physics parameters")]
     [SerializeField]
+    [InspectorReadOnly]
     float _playerSpeed = 2.0f;
-    [SerializeField]
-    float jumpHeight = 1.0f;
     [SerializeField]
     float gravityValue = -9.81f;
     [SerializeField]

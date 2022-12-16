@@ -20,8 +20,16 @@ public class PlayerManager : Singleton<PlayerManager>
         get { return _isReady; }
     }
 
+    public bool isPlayerAbleToChangeLane
+    {
+        get {
+            return (playerController.isAbleToChangeLane || playerCurrentLane != 1); // 1 => center lane
+        }
+    }
+
     public Transform[] lanes;
 
+    [InspectorReadOnly]
     public int playerCurrentLane = 1;
 
     [Header("To Tweak")]
@@ -82,21 +90,26 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void MovePlayerToRightLane()
     {
-        playerCurrentLane++;
-        ChangeLaneDutch(playerCurrentLane);
+        if(isPlayerAbleToChangeLane)
+        {
+            playerCurrentLane++;
+            ChangeLaneDutch(playerCurrentLane);
 
-        playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
-        playerController.ChangeLane(GetLanePosition(playerCurrentLane));
-
+            playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
+            playerController.ChangeLane(GetLanePosition(playerCurrentLane));
+        }
     }
 
     public void MovePlayerToLeftLane()
     {
-        playerCurrentLane--;
-        ChangeLaneDutch(playerCurrentLane);
+        if(isPlayerAbleToChangeLane)
+        {
+            playerCurrentLane--;
+            ChangeLaneDutch(playerCurrentLane);
 
-        playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
-        playerController.ChangeLane(GetLanePosition(playerCurrentLane));
+            playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
+            playerController.ChangeLane(GetLanePosition(playerCurrentLane));
+        }
     }
 
     public void BendPlayerTowardDirection(int direction)
