@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class WallTouch : MonoBehaviour
 {
-    public void OnTriggerEnter(Collider col){
-        if(col.CompareTag(PlayerManager.PLAYER_TAG)){
-            GameObject.Find("Player").GetComponent<PlayerController>().TakeDamage();
+    public void OnTriggerEnter(Collider col)
+    {
+        if (col.CompareTag(PlayerManager.PLAYER_TAG))
+        {
+            if (col.TryGetComponent<PlayerController>(out PlayerController player))
+            {
+                player.TakeDamage();
+
+            }
         }
     }
 }
