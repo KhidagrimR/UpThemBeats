@@ -16,7 +16,7 @@ public class GameManager : Singleton<GameManager>
     {
         // do starting setup stuff here
 
-        PlayerAnimatorParams.BuildDictionary();
+        GameAnimatorsParams.BuildDictionary();
         
         // init other manager
         StartCoroutine(Init());

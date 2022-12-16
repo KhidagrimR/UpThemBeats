@@ -20,7 +20,7 @@ public class AnimationTrigger : MonoBehaviour
 
         currentAnimation = triggerName;
 
-        animator.SetTrigger(PlayerAnimatorParams.PlayerAnimParamsDict[triggerName]);
+        animator.SetTrigger(GameAnimatorsParams.AnimParamsDict[triggerName]);
 
 
         // switch(triggerName)
