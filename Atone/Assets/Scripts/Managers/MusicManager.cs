@@ -137,9 +137,11 @@ public class MusicManager : Singleton<MusicManager>
         musicFMODInstance.start();      // FMOD Test Julien
         //musicFMODInstance.release();    // FMOD Test Julien
     }    
-    public static void ToggleMusicPause(bool isPausing){
-        MusicFMODInstance.setPaused(isPausing);
-    }
+    
+    // Pause now handled by GameManager directly
+    // public static void ToggleMusicPause(bool isPausing){
+    //     MusicFMODInstance.setPaused(isPausing);
+    // }
 
     #endregion
 

@@ -13,13 +13,9 @@ public static class PauseStateChangeForMusic
 
     private static void ToggleMusicPauseOnStateChange(PauseState pauseState) {
         
-        Debug.Log(pauseState);
-        Debug.Log("EditorApplication.isPaused ? "+EditorApplication.isPaused);
-        //SoundCreator.ToggleMusicPause(EditorApplication.isPaused);
-        SoundCreator.MusicFMODInstance.setPaused(EditorApplication.isPaused);
-
-        // Doesn't work as of now :(
+        // Debug.Log(pauseState);
+        // Debug.Log("EditorApplication.isPaused ? "+EditorApplication.isPaused);
         
-        
+        RuntimeManager.PauseAllEvents(pauseState == PauseState.Paused);
     }
 }
