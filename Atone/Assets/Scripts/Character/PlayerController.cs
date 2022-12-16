@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
         if (gameObjectsColliding.Count != 0)
             for (int i = 0; i < gameObjectsColliding.Count; i += 1)
             {
-                if (gameObjectsColliding[i].TryGetComponent<BopTrigger>(out BopTrigger bop))
+                if (gameObjectsColliding[i].TryGetComponent<BopTriggerDestruction>(out BopTriggerDestruction bop))
                 {
                     bop.BopAction();
 
