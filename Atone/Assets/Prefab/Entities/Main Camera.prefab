@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 184292262658145343}
   - component: {fileID: 184292262658145329}
   - component: {fileID: 184292262658145330}
-  - component: {fileID: 752033910}
   - component: {fileID: 752033905}
   - component: {fileID: 752033915}
   m_Layer: 0
@@ -68,7 +67,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 6199
+    m_Bits: 2103
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -104,7 +103,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -127,14 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 0}
---- !u!81 &752033910
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184292262658145341}
-  m_Enabled: 1
 --- !u!114 &752033905
 MonoBehaviour:
   m_ObjectHideFlags: 0

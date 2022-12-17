@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -16,8 +17,11 @@ public class GameManager : Singleton<GameManager>
     {
         // do starting setup stuff here
 
+        GameAnimatorsParams.BuildDictionary();
+        
         // init other manager
         StartCoroutine(Init());
+
     }
 
     IEnumerator Init()
@@ -56,7 +60,8 @@ public class GameManager : Singleton<GameManager>
     {
         isGameCurrentlyPaused = !isGameCurrentlyPaused;
         // SoundCreator.ToggleMusicPause(isGameCurrentlyPaused);
-        MusicManager.ToggleMusicPause(isGameCurrentlyPaused);
+        RuntimeManager.PauseAllEvents(isGameCurrentlyPaused);
+        //MusicManager.ToggleMusicPause(isGameCurrentlyPaused);
         Time.timeScale = isGameCurrentlyPaused ? 0 : 1;
     }
 }

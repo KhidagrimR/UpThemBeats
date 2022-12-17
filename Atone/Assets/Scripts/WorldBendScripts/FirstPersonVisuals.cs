@@ -38,6 +38,7 @@ public class FirstPersonVisuals : MonoBehaviour
         }
     }
 
+    #region TWEEN TEST METHODS
     void HardSet(){
         m_wbc.BendVerticalSize = 0;
         m_wbc.BendVerticalOffset = 0;
@@ -75,4 +76,5 @@ public class FirstPersonVisuals : MonoBehaviour
         m_wbc.BendCurvatureSize = 0;
         m_wbc.BendCurvatureOffset = 0;
     }
+    #endregion
 }

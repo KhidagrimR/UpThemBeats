@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class WallAnimationTrigger : MonoBehaviour
 {
-    public AnimationTrigger.AnimationEnum animationToTrigger;
+    // public AnimationTrigger.AnimationEnum animationToTrigger;
+    public AnimationEnum animationToTrigger;
     public AnimationTrigger animationTrigger;
 
     public bool targetPlayerAnim = false;
