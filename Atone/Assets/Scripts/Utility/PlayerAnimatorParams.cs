@@ -22,17 +22,3 @@ public static class PlayerAnimatorParams
         animParams.Add(AnimationEnum.LeftSnapPrepare, Animator.StringToHash("LeftSnapPrepare"));
     }
 }
-
-public enum AnimationEnum 
-{
-    Spawn, 
-    Jump, 
-    Death, 
-    Hit, 
-    Idle, 
-    Run, 
-    Disactivated, 
-    LeftRun, 
-    RightRun, 
-    LeftSnapPrepare 
-};
