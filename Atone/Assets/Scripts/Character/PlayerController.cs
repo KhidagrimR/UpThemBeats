@@ -166,9 +166,9 @@ public class PlayerController : MonoBehaviour
 
                     int rd = Random.Range(0, 1);
                     if(rd == 0)
-                        animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.LeftSnap);
+                        animationTrigger.PlayAnimation(AnimationEnum.LeftSnap);
                     else
-                        animationTrigger.PlayAnimation(AnimationTrigger.AnimationEnum.LeftSnap);
+                        animationTrigger.PlayAnimation(AnimationEnum.LeftSnap);
                 }
                 else
                     print("coolDown - bop raté PC");

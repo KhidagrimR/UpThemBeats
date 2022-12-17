@@ -54,5 +54,6 @@ public enum AnimationEnum
     Disactivated, 
     LeftRun, 
     RightRun, 
-    LeftSnapPrepare 
+    LeftSnapPrepare,
+    LeftSnap 
 };

@@ -23,7 +23,7 @@ public class BopTriggerDestruction : MonoBehaviour
     }
 
     void OnTriggerExit(Collider col){
-        print("exit");
+        //print("exit");
         if(col.name == "Player"){
             isTrigger = false;
             bopVisuel.GetComponent<MeshRenderer>().materials[2] = initMaterial;
