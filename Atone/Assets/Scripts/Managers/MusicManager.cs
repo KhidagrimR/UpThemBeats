@@ -31,6 +31,11 @@ public class MusicManager : Singleton<MusicManager>
 
     public static int lastBeat = 0;
     public static string lastMarker = null;
+
+    private float secPerBeat;
+    public float SecPerBeat {get => secPerBeat;}
+
+    private bool isSecPerBeatSet = false;
     
     #endregion
     
@@ -109,9 +114,19 @@ public class MusicManager : Singleton<MusicManager>
                 beatUpdated();
             }
         }
+
+        if(!isSecPerBeatSet && timelineInfo.currentTempo != 0)
+        {
+            secPerBeat = 60f / timelineInfo.currentTempo;
+            Debug.Log("| Current Tempo :"+ timelineInfo.currentTempo);
+            isSecPerBeatSet = true;
+        }
+        
+        
     }    
 
     private void OnDestroy(){
+        isSecPerBeatSet = false;
         musicFMODInstance.setUserData(IntPtr.Zero);
         musicFMODInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         musicFMODInstance.release();
@@ -136,6 +151,7 @@ public class MusicManager : Singleton<MusicManager>
         Debug.Log("StartMusic from MUSIC MANAGER");
         musicFMODInstance.start();      // FMOD Test Julien
         //musicFMODInstance.release();    // FMOD Test Julien
+
     }    
     
     // Pause now handled by GameManager directly
