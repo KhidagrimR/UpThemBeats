@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_Sage 0
+  m_Name: mat_Sage 0.1
   m_Shader: {fileID: -6465566751694194690, guid: e32a58300d66a194083c87cc75f7e964, type: 3}
   m_ValidKeywords:
   - _ALPHATEST_ON
@@ -22,6 +22,7 @@ Material:
     RenderType: Transparent
   disabledShaderPasses:
   - SHADOWCASTER
+  - DepthOnly
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -114,8 +115,8 @@ Material:
     - _Surface: 1
     - _WorkflowMode: 1
     - _ZTest: 4
-    - _ZWrite: 1
-    - _ZWriteControl: 1
+    - _ZWrite: 0
+    - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 0.01886791, g: 0.01886791, b: 0.01886791, a: 1}
     - _Color: {r: 0, g: 0, b: 0, a: 1}
