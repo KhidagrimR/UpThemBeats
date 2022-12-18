@@ -5,7 +5,7 @@
 			<value>Julien_Test_Music_00</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{b36b4559-f2a6-4e75-9291-77193e1ec317}</destination>
@@ -63,17 +63,11 @@
 	<object class="MarkerTrack" id="{51385299-697f-4ac8-b2b1-28988e3c2a79}" />
 	<object class="MarkerTrack" id="{3401e1f0-775e-46bb-926a-938f1ba4d97d}" />
 	<object class="GroupTrack" id="{273f904e-e29b-4add-85e3-4b003a47adca}">
-		<relationship name="modules">
-			<destination>{42c31df1-246f-407f-8fea-2da89aab2640}</destination>
-		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{721e79e7-4f9a-4ea3-9179-becf70648309}</destination>
 		</relationship>
 	</object>
 	<object class="Timeline" id="{9c622f77-7546-4495-8e3e-ce4183b9fabc}">
-		<relationship name="modules">
-			<destination>{42c31df1-246f-407f-8fea-2da89aab2640}</destination>
-		</relationship>
 		<relationship name="markers">
 			<destination>{c124d3bc-6c4d-4c65-ad0d-6c9ae1d6be7e}</destination>
 			<destination>{35f64b9f-9a02-4ace-aea1-46c7e34c6f21}</destination>
@@ -106,17 +100,6 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{59238410-abe0-4af1-b741-88c7c7c16229}" />
-	<object class="SingleSound" id="{42c31df1-246f-407f-8fea-2da89aab2640}">
-		<property name="length">
-			<value>273.97632653061225</value>
-		</property>
-		<property name="timelockedOffset">
-			<value>0.44000000000000006</value>
-		</property>
-		<relationship name="audioFile">
-			<destination>{289a950f-896e-4775-b237-caab6c15d02f}</destination>
-		</relationship>
-	</object>
 	<object class="EventMixerGroup" id="{721e79e7-4f9a-4ea3-9179-becf70648309}">
 		<property name="name">
 			<value>Audio 1</value>
