@@ -27,7 +27,7 @@ public class BopTriggerDestruction : MonoBehaviour
         if(col.name == "Player"){
             isTrigger = false;
             bopVisuel.GetComponent<MeshRenderer>().materials[2] = initMaterial;
-            print(bopVisuel.GetComponent<MeshRenderer>().materials[2]);
+            //print(bopVisuel.GetComponent<MeshRenderer>().materials[2]);
             PlayerController.gameObjectsColliding.Remove(gameObject);
         }
     }
