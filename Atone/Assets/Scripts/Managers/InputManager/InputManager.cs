@@ -75,8 +75,38 @@ public class InputManager : Singleton<InputManager>
         if (goToRightLane.GetAction(onController) && bendToRightLane.GetActionPressed(onController))
             if (onGoRightLane != null)
                 onGoRightLane();
-        
+
         // BEND ON RIGHT/LEFT LANE
+
+
+        if (bendToRightLane.GetActionReleased(onController))
+        {
+            if (!bendToLeftLane.GetActionPressed(onController))
+            {
+                if (onBendRightLane != null)
+                    onBendRightLane(1);
+            }
+            else
+            {
+                if (onBendRightLane != null)
+                    onBendRightLane(2);
+            }
+        }
+
+        if (bendToLeftLane.GetActionReleased(onController))
+        {
+            if (!bendToRightLane.GetActionPressed(onController))
+            {
+                if (onBendLeftLane != null)
+                    onBendLeftLane(1);
+            }
+             else
+            {
+                if (onBendRightLane != null)
+                    onBendRightLane(0);
+            }
+        }
+
         if (bendToRightLane.GetAction(onController))
             if (onBendRightLane != null)
                 onBendRightLane(2);
@@ -84,17 +114,11 @@ public class InputManager : Singleton<InputManager>
         if (bendToLeftLane.GetAction(onController))
             if (onBendLeftLane != null)
                 onBendLeftLane(0);
-        
-        if (bendToRightLane.GetActionReleased(onController))
-            if (onBendRightLane != null)
-                onBendRightLane(1);
 
-        if (bendToLeftLane.GetActionReleased(onController))
-            if (onBendLeftLane != null)
-                onBendLeftLane(1);
 
         // OPEN MENU
-        if(menuOrReturn.GetAction(onController)){
+        if (menuOrReturn.GetAction(onController))
+        {
             // Current setup is hacky, need to change it later. Might need to add a future check to verify that we are not in the main menu scene            
             GameManager.Instance.TogglePauseState();
             onMenu?.Invoke(GameManager.Instance.isGameCurrentlyPaused);

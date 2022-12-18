@@ -47,6 +47,7 @@ public enum AnimationEnum
 {
     Spawn, 
     Jump, 
+    JumpStop,
     Death, 
     Hit, 
     Idle, 
@@ -55,5 +56,11 @@ public enum AnimationEnum
     LeftRun, 
     RightRun, 
     LeftSnapPrepare,
-    LeftSnap 
+    LeftSnap,
+    LeanLeft,
+    LeanRight,
+    LeanStop,
+    Slide,
+    SlideStop,
+    Break,
 };

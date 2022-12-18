@@ -115,21 +115,28 @@ public class PlayerController : MonoBehaviour
     public void BendOnLeft()
     {
         transform.position = new Vector3(-0.5f, transform.position.y, transform.position.z);
+        animationTrigger.PlayAnimation(AnimationEnum.LeanLeft);
     }
     public void ResetBend()
     {
         transform.position = new Vector3(0f, transform.position.y, transform.position.z);
+        animationTrigger.PlayAnimation(AnimationEnum.LeanStop);
     }
     public void BendOnRight()
     {
         transform.position = new Vector3(0.5f, transform.position.y, transform.position.z);
+        animationTrigger.PlayAnimation(AnimationEnum.LeanRight);
     }
 
     public void ChangeLane(Vector3 lanePosition)
     {
         if (isChangingLane) return;
 
+        print("Has changed lane");
+
         isChangingLane = true;
+
+        animationTrigger.PlayAnimation(AnimationEnum.Jump);
 
         Vector3 target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
         float distanceZ = playerSpeed * changeLaneDuration; //v * t
@@ -139,6 +146,7 @@ public class PlayerController : MonoBehaviour
         transform.DOMove(target, changeLaneDuration).OnComplete(() =>
         {
             isChangingLane = false;
+            animationTrigger.PlayAnimation(AnimationEnum.JumpStop);
         });
     }
     public void CheckIfWallToDestroy()
@@ -146,7 +154,10 @@ public class PlayerController : MonoBehaviour
         if (gameObjectsColliding.Count != 0)
             for(int i = 0; i < gameObjectsColliding.Count; i+= 1){
                 if (gameObjectsColliding[i].GetComponent<WallTrigger>() != null)
+                {
                         gameObjectsColliding[i].GetComponent<WallTrigger>().WallAction();
+                        animationTrigger.PlayAnimation(AnimationEnum.Break);
+                }
                     else
                         print("coolDown - mur raté PC");
             }
