@@ -35,7 +35,6 @@ public class DeformationObjectsCollection : MonoBehaviour
             hashedName = Animator.StringToHash(bendMarkerObjects[i].FMODMarkerName);
             //Debug.Log("hashedName " + hashedName);
             levelBendMarkers.Add(hashedName, bendMarkerObjects[i].DeformationData);           
-
         }
     }
 }

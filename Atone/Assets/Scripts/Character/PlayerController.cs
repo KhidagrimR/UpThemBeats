@@ -136,8 +136,6 @@ public class PlayerController : MonoBehaviour
 
         isChangingLane = true;
 
-        animationTrigger.PlayAnimation(AnimationEnum.Jump);
-
         Vector3 target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
         float distanceZ = playerSpeed * changeLaneDuration; //v * t
 

@@ -22,7 +22,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public bool isPlayerAbleToChangeLane
     {
-        get {
+        get
+        {
             return (playerController.isAbleToChangeLane || playerCurrentLane != 1); // 1 => center lane
         }
     }
@@ -43,8 +44,8 @@ public class PlayerManager : Singleton<PlayerManager>
         InputManager.Instance.onGoLeftLane += MovePlayerToLeftLane;
         InputManager.Instance.onGoRightLane += MovePlayerToRightLane;
 
-        InputManager.Instance.onBendLeftLane += BendPlayerTowardDirection;
-        InputManager.Instance.onBendRightLane += BendPlayerTowardDirection;
+        InputManager.Instance.onBendLane += BendPlayerTowardDirection;
+        InputManager.Instance.onBendReleaseLane += ReleasePlayerArmAnimation;
 
         _isReady = true;
         playerCurrentLane = 1;
@@ -58,8 +59,8 @@ public class PlayerManager : Singleton<PlayerManager>
             InputManager.Instance.onGoLeftLane -= MovePlayerToLeftLane;
             InputManager.Instance.onGoRightLane -= MovePlayerToRightLane;
 
-            InputManager.Instance.onBendLeftLane -= BendPlayerTowardDirection;
-            InputManager.Instance.onBendRightLane -= BendPlayerTowardDirection;
+            InputManager.Instance.onBendLane -= BendPlayerTowardDirection;
+            InputManager.Instance.onBendReleaseLane -= ReleasePlayerArmAnimation;
         }
     }
 
@@ -90,10 +91,13 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void MovePlayerToRightLane()
     {
-        if(isPlayerAbleToChangeLane)
+        if (isPlayerAbleToChangeLane)
         {
             playerCurrentLane++;
             ChangeLaneDutch(playerCurrentLane);
+
+            if(playerCurrentLane != 1)
+                playerController.animationTrigger.PlayAnimation(AnimationEnum.Jump);
 
             playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
             playerController.ChangeLane(GetLanePosition(playerCurrentLane));
@@ -102,41 +106,59 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void MovePlayerToLeftLane()
     {
-        if(isPlayerAbleToChangeLane)
+        if (isPlayerAbleToChangeLane)
         {
             playerCurrentLane--;
             ChangeLaneDutch(playerCurrentLane);
+
+            if(playerCurrentLane != 1)
+                playerController.animationTrigger.PlayAnimation(AnimationEnum.Jump);
 
             playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
             playerController.ChangeLane(GetLanePosition(playerCurrentLane));
         }
     }
 
+    public void ReleasePlayerArmAnimation(int direction)
+    {
+        /*
+        if (direction == 0)
+        {
+            playerController.BendOnRight();
+        }
+
+        if (direction == 2)
+        {
+            playerController.BendOnLeft();
+        }
+        */
+    }
+
     public void BendPlayerTowardDirection(int direction)
     {
-        Debug.Log("Bend on : "+direction);
+        //Debug.Log("Bend on : "+direction);
         switch (direction)
         {
             case 0:
                 playerController.BendOnLeft();
-                DOVirtual.Float(cvm.m_Lens.Dutch, -10f, tweenDutchDuration/2f, (float x) =>
+                DOVirtual.Float(cvm.m_Lens.Dutch, -10f, tweenDutchDuration / 2f, (float x) =>
                 {
                     cvm.m_Lens.Dutch = x;
                 });
                 break;
             case 1:
                 playerController.ResetBend();
-                DOVirtual.Float(cvm.m_Lens.Dutch, 0f, tweenDutchDuration/2f, (float x) =>
+                DOVirtual.Float(cvm.m_Lens.Dutch, 0f, tweenDutchDuration / 2f, (float x) =>
                 {
                     cvm.m_Lens.Dutch = x;
                 });
 
-                if(playerCurrentLane <= 0) MovePlayerToRightLane();
-                else if(playerCurrentLane >= 2) MovePlayerToLeftLane();
+                if (playerCurrentLane <= 0) MovePlayerToRightLane();
+                else if (playerCurrentLane >= 2) MovePlayerToLeftLane();
                 break;
             case 2:
                 playerController.BendOnRight();
-                DOVirtual.Float(cvm.m_Lens.Dutch, 10f, tweenDutchDuration/2f, (float x) =>
+                DOVirtual.Float(cvm.m_Lens.Dutch, 10f, tweenDutchDuration / 2f, (float x) =>
                 {
                     cvm.m_Lens.Dutch = x;
                 });

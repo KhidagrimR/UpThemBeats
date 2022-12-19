@@ -39,12 +39,12 @@ public class InputManager : Singleton<InputManager>
     //    BEND
     // RIGHT LANE
     public PlayerAction bendToRightLane = new PlayerAction("bendRightLane", KeyCode.E, KeyCode.A);
-    public delegate void OnBendRightLane(int direction);
-    public OnBendRightLane onBendRightLane;
-    // LEFT LANE
     public PlayerAction bendToLeftLane = new PlayerAction("bendLeftLane", KeyCode.A, KeyCode.A);
-    public delegate void OnBendLeftLane(int direction);
-    public OnBendLeftLane onBendLeftLane;
+    public delegate void OnBendLane(int direction);
+    public OnBendLane onBendLane;
+
+    public delegate void OnBendReleaseLane(int direction);
+    public OnBendReleaseLane onBendReleaseLane;
     #endregion
 
     [Header("Destroy Wall Action")]
@@ -54,9 +54,13 @@ public class InputManager : Singleton<InputManager>
     public delegate void OnDestroyWallPressed();
     public OnDestroyWallPressed onDestroyWallPressed;
 
+    // Bend update state vars
+    float rightPressedTime = 0; // store the last moment the right bend was pressed
+    float leftPressedTime = 0; // store the last moment the left bend was pressed
 
     void Update()
     {
+        #region Destroy Obstacle
         // DESTROY WALL
         if (destroyWallAction.GetAction(onController))
             if (onDestroyWall != null)
@@ -67,6 +71,8 @@ public class InputManager : Singleton<InputManager>
             if (onDestroyBop != null)
                 onDestroyBop();
 
+        #endregion
+        #region switch lane
         // SWITCH LANE
         if (goToLeftLane.GetAction(onController) && bendToLeftLane.GetActionPressed(onController))
             if (onGoLeftLane != null)
@@ -75,11 +81,12 @@ public class InputManager : Singleton<InputManager>
         if (goToRightLane.GetAction(onController) && bendToRightLane.GetActionPressed(onController))
             if (onGoRightLane != null)
                 onGoRightLane();
+        #endregion
+        #region Bend
 
+        #region commented
         // BEND ON RIGHT/LEFT LANE
-
-
-        if (bendToRightLane.GetActionReleased(onController))
+        /*if (bendToRightLane.GetActionReleased(onController))
         {
             if (!bendToLeftLane.GetActionPressed(onController))
             {
@@ -100,22 +107,137 @@ public class InputManager : Singleton<InputManager>
                 if (onBendLeftLane != null)
                     onBendLeftLane(1);
             }
-             else
+            else
             {
                 if (onBendRightLane != null)
                     onBendRightLane(0);
             }
-        }
+        }*/
+        /*
+        // Quand le joueur appuye sur "Droite"
+        if ()
+        {
+            // si il est à gauche
+            if (bendToLeftLane.GetActionPressed(onController))
+            {
+                // il va à droite
+                if (onBendRightLane != null)
+                    onBendRightLane(2);
+            }
+            // si il relache le bouton gauche
+            if (bendToLeftLane.GetActionReleased(onController))
+            {
+                // il va à droite
+                if (onBendRightLane != null)
+                    onBendRightLane(2);
+            }
 
-        if (bendToRightLane.GetAction(onController))
+            // si il appuye sur gauche
+
+
+            // il va à droite
             if (onBendRightLane != null)
                 onBendRightLane(2);
-
-        if (bendToLeftLane.GetAction(onController))
+        }
+        // Quand le joueur appuye sur "Gauche"
+        else if (bendToLeftLane.GetAction(onController))
+        {
+            // il va a gauche
             if (onBendLeftLane != null)
                 onBendLeftLane(0);
+        }
+*/
 
+        #endregion
 
+        bool rightPressed = bendToRightLane.GetAction(onController);
+        bool rightMaintained = bendToRightLane.GetActionPressed(onController);
+        bool rightReleased = bendToRightLane.GetActionReleased(onController);
+
+        bool leftPressed = bendToLeftLane.GetAction(onController);
+        bool leftMaintained = bendToLeftLane.GetActionPressed(onController);
+        bool leftReleased = bendToLeftLane.GetActionReleased(onController);
+
+        if (rightPressed) rightPressedTime = Time.time;
+        if (leftPressed) leftPressedTime = Time.time;
+
+        // Right first and Left first are the same here, if rightfirst = true, then left first is false
+        // Use both of them to have a better understanding of your doing
+        bool rightMoreRecent = rightPressedTime > leftPressedTime;
+        bool leftMoreRecent = leftPressedTime > rightPressedTime;
+
+        Debug.Log("###");
+        Debug.Log("Right pressed = " + rightPressed + "; right maintained = " + rightMaintained + "; right released = " + rightReleased + ";");
+        Debug.Log("left pressed = " + leftPressed + "; left maintained = " + leftMaintained + "; left released = " + leftReleased + ";");
+        Debug.Log("###");
+
+        int laneToBend = 1;
+
+        if (leftMoreRecent)
+        {
+            if (leftMaintained || leftPressed)
+            {
+                laneToBend = 0;
+            }
+            else if (rightMaintained)
+            {
+                if (leftPressed)
+                {
+                    laneToBend = 1;
+                }
+                else if (leftMaintained)
+                {
+                    laneToBend = 0;
+                }
+                else
+                    laneToBend = 2;
+            }
+            else
+            {
+                laneToBend = 1;
+            }
+        }
+        if (rightMoreRecent)
+        {
+            if (rightMaintained || rightPressed)
+            {
+                laneToBend = 2;
+            }
+            else if (leftMaintained)
+            {
+                if (rightPressed)
+                {
+                    laneToBend = 1;
+                }
+                else if (rightMaintained)
+                {
+                    laneToBend = 2;
+                }
+                else
+                    laneToBend = 0;
+            }
+            else
+            {
+                laneToBend = 1;
+            }
+        }
+
+        if (onBendLane != null)
+            onBendLane(laneToBend);
+
+        if (leftReleased)
+        {
+            if (onBendReleaseLane != null)
+                onBendReleaseLane(0);
+        }
+        if (rightReleased)
+        {
+            if (onBendReleaseLane != null)
+                onBendReleaseLane(2);
+        }
+
+        #endregion
+        #region UI
         // OPEN MENU
         if (menuOrReturn.GetAction(onController))
         {
@@ -123,6 +245,7 @@ public class InputManager : Singleton<InputManager>
             GameManager.Instance.TogglePauseState();
             onMenu?.Invoke(GameManager.Instance.isGameCurrentlyPaused);
         }
+        #endregion
     }
 
 

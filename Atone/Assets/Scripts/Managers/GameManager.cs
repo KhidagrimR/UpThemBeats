@@ -22,6 +22,8 @@ public class GameManager : Singleton<GameManager>
         // init other manager
         StartCoroutine(Init());
 
+        //Time.timeScale = 0.25f;
+
     }
 
     IEnumerator Init()
