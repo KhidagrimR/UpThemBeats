@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3718729138373121842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -157,11 +157,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
+  initHp: 0
   isChangingLane: 0
-  canJump: 0
+  isAbleToChangeLane: 0
   isAutorunActivated: 1
   _playerSpeed: 2
-  jumpHeight: 10
   gravityValue: -9.81
   changeLaneDuration: 0.25
   animationTrigger: {fileID: 1230556914}
@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 4322100284252211205}
   - component: {fileID: 4322100284252211202}
   - component: {fileID: 4322100284252211203}
+  - component: {fileID: 3610759682231822361}
   m_Layer: 12
   m_Name: Body
   m_TagString: Untagged
@@ -379,6 +380,22 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!111 &3610759682231822361
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4322100284252211201}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: ad1335513a5a7d44d85fcbf5d92d4421, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: ad1335513a5a7d44d85fcbf5d92d4421, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &4322100284532011195
 GameObject:
   m_ObjectHideFlags: 0

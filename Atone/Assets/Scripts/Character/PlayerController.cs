@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
 
     public void BendOnLeft()
     {
-        transform.position = new Vector3(-0.5f, transform.position.y, transform.position.z);
+        transform.position = new Vector3(-0.3f, transform.position.y, transform.position.z);
         animationTrigger.PlayAnimation(AnimationEnum.LeanLeft);
     }
     public void ResetBend()
@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
     }
     public void BendOnRight()
     {
-        transform.position = new Vector3(0.5f, transform.position.y, transform.position.z);
+        transform.position = new Vector3(0.3f, transform.position.y, transform.position.z);
         animationTrigger.PlayAnimation(AnimationEnum.LeanRight);
     }
 
