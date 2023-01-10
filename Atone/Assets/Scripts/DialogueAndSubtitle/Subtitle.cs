@@ -5,7 +5,7 @@ using System.IO;
 using TMPro;
 using System;
 
-public class Subtitle : MonoBehaviour
+public class Subtitle : Singleton<Subtitle>
 {
 
     public IEnumerator LaunchSubtitle(string whichDialogue){

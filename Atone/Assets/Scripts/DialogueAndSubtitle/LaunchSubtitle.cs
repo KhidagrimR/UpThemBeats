@@ -6,10 +6,8 @@ namespace Assets.Scripts.DialogueAndSubtitle
     public class LaunchSubtitle : MonoBehaviour
     {
         public string dialogue;
-        public GameObject subtitle;
-        void Start()
-        {
-            StartCoroutine(subtitle.GetComponent<Subtitle>().LaunchSubtitle(dialogue));
+        private void OnTriggerEnter(Collider other){
+            StartCoroutine(Subtitle.Instance.LaunchSubtitle(dialogue));
         }
 
 
