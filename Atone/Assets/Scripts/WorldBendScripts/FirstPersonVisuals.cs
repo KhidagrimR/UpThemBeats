@@ -4,15 +4,22 @@ using UnityEngine;
 using AtoneWorldBend;
 using DG.Tweening;
 
+[RequireComponent(typeof(DeformationObjectsCollection))]
 public class FirstPersonVisuals : MonoBehaviour
 {
     [SerializeField]private WorldBendController m_wbc;
     public Camera m_Camera;
 
+    
     private float secsPerBeat;
     
+    void Awake()
+    {
+        MusicManager.markerUpdated += ExamineMarker;
+    }
+
     void Start()
-    {        
+    {
         secsPerBeat = 60f/132;// valeurs test. Utiliser "SoundCreator.Instance.secPerBeat;" à l'avenir
         DOTween.Init();
         //WBCReset_Test();
@@ -38,6 +45,63 @@ public class FirstPersonVisuals : MonoBehaviour
         }
     }
 
+    void OnDisable()
+    {
+        MusicManager.markerUpdated -= ExamineMarker;
+    }
+
+    #region LECTEUR DE SCRIPTABLE OBJECT
+
+    void ExamineMarker()
+    {
+        int lastHashedMarkerName = Animator.StringToHash(MusicManager.Instance.timelineInfo.markerHit);
+        //Debug.Log(lastHashedMarkerName);
+        
+        if(!DeformationObjectsCollection.LevelBendMarkers.ContainsKey(lastHashedMarkerName))
+        {
+            return;
+        }
+
+        SynchronizedTween(DeformationObjectsCollection.LevelBendMarkers[lastHashedMarkerName]);
+
+    }
+    void SynchronizedTween(BendData bendData)
+    {
+        float duration = bendData.beatDurationOfTween * MusicManager.Instance.SecPerBeat;
+
+        if(bendData.affectCurvatureAxis) 
+        { 
+            DOVirtual.Vector3(m_wbc.BendCurvatureAxis, bendData.curvatureBendAxis, duration, v =>{m_wbc.BendCurvatureAxis = v;}).SetEase(bendData.tweenEase);
+        }
+        if(bendData.affectCurvatureSize) 
+        { 
+            DOVirtual.Float(m_wbc.BendCurvatureSize, bendData.curvatureBendSize, duration,v =>{m_wbc.BendCurvatureSize = v;}).SetEase(bendData.tweenEase);
+        }
+        if(bendData.affectCurvatureOffset) 
+        { 
+            DOVirtual.Float(m_wbc.BendCurvatureOffset, bendData.curvatureBendOffset, duration, v =>{m_wbc.BendCurvatureOffset = v;}).SetEase(bendData.tweenEase);
+        }
+        if(bendData.affectHorSize) 
+        { 
+            DOVirtual.Float(m_wbc.BendHorizontalSize, bendData.horizontalBendSize, duration, v =>{m_wbc.BendHorizontalSize = v;}).SetEase(bendData.tweenEase);
+        }
+        if(bendData.affectHorOffset) 
+        { 
+            DOVirtual.Float(m_wbc.BendHorizontalOffset, bendData.horizontalBendOffset, duration, v =>{m_wbc.BendHorizontalOffset = v;}).SetEase(bendData.tweenEase);
+        }
+        if(bendData.affectVertSize) 
+        { 
+            DOVirtual.Float(m_wbc.BendVerticalSize, bendData.verticalBendSize, duration, v =>{m_wbc.BendVerticalSize = v;}).SetEase(bendData.tweenEase);
+        }
+        if(bendData.affectVertOffset) 
+        { 
+            DOVirtual.Float(m_wbc.BendVerticalOffset, bendData.verticalBendOffset, duration, v =>{m_wbc.BendVerticalOffset = v;}).SetEase(bendData.tweenEase);
+        }
+    }
+
+    #endregion
+
+    #region TWEEN TEST METHODS
     void HardSet(){
         m_wbc.BendVerticalSize = 0;
         m_wbc.BendVerticalOffset = 0;
@@ -75,4 +139,5 @@ public class FirstPersonVisuals : MonoBehaviour
         m_wbc.BendCurvatureSize = 0;
         m_wbc.BendCurvatureOffset = 0;
     }
+    #endregion
 }
