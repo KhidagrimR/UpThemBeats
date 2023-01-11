@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7359000212180722652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_UI/validation
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_UI/validation
+  Guid:
+    Data1: 118826858
+    Data2: 1336636696
+    Data3: 164926645
+    Data4: 1203636041
+  Banks:
+  - {fileID: 40991426582817268}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 687
 --- !u!114 &-5585078537374095237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,10 +141,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Test_Julien.strings.bank
   Name: Test_Julien.strings
   StudioPath: bank:/Test_Julien.strings
-  lastModified: 638070035782375048
+  lastModified: 638089461669067052
   FileSizes:
   - Name: 
-    Value: 1236
+    Value: 1392
   Exists: 1
 --- !u!114 &-3621077664581556180
 MonoBehaviour:
@@ -134,7 +161,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638070053116171263
+  lastModified: 638089461667653946
   FileSizes: []
   Exists: 1
 --- !u!114 &-349716156082628073
@@ -172,12 +199,15 @@ MonoBehaviour:
   - {fileID: -5031682328221780958}
   - {fileID: -3621077664581556180}
   - {fileID: 1237206563009061995}
+  - {fileID: 40991426582817268}
   EditorEvents:
   - {fileID: 6962302523030595920}
   - {fileID: 8958353659485491629}
   - {fileID: 5083296893671366907}
   - {fileID: 1039555074612323995}
   - {fileID: -5585078537374095237}
+  - {fileID: 2642442685017894315}
+  - {fileID: -7359000212180722652}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3621077664581556180}
@@ -185,8 +215,26 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 3497395012635303353}
   - {fileID: -5031682328221780958}
-  cacheTime: 638070053117278300
+  cacheTime: 638089461669290403
   cacheVersion: 131593
+--- !u!114 &40991426582817268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Thomas.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMODBanks/Desktop/Thomas.bank
+  Name: Thomas
+  StudioPath: bank:/Thomas
+  lastModified: 638089461669290403
+  FileSizes: []
+  Exists: 1
 --- !u!114 &286937268368065959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,9 +331,36 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Test_Julien.bank
   Name: Test_Julien
   StudioPath: bank:/Test_Julien
-  lastModified: 638070053117278300
+  lastModified: 638089461669041799
   FileSizes: []
   Exists: 1
+--- !u!114 &2642442685017894315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_UI/retour
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_UI/retour
+  Guid:
+    Data1: 813768454
+    Data2: 1204968704
+    Data3: -2014485874
+    Data4: -1320469963
+  Banks:
+  - {fileID: 40991426582817268}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 546
 --- !u!114 &3497395012635303353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,10 +376,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638070035781241799
+  lastModified: 638089461667684052
   FileSizes:
   - Name: 
-    Value: 1236
+    Value: 1392
   Exists: 1
 --- !u!114 &4956362973021151994
 MonoBehaviour:
