@@ -7,6 +7,8 @@ public class WallTrigger : MonoBehaviour
     public bool isTrigger = false;
     public bool isDestroy = false;
 
+    public FMODUnity.StudioEventEmitter fmodStudioEventEmitter;
+
     public List<Material> materials;
 
 
@@ -37,6 +39,10 @@ public class WallTrigger : MonoBehaviour
         if (isTrigger && !isDestroy){
             Destroy(visualWall);
             transform.parent.GetComponent<AnimationTrigger>().PlayAnimation(AnimationEnum.Death);  // AnimationTrigger.AnimationEnum.Death
+
+            if(fmodStudioEventEmitter != null) 
+                fmodStudioEventEmitter.Play();
+                
             isDestroy = true;
         }
         else
