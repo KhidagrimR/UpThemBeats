@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
         startingPlayerY = transform.position.y;
 
         InputManager.Instance.onDestroyWall += CheckIfWallToDestroy;
+        InputManager.Instance.onDestroyWall += CheckIfWall3ToDestroy;
         InputManager.Instance.onDestroyBop += CheckIfBopToDestroy;
 
         gameObjectsColliding = new List<GameObject>();
@@ -76,6 +77,7 @@ public class PlayerController : MonoBehaviour
         {
             InputManager.Instance.onDestroyWall -= CheckIfWallToDestroy;
             InputManager.Instance.onDestroyBop -= CheckIfBopToDestroy;
+            InputManager.Instance.onDestroyWall -= CheckIfWall3ToDestroy;
         }
 
     }
@@ -181,6 +183,21 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                     print("coolDown - bop raté PC");
+            }
+
+        else
+            print("cooldown");
+    }
+
+    public void CheckIfWall3ToDestroy()
+    {
+        if (gameObjectsColliding.Count != 0)
+            for (int i = 0; i < gameObjectsColliding.Count; i += 1)
+            {
+                if (gameObjectsColliding[i].GetComponent<WallTrigger3>() != null)
+                    gameObjectsColliding[i].GetComponent<WallTrigger3>().WallAction();
+                else
+                    print("coolDown - mur raté PC");
             }
 
         else
