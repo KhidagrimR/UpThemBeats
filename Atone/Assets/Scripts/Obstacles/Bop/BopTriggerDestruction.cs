@@ -17,7 +17,7 @@ public class BopTriggerDestruction : MonoBehaviour
     void OnTriggerEnter(Collider col){
         if(col.name == "Player"){
             isTrigger = true;
-            bopVisuel.GetComponent<MeshRenderer>().materials[2] = materialTrigger;
+            //bopVisuel.GetComponent<MeshRenderer>().materials[2] = materialTrigger;
             PlayerController.gameObjectsColliding.Add(gameObject);
         }
     }
@@ -26,7 +26,7 @@ public class BopTriggerDestruction : MonoBehaviour
         //print("exit");
         if(col.name == "Player"){
             isTrigger = false;
-            bopVisuel.GetComponent<MeshRenderer>().materials[2] = initMaterial;
+            //bopVisuel.GetComponent<MeshRenderer>().materials[2] = initMaterial;
             //print(bopVisuel.GetComponent<MeshRenderer>().materials[2]);
             PlayerController.gameObjectsColliding.Remove(gameObject);
         }
