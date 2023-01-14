@@ -9,9 +9,6 @@ public class WallTrigger : MonoBehaviour
 
     public FMODUnity.StudioEventEmitter fmodStudioEventEmitter;
 
-    public List<Material> materials;
-
-
     public GameObject visualWall;
 
     void OnTriggerEnter(Collider col)

@@ -7,8 +7,7 @@ public class WallTrigger3 : MonoBehaviour
     public bool isTrigger = false;
     public bool isDestroy = false;
 
-    
-
+    public WallLife wallLife;
 
     public GameObject visualWall;
 
@@ -39,18 +38,18 @@ public class WallTrigger3 : MonoBehaviour
         print("wallAction");
         if (isTrigger && !isDestroy)
         {
-            print("nbHit " + WallManager.nbHit);
-            if (WallManager.nbHit < 2){
-                print("yolo");
-                WallManager.nbHit += 1;
+            if (wallLife.currentObstacleLife > 1){
+                //print("yolo");
+                wallLife.currentObstacleLife -= 1;
             }
-                
-            else{
+            else if (!isDestroy) 
+            {
                 Destroy(visualWall);
-                transform.parent.GetComponent<AnimationTrigger>().PlayAnimation(AnimationTrigger.AnimationEnum.Death);
+                transform.parent.GetComponent<AnimationTrigger>().PlayAnimation(AnimationEnum.Death);
                 isDestroy = true;
             }
             
         }
     }
+    
 }
