@@ -166,10 +166,10 @@ public class InputManager : Singleton<InputManager>
         bool rightMoreRecent = rightPressedTime > leftPressedTime;
         bool leftMoreRecent = leftPressedTime > rightPressedTime;
 
-        Debug.Log("###");
+        /*Debug.Log("###");
         Debug.Log("Right pressed = " + rightPressed + "; right maintained = " + rightMaintained + "; right released = " + rightReleased + ";");
         Debug.Log("left pressed = " + leftPressed + "; left maintained = " + leftMaintained + "; left released = " + leftReleased + ";");
-        Debug.Log("###");
+        Debug.Log("###");*/
 
         int laneToBend = 1;
 
