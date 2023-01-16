@@ -54,12 +54,39 @@ public class InputManager : Singleton<InputManager>
     public delegate void OnDestroyWallPressed();
     public OnDestroyWallPressed onDestroyWallPressed;
 
+    // SLIDE
+    public PlayerAction slide = new PlayerAction("slide", KeyCode.X, KeyCode.X);
+    public delegate void OnSlide(bool slide);
+    public OnSlide onSlide;
+
     // Bend update state vars
     float rightPressedTime = 0; // store the last moment the right bend was pressed
     float leftPressedTime = 0; // store the last moment the left bend was pressed
 
     void Update()
     {
+        #region UI
+        // OPEN MENU
+        if (menuOrReturn.GetAction(onController))
+        {
+            // Current setup is hacky, need to change it later. Might need to add a future check to verify that we are not in the main menu scene            
+            GameManager.Instance.TogglePauseState();
+            onMenu?.Invoke(GameManager.Instance.isGameCurrentlyPaused);
+        }
+        #endregion
+        #region Slide
+        if(slide.GetActionReleased(onController))
+        {
+            if (onSlide != null)
+                onSlide(false);
+        }
+        if (slide.GetAction(onController) || slide.GetActionPressed(onController))
+        {
+            if (onSlide != null)
+                onSlide(true);
+            return;
+        }
+        #endregion
         #region Destroy Obstacle
         // DESTROY WALL
         if (destroyWallAction.GetAction(onController))
@@ -236,15 +263,6 @@ public class InputManager : Singleton<InputManager>
                 onBendReleaseLane(2);
         }
 
-        #endregion
-        #region UI
-        // OPEN MENU
-        if (menuOrReturn.GetAction(onController))
-        {
-            // Current setup is hacky, need to change it later. Might need to add a future check to verify that we are not in the main menu scene            
-            GameManager.Instance.TogglePauseState();
-            onMenu?.Invoke(GameManager.Instance.isGameCurrentlyPaused);
-        }
         #endregion
     }
 

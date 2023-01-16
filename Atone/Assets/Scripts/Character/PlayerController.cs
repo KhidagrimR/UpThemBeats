@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [Header("Status (can't be modified in inspector)")]
     [InspectorReadOnly]
     public bool isGrounded;
+    [InspectorReadOnly]
+    public bool isSliding;
     public int initHp;
     [InspectorReadOnly]
     public static int hp;
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("References")]
     public GameObject playerVisual;
+    public Collider playerCollider;
 
     public static List<GameObject> gameObjectsColliding;
     public static Vector3 checkpoint;
@@ -61,10 +64,12 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         startingPlayerY = transform.position.y;
+        startingHeadPosition = playerCollider.transform.position;
 
         InputManager.Instance.onDestroyWall += CheckIfWallToDestroy;
         InputManager.Instance.onDestroyWall += CheckIfWall3ToDestroy;
         InputManager.Instance.onDestroyBop += CheckIfBopToDestroy;
+        InputManager.Instance.onSlide += Slide;
 
         gameObjectsColliding = new List<GameObject>();
         hp = initHp;
@@ -78,6 +83,7 @@ public class PlayerController : MonoBehaviour
             InputManager.Instance.onDestroyWall -= CheckIfWallToDestroy;
             InputManager.Instance.onDestroyBop -= CheckIfBopToDestroy;
             InputManager.Instance.onDestroyWall -= CheckIfWall3ToDestroy;
+            InputManager.Instance.onSlide -= Slide;
         }
 
     }
@@ -152,16 +158,17 @@ public class PlayerController : MonoBehaviour
     public void CheckIfWallToDestroy()
     {
         if (gameObjectsColliding.Count != 0)
-            for(int i = 0; i < gameObjectsColliding.Count; i+= 1){
+            for (int i = 0; i < gameObjectsColliding.Count; i += 1)
+            {
                 if (gameObjectsColliding[i].GetComponent<WallTrigger>() != null)
                 {
-                        gameObjectsColliding[i].GetComponent<WallTrigger>().WallAction();
-                        animationTrigger.PlayAnimation(AnimationEnum.Break);
+                    gameObjectsColliding[i].GetComponent<WallTrigger>().WallAction();
+                    animationTrigger.PlayAnimation(AnimationEnum.Break);
                 }
-                    else
-                        print("coolDown - mur raté PC");
+                else
+                    print("coolDown - mur raté PC");
             }
-                
+
         else
             print("cooldown");
     }
@@ -176,7 +183,7 @@ public class PlayerController : MonoBehaviour
                     bop.BopAction();
 
                     int rd = Random.Range(0, 1);
-                    if(rd == 0)
+                    if (rd == 0)
                         animationTrigger.PlayAnimation(AnimationEnum.LeftSnap);
                     else
                         animationTrigger.PlayAnimation(AnimationEnum.LeftSnap);
@@ -204,16 +211,44 @@ public class PlayerController : MonoBehaviour
             print("cooldown");
     }
 
-    public void TakeDamage(){
-        if ((hp -= 1) == 0){
+    public void TakeDamage()
+    {
+        if ((hp -= 1) == 0)
+        {
             gameObject.transform.position = checkpoint;
             hp = initHp;
         }
-            
-        else{
+
+        else
+        {
             print("take damage");
             print("new HP : " + hp);
         }
-            
+
+    }
+
+    private Vector3 startingHeadPosition;
+    public void Slide(bool isSliding)
+    {
+        if (isSliding)
+        {
+            // se pencher / glisser 
+            // baisser la tête
+            playerCollider.transform.position -= new Vector3(0f, 3f, 0f);
+
+            // déclencher une anim
+
+            isSliding = true;
+        }
+        else
+        {
+            // se lever
+            // lever la tête
+            playerCollider.transform.position = startingHeadPosition;
+
+            // déclencher une anim
+
+            isSliding = false;
+        }
     }
 }
