@@ -24,6 +24,11 @@ public class BopTriggerArrival : MonoBehaviour
     public float travelTimeToCenter;
     public float timeStayCenter;
 
+    // duration while the drone make small pauses while moving
+    public float timePausesOnMovement = 0.25f;
+    public float speedMultiplier = 1.0f;
+
+
 
     public void OnTriggerEnter(Collider other)
     {
@@ -43,8 +48,6 @@ public class BopTriggerArrival : MonoBehaviour
         Vector3 startPoint = Vector3.zero + bopVisuel.transform.position;
         Vector3 endpoint = arrivalPointBop.transform.position;
 
-        // duration while the drone make small pauses while moving
-        float stopDuration = 0.25f;
         float halfToCenterDuration = travelTimeToCenter / 2;
 
         // on déplace le bop par accoups
@@ -55,16 +58,16 @@ public class BopTriggerArrival : MonoBehaviour
         // on doit connaitre la moitié de la distance
         Vector3 halfDistancePoint = new Vector3 (Vector3.Distance(startPoint, endpoint) / 2, startPoint.y, startPoint.z);
 
-        bopVisuel.gameObject.transform.DOMove(halfDistancePoint, halfToCenterDuration).SetEase(Ease.InOutQuad);
+        bopVisuel.gameObject.transform.DOMove(halfDistancePoint, halfToCenterDuration * speedMultiplier - timePausesOnMovement).SetEase(Ease.InOutQuad);
         yield return new WaitForSeconds(halfToCenterDuration);
         countDown = 1;
 
-        bopVisuel.gameObject.transform.DOMove(endpoint, halfToCenterDuration).SetEase(Ease.InOutQuad);
+        bopVisuel.gameObject.transform.DOMove(endpoint, halfToCenterDuration * speedMultiplier - timePausesOnMovement).SetEase(Ease.InOutQuad);
         yield return new WaitForSeconds(halfToCenterDuration);
         countDown = 0;
 
         yield return new WaitForSeconds(timeStayCenter);
 
-        bopVisuel.gameObject.transform.DOMoveY(-20, travelTimeToCenter);
+        bopVisuel.gameObject.transform.DOMoveY(-20, halfToCenterDuration * speedMultiplier);
     }
 }

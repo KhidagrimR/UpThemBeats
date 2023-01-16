@@ -87,8 +87,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 4}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 7.9579315}
+  m_Center: {x: 0, y: 0, z: 0.254364}
 --- !u!23 &3635158748210944307
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -309,7 +309,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &864468430
 MonoBehaviour:
@@ -328,7 +328,9 @@ MonoBehaviour:
   bopTrigger: {fileID: 3569183565070336910}
   countDownText: {fileID: 3285356256558224025}
   travelTimeToCenter: 2.25
-  timeStayCenter: 0.75
+  timeStayCenter: 0.25
+  timePausesOnMovement: 0.25
+  speedMultiplier: 1
 --- !u!1 &7330208884141968906
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 487e87b03dc16f749bca808856d8c287, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 60
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 487e87b03dc16f749bca808856d8c287, type: 3}
       propertyPath: m_LocalPosition.y
