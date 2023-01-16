@@ -80,7 +80,7 @@ public class InputManager : Singleton<InputManager>
             if (onSlide != null)
                 onSlide(false);
         }
-        if (slide.GetAction(onController) || slide.GetActionPressed(onController))
+        if (slide.GetAction(onController))
         {
             if (onSlide != null)
                 onSlide(true);
