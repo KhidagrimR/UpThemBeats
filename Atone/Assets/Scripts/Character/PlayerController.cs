@@ -228,13 +228,22 @@ public class PlayerController : MonoBehaviour
     }
 
     private Vector3 startingHeadPosition;
+    [Header("Slide")]
+    public float headYMovement = 0.5f;
+    public float headYMovementTween = 0.5f;
     public void Slide(bool isSliding)
     {
+        //        Debug.Log("Slide Called on : " + isSliding);
         if (isSliding)
         {
             // se pencher / glisser 
             // baisser la tête
-            playerCollider.transform.position -= new Vector3(0f, 3f, 0f);
+            //playerCollider.transform.position = new Vector3(playerCollider.transform.position.x, headYMovement, playerCollider.transform.position.z);
+
+            DOVirtual.Float(playerCollider.transform.position.x, headYMovement, headYMovementTween, (float x) =>
+            {
+                playerCollider.transform.position = new Vector3(playerCollider.transform.position.x, startingHeadPosition.y - x, playerCollider.transform.position.z);
+            });
 
             // déclencher une anim
 
@@ -244,7 +253,10 @@ public class PlayerController : MonoBehaviour
         {
             // se lever
             // lever la tête
-            playerCollider.transform.position = startingHeadPosition;
+            DOVirtual.Float(playerCollider.transform.position.y, startingHeadPosition.y, headYMovementTween, (float x) =>
+            {
+                playerCollider.transform.position = new Vector3(playerCollider.transform.position.x, x, playerCollider.transform.position.z);
+            });
 
             // déclencher une anim
 
