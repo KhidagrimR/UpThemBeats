@@ -424,13 +424,13 @@ MonoBehaviour:
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 0
   BankLoadType: 0
-  AutomaticSampleLoading: 0
+  AutomaticSampleLoading: 1
   EncryptionKey: 
   ImportType: 0
   TargetAssetPath: FMODBanks
   TargetBankFolder: 
   EventLinkage: 1
-  LoggingLevel: 2
+  LoggingLevel: 4
   SpeakerModeSettings: []
   SampleRateSettings: []
   LiveUpdateSettings: []
@@ -442,7 +442,8 @@ MonoBehaviour:
   MasterBanks:
   - Master
   - Test_Julien
-  Banks: []
+  Banks:
+  - Thomas
   BanksToLoad:
   - Test_Julien
   - Test_Julien.strings
@@ -774,8 +775,8 @@ MonoBehaviour:
       Value: 
       HasValue: 0
     SpeakerMode:
-      Value: 0
-      HasValue: 0
+      Value: 3
+      HasValue: 1
     VirtualChannelCount:
       Value: 0
       HasValue: 0
@@ -784,10 +785,10 @@ MonoBehaviour:
       HasValue: 0
     DSPBufferLength:
       Value: 0
-      HasValue: 0
+      HasValue: 1
     DSPBufferCount:
       Value: 0
-      HasValue: 0
+      HasValue: 1
     Plugins:
       Value: []
       HasValue: 1
