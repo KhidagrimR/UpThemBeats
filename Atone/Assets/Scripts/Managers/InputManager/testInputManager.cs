@@ -7,8 +7,8 @@ public class testInputManager : MonoBehaviour
     
     void Start()
     {
-        InputManager.onJump += jump;
-        InputManager.onJumpPressed += jumpPressed;
+        InputManager.Instance.onDestroyBop += jump;
+        InputManager.Instance.onDestroyBopPressed += jumpPressed;
     }
 
     public void jump(){
