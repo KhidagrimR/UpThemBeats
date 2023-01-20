@@ -60,6 +60,8 @@ public class InputManager : Singleton<InputManager>
 
     void Update()
     {
+        CheckIfControllerOrKeyBoardIsActive();
+        print("onController" + onController);
         #region Destroy Obstacle
         // DESTROY WALL
         if (destroyWallAction.GetAction(onController))
@@ -248,10 +250,30 @@ public class InputManager : Singleton<InputManager>
         #endregion
     }
 
-    public void CheckIfControllerOrKeyBoardIsActive(){
-        
+    public void CheckIfControllerOrKeyBoardIsActive() {
+        CheckIfAxisIsTrigger();
+        foreach (KeyCode kc in Enum.GetValues(typeof(KeyCode)))
+        {
+            if (Input.GetKey(kc))
+            {
+                print("kc" + kc.ToString());
+                if (kc.ToString().Contains("Joystick"))
+                {
+
+                    onController = true;
+                }
+                else
+                    onController = false;
+            }
+        }
     }
 
+    public void CheckIfAxisIsTrigger() {
+        if (Input.GetAxis("StickleftHorizontal") != 0 || Input.GetAxis("StickleftVertical") != 0 || Input.GetAxis("ShareTriggerRTLT") != 0 ||
+            Input.GetAxis("RT") != 0 || Input.GetAxis("LT") != 0 || Input.GetAxis("StickrightHorizontal") != 0 || 
+            Input.GetAxis("StickrightHorizontal") != 0 || Input.GetAxis("DirectionalCrossHorizontal") != 0 || Input.GetAxis("DirectionalCrossVertical") != 0)
+            onController = true;
+    }
 
     public static void SetOnController()
     {
