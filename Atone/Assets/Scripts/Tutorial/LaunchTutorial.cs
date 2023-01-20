@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class LaunchTutorial : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string textBeforeImage;
+    public Sprite spriteKeyKeyBoard;
+    public Sprite spriteKeyController;
+    public string textAfterImage;
+    public float timeToStayToScreen;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void OnTriggerEnter(Collider other) {
+        if (other.name == "Player") {
+            StartCoroutine(Tutorial.Instance.LaunchTutorial(timeToStayToScreen, textBeforeImage, spriteKeyKeyBoard, spriteKeyController, textAfterImage));
+        }
     }
 }
