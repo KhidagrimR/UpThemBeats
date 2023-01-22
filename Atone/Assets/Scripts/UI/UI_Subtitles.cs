@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 
@@ -9,27 +9,42 @@ public class UI_Subtitles : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI SampleSub;
 
-    bool isShown = true;
 
-    Toggle m_Toggle;
-
-    void Start()
+    public void ShowOrHideSubs(bool show)
     {
-        m_Toggle = GetComponent<Toggle>();
-        m_Toggle.onValueChanged.AddListener(delegate {
-            ShowOrHideSubs();
-        });
+        SampleSub.enabled = show;
     }
 
-    public void ShowOrHideSubs()
+    public void ChangeTheme(int value)
     {
-        if (isShown)
+        switch (value)
         {
-            SampleSub.enabled = isShown = false;
+            case 0:
+                ApplyTheme(Color.white, "#FFFFFF00");
+                break;
+            case 1:
+                ApplyTheme(Color.white, "#00000050");
+                break;
+            case 2:
+                ApplyTheme(Color.yellow, "#00000050");
+                break;
+            default:
+                ApplyTheme(Color.white, "#FFFFFF00");
+                break;
         }
-        else
+    }
+
+    void ApplyTheme(Color textColor, string bgColor)
+    {
+        string str = SampleSub.text;
+        Regex rich = new Regex(@"<[^>]*>");
+
+        if (rich.IsMatch(str))
         {
-            SampleSub.enabled = isShown = true;
+            str = rich.Replace(str, string.Empty);
         }
+        SampleSub.color = textColor;
+        SampleSub.text = "<mark="+ bgColor + " padding='10,10,0,0'>" + str + "</mark>";
+        
     }
 }
