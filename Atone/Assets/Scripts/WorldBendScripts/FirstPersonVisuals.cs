@@ -53,7 +53,7 @@ public class FirstPersonVisuals : MonoBehaviour
     #region LECTEUR DE SCRIPTABLE OBJECT
 
     void ExamineMarker()
-    {
+    {        
         int lastHashedMarkerName = Animator.StringToHash(MusicManager.Instance.timelineInfo.markerHit);
         //Debug.Log(lastHashedMarkerName);
         

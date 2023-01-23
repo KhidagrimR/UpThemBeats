@@ -39,6 +39,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public void Init()
     {
         SetupPlayerSpeed();
+        SetupPlayerAnimationSpeed();
         InitDistanceBop();
 
         InputManager.Instance.onGoLeftLane += MovePlayerToLeftLane;
@@ -85,7 +86,17 @@ public class PlayerManager : Singleton<PlayerManager>
     void SetupPlayerAnimationSpeed()
     {
         // just a reminder to modify the player animation speed to make it goes up and down on the beats
+        // Debug.Log("both arms index: " +playerController.ArmAnimStates.GetLayerIndex("Both Arms")); // It's 0
+        // AnimatorStateInfo skateState = playerController.ArmAnimStates.GetCurrentAnimatorStateInfo(0);
+        // Debug.Log("clip length ? "+ playerController.ArmAnimStates.GetCurrentAnimatorClipInfo(0)[0].clip.length);
 
+        // We know it's 80 bpm, so screw it, I'm hard coding this.
+        float clipLength = playerController.ArmAnimStates.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+        // Arm peak on half beat (160), cycle on full beat. 60/160 = 0.375
+        float cycleSpeedScale = 0.375f * 1f / ((0.91f - 0.39f) * clipLength);
+        // normalised cycle peaks : 0.39 - 0.91 // J'ai fair ça au coup d'oeil, rien de super précis
+        playerController.ArmAnimStates.SetFloat(GameAnimatorsParams.AnimParamsDict[AnimationEnum.SkateCycleOffset], 0.39f);
+        playerController.ArmAnimStates.SetFloat(GameAnimatorsParams.AnimParamsDict[AnimationEnum.SpeedScaleFactor], cycleSpeedScale);
         // delete the function if that's already done as you read this
     }
 
