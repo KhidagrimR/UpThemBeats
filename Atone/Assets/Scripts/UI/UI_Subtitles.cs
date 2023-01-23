@@ -8,6 +8,7 @@ using TMPro;
 public class UI_Subtitles : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI SampleSub;
+    [SerializeField] private TextMeshProUGUI subtitleInGame;
 
     bool isShown = true;
 
@@ -25,11 +26,11 @@ public class UI_Subtitles : MonoBehaviour
     {
         if (isShown)
         {
-            SampleSub.enabled = isShown = false;
+            SampleSub.enabled = subtitleInGame.enabled = isShown = false;
         }
         else
         {
-            SampleSub.enabled = isShown = true;
+            SampleSub.enabled = subtitleInGame.enabled = isShown = true;
         }
     }
 }
