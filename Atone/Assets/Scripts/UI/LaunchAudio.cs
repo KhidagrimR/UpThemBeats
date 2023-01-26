@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 
-public class LaunchAudio : MonoBehaviour
-{
-    private FMOD.Studio.EventInstance instance;
-    public EventReference eventRef;
+public class LaunchAudio : MonoBehaviour {
+    public StudioEventEmitter soundEvent;
 
-    private void Start() {
-        instance = RuntimeManager.CreateInstance(eventRef);
-    }
+    /*public void Start() {
+        soundEvent.Play();
+        soundEvent.Stop();
+    }*/
 
-    public void Play() {
-        instance.start();
+    public void PlaySoundEvent() {
+        soundEvent.Play();
     }
 }
