@@ -3943,7 +3943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4322100284170343564, guid: ac98e17abcc58dd4497df91af8e8604e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.01
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: 4322100284170343564, guid: ac98e17abcc58dd4497df91af8e8604e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9992,7 +9992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 184292262658145328, guid: 2846670eece1f0e40a9533b28f445f94, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.10999847
+      value: -5.4000015
       objectReference: {fileID: 0}
     - target: {fileID: 184292262658145328, guid: 2846670eece1f0e40a9533b28f445f94, type: 3}
       propertyPath: m_LocalRotation.w
@@ -27841,7 +27841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100409477827565572, guid: 47063214332c1194b9c62fbab8717de5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.10999847
+      value: -5.4000015
       objectReference: {fileID: 0}
     - target: {fileID: 100409477827565572, guid: 47063214332c1194b9c62fbab8717de5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -27894,7 +27894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1827712851758725077, guid: 7ec8792ee4606914abd174ea4e730740, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1827712851758725078, guid: 7ec8792ee4606914abd174ea4e730740, type: 3}
       propertyPath: m_RootOrder
@@ -28086,37 +28086,33 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4082829038795663901, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: musicFMODEvent.Path
-      value: event:/Julien_Test_Music_00
+      propertyPath: test
+      value: 
+      objectReference: {fileID: 7673866146837170857, guid: d399a4ffe10ea1847891d46008003b6f, type: 3}
+    - target: {fileID: 5363021689168483715, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
+      propertyPath: roadPrefab
+      value: 
+      objectReference: {fileID: 4252543333268015580, guid: 43b59dd9e92a55a499b84bc5883e1049, type: 3}
+    - target: {fileID: 5363021689168483715, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
+      propertyPath: currentSequenceIndex
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4082829038795663901, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: musicFMODEvent.Guid.Data1
-      value: -282826335
+    - target: {fileID: 5363021689168483715, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
+      propertyPath: sequencesPrefab.Array.size
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4082829038795663901, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: musicFMODEvent.Guid.Data2
-      value: 1164788982
-      objectReference: {fileID: 0}
-    - target: {fileID: 4082829038795663901, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: musicFMODEvent.Guid.Data3
-      value: 706224002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4082829038795663901, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: musicFMODEvent.Guid.Data4
-      value: 214115588
-      objectReference: {fileID: 0}
-    - target: {fileID: 6341438436302581877, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: slide.m_Name
-      value: slide
-      objectReference: {fileID: 0}
-    - target: {fileID: 6341438436302581877, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: slide.m_ActionKeyBoard
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 6341438436302581877, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: slide.m_ActionController
-      value: 354
-      objectReference: {fileID: 0}
+    - target: {fileID: 5363021689168483715, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
+      propertyPath: sequencesPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 1827712851758725077, guid: d8145d19dc3a08e4dbc778d9e881566c, type: 3}
+    - target: {fileID: 5363021689168483715, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
+      propertyPath: sequencesPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 1827712851758725077, guid: bbce5f4b15726fc4bb72c012dbf4b524, type: 3}
+    - target: {fileID: 5363021689168483715, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
+      propertyPath: sequencesPrefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 1827712851758725077, guid: fe0e9710da14de0419833eb1ce6e78fa, type: 3}
     - target: {fileID: 6341438436953146818, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
       propertyPath: m_Name
       value: Managers
@@ -28127,15 +28123,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6341438436953146819, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.379707
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6341438436953146819, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.13912
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6341438436953146819, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.3655925
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6341438436953146819, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
       propertyPath: m_LocalRotation.w
@@ -28177,10 +28173,6 @@ PrefabInstance:
       propertyPath: playerHead
       value: 
       objectReference: {fileID: 261809298}
-    - target: {fileID: 6341438437020692617, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: laneOffset.y
-      value: -0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6341438437020692617, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
       propertyPath: playerController
       value: 

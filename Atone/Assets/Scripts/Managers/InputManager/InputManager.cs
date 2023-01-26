@@ -274,7 +274,7 @@ public class InputManager : Singleton<InputManager>
         {
             if (Input.GetKey(kc))
             {
-                print("kc" + kc.ToString());
+                //print("kc" + kc.ToString());
                 if (kc.ToString().Contains("Joystick"))
                 {
 

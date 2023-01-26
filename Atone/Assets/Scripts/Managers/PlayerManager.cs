@@ -213,7 +213,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void InitDistanceBop()
     {
-        print("InitBop");
+        //print("InitBop");
         foreach (GameObject bop in GameObject.FindGameObjectsWithTag("Bop"))
         {
             bop.GetComponentInChildren<BopTriggerArrival>().InitDistance();

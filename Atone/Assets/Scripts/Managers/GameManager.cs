@@ -11,31 +11,43 @@ public class GameManager : Singleton<GameManager>
         get { return _isReady; }
     }
 
-    public bool isGameCurrentlyPaused {get; set;}
+    public bool isGameCurrentlyPaused { get; set; }
 
     void Awake()
     {
         // do starting setup stuff here
 
         GameAnimatorsParams.BuildDictionary();
-        
+
         // init other manager
         StartCoroutine(Init());
 
         //Time.timeScale = 0.25f;
-
     }
 
     IEnumerator Init()
     {
         isGameCurrentlyPaused = false;
-        
 
         if (SoundCreator.Instance != null)
         {
             SoundCreator.Instance.Init();
             yield return new WaitUntil(() => SoundCreator.Instance.isReady);
             Debug.Log("soundcreator is ready");
+        }
+
+        /*if (MusicManager.Instance != null)
+        {
+            MusicManager.Instance.Init();
+            yield return new WaitUntil(() => MusicManager.Instance.isReady);
+            Debug.Log("Music Manager is ready");
+        }*/
+
+        if (SequenceManager.Instance != null)
+        {
+            SequenceManager.Instance.Init();
+            yield return new WaitUntil(() => SequenceManager.Instance.isReady);
+            Debug.Log("Sequence Manager is ready");
         }
 
         if (PlayerManager.Instance != null)
@@ -50,15 +62,20 @@ public class GameManager : Singleton<GameManager>
         //     SoundCreator.Instance.PlayMusic();
         // }
 
-        if(MusicManager.Instance != null)
+        /*if (MusicManager.Instance != null)
         {
-            MusicManager.Instance.PlayMusic();
+            MusicManager.Instance.StartMusicManager();
+        }*/
+
+        if (SequenceManager.Instance != null)
+        {
+            SequenceManager.Instance.StartSequence();
         }
 
         _isReady = true;
     }
 
-    public void TogglePauseState ()
+    public void TogglePauseState()
     {
         isGameCurrentlyPaused = !isGameCurrentlyPaused;
         // SoundCreator.ToggleMusicPause(isGameCurrentlyPaused);
