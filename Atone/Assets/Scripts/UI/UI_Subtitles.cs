@@ -44,7 +44,12 @@ public class UI_Subtitles : MonoBehaviour
             str = rich.Replace(str, string.Empty);
         }
         SampleSub.color = textColor;
-        SampleSub.text = "<mark="+ bgColor + " padding='10,10,0,0'>" + str + "</mark>";
-        
+        SampleSub.text = "<mark="+ bgColor + " padding='50,50,0,0'>" + str + "</mark>";
+    }
+
+    public void ChangeSize(float value)
+    {
+        int[] size = { 18, 23, 28, 33, 38 };
+        SampleSub.fontSize = size[(int)value];
     }
 }
