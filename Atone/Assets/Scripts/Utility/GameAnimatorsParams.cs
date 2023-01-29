@@ -63,4 +63,6 @@ public enum AnimationEnum
     Slide,
     SlideStop,
     Break,
+    SpeedScaleFactor,
+    SkateCycleOffset,
 };

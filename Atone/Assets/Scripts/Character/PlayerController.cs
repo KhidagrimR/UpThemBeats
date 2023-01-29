@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
     private float startingPlayerY;
 
     public AnimationTrigger animationTrigger;
+    [SerializeField] private Animator armAnimStates;
+    public Animator ArmAnimStates {get => armAnimStates;}
 
     #region Setter
     public float playerSpeed
