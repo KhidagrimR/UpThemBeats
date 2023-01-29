@@ -29,7 +29,8 @@ public class SequenceManager : Singleton<SequenceManager>
 
     private void OnDestroy()
     {
-        MusicManager.Instance.onMusicEnd -= LoadNextSequence;
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.onMusicEnd -= LoadNextSequence;
     }
 
     public void StartSequence()
@@ -53,7 +54,7 @@ public class SequenceManager : Singleton<SequenceManager>
         {
 
             Transform centerRoad = sequences[targetSequenceIndex - 1].GetComponent<SequenceHandler>().centerRoad;
-            targetSpawnPosition = centerRoad.GetChild(centerRoad.childCount - 1).position + new Vector3(0,0,10); // 10 is the length of a road tile
+            targetSpawnPosition = centerRoad.GetChild(centerRoad.childCount - 1).position + new Vector3(0, 0, 10); // 10 is the length of a road tile
         }
 
         GameObject sequence = Instantiate(sequencesPrefab[targetSequenceIndex], targetSpawnPosition, Quaternion.identity);
