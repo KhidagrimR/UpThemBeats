@@ -10,6 +10,7 @@ public class BopTriggerDestruction : MonoBehaviour
     public Material materialTrigger;
     public Material initMaterial;
 
+    public ParticleSystem bopExplosion;
 
 
     public GameObject bopVisuel;
@@ -33,8 +34,10 @@ public class BopTriggerDestruction : MonoBehaviour
     }
 
     public void BopAction(){
-        if(isTrigger){
-            bopVisuel.SetActive(false);
+        if(isTrigger && !isDestroy){
+            //bopVisuel.SetActive(false);
+            bopExplosion.transform.position = bopVisuel.transform.position;
+            bopExplosion.Play();
             isDestroy = true;
         }
             

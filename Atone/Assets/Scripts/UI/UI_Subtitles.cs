@@ -8,6 +8,7 @@ using TMPro;
 public class UI_Subtitles : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI SampleSub;
+    [SerializeField] private TextMeshProUGUI subtitleInGame;
 
 
     public void ShowOrHideSubs(bool show)

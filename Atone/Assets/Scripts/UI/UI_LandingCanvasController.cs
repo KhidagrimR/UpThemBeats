@@ -15,6 +15,8 @@ namespace Atone_UI
         [SerializeField]private GameObject graphicSettings;
         [SerializeField]private GameObject gameplaySettings;
 
+        [SerializeField]private GameObject subTitle;
+
         private Dictionary<SubMenuType, GameObject> menuComponentsDict;
         private GameObject currrentlyActiveSettings = null;
         private SubMenuType currentSubMenu = SubMenuType.NONE;
@@ -85,6 +87,7 @@ namespace Atone_UI
         }
 
         #endregion
+
     }
 
     public enum MenuType {

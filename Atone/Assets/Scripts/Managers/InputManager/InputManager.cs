@@ -9,7 +9,7 @@ public class InputManager : Singleton<InputManager>
     public static bool onController = false;
     [Header("Pause menu / return")]
 
-    public PlayerAction menuOrReturn = new PlayerAction("menuOrReturn", KeyCode.Escape, KeyCode.Joystick1Button7);
+    public PlayerAction menuOrReturn;
 
     public delegate void OnMenu(bool isPaused);
     public static event OnMenu onMenu; // Needs to be static to not mess things up when communicating to the additive scene
@@ -17,7 +17,7 @@ public class InputManager : Singleton<InputManager>
 
     [Header("Break Bop Action")]
     #region BreakBop
-    public PlayerAction destroyBopAction = new PlayerAction("jump", KeyCode.S, KeyCode.S);
+    public PlayerAction destroyBopAction;
     public delegate void OnDestroyBop();
     public OnDestroyBop onDestroyBop;
     public delegate void OnDestroyBopPressed();
@@ -28,18 +28,18 @@ public class InputManager : Singleton<InputManager>
     #region switchlane
     //     SWITCH
     // RIGHT LANE
-    public PlayerAction goToRightLane = new PlayerAction("rightLane", KeyCode.Space, KeyCode.A);
+    public PlayerAction goToRightLane;
     public delegate void OnGoRightLane();
     public OnGoRightLane onGoRightLane;
     // LEFT LANE
-    public PlayerAction goToLeftLane = new PlayerAction("leftLane", KeyCode.Space, KeyCode.A);
+    public PlayerAction goToLeftLane;
     public delegate void OnGoLeftLane();
     public OnGoLeftLane onGoLeftLane;
 
     //    BEND
     // RIGHT LANE
-    public PlayerAction bendToRightLane = new PlayerAction("bendRightLane", KeyCode.E, KeyCode.A);
-    public PlayerAction bendToLeftLane = new PlayerAction("bendLeftLane", KeyCode.A, KeyCode.A);
+    public PlayerAction bendToRightLane;
+    public PlayerAction bendToLeftLane;
     public delegate void OnBendLane(int direction);
     public OnBendLane onBendLane;
 
@@ -48,11 +48,16 @@ public class InputManager : Singleton<InputManager>
     #endregion
 
     [Header("Destroy Wall Action")]
-    public PlayerAction destroyWallAction = new PlayerAction("destroy", KeyCode.Z, KeyCode.E);
+    public PlayerAction destroyWallAction;
     public delegate void OnDestroyWall();
     public OnDestroyWall onDestroyWall;
     public delegate void OnDestroyWallPressed();
     public OnDestroyWallPressed onDestroyWallPressed;
+
+    // SLIDE
+    public PlayerAction slide;
+    public delegate void OnSlide(bool slide);
+    public OnSlide onSlide;
 
     // Bend update state vars
     float rightPressedTime = 0; // store the last moment the right bend was pressed
@@ -60,6 +65,30 @@ public class InputManager : Singleton<InputManager>
 
     void Update()
     {
+        #region UI
+        // OPEN MENU
+        if (menuOrReturn.GetAction(onController))
+        {
+            // Current setup is hacky, need to change it later. Might need to add a future check to verify that we are not in the main menu scene            
+            GameManager.Instance.TogglePauseState();
+            onMenu?.Invoke(GameManager.Instance.isGameCurrentlyPaused);
+        }
+        #endregion
+        #region Slide
+        if(slide.GetActionReleased(onController))
+        {
+            if (onSlide != null)
+                onSlide(false);
+        }
+        if (slide.GetAction(onController))
+        {
+            if (onSlide != null)
+                onSlide(true);
+            return;
+        }
+        #endregion
+        CheckIfControllerOrKeyBoardIsActive();
+        //print("onController" + onController);
         #region Destroy Obstacle
         // DESTROY WALL
         if (destroyWallAction.GetAction(onController))
@@ -166,10 +195,10 @@ public class InputManager : Singleton<InputManager>
         bool rightMoreRecent = rightPressedTime > leftPressedTime;
         bool leftMoreRecent = leftPressedTime > rightPressedTime;
 
-        Debug.Log("###");
+        /*Debug.Log("###");
         Debug.Log("Right pressed = " + rightPressed + "; right maintained = " + rightMaintained + "; right released = " + rightReleased + ";");
         Debug.Log("left pressed = " + leftPressed + "; left maintained = " + leftMaintained + "; left released = " + leftReleased + ";");
-        Debug.Log("###");
+        Debug.Log("###");*/
 
         int laneToBend = 1;
 
@@ -237,17 +266,32 @@ public class InputManager : Singleton<InputManager>
         }
 
         #endregion
-        #region UI
-        // OPEN MENU
-        if (menuOrReturn.GetAction(onController))
-        {
-            // Current setup is hacky, need to change it later. Might need to add a future check to verify that we are not in the main menu scene            
-            GameManager.Instance.TogglePauseState();
-            onMenu?.Invoke(GameManager.Instance.isGameCurrentlyPaused);
-        }
-        #endregion
     }
 
+    public void CheckIfControllerOrKeyBoardIsActive() {
+        CheckIfAxisIsTrigger();
+        foreach (KeyCode kc in Enum.GetValues(typeof(KeyCode)))
+        {
+            if (Input.GetKey(kc))
+            {
+                print("kc" + kc.ToString());
+                if (kc.ToString().Contains("Joystick"))
+                {
+
+                    onController = true;
+                }
+                else
+                    onController = false;
+            }
+        }
+    }
+
+    public void CheckIfAxisIsTrigger() {
+        if (Input.GetAxis("StickleftHorizontal") != 0 || Input.GetAxis("StickleftVertical") != 0 || Input.GetAxis("ShareTriggerRTLT") != 0 ||
+            Input.GetAxis("RT") != 0 || Input.GetAxis("LT") != 0 || Input.GetAxis("StickrightHorizontal") != 0 || 
+            Input.GetAxis("StickrightHorizontal") != 0 || Input.GetAxis("DirectionalCrossHorizontal") != 0 || Input.GetAxis("DirectionalCrossVertical") != 0)
+            onController = true;
+    }
 
     public static void SetOnController()
     {
