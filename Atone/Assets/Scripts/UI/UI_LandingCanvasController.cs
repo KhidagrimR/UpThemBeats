@@ -9,6 +9,7 @@ namespace Atone_UI
         // This is to determine whether to display the pause canvas or the main menu canvas
         [SerializeField]private GameObject mainMenuLanding;
         [SerializeField]private GameObject pauseMenuLanding;
+        [SerializeField]private GameObject settingsLanding;
 
         [SerializeField]private GameObject volumeSettings;
         [SerializeField]private GameObject graphicSettings;
@@ -20,7 +21,6 @@ namespace Atone_UI
         private GameObject currrentlyActiveSettings = null;
         private SubMenuType currentSubMenu = SubMenuType.NONE;
         private MenuType currentMenuLanding = MenuType.NONE_GAME_PLAYING;
-
 
 
         private void Awake(){
@@ -55,6 +55,7 @@ namespace Atone_UI
         private void SetLandingCanvas(MenuType menuType){
             pauseMenuLanding.SetActive(menuType == MenuType.PAUSE_MENU);
             mainMenuLanding.SetActive(menuType == MenuType.MAIN_MENU);
+            settingsLanding.SetActive(menuType == MenuType.SETTINGS);
         }
 
         private void DisplayMenuSettings(SubMenuType submenu){
@@ -92,7 +93,8 @@ namespace Atone_UI
     public enum MenuType {
         NONE_GAME_PLAYING,
         MAIN_MENU,
-        PAUSE_MENU
+        PAUSE_MENU,
+        SETTINGS
     }
 
     public enum  SubMenuType {
