@@ -14,6 +14,7 @@ public class UI_Subtitles : MonoBehaviour
     public void ShowOrHideSubs(bool show)
     {
         SampleSub.enabled = show;
+        subtitleInGame.enabled = show;
     }
 
     public void ChangeTheme(int value)
@@ -37,20 +38,27 @@ public class UI_Subtitles : MonoBehaviour
 
     void ApplyTheme(Color textColor, string bgColor)
     {
-        string str = SampleSub.text;
+        string str1 = SampleSub.text;
+        string str2 = subtitleInGame.text;
+
         Regex rich = new Regex(@"<[^>]*>");
 
-        if (rich.IsMatch(str))
+        if (rich.IsMatch(str1) && rich.IsMatch(str2))
         {
-            str = rich.Replace(str, string.Empty);
+            str1 = rich.Replace(str1, string.Empty);
+            str2 = rich.Replace(str2, string.Empty);
         }
         SampleSub.color = textColor;
-        SampleSub.text = "<mark="+ bgColor + " padding='50,50,0,0'>" + str + "</mark>";
+        SampleSub.text = "<mark="+ bgColor + " padding='50,50,0,0'>" + str1 + "</mark>";
+
+        subtitleInGame.color = textColor;
+        subtitleInGame.text = "<mark=" + bgColor + " padding='50,50,0,0'>" + str2 + "</mark>";
     }
 
     public void ChangeSize(float value)
     {
         int[] size = { 18, 23, 28, 33, 38 };
         SampleSub.fontSize = size[(int)value];
+        subtitleInGame.fontSize = size[(int)value];
     }
 }
