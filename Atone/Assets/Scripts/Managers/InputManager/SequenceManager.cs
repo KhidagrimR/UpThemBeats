@@ -35,12 +35,17 @@ public class SequenceManager : Singleton<SequenceManager>
 
     public void StartSequence()
     {
+        // on prends la séquence chargée
         currentSequence = sequences[currentSequenceIndex].GetComponent<SequenceHandler>();
+        // on l'active
         currentSequence.gameObject.SetActive(true);
         currentSequence.Init();
 
+        // On set le FMOD event pour qu il corresponde à la musique
         MusicManager.Instance.SetFMODEvent(currentSequence.musicFMODEvent);
-        MusicManager.Instance.Init();
+
+        // On setup le music manager
+        MusicManager.Instance.Init();     
         MusicManager.Instance.StartMusicManager();
         MusicManager.Instance.PlayMusic();
     }

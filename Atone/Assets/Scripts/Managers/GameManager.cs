@@ -71,7 +71,7 @@ public class GameManager : Singleton<GameManager>
         {
             SequenceManager.Instance.StartSequence();
         }
-
+        Debug.Log("### READY ###");
         _isReady = true;
     }
 

@@ -11,7 +11,7 @@ public class MusicManager : Singleton<MusicManager>
     #region MEMBER VARIABLES
     // Note to self: remember that the Singleton status allows us to use the public static MusicManager.Instance
     //[SerializeField][BankRef] private string currentSoundBank;    
-    [SerializeField] private EventReference musicFMODEvent; //FMOD Event reference.    
+    /*[SerializeField]*/ private EventReference musicFMODEvent; //FMOD Event reference.    
 
     public TimelineInfo timelineInfo = null;
 
@@ -55,7 +55,7 @@ public class MusicManager : Singleton<MusicManager>
     /// * https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.layoutkind?view=net-7.0
     /// </summary>
 
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential)][Serializable]
     public class TimelineInfo
     {
         public int currentBeat = 0; // ex: in 4/4, values are 1,2,3 or 4
@@ -203,6 +203,7 @@ public class MusicManager : Singleton<MusicManager>
         //GUILayout.Box($"Current Beat = {timelineInfo.currentBeat} | Last marker = {(string)timelineInfo.markerHit}");
         GUI.Box(new Rect(Screen.width - 300, 0, 300, 50), $"Current Beat = {timelineInfo.currentBeat} | Last marker = {(string)timelineInfo.markerHit}");
 
+        // Place gameobject behind the player, watch scene while playing to see if beats are in time
         if (timelineInfo.currentBeat != lastBeatTest)
         {
             lastBeatTest = timelineInfo.currentBeat;
