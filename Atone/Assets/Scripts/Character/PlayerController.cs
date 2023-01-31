@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             print("take damage");
-            print("new HP : " + hp);
+            //print("new HP : " + hp);
         }
 
     }
@@ -233,10 +233,10 @@ public class PlayerController : MonoBehaviour
     [Header("Slide")]
     public float headYMovement = 0.5f;
     public float headYMovementTween = 0.5f;
-    public void Slide(bool isSliding)
+    public void Slide(bool pIsSliding)
     {
-        //        Debug.Log("Slide Called on : " + isSliding);
-        if (isSliding)
+        Debug.Log("Slide Called on : " + pIsSliding);
+        if (pIsSliding)
         {
             // se pencher / glisser 
             // baisser la tête
