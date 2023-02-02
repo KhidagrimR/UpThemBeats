@@ -38,8 +38,11 @@ public class PlayerManager : Singleton<PlayerManager>
     public float tweenDutchDuration = 0.4f;
 
     [InspectorReadOnly]
-    public static float score;
+    public static float scoreSequence;
     public static float scoreMultipliyer;
+
+    public static Dictionary<string, Dictionary<string,float>> scoreBoard;
+
     public void Init()
     {
         SetupPlayerSpeed();
@@ -54,7 +57,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
         _isReady = true;
         playerCurrentLane = 1;
-        score = 0;
+        scoreSequence = 0;
+        scoreBoard = new Dictionary<string, Dictionary<string, float>>();
     }
 
     private void OnDisable()
@@ -241,10 +245,10 @@ public class PlayerManager : Singleton<PlayerManager>
         Debug.Log("ScoreMultipliyer : " + (Math.Abs(positionBeatPerfect - playerController.transform.position.z) / boundZCollider/2)/2);
         float distanceToCenter = Math.Abs(positionBeatPerfect - playerController.transform.position.z);
         if (distanceToCenter > boundZCollider / 2)
-            score += scoreMultipliyer * pointObstacle;
+            scoreSequence += scoreMultipliyer * pointObstacle;
         else
-            score += (scoreMultipliyer + (scoreMultipliyer / 2)) * pointObstacle;
-        score = (float)Math.Round(score, 1);
-        Debug.Log("nouveau score = " + score);
+            scoreSequence += (scoreMultipliyer + (scoreMultipliyer / 2)) * pointObstacle;
+        scoreSequence = (float)Math.Round(scoreSequence, 1);
+        Debug.Log("nouveau score = " + scoreSequence);
     }
 }
