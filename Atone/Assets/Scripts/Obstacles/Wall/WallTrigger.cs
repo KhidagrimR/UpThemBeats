@@ -11,6 +11,8 @@ public class WallTrigger : MonoBehaviour
 
     public GameObject visualWall;
 
+    public int pointObstacle;
+
     void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag(PlayerManager.PLAYER_TAG)){
@@ -41,6 +43,7 @@ public class WallTrigger : MonoBehaviour
                 fmodStudioEventEmitter.Play();
                 
             isDestroy = true;
+            PlayerManager.Instance.IncreaseScore(gameObject.GetComponent<BoxCollider>().bounds.extents.z, gameObject.transform.position.z, pointObstacle);
         }
         else
             print("mur rat�");

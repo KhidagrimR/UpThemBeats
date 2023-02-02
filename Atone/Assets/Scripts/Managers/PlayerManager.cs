@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
+using System;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
@@ -36,6 +37,9 @@ public class PlayerManager : Singleton<PlayerManager>
     [Header("To Tweak")]
     public float tweenDutchDuration = 0.4f;
 
+    [InspectorReadOnly]
+    public static float score;
+    public static float scoreMultipliyer;
     public void Init()
     {
         SetupPlayerSpeed();
@@ -50,7 +54,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
         _isReady = true;
         playerCurrentLane = 1;
-
+        score = 0;
     }
 
     private void OnDisable()
@@ -230,5 +234,17 @@ public class PlayerManager : Singleton<PlayerManager>
             bop.GetComponentInChildren<BopTriggerArrival>().InitDistance();
         }
 
+    }
+
+    public void IncreaseScore(float boundZCollider, float positionBeatPerfect, int pointObstacle) {
+        Debug.Log("positionBeatPerfectZ : " + positionBeatPerfect);
+        Debug.Log("ScoreMultipliyer : " + (Math.Abs(positionBeatPerfect - playerController.transform.position.z) / boundZCollider/2)/2);
+        float distanceToCenter = Math.Abs(positionBeatPerfect - playerController.transform.position.z);
+        if (distanceToCenter > boundZCollider / 2)
+            score += scoreMultipliyer * pointObstacle;
+        else
+            score += (scoreMultipliyer + (scoreMultipliyer / 2)) * pointObstacle;
+        score = (float)Math.Round(score, 1);
+        Debug.Log("nouveau score = " + score);
     }
 }
