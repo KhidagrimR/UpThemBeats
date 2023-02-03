@@ -1,42 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Crosshair : MonoBehaviour
 {
     [SerializeField] private GameObject CrosshairGroup;
-    //apply to the real one
+    [SerializeField] private GameObject RealCrosshair;
 
-    public void ChangeColor(float value)
+    public void ChangeColor(int value)
     {
-        if(value <= 255)
+        switch (value)
         {
-            ApplyColor(value, 0, 0);
-        } else if(value <= 510)
-        {
-            ApplyColor(255, 255 - value, 0);
-        } else
-        {
-            ApplyColor(255, 255, 510 - value);
+            case 0:
+                ApplyColor(Color.white);
+                break;
+            case 1:
+                ApplyColor(Color.red);
+                break;
+            case 2:
+                ApplyColor(Color.yellow);
+                break;
+            case 3:
+                ApplyColor(Color.cyan);
+                break;
+            case 4:
+                ApplyColor(Color.magenta);
+                break;
+            default:
+                ApplyColor(Color.white);
+                break;
         }
     }
 
-    void ApplyColor(float red, float green, float blue)
+    void ApplyColor(Color color)
     {
-
-        foreach (Renderer child in GetComponentsInChildren<Renderer>())
+        Image[] elements = CrosshairGroup.GetComponentsInChildren<Image>();
+        foreach (Image child in elements)
         {
-            print("hello");
-            print(child.name);
-            child.material.color = new Color(red, green, blue);
+            if (!child.name.Contains("black")) {
+                child.color = color;
+            }
         }
     }
 
     public void ChangeOpacity(float value)
     {
-        foreach (Renderer child in CrosshairGroup.GetComponentsInChildren<Renderer>())
+        Image[] elements = CrosshairGroup.GetComponentsInChildren<Image>();
+        foreach (Image child in elements)
         {
-            //TODO
+            Color newColor = new Color(child.color.r, child.color.g, child.color.b, value);
+            
+            child.color = newColor;
+            print(child.color.a);
         }
     }
 }
