@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 namespace Atone_UI
 {
@@ -61,6 +61,19 @@ namespace Atone_UI
                 Cursor.lockState = CursorLockMode.Locked;
             }
         }
+
+
+        public void PlayGame(GameObject menu)
+        {
+            mainMenuLanding.SetActive(false);
+            SceneManager.LoadScene("Game");
+        }
+
+        public void Quit()
+        {
+            Application.Quit();
+        }
+
         private void SetLandingCanvas(MenuType menuType)
         {
             pauseMenuLanding.SetActive(menuType == MenuType.PAUSE_MENU);
