@@ -20,7 +20,7 @@ public class BopTriggerDestruction : MonoBehaviour
     public StudioEventEmitter SFXDestroy;
 
     void OnTriggerEnter(Collider col){
-        if(col.name == "Player"){
+        if (col.CompareTag(PlayerManager.PLAYER_TAG)){ 
             isTrigger = true;
             //bopVisuel.GetComponent<MeshRenderer>().materials[2] = materialTrigger;
             PlayerController.gameObjectsColliding.Add(gameObject);
