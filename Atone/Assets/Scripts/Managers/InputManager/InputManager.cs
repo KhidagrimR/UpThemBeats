@@ -7,6 +7,8 @@ using UnityEngine.PlayerLoop;
 public class InputManager : Singleton<InputManager>
 {
     public static bool onController = false;
+
+    public static bool isRightHanded = false;
     [Header("Pause menu / return")]
 
     public PlayerAction menuOrReturn;
@@ -67,7 +69,7 @@ public class InputManager : Singleton<InputManager>
     {
         #region UI
         // OPEN MENU
-        if (menuOrReturn.GetAction(onController))
+        if (menuOrReturn.GetAction(onController,isRightHanded))
         {
             // Current setup is hacky, need to change it later. Might need to add a future check to verify that we are not in the main menu scene            
             GameManager.Instance.TogglePauseState();
@@ -75,12 +77,12 @@ public class InputManager : Singleton<InputManager>
         }
         #endregion
         #region Slide
-        if(slide.GetActionReleased(onController))
+        if(slide.GetActionReleased(onController, isRightHanded))
         {
             if (onSlide != null)
                 onSlide(false);
         }
-        if (slide.GetAction(onController))
+        if (slide.GetAction(onController, isRightHanded))
         {
             if (onSlide != null)
                 onSlide(true);
@@ -91,23 +93,23 @@ public class InputManager : Singleton<InputManager>
         //print("onController" + onController);
         #region Destroy Obstacle
         // DESTROY WALL
-        if (destroyWallAction.GetAction(onController))
+        if (destroyWallAction.GetAction(onController, isRightHanded))
             if (onDestroyWall != null)
                 onDestroyWall();
 
         // DESTROY BOP
-        if (destroyBopAction.GetAction(onController))
+        if (destroyBopAction.GetAction(onController, isRightHanded))
             if (onDestroyBop != null)
                 onDestroyBop();
 
         #endregion
         #region switch lane
         // SWITCH LANE
-        if (goToLeftLane.GetAction(onController) && bendToLeftLane.GetActionPressed(onController))
+        if (goToLeftLane.GetAction(onController,isRightHanded) && bendToLeftLane.GetActionPressed(onController,isRightHanded))
             if (onGoLeftLane != null)
                 onGoLeftLane();
 
-        if (goToRightLane.GetAction(onController) && bendToRightLane.GetActionPressed(onController))
+        if (goToRightLane.GetAction(onController,isRightHanded) && bendToRightLane.GetActionPressed(onController,isRightHanded))
             if (onGoRightLane != null)
                 onGoRightLane();
         #endregion
@@ -179,13 +181,13 @@ public class InputManager : Singleton<InputManager>
 
         #endregion
 
-        bool rightPressed = bendToRightLane.GetAction(onController);
-        bool rightMaintained = bendToRightLane.GetActionPressed(onController);
-        bool rightReleased = bendToRightLane.GetActionReleased(onController);
+        bool rightPressed = bendToRightLane.GetAction(onController,isRightHanded);
+        bool rightMaintained = bendToRightLane.GetActionPressed(onController,isRightHanded);
+        bool rightReleased = bendToRightLane.GetActionReleased(onController,isRightHanded);
 
-        bool leftPressed = bendToLeftLane.GetAction(onController);
-        bool leftMaintained = bendToLeftLane.GetActionPressed(onController);
-        bool leftReleased = bendToLeftLane.GetActionReleased(onController);
+        bool leftPressed = bendToLeftLane.GetAction(onController,isRightHanded);
+        bool leftMaintained = bendToLeftLane.GetActionPressed(onController,isRightHanded);
+        bool leftReleased = bendToLeftLane.GetActionReleased(onController,isRightHanded);
 
         if (rightPressed) rightPressedTime = Time.time;
         if (leftPressed) leftPressedTime = Time.time;
@@ -266,6 +268,7 @@ public class InputManager : Singleton<InputManager>
         }
 
         #endregion
+
     }
 
     public void CheckIfControllerOrKeyBoardIsActive() {
