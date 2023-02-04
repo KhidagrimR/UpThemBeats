@@ -9,7 +9,9 @@ public class PlayerAction
     [SerializeField]
     private string m_Name;
     [SerializeField]
-    private KeyCode m_ActionKeyBoard;
+    private KeyCode m_ActionKeyBoardRightHanded;
+    [SerializeField]
+    private KeyCode m_ActionKeyBoardLeftHanded;
     [SerializeField]
     private KeyCode m_ActionController;
 
@@ -26,14 +28,15 @@ public class PlayerAction
     [SerializeField]
     private Axis m_axis;
 
-    public PlayerAction(string name, KeyCode actionKeyBoard, KeyCode actionController, Axis axis){
+    public PlayerAction(string name, KeyCode actionKeyBoardRightHanded, KeyCode actionKeyBoardLeftHanded, KeyCode actionController, Axis axis){
         this.m_Name = name;
-        this.m_ActionKeyBoard = actionKeyBoard;
+        this.m_ActionKeyBoardRightHanded = actionKeyBoardRightHanded;
+        this.m_ActionKeyBoardLeftHanded = actionKeyBoardLeftHanded;
         this.m_ActionController = actionController;
         this.m_axis = axis;
     }
 
-    public bool GetAction(bool onController){
+    public bool GetAction(bool onController, bool isRightHanded){
         if (onController){
             if (m_axis == Axis.None)
                 return Input.GetKeyDown(m_ActionController);
@@ -42,10 +45,13 @@ public class PlayerAction
         }
 
         else
-            return Input.GetKeyDown(m_ActionKeyBoard);
+            if(isRightHanded)
+                return Input.GetKeyDown(m_ActionKeyBoardRightHanded);
+            else
+                return Input.GetKeyDown(m_ActionKeyBoardLeftHanded);
     }
 
-    public bool GetActionPressed(bool onController){
+    public bool GetActionPressed(bool onController, bool isRightHanded){
         if(onController){
             if (m_axis == Axis.None)
                 return Input.GetKeyDown(m_ActionController);
@@ -53,10 +59,13 @@ public class PlayerAction
                 return GetAxisDirectionTrigger();
         }
         else
-            return Input.GetKey(m_ActionKeyBoard);
+            if(isRightHanded)
+                return Input.GetKey(m_ActionKeyBoardRightHanded);
+            else 
+                return Input.GetKey(m_ActionKeyBoardLeftHanded);
     }
 
-    public bool GetActionReleased(bool onController)
+    public bool GetActionReleased(bool onController, bool isRightHanded)
     {
         if(onController){
             if (m_axis == Axis.None)
@@ -65,7 +74,10 @@ public class PlayerAction
                 return GetAxisDirectionTrigger();
         }
         else
-            return Input.GetKeyUp(m_ActionKeyBoard);
+            if(isRightHanded)
+                return Input.GetKeyUp(m_ActionKeyBoardRightHanded);
+            else
+                return Input.GetKeyUp(m_ActionKeyBoardLeftHanded);
     }
 
     public bool GetAxisDirectionTrigger() {
