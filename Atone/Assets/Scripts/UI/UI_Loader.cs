@@ -3,13 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class UI_Loader : MonoBehaviour
 {
-    public bool isReady;
+    private bool _isReady;
+    public bool isReady
+    {
+        get { return _isReady; }
+    }
     // Attach to a camera or the game manager. Somewhere where you'll find it
     public void Init()
     {
-        if(SceneManager.GetSceneByName("UI Scene").isLoaded == false) {
+        if (SceneManager.GetSceneByName("UI Scene").isLoaded == false)
+        {
             SceneManager.LoadSceneAsync("UI Scene", LoadSceneMode.Additive);
-            isReady = true;
+            _isReady = true;
         }
     }
 }

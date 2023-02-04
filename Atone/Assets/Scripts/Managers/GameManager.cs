@@ -36,6 +36,7 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitUntil(() => SoundCreator.Instance.isReady);
             Debug.Log("soundcreator is ready");
         }
+        
         if (uI_Loader != null)
         {
             uI_Loader.Init();
