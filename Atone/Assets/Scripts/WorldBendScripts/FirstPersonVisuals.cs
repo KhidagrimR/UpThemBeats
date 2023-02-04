@@ -59,11 +59,14 @@ public class FirstPersonVisuals : MonoBehaviour
         
         if(!DeformationObjectsCollection.LevelBendMarkers.ContainsKey(lastHashedMarkerName))
         {
+            if(string.Compare(MusicManager.Instance.timelineInfo.markerHit, "LoopSequence") == 0)
+            {
+                SequenceManager.Instance.isNextSequenceLooping = true;
+            }
             return;
         }
 
         SynchronizedTween(DeformationObjectsCollection.LevelBendMarkers[lastHashedMarkerName]);
-
     }
     void SynchronizedTween(BendData bendData)
     {
