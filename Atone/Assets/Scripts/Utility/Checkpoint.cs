@@ -33,7 +33,7 @@ public class Checkpoint : MonoBehaviour
              Directory.CreateDirectory(path);
 
         //GetNamePlayer()
-        string name = "Alberto";
+        string name = "Pedro";
 
         StreamWriter sw = new StreamWriter(path + "/" + name + "Score.txt");
 

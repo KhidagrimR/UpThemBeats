@@ -17184,6 +17184,17 @@ Transform:
   m_Father: {fileID: 208020632}
   m_RootOrder: 76
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1338659689 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1172588192285575461, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
+  m_PrefabInstance: {fileID: 6341438436137178570}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea32ad7b4e8e724a88da26d46d9b83a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1342484899
 GameObject:
   m_ObjectHideFlags: 0
@@ -28304,7 +28315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1827712851758725078, guid: 7ec8792ee4606914abd174ea4e730740, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 10.24
       objectReference: {fileID: 0}
     - target: {fileID: 1827712851758725078, guid: 7ec8792ee4606914abd174ea4e730740, type: 3}
       propertyPath: m_LocalRotation.w
@@ -28491,6 +28502,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 274484863838705638, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4082829038795663901, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
       propertyPath: musicFMODEvent.Path
       value: 
@@ -28531,6 +28546,10 @@ PrefabInstance:
       propertyPath: sequencesPrefab.Array.data[3]
       value: 
       objectReference: {fileID: 1827712851758725077, guid: fe0e9710da14de0419833eb1ce6e78fa, type: 3}
+    - target: {fileID: 6341438436592442144, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
+      propertyPath: uI_Loader
+      value: 
+      objectReference: {fileID: 1338659689}
     - target: {fileID: 6341438436953146818, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
       propertyPath: m_Name
       value: Managers
