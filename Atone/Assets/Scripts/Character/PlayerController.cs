@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     public AnimationTrigger animationTrigger;
     [SerializeField] private Animator armAnimStates;
-    public Animator ArmAnimStates {get => armAnimStates;}
+    public Animator ArmAnimStates { get => armAnimStates; }
 
     #region Setter
     public float playerSpeed
@@ -72,6 +72,8 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.onDestroyWall += CheckIfWall3ToDestroy;
         InputManager.Instance.onDestroyBop += CheckIfBopToDestroy;
         InputManager.Instance.onSlide += Slide;
+        MusicManager.Instance.onMusicEnd += StopPlayer;
+        MusicManager.Instance.onMusicStart += StartPlayer;
 
         gameObjectsColliding = new List<GameObject>();
         hp = initHp;
@@ -86,16 +88,32 @@ public class PlayerController : MonoBehaviour
             InputManager.Instance.onDestroyBop -= CheckIfBopToDestroy;
             InputManager.Instance.onDestroyWall -= CheckIfWall3ToDestroy;
             InputManager.Instance.onSlide -= Slide;
+            MusicManager.Instance.onMusicEnd -= StopPlayer;
+            MusicManager.Instance.onMusicStart -= StartPlayer;
         }
 
     }
 
+    void StopPlayer()
+    {
+        canPlayerMove = false;
+    }
+
+    void StartPlayer()
+    {
+        canPlayerMove = true;
+    }
+
+    public bool canPlayerMove = false;
     // Update is called once per frame
     void Update()
     {
         if (!GameManager.Instance.isReady) return;
         CheckGround();
-        Move();
+
+        if (canPlayerMove)
+            Move();
+
         ApplyGravity();
 
         // vertical mvt
@@ -111,10 +129,29 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = -0.5f;
         }
     }
+
+    // OLD WAY TO MOVE
     void Move()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (playerSpeed * Time.deltaTime));
     }
+
+    #region Test
+    // NEW WAY TO MOVE
+    /*bool isMoving;
+    void Move()
+    {
+        //transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (playerSpeed * Time.deltaTime));
+
+        isMoving = true;
+        Vector3 targetPosition = new Vector3(0f,0f,20f);
+        float duration = MusicManager.Instance.SecPerBeat;
+        // on sait qu'il commence 
+        transform.DOMove(transform.position + targetPosition, duration).OnComplete(() => {
+            isMoving = false;
+        });
+    }*/
+    #endregion
 
     void ApplyGravity()
     {

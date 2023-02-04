@@ -67,7 +67,7 @@ public class SequenceManager : Singleton<SequenceManager>
         {
             // on prends le transform de la sequence précédente
             Transform centerRoad = sequences[sequences.Count - 1].GetComponent<SequenceHandler>().centerRoad;
-            targetSpawnPosition = centerRoad.GetChild(centerRoad.childCount - 1).position + new Vector3(0, 0, 10); // 10 is the length of a road tile
+            targetSpawnPosition = new Vector3(0f, 0f, PlayerManager.Instance.playerController.transform.position.z) ; //centerRoad.GetChild(centerRoad.childCount - 1).position + new Vector3(0, 0, 10); // 10 is the length of a road tile
         }
 
         GameObject sequence = Instantiate(sequencesPrefab[targetSequenceIndex], targetSpawnPosition, Quaternion.identity);
