@@ -43,6 +43,9 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public static Dictionary<string, Dictionary<string,float>> scoreBoard;
 
+    public static GameObject gameObjectTriggerChangeLane;
+    public static int pointChangeLane;
+
     public void Init()
     {
         SetupPlayerSpeed();
@@ -115,6 +118,8 @@ public class PlayerManager : Singleton<PlayerManager>
             playerCurrentLane++;
             ChangeLaneDutch(playerCurrentLane);
 
+            IncreaseScore(gameObjectTriggerChangeLane.GetComponent<BoxCollider>().bounds.extents.z, gameObjectTriggerChangeLane.transform.position.z, pointChangeLane);
+
             if(playerCurrentLane != 1)
                 playerController.animationTrigger.PlayAnimation(AnimationEnum.Jump);
 
@@ -130,7 +135,10 @@ public class PlayerManager : Singleton<PlayerManager>
             playerCurrentLane--;
             ChangeLaneDutch(playerCurrentLane);
 
-            if(playerCurrentLane != 1)
+            IncreaseScore(gameObjectTriggerChangeLane.GetComponent<BoxCollider>().bounds.extents.z, gameObjectTriggerChangeLane.transform.position.z, pointChangeLane);
+
+
+            if (playerCurrentLane != 1)
                 playerController.animationTrigger.PlayAnimation(AnimationEnum.Jump);
 
             playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);

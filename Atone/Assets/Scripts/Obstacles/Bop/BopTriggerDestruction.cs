@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class BopTriggerDestruction : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class BopTriggerDestruction : MonoBehaviour
     public int pointObstacle;
 
     public GameObject bopVisuel;
+    public StudioEventEmitter SFXArrival;
+    public StudioEventEmitter SFXDestroy;
 
     void OnTriggerEnter(Collider col){
         if(col.name == "Player"){
@@ -37,8 +40,10 @@ public class BopTriggerDestruction : MonoBehaviour
     public void BopAction(){
         if(isTrigger && !isDestroy){
             bopVisuel.SetActive(false);
+            SFXArrival.Stop();
             bopExplosion.transform.position = bopVisuel.transform.position;
             bopExplosion.Play();
+            SFXDestroy.Play();
             isDestroy = true;
 
             PlayerManager.Instance.IncreaseScore(gameObject.GetComponent<BoxCollider>().bounds.extents.z, gameObject.transform.position.z, pointObstacle);

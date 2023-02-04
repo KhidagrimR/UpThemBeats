@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Test_Julien.bank
   Name: Test_Julien
   StudioPath: bank:/Test_Julien
-  lastModified: 638110107556578392
+  lastModified: 638110152551138371
   FileSizes: []
   Exists: 1
 --- !u!114 &-8054303532564571900
@@ -60,7 +60,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638110107553669162
+  lastModified: 638110152548318814
   FileSizes: []
   Exists: 1
 --- !u!114 &-6693754475664059370
@@ -78,7 +78,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Thomas.bank
   Name: Thomas
   StudioPath: bank:/Thomas
-  lastModified: 638110119239835810
+  lastModified: 638110152551566742
   FileSizes: []
   Exists: 1
 --- !u!114 &-6574939625739096928
@@ -341,7 +341,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/ObstacleRouge_Sfx.bank
   Name: ObstacleRouge_Sfx
   StudioPath: bank:/ObstacleRouge_Sfx
-  lastModified: 638110107553711122
+  lastModified: 638110152548880221
   FileSizes: []
   Exists: 1
 --- !u!114 &-2644022623981531866
@@ -359,7 +359,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Thomas2.bank
   Name: Thomas2
   StudioPath: bank:/Thomas2
-  lastModified: 638110107556784263
+  lastModified: 638110152551750829
   FileSizes: []
   Exists: 1
 --- !u!114 &-2465304305011671264
@@ -404,9 +404,36 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Sequences.bank
   Name: Sequences
   StudioPath: bank:/Sequences
-  lastModified: 638110107554931739
+  lastModified: 638110152550052825
   FileSizes: []
   Exists: 1
+--- !u!114 &-2377561017003940928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Drone/DroneArrivee
+  m_EditorClassIdentifier: 
+  Path: event:/Drone/DroneArrivee
+  Guid:
+    Data1: -178466941
+    Data2: 1332077780
+    Data3: -810457464
+    Data4: -78648475
+  Banks:
+  - {fileID: 6995519797560487893}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1406
 --- !u!114 &-1747124163300971100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,6 +554,7 @@ MonoBehaviour:
   - {fileID: -8740542783096404155}
   - {fileID: -6693754475664059370}
   - {fileID: -2644022623981531866}
+  - {fileID: 6995519797560487893}
   EditorEvents:
   - {fileID: 2662750995567843330}
   - {fileID: 5178643500041579383}
@@ -544,6 +572,7 @@ MonoBehaviour:
   - {fileID: 7678129122642797336}
   - {fileID: 2872992712106537939}
   - {fileID: -1621576152931887615}
+  - {fileID: -2377561017003940928}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7834914745454765634}
@@ -551,7 +580,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 3732676305244948657}
   - {fileID: 3947118938848777983}
-  cacheTime: 638110119239835810
+  cacheTime: 638110152551949801
   cacheVersion: 131593
 --- !u!114 &286937268368065959
 MonoBehaviour:
@@ -841,10 +870,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638110107553679138
+  lastModified: 638110152548348839
   FileSizes:
   - Name: 
-    Value: 1936
+    Value: 2032
   Exists: 1
 --- !u!114 &3947118938848777983
 MonoBehaviour:
@@ -861,10 +890,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Test_Julien.strings.bank
   Name: Test_Julien.strings
   StudioPath: bank:/Test_Julien.strings
-  lastModified: 638110107556609052
+  lastModified: 638110152551168383
   FileSizes:
   - Name: 
-    Value: 1936
+    Value: 2032
   Exists: 1
 --- !u!114 &4083123851549434897
 MonoBehaviour:
@@ -1021,6 +1050,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &6995519797560487893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Drone.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMODBanks/Desktop/Drone.bank
+  Name: Drone
+  StudioPath: bank:/Drone
+  lastModified: 638110152551949801
+  FileSizes: []
+  Exists: 1
 --- !u!114 &7519154611832825579
 MonoBehaviour:
   m_ObjectHideFlags: 0
