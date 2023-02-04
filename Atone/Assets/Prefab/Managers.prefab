@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7456829751631337547
 Transform:
   m_ObjectHideFlags: 0
@@ -97,13 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1956a412dc7584f9b5aa607a14c0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicFMODEvent:
-    Guid:
-      Data1: -282826335
-      Data2: 1164788982
-      Data3: 706224002
-      Data4: 214115588
-    Path: event:/Julien_Test_Music_00
+  timelineInfo:
+    currentBeat: 0
+    currentBar: 0
+    currentTempo: 0
+    currentPositionInMS: 0
+    songLength: 0
   test: {fileID: 7673866146837170857, guid: d399a4ffe10ea1847891d46008003b6f, type: 3}
 --- !u!1 &6341438436302581879
 GameObject:
@@ -152,22 +151,22 @@ MonoBehaviour:
   menuOrReturn:
     m_Name: menuOrReturn
     m_ActionKeyBoard: 27
-    m_ActionController: 357
+    m_ActionController: 337
     m_axis: 0
   destroyBopAction:
     m_Name: bop
     m_ActionKeyBoard: 32
-    m_ActionController: 350
+    m_ActionController: 330
     m_axis: 0
   goToRightLane:
     m_Name: rightLane
     m_ActionKeyBoard: 32
-    m_ActionController: 350
+    m_ActionController: 330
     m_axis: 0
   goToLeftLane:
     m_Name: leftLane
     m_ActionKeyBoard: 32
-    m_ActionController: 350
+    m_ActionController: 330
     m_axis: 0
   bendToRightLane:
     m_Name: bendRightLane
@@ -182,12 +181,12 @@ MonoBehaviour:
   destroyWallAction:
     m_Name: destroy
     m_ActionKeyBoard: 122
-    m_ActionController: 351
+    m_ActionController: 331
     m_axis: 0
   slide:
     m_Name: slide
     m_ActionKeyBoard: 120
-    m_ActionController: 354
+    m_ActionController: 334
     m_axis: 0
 --- !u!1 &6341438436592442146
 GameObject:

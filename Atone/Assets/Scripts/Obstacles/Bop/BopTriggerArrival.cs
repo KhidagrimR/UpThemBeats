@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using FMODUnity;
 
 public class BopTriggerArrival : MonoBehaviour
 {
     public GameObject bopVisuel;
     public GameObject arrivalPointBop;
     public GameObject bopTrigger;
+    public StudioEventEmitter SFXArrival;
 
     public TextMeshProUGUI countDownText;
     private int _countDown;
@@ -65,6 +67,7 @@ public class BopTriggerArrival : MonoBehaviour
         bopVisuel.gameObject.transform.DOMove(endpoint, halfToCenterDuration * speedMultiplier - timePausesOnMovement).SetEase(Ease.InOutQuad);
         yield return new WaitForSeconds(halfToCenterDuration);
         countDown = 0;
+        SFXArrival.Play();
 
         yield return new WaitForSeconds(timeStayCenter);
 

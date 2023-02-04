@@ -14,9 +14,12 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     [InspectorReadOnly]
     public bool isSliding;
+
     public int initHp;
     [InspectorReadOnly]
     public static int hp;
+    
+    public float scoreMultipliyer;
 
     [InspectorReadOnly]
     public bool isChangingLane;
@@ -49,6 +52,10 @@ public class PlayerController : MonoBehaviour
         get { return _playerSpeed; }
         set { _playerSpeed = value; }
     }
+
+    internal static void IncreaseScore(float v1, object playerPositionZ, float v2, object positionBeatPerfect, int v3, object pointObstacle) {
+        throw new System.NotImplementedException();
+    }
     #endregion
 
     [Header("References")]
@@ -79,6 +86,8 @@ public class PlayerController : MonoBehaviour
         gameObjectsColliding = new List<GameObject>();
         hp = initHp;
         checkpoint = gameObject.transform.position;
+
+        PlayerManager.scoreMultipliyer = scoreMultipliyer;
     }
 
     void OnDisable()
@@ -273,6 +282,8 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    
 
     private Vector3 startingHeadPosition;
     [Header("Slide")]
