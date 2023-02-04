@@ -16,6 +16,6 @@ public class SequenceHandler : MonoBehaviour
 
     public bool CheckLoopConditions()
     {
-        return true;
+        return false;
     }
 }
