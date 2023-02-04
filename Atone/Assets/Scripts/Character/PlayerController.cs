@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     public GameObject playerVisual;
     public Collider playerCollider;
+    public LayerMask laneLayerMask;
 
     public static List<GameObject> gameObjectsColliding;
     public static Vector3 checkpoint;
@@ -179,15 +180,22 @@ public class PlayerController : MonoBehaviour
     {
         if (isChangingLane) return;
 
-        print("Has changed lane");
+        //print("Has changed lane");
 
-        isChangingLane = true;
 
         Vector3 target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
         float distanceZ = playerSpeed * changeLaneDuration; //v * t
+        /*RaycastHit hit;
+        if (Physics.Raycast(transform.position, target - transform.position, out hit, 10f, laneLayerMask))
+        {
+            Debug.Log("Hit = "+hit.collider.gameObject.name);
+        }
+        else
+            return;*/
 
         target.z += distanceZ;
 
+        isChangingLane = true;
         transform.DOMove(target, changeLaneDuration).OnComplete(() =>
         {
             isChangingLane = false;
