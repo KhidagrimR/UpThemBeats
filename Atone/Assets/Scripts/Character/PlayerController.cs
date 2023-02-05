@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public int initHp;
     [InspectorReadOnly]
     public static int hp;
-    
+
     public float scoreMultipliyer;
 
     [InspectorReadOnly]
@@ -53,7 +53,8 @@ public class PlayerController : MonoBehaviour
         set { _playerSpeed = value; }
     }
 
-    internal static void IncreaseScore(float v1, object playerPositionZ, float v2, object positionBeatPerfect, int v3, object pointObstacle) {
+    internal static void IncreaseScore(float v1, object playerPositionZ, float v2, object positionBeatPerfect, int v3, object pointObstacle)
+    {
         throw new System.NotImplementedException();
     }
     #endregion
@@ -189,22 +190,26 @@ public class PlayerController : MonoBehaviour
     {
         if (isChangingLane) return;
 
-        //print("Has changed lane");
-
+        Debug.Log("Has changed lane");
 
         Vector3 target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
         float distanceZ = playerSpeed * changeLaneDuration; //v * t
-        /*RaycastHit hit;
-        if (Physics.Raycast(transform.position, target - transform.position, out hit, 10f, laneLayerMask))
+
+        if (PlayerManager.Instance.playerCurrentLane != 0)
         {
-            Debug.Log("Hit = "+hit.collider.gameObject.name);
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position, new Vector3(lanePosition.x * 2, lanePosition.y, transform.position.z), out hit, Mathf.Infinity, laneLayerMask))
+            {
+                Debug.Log("Hit = " + hit.collider.gameObject.name);
+            }
+            else
+                return;
         }
-        else
-            return;*/
 
         target.z += distanceZ;
-
         isChangingLane = true;
+        
         transform.DOMove(target, changeLaneDuration).OnComplete(() =>
         {
             isChangingLane = false;
@@ -283,7 +288,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    
+
 
     private Vector3 startingHeadPosition;
     [Header("Slide")]

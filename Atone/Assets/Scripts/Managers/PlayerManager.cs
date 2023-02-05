@@ -41,10 +41,9 @@ public class PlayerManager : Singleton<PlayerManager>
     public static float scoreSequence;
     public static float scoreMultipliyer;
 
-    public static Dictionary<string, Dictionary<string,float>> scoreBoard;
+    public Dictionary<string, Dictionary<string, float>> scoreBoard;
 
-    public static GameObject gameObjectTriggerChangeLane;
-    public static int pointChangeLane;
+    [HideInInspector] public ChangeLaneTrigger gameObjectTriggerChangeLane;
 
     public void Init()
     {
@@ -58,10 +57,10 @@ public class PlayerManager : Singleton<PlayerManager>
         InputManager.Instance.onBendLane += BendPlayerTowardDirection;
         InputManager.Instance.onBendReleaseLane += ReleasePlayerArmAnimation;
 
-        _isReady = true;
         playerCurrentLane = 1;
         scoreSequence = 0;
         scoreBoard = new Dictionary<string, Dictionary<string, float>>();
+        _isReady = true;
     }
 
     private void OnDisable()
@@ -118,9 +117,10 @@ public class PlayerManager : Singleton<PlayerManager>
             playerCurrentLane++;
             ChangeLaneDutch(playerCurrentLane);
 
-            IncreaseScore(gameObjectTriggerChangeLane.GetComponent<BoxCollider>().bounds.extents.z, gameObjectTriggerChangeLane.transform.position.z, pointChangeLane);
+            if (gameObjectTriggerChangeLane != null)
+                IncreaseScore(gameObjectTriggerChangeLane.GetComponent<BoxCollider>().bounds.extents.z, gameObjectTriggerChangeLane.transform.position.z, gameObjectTriggerChangeLane.pointObstacle);
 
-            if(playerCurrentLane != 1)
+            if (playerCurrentLane != 1)
                 playerController.animationTrigger.PlayAnimation(AnimationEnum.Jump);
 
             playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
@@ -135,8 +135,8 @@ public class PlayerManager : Singleton<PlayerManager>
             playerCurrentLane--;
             ChangeLaneDutch(playerCurrentLane);
 
-            IncreaseScore(gameObjectTriggerChangeLane.GetComponent<BoxCollider>().bounds.extents.z, gameObjectTriggerChangeLane.transform.position.z, pointChangeLane);
-
+            if (gameObjectTriggerChangeLane != null)
+                IncreaseScore(gameObjectTriggerChangeLane.GetComponent<BoxCollider>().bounds.extents.z, gameObjectTriggerChangeLane.transform.position.z, gameObjectTriggerChangeLane.pointObstacle);
 
             if (playerCurrentLane != 1)
                 playerController.animationTrigger.PlayAnimation(AnimationEnum.Jump);
@@ -248,9 +248,10 @@ public class PlayerManager : Singleton<PlayerManager>
 
     }
 
-    public void IncreaseScore(float boundZCollider, float positionBeatPerfect, int pointObstacle) {
+    public void IncreaseScore(float boundZCollider, float positionBeatPerfect, int pointObstacle)
+    {
         Debug.Log("positionBeatPerfectZ : " + positionBeatPerfect);
-        Debug.Log("ScoreMultipliyer : " + (Math.Abs(positionBeatPerfect - playerController.transform.position.z) / boundZCollider/2)/2);
+        Debug.Log("ScoreMultipliyer : " + (Math.Abs(positionBeatPerfect - playerController.transform.position.z) / boundZCollider / 2) / 2);
         float distanceToCenter = Math.Abs(positionBeatPerfect - playerController.transform.position.z);
         if (distanceToCenter > boundZCollider / 2)
             scoreSequence += scoreMultipliyer * pointObstacle;
