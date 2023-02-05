@@ -62,7 +62,6 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     public GameObject playerVisual;
     public Collider playerCollider;
-    public LayerMask laneLayerMask;
 
     public static List<GameObject> gameObjectsColliding;
     public static Vector3 checkpoint;
@@ -173,8 +172,16 @@ public class PlayerController : MonoBehaviour
 
     public void BendOnLeft()
     {
-        transform.position = new Vector3(-0.3f, transform.position.y, transform.position.z);
-        animationTrigger.PlayAnimation(AnimationEnum.LeanLeft);
+        if (PlayerManager.Instance.playerCurrentLane == 1)
+        {
+            transform.position = new Vector3(-0.3f, transform.position.y, transform.position.z);
+            animationTrigger.PlayAnimation(AnimationEnum.LeanLeft);
+        }
+        else if (PlayerManager.Instance.playerCurrentLane == 0)
+        {
+            transform.position = new Vector3(-1.75f, transform.position.y, transform.position.z);
+            animationTrigger.PlayAnimation(AnimationEnum.LeanLeft);
+        }
     }
     public void ResetBend()
     {
@@ -183,35 +190,35 @@ public class PlayerController : MonoBehaviour
     }
     public void BendOnRight()
     {
-        transform.position = new Vector3(0.3f, transform.position.y, transform.position.z);
-        animationTrigger.PlayAnimation(AnimationEnum.LeanRight);
+        if (PlayerManager.Instance.playerCurrentLane == 1)
+        {
+            transform.position = new Vector3(0.3f, transform.position.y, transform.position.z);
+            animationTrigger.PlayAnimation(AnimationEnum.LeanRight);
+        }
+        else if (PlayerManager.Instance.playerCurrentLane == 2)
+        {
+            transform.position = new Vector3(1.75f, transform.position.y, transform.position.z);
+            animationTrigger.PlayAnimation(AnimationEnum.LeanLeft);
+        }
     }
 
     public void ChangeLane(Vector3 lanePosition)
     {
         if (isChangingLane) return;
 
-        Debug.Log("Has changed lane");
+        //Debug.Log("Has changed lane");
+        Vector3 target;
+        if(PlayerManager.Instance.playerCurrentLane == 1)
+            target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
+        else
+            target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY/1.5f, transform.position.z);
 
-        Vector3 target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
         float distanceZ = playerSpeed * changeLaneDuration; //v * t
-
-        /*if (PlayerManager.Instance.playerCurrentLane != 0)
-        {
-            RaycastHit hit;
-
-            if (Physics.Raycast(transform.position, new Vector3(lanePosition.x * 2, lanePosition.y, transform.position.z), out hit, Mathf.Infinity, laneLayerMask))
-            {
-                Debug.Log("Hit = " + hit.collider.gameObject.name);
-            }
-            else
-                return;
-        }*/
 
         target.z += distanceZ;
         isChangingLane = true;
 
-        Debug.Log("Target = "+target);
+        Debug.Log("Target = " + target);
 
         transform.DOMove(target, changeLaneDuration).OnComplete(() =>
         {
