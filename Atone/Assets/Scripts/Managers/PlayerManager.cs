@@ -280,8 +280,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void IncreaseScore(float boundZCollider, float positionBeatPerfect, int pointObstacle)
     {
-        Debug.Log("positionBeatPerfectZ : " + positionBeatPerfect);
-        Debug.Log("ScoreMultipliyer : " + (Math.Abs(positionBeatPerfect - playerController.transform.position.z) / boundZCollider / 2) / 2);
+        //Debug.Log("positionBeatPerfectZ : " + positionBeatPerfect);
+        //Debug.Log("ScoreMultipliyer : " + (Math.Abs(positionBeatPerfect - playerController.transform.position.z) / boundZCollider / 2) / 2);
 
         float distanceToCenter = Math.Abs(positionBeatPerfect - playerController.transform.position.z);
         if (distanceToCenter > boundZCollider / 2)
@@ -289,6 +289,6 @@ public class PlayerManager : Singleton<PlayerManager>
         else
             scoreSequence += (scoreMultipliyer + (scoreMultipliyer / 2)) * pointObstacle;
         scoreSequence = (float)Math.Round(scoreSequence, 1);
-        Debug.Log("nouveau score = " + scoreSequence);
+        //Debug.Log("nouveau score = " + scoreSequence);
     }
 }
