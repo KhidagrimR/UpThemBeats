@@ -47,11 +47,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1516251722
-      Data2: 1281509403
-      Data3: -370558026
-      Data4: -272468988
-    Path: event:/ObstacleRouge_Test_SFX_Destroy_00
+      Data1: 1301120524
+      Data2: 1279280461
+      Data3: -1159902533
+      Data4: -1295584922
+    Path: event:/Drone/DroneDestruction
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -141,7 +141,6 @@ GameObject:
   - component: {fileID: 1427834760751050991}
   - component: {fileID: 3635158748210944307}
   - component: {fileID: 3417145360051211142}
-  - component: {fileID: 194572227651080752}
   m_Layer: 0
   m_Name: BopAreaDestruction
   m_TagString: Untagged
@@ -248,36 +247,6 @@ MonoBehaviour:
   bopVisuel: {fileID: 3012431036483725529}
   SFXArrival: {fileID: 1059394212308177841}
   SFXDestroy: {fileID: 628254861632640302}
---- !u!114 &194572227651080752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3569183565070336910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -178466941
-      Data2: 1332077780
-      Data3: -810457464
-      Data4: -78648475
-    Path: event:/Drone/DroneArrivee
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1 &3607614243795058289
 GameObject:
   m_ObjectHideFlags: 0
@@ -5424,11 +5393,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -178466941
-      Data2: 1332077780
-      Data3: -810457464
-      Data4: -78648475
-    Path: event:/Drone/DroneArrivee
+      Data1: -709803364
+      Data2: 1189752384
+      Data3: 664677562
+      Data4: -1436655684
+    Path: event:/Drone/DroneStart
   Event: 
   PlayEvent: 0
   StopEvent: 0
