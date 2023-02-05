@@ -5,6 +5,7 @@ using FMODUnity;
 
 public class GameManager : Singleton<GameManager>
 {
+    public UI_Loader uI_Loader;
     private bool _isReady;
     public bool isReady
     {
@@ -34,6 +35,13 @@ public class GameManager : Singleton<GameManager>
             SoundCreator.Instance.Init();
             yield return new WaitUntil(() => SoundCreator.Instance.isReady);
             Debug.Log("soundcreator is ready");
+        }
+
+        if (uI_Loader != null)
+        {
+            uI_Loader.Init();
+            yield return new WaitUntil(() => uI_Loader.isReady);
+            Debug.Log("UI is ready");
         }
 
         /*if (MusicManager.Instance != null)
@@ -67,10 +75,16 @@ public class GameManager : Singleton<GameManager>
             MusicManager.Instance.StartMusicManager();
         }*/
 
+        if(UIManager.Instance != null)
+        {
+            UIManager.Instance.SetupUIGame();
+        }
+
         if (SequenceManager.Instance != null)
         {
             SequenceManager.Instance.StartSequence();
         }
+
         Debug.Log("### READY ###");
         _isReady = true;
     }

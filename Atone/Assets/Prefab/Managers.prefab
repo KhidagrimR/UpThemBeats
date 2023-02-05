@@ -97,13 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1956a412dc7584f9b5aa607a14c0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicFMODEvent:
-    Guid:
-      Data1: -282826335
-      Data2: 1164788982
-      Data3: 706224002
-      Data4: 214115588
-    Path: event:/Julien_Test_Music_00
+  timelineInfo:
+    currentBeat: 0
+    currentBar: 0
+    currentTempo: 0
+    currentPositionInMS: 0
+    songLength: 0
   test: {fileID: 7673866146837170857, guid: d399a4ffe10ea1847891d46008003b6f, type: 3}
 --- !u!1 &6341438436302581879
 GameObject:
@@ -234,6 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eca1367beb476b4c9ea36896c9421f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uI_Loader: {fileID: 0}
 --- !u!114 &1172588192285575461
 MonoBehaviour:
   m_ObjectHideFlags: 0
