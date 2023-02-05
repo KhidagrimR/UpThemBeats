@@ -252,6 +252,7 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         Debug.Log("positionBeatPerfectZ : " + positionBeatPerfect);
         Debug.Log("ScoreMultipliyer : " + (Math.Abs(positionBeatPerfect - playerController.transform.position.z) / boundZCollider / 2) / 2);
+
         float distanceToCenter = Math.Abs(positionBeatPerfect - playerController.transform.position.z);
         if (distanceToCenter > boundZCollider / 2)
             scoreSequence += scoreMultipliyer * pointObstacle;

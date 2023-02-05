@@ -120,15 +120,16 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (!GameManager.Instance.isReady) return;
-        CheckGround();
+
+        //CheckGround();
 
         if (canPlayerMove)
             Move();
 
-        ApplyGravity();
+        //ApplyGravity();
 
         // vertical mvt
-        controller.Move(playerVelocity * Time.deltaTime);
+        //controller.Move(playerVelocity * Time.deltaTime);
     }
 
     void CheckGround()
@@ -195,7 +196,7 @@ public class PlayerController : MonoBehaviour
         Vector3 target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
         float distanceZ = playerSpeed * changeLaneDuration; //v * t
 
-        if (PlayerManager.Instance.playerCurrentLane != 0)
+        /*if (PlayerManager.Instance.playerCurrentLane != 0)
         {
             RaycastHit hit;
 
@@ -205,11 +206,13 @@ public class PlayerController : MonoBehaviour
             }
             else
                 return;
-        }
+        }*/
 
         target.z += distanceZ;
         isChangingLane = true;
-        
+
+        Debug.Log("Target = "+target);
+
         transform.DOMove(target, changeLaneDuration).OnComplete(() =>
         {
             isChangingLane = false;
