@@ -100,7 +100,11 @@ public class InputManager : Singleton<InputManager>
         // DESTROY BOP
         if (destroyBopAction.GetAction(onController, isRightHanded))
             if (onDestroyBop != null)
+            {
                 onDestroyBop();
+                Debug.Log("player pos = " + PlayerManager.Instance.playerController.transform.position);
+
+            }
 
         #endregion
         #region switch lane
