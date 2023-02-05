@@ -16,8 +16,9 @@ public class BopTriggerArrival : MonoBehaviour
     private int _countDown;
     int countDown
     {
-        get {return _countDown;}
-        set {
+        get { return _countDown; }
+        set
+        {
             _countDown = value;
             countDownText.text = value.ToString();
         }
@@ -30,10 +31,15 @@ public class BopTriggerArrival : MonoBehaviour
     public float timePausesOnMovement = 0.25f;
     public float speedMultiplier = 1.0f;
 
+    void Start()
+    {
+        bopVisuel.gameObject.SetActive(false);
+    }
 
 
     public void OnTriggerEnter(Collider other)
     {
+        bopVisuel.gameObject.SetActive(true);
         StartCoroutine(LaunchArrival());
     }
 
@@ -43,7 +49,8 @@ public class BopTriggerArrival : MonoBehaviour
         //gameObject.transform.position = new Vector3(bopTrigger.transform.position.x, bopTrigger.transform.position.y, bopTrigger.transform.position.z - distance);
     }
 
-    public IEnumerator LaunchArrival(){
+    public IEnumerator LaunchArrival()
+    {
         bopVisuel.SetActive(true);
         countDown = 2;
 
@@ -58,7 +65,7 @@ public class BopTriggerArrival : MonoBehaviour
 
         // le bop se déplace en 2 temps
         // on doit connaitre la moitié de la distance
-        Vector3 halfDistancePoint = new Vector3 (Vector3.Distance(startPoint, endpoint) / 2, startPoint.y, startPoint.z);
+        Vector3 halfDistancePoint = new Vector3(Vector3.Distance(startPoint, endpoint) / 2, startPoint.y, startPoint.z);
 
         bopVisuel.gameObject.transform.DOMove(halfDistancePoint, halfToCenterDuration * speedMultiplier - timePausesOnMovement).SetEase(Ease.InOutQuad);
         yield return new WaitForSeconds(halfToCenterDuration);

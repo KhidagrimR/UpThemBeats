@@ -73,7 +73,6 @@ namespace Atone_UI
 
         private void SetLandingCanvas(MenuType menuType)
         {
-            Debug.Log("PAUSE MENU =" + pauseMenuLanding);
             pauseMenuLanding.SetActive(menuType == MenuType.PAUSE_MENU);
             mainMenuLanding.SetActive(menuType == MenuType.MAIN_MENU);
             settingsLanding.SetActive(menuType == MenuType.SETTINGS);

@@ -36,7 +36,7 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitUntil(() => SoundCreator.Instance.isReady);
             Debug.Log("soundcreator is ready");
         }
-        
+
         if (uI_Loader != null)
         {
             uI_Loader.Init();
@@ -51,18 +51,18 @@ public class GameManager : Singleton<GameManager>
             Debug.Log("Music Manager is ready");
         }*/
 
-        if (SequenceManager.Instance != null)
-        {
-            SequenceManager.Instance.Init();
-            yield return new WaitUntil(() => SequenceManager.Instance.isReady);
-            Debug.Log("Sequence Manager is ready");
-        }
-
         if (PlayerManager.Instance != null)
         {
             PlayerManager.Instance.Init();
             yield return new WaitUntil(() => PlayerManager.Instance.isReady);
             Debug.Log("Player Manager is ready");
+        }
+
+        if (SequenceManager.Instance != null)
+        {
+            SequenceManager.Instance.Init();
+            yield return new WaitUntil(() => SequenceManager.Instance.isReady);
+            Debug.Log("Sequence Manager is ready");
         }
 
         // if (SoundCreator.Instance != null)
