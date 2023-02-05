@@ -211,7 +211,7 @@ public class PlayerController : MonoBehaviour
         if(PlayerManager.Instance.playerCurrentLane == 1)
             target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
         else
-            target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY/1.5f, transform.position.z);
+            target = new Vector3(lanePosition.x, lanePosition.y + 0.35f, transform.position.z);
 
         float distanceZ = playerSpeed * changeLaneDuration; //v * t
 
