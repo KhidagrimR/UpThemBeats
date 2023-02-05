@@ -12,6 +12,7 @@ public class BopTriggerDestruction : MonoBehaviour
     public Material initMaterial;
 
     public ParticleSystem bopExplosion;
+    public ParticleSystem bopBreakable;
 
     public int pointObstacle;
 
@@ -22,8 +23,10 @@ public class BopTriggerDestruction : MonoBehaviour
     void OnTriggerEnter(Collider col){
         if (col.CompareTag(PlayerManager.PLAYER_TAG)){ 
             isTrigger = true;
-            bopVisuel.GetComponent<MeshRenderer>().materials[2] = materialTrigger;
-            print(bopVisuel.GetComponent<MeshRenderer>().materials[2]);
+            //bopVisuel.GetComponent<Renderer>().materials[2] = materialTrigger;
+            //print("pink"+materialTrigger);
+            //print(bopVisuel.GetComponent<MeshRenderer>().materials[2]);
+            bopBreakable.Play();
             PlayerController.gameObjectsColliding.Add(gameObject);
         }
     }
@@ -32,8 +35,9 @@ public class BopTriggerDestruction : MonoBehaviour
         //print("exit");
         if(col.name == "Player"){
             isTrigger = false;
-            bopVisuel.GetComponent<MeshRenderer>().materials[2] = initMaterial;
-            print(bopVisuel.GetComponent<MeshRenderer>().materials[2]);
+            //bopVisuel.GetComponent<Renderer>().materials[2] = initMaterial;
+            //print(bopVisuel.GetComponent<MeshRenderer>().materials[2]);
+            bopBreakable.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             PlayerController.gameObjectsColliding.Remove(gameObject);
         }
     }
