@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,14 +16,10 @@ namespace Atone_UI
         [SerializeField] private GameObject graphicSettings;
         [SerializeField] private GameObject gameplaySettings;
 
-        [SerializeField] private GameObject subTitle;
-
         private Dictionary<SubMenuType, GameObject> menuComponentsDict;
         private GameObject currrentlyActiveSettings = null;
         private SubMenuType currentSubMenu = SubMenuType.NONE;
         private MenuType currentMenuLanding = MenuType.NONE_GAME_PLAYING;
-
-
 
         private void Awake()
         {
@@ -65,7 +62,7 @@ namespace Atone_UI
 
         public void PlayGame(GameObject menu)
         {
-            mainMenuLanding.SetActive(false);
+            menu.SetActive(false);
             SceneManager.LoadScene("Game");
         }
 
@@ -113,10 +110,12 @@ namespace Atone_UI
             GameManager.Instance.TogglePauseState();
 
         }
-
+        
         #endregion
-
     }
+
+       
+
 
     public enum MenuType
     {

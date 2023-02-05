@@ -13,29 +13,35 @@ public class UI_Crosshair : MonoBehaviour
         switch (value)
         {
             case 0:
-                ApplyColor(Color.white);
+                ApplyColor(CrosshairGroup, Color.white);
+                ApplyColor(RealCrosshair, Color.white);
                 break;
             case 1:
-                ApplyColor(Color.red);
+                ApplyColor(CrosshairGroup, Color.red);
+                ApplyColor(RealCrosshair, Color.red);
                 break;
             case 2:
-                ApplyColor(Color.yellow);
+                ApplyColor(CrosshairGroup, Color.yellow);
+                ApplyColor(RealCrosshair, Color.yellow);
                 break;
             case 3:
-                ApplyColor(Color.cyan);
+                ApplyColor(CrosshairGroup, Color.cyan);
+                ApplyColor(RealCrosshair, Color.cyan);
                 break;
             case 4:
-                ApplyColor(Color.magenta);
+                ApplyColor(CrosshairGroup, Color.magenta);
+                ApplyColor(RealCrosshair, Color.magenta);
                 break;
             default:
-                ApplyColor(Color.white);
+                ApplyColor(CrosshairGroup, Color.white);
+                ApplyColor(RealCrosshair, Color.white);
                 break;
         }
     }
 
-    void ApplyColor(Color color)
+    void ApplyColor(GameObject crosshair, Color color)
     {
-        Image[] elements = CrosshairGroup.GetComponentsInChildren<Image>();
+        Image[] elements = crosshair.GetComponentsInChildren<Image>();
         foreach (Image child in elements)
         {
             if (!child.name.Contains("black")) {
@@ -46,11 +52,17 @@ public class UI_Crosshair : MonoBehaviour
 
     public void ChangeOpacity(float value)
     {
-        Image[] elements = CrosshairGroup.GetComponentsInChildren<Image>();
+        ApplyOpacity(CrosshairGroup, value);
+        ApplyOpacity(RealCrosshair, value);
+    }
+
+    void ApplyOpacity(GameObject crosshair, float value)
+    {
+        Image[] elements = crosshair.GetComponentsInChildren<Image>();
         foreach (Image child in elements)
         {
             Color newColor = new Color(child.color.r, child.color.g, child.color.b, value);
-            
+
             child.color = newColor;
             print(child.color.a);
         }
