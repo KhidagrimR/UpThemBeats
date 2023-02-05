@@ -14434,12 +14434,12 @@ MonoBehaviour:
   bendPivotPoint: {fileID: 1454162003}
   bendPivotPointPosition: {x: 0, y: 1.368, z: 0}
   bendRotationAxisType: 1
-  bendRotationAxis: {x: 0, y: 0, z: 1}
+  bendRotationAxis: {x: 0, y: 0, z: 0}
   bendVerticalSize: 0
   bendVerticalOffset: 0
   bendHorizontalSize: 0
   bendHorizontalOffset: 0
-  bendCurvatureSize: 0
+  bendCurvatureSize: 0.36
   bendCurvatureOffset: 0
   disableInEditor: 0
 --- !u!4 &1129286491
@@ -17184,17 +17184,6 @@ Transform:
   m_Father: {fileID: 208020632}
   m_RootOrder: 76
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &1338659689 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1172588192285575461, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-  m_PrefabInstance: {fileID: 6341438436137178570}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ea32ad7b4e8e724a88da26d46d9b83a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1342484899
 GameObject:
   m_ObjectHideFlags: 0
@@ -28502,62 +28491,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 274484863838705638, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4082829038795663901, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: musicFMODEvent.Path
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4082829038795663901, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: musicFMODEvent.Guid.Data1
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4082829038795663901, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: musicFMODEvent.Guid.Data2
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4082829038795663901, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: musicFMODEvent.Guid.Data3
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4082829038795663901, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: musicFMODEvent.Guid.Data4
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5363021689168483715, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: sequencesPrefab.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5363021689168483715, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: sequencesPrefab.Array.data[0]
-      value: 
-      objectReference: {fileID: 1827712851758725077, guid: d8145d19dc3a08e4dbc778d9e881566c, type: 3}
-    - target: {fileID: 5363021689168483715, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: sequencesPrefab.Array.data[1]
-      value: 
-      objectReference: {fileID: 1827712851758725077, guid: bbce5f4b15726fc4bb72c012dbf4b524, type: 3}
-    - target: {fileID: 5363021689168483715, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: sequencesPrefab.Array.data[2]
-      value: 
-      objectReference: {fileID: 1827712851758725077, guid: fe0e9710da14de0419833eb1ce6e78fa, type: 3}
-    - target: {fileID: 5363021689168483715, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: sequencesPrefab.Array.data[3]
-      value: 
-      objectReference: {fileID: 1827712851758725077, guid: fe0e9710da14de0419833eb1ce6e78fa, type: 3}
-    - target: {fileID: 6341438436302581877, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: menuOrReturn.m_ActionKeyBoardLeftHanded
-      value: 27
-      objectReference: {fileID: 0}
-    - target: {fileID: 6341438436302581877, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: menuOrReturn.m_ActionKeyBoardRightHanded
-      value: 27
-      objectReference: {fileID: 0}
-    - target: {fileID: 6341438436592442144, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: uI_Loader
-      value: 
-      objectReference: {fileID: 1338659689}
     - target: {fileID: 6341438436953146818, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
       propertyPath: m_Name
       value: Managers
@@ -28618,10 +28551,6 @@ PrefabInstance:
       propertyPath: playerHead
       value: 
       objectReference: {fileID: 261809298}
-    - target: {fileID: 6341438437020692617, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
-      propertyPath: laneOffset.y
-      value: -0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6341438437020692617, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
       propertyPath: playerController
       value: 

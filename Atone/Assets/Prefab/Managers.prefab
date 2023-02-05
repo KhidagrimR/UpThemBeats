@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7456829751631337547
 Transform:
   m_ObjectHideFlags: 0
@@ -150,42 +150,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuOrReturn:
     m_Name: menuOrReturn
-    m_ActionKeyBoard: 27
+    m_ActionKeyBoardRightHanded: 27
+    m_ActionKeyBoardLeftHanded: 27
     m_ActionController: 337
     m_axis: 0
   destroyBopAction:
     m_Name: bop
-    m_ActionKeyBoard: 32
+    m_ActionKeyBoardRightHanded: 122
+    m_ActionKeyBoardLeftHanded: 122
     m_ActionController: 330
     m_axis: 0
   goToRightLane:
     m_Name: rightLane
-    m_ActionKeyBoard: 32
+    m_ActionKeyBoardRightHanded: 32
+    m_ActionKeyBoardLeftHanded: 32
     m_ActionController: 330
     m_axis: 0
   goToLeftLane:
     m_Name: leftLane
-    m_ActionKeyBoard: 32
+    m_ActionKeyBoardRightHanded: 32
+    m_ActionKeyBoardLeftHanded: 32
     m_ActionController: 330
     m_axis: 0
   bendToRightLane:
     m_Name: bendRightLane
-    m_ActionKeyBoard: 100
+    m_ActionKeyBoardRightHanded: 113
+    m_ActionKeyBoardLeftHanded: 113
     m_ActionController: 0
     m_axis: 3
   bendToLeftLane:
     m_Name: bendLeftLane
-    m_ActionKeyBoard: 113
+    m_ActionKeyBoardRightHanded: 100
+    m_ActionKeyBoardLeftHanded: 100
     m_ActionController: 0
     m_axis: 4
   destroyWallAction:
     m_Name: destroy
-    m_ActionKeyBoard: 122
+    m_ActionKeyBoardRightHanded: 101
+    m_ActionKeyBoardLeftHanded: 101
     m_ActionController: 331
     m_axis: 0
   slide:
     m_Name: slide
-    m_ActionKeyBoard: 120
+    m_ActionKeyBoardRightHanded: 115
+    m_ActionKeyBoardLeftHanded: 115
     m_ActionController: 334
     m_axis: 0
 --- !u!1 &6341438436592442146
@@ -233,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eca1367beb476b4c9ea36896c9421f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uI_Loader: {fileID: 0}
+  uI_Loader: {fileID: 1172588192285575461}
 --- !u!114 &1172588192285575461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,9 +338,13 @@ MonoBehaviour:
   playerHead: {fileID: 0}
   rootPivot: {fileID: 0}
   cvm: {fileID: 0}
+  laneLayerMask:
+    serializedVersion: 2
+    m_Bits: 8192
   lanes:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   playerCurrentLane: 1
   tweenDutchDuration: 0.4
+  gameObjectTriggerChangeLane: {fileID: 0}
