@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 namespace Atone_UI
 {
@@ -15,14 +16,10 @@ namespace Atone_UI
         [SerializeField] private GameObject graphicSettings;
         [SerializeField] private GameObject gameplaySettings;
 
-        [SerializeField] private GameObject subTitle;
-
         private Dictionary<SubMenuType, GameObject> menuComponentsDict;
         private GameObject currrentlyActiveSettings = null;
         private SubMenuType currentSubMenu = SubMenuType.NONE;
         private MenuType currentMenuLanding = MenuType.NONE_GAME_PLAYING;
-
-
 
         private void Awake()
         {
@@ -61,8 +58,22 @@ namespace Atone_UI
                 Cursor.lockState = CursorLockMode.Locked;
             }
         }
+
+
+        public void PlayGame(GameObject menu)
+        {
+            menu.SetActive(false);
+            SceneManager.LoadScene("Game");
+        }
+
+        public void Quit()
+        {
+            Application.Quit();
+        }
+
         private void SetLandingCanvas(MenuType menuType)
         {
+            Debug.Log("PAUSE MENU =" + pauseMenuLanding);
             pauseMenuLanding.SetActive(menuType == MenuType.PAUSE_MENU);
             mainMenuLanding.SetActive(menuType == MenuType.MAIN_MENU);
             settingsLanding.SetActive(menuType == MenuType.SETTINGS);
@@ -100,10 +111,12 @@ namespace Atone_UI
             GameManager.Instance.TogglePauseState();
 
         }
-
+        
         #endregion
-
     }
+
+       
+
 
     public enum MenuType
     {
