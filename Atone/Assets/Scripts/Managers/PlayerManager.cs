@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
+using System;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
@@ -36,6 +37,15 @@ public class PlayerManager : Singleton<PlayerManager>
     [Header("To Tweak")]
     public float tweenDutchDuration = 0.4f;
 
+    [InspectorReadOnly]
+    public static float scoreSequence;
+    public static float scoreMultipliyer;
+
+    public static Dictionary<string, Dictionary<string,float>> scoreBoard;
+
+    public static GameObject gameObjectTriggerChangeLane;
+    public static int pointChangeLane;
+
     public void Init()
     {
         SetupPlayerSpeed();
@@ -50,7 +60,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
         _isReady = true;
         playerCurrentLane = 1;
-
+        scoreSequence = 0;
+        scoreBoard = new Dictionary<string, Dictionary<string, float>>();
     }
 
     private void OnDisable()
@@ -107,6 +118,8 @@ public class PlayerManager : Singleton<PlayerManager>
             playerCurrentLane++;
             ChangeLaneDutch(playerCurrentLane);
 
+            IncreaseScore(gameObjectTriggerChangeLane.GetComponent<BoxCollider>().bounds.extents.z, gameObjectTriggerChangeLane.transform.position.z, pointChangeLane);
+
             if(playerCurrentLane != 1)
                 playerController.animationTrigger.PlayAnimation(AnimationEnum.Jump);
 
@@ -122,7 +135,10 @@ public class PlayerManager : Singleton<PlayerManager>
             playerCurrentLane--;
             ChangeLaneDutch(playerCurrentLane);
 
-            if(playerCurrentLane != 1)
+            IncreaseScore(gameObjectTriggerChangeLane.GetComponent<BoxCollider>().bounds.extents.z, gameObjectTriggerChangeLane.transform.position.z, pointChangeLane);
+
+
+            if (playerCurrentLane != 1)
                 playerController.animationTrigger.PlayAnimation(AnimationEnum.Jump);
 
             playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
@@ -230,5 +246,17 @@ public class PlayerManager : Singleton<PlayerManager>
             bop.GetComponentInChildren<BopTriggerArrival>().InitDistance();
         }
 
+    }
+
+    public void IncreaseScore(float boundZCollider, float positionBeatPerfect, int pointObstacle) {
+        Debug.Log("positionBeatPerfectZ : " + positionBeatPerfect);
+        Debug.Log("ScoreMultipliyer : " + (Math.Abs(positionBeatPerfect - playerController.transform.position.z) / boundZCollider/2)/2);
+        float distanceToCenter = Math.Abs(positionBeatPerfect - playerController.transform.position.z);
+        if (distanceToCenter > boundZCollider / 2)
+            scoreSequence += scoreMultipliyer * pointObstacle;
+        else
+            scoreSequence += (scoreMultipliyer + (scoreMultipliyer / 2)) * pointObstacle;
+        scoreSequence = (float)Math.Round(scoreSequence, 1);
+        Debug.Log("nouveau score = " + scoreSequence);
     }
 }

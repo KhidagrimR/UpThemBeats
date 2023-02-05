@@ -14,9 +14,12 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     [InspectorReadOnly]
     public bool isSliding;
+
     public int initHp;
     [InspectorReadOnly]
     public static int hp;
+    
+    public float scoreMultipliyer;
 
     [InspectorReadOnly]
     public bool isChangingLane;
@@ -41,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     public AnimationTrigger animationTrigger;
     [SerializeField] private Animator armAnimStates;
-    public Animator ArmAnimStates {get => armAnimStates;}
+    public Animator ArmAnimStates { get => armAnimStates; }
 
     #region Setter
     public float playerSpeed
@@ -49,11 +52,16 @@ public class PlayerController : MonoBehaviour
         get { return _playerSpeed; }
         set { _playerSpeed = value; }
     }
+
+    internal static void IncreaseScore(float v1, object playerPositionZ, float v2, object positionBeatPerfect, int v3, object pointObstacle) {
+        throw new System.NotImplementedException();
+    }
     #endregion
 
     [Header("References")]
     public GameObject playerVisual;
     public Collider playerCollider;
+    public LayerMask laneLayerMask;
 
     public static List<GameObject> gameObjectsColliding;
     public static Vector3 checkpoint;
@@ -72,10 +80,14 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.onDestroyWall += CheckIfWall3ToDestroy;
         InputManager.Instance.onDestroyBop += CheckIfBopToDestroy;
         InputManager.Instance.onSlide += Slide;
+        MusicManager.Instance.onMusicEnd += StopPlayer;
+        MusicManager.Instance.onMusicStart += StartPlayer;
 
         gameObjectsColliding = new List<GameObject>();
         hp = initHp;
         checkpoint = gameObject.transform.position;
+
+        PlayerManager.scoreMultipliyer = scoreMultipliyer;
     }
 
     void OnDisable()
@@ -86,16 +98,32 @@ public class PlayerController : MonoBehaviour
             InputManager.Instance.onDestroyBop -= CheckIfBopToDestroy;
             InputManager.Instance.onDestroyWall -= CheckIfWall3ToDestroy;
             InputManager.Instance.onSlide -= Slide;
+            MusicManager.Instance.onMusicEnd -= StopPlayer;
+            MusicManager.Instance.onMusicStart -= StartPlayer;
         }
 
     }
 
+    void StopPlayer()
+    {
+        canPlayerMove = false;
+    }
+
+    void StartPlayer()
+    {
+        canPlayerMove = true;
+    }
+
+    public bool canPlayerMove = false;
     // Update is called once per frame
     void Update()
     {
         if (!GameManager.Instance.isReady) return;
         CheckGround();
-        Move();
+
+        if (canPlayerMove)
+            Move();
+
         ApplyGravity();
 
         // vertical mvt
@@ -111,10 +139,29 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = -0.5f;
         }
     }
+
+    // OLD WAY TO MOVE
     void Move()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (playerSpeed * Time.deltaTime));
     }
+
+    #region Test
+    // NEW WAY TO MOVE
+    /*bool isMoving;
+    void Move()
+    {
+        //transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (playerSpeed * Time.deltaTime));
+
+        isMoving = true;
+        Vector3 targetPosition = new Vector3(0f,0f,20f);
+        float duration = MusicManager.Instance.SecPerBeat;
+        // on sait qu'il commence 
+        transform.DOMove(transform.position + targetPosition, duration).OnComplete(() => {
+            isMoving = false;
+        });
+    }*/
+    #endregion
 
     void ApplyGravity()
     {
@@ -142,15 +189,22 @@ public class PlayerController : MonoBehaviour
     {
         if (isChangingLane) return;
 
-        print("Has changed lane");
+        //print("Has changed lane");
 
-        isChangingLane = true;
 
         Vector3 target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
         float distanceZ = playerSpeed * changeLaneDuration; //v * t
+        /*RaycastHit hit;
+        if (Physics.Raycast(transform.position, target - transform.position, out hit, 10f, laneLayerMask))
+        {
+            Debug.Log("Hit = "+hit.collider.gameObject.name);
+        }
+        else
+            return;*/
 
         target.z += distanceZ;
 
+        isChangingLane = true;
         transform.DOMove(target, changeLaneDuration).OnComplete(() =>
         {
             isChangingLane = false;
@@ -224,19 +278,21 @@ public class PlayerController : MonoBehaviour
         else
         {
             print("take damage");
-            print("new HP : " + hp);
+            //print("new HP : " + hp);
         }
 
     }
+
+    
 
     private Vector3 startingHeadPosition;
     [Header("Slide")]
     public float headYMovement = 0.5f;
     public float headYMovementTween = 0.5f;
-    public void Slide(bool isSliding)
+    public void Slide(bool pIsSliding)
     {
-        //        Debug.Log("Slide Called on : " + isSliding);
-        if (isSliding)
+        Debug.Log("Slide Called on : " + pIsSliding);
+        if (pIsSliding)
         {
             // se pencher / glisser 
             // baisser la tête

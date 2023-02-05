@@ -22,6 +22,8 @@ public class MusicManager : Singleton<MusicManager>
     }
     public delegate void OnMusicEnd(); // delegate for when the music ends
     public OnMusicEnd onMusicEnd;
+    public delegate void OnMusicStart(); // delegate for when the music ends
+    public OnMusicStart onMusicStart;
 
     private GCHandle timelineHandle; // needed to access a managed object (the timeline info) from unmanaged memory.
     // https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.gchandle?view=net-7.0
@@ -128,7 +130,6 @@ public class MusicManager : Singleton<MusicManager>
             musicDescriptionCallback.getLength(out int sLength);
             Debug.Log("Current music length in milliseconds :" + sLength);
             timelineInfo.songLength = sLength;
-
         }
     }
 
@@ -223,6 +224,7 @@ public class MusicManager : Singleton<MusicManager>
         Debug.Log("StartMusic from MUSIC MANAGER");
         triggerOnceMusicEnd = true;
         musicFMODInstance.start();      // FMOD Test Julien
+
         //musicFMODInstance.release();    // FMOD Test Julien
     }
 
