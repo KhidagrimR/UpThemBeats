@@ -75,10 +75,16 @@ public class GameManager : Singleton<GameManager>
             MusicManager.Instance.StartMusicManager();
         }*/
 
+        if(UIManager.Instance != null)
+        {
+            UIManager.Instance.SetupUIGame();
+        }
+
         if (SequenceManager.Instance != null)
         {
             SequenceManager.Instance.StartSequence();
         }
+
         Debug.Log("### READY ###");
         _isReady = true;
     }

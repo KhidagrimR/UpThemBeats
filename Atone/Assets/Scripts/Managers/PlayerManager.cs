@@ -14,6 +14,8 @@ public class PlayerManager : Singleton<PlayerManager>
     public PivotPointAlignment rootPivot; // "Root" parce qu'il n'est pas censé être enfant d'un autre objet
 
     public CinemachineVirtualCamera cvm;
+    public LayerMask laneLayerMask;
+
 
     private bool _isReady;
     public bool isReady
@@ -112,7 +114,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void MovePlayerToRightLane()
     {
-        if (isPlayerAbleToChangeLane)
+        if (isPlayerAbleToChangeLane && CheckIfCanSwitchLane(1))
         {
             playerCurrentLane++;
             ChangeLaneDutch(playerCurrentLane);
@@ -130,7 +132,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void MovePlayerToLeftLane()
     {
-        if (isPlayerAbleToChangeLane)
+        if (isPlayerAbleToChangeLane && CheckIfCanSwitchLane(-1))
         {
             playerCurrentLane--;
             ChangeLaneDutch(playerCurrentLane);
@@ -144,6 +146,32 @@ public class PlayerManager : Singleton<PlayerManager>
             playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
             playerController.ChangeLane(GetLanePosition(playerCurrentLane));
         }
+    }
+
+    bool CheckIfCanSwitchLane(int direction)
+    {
+        Debug.Log("CHECK LANE SWITCH : direction = " + direction);
+        direction = direction > 0 ? 1 : -1;
+        // si on est sur la ligne du centre, on veut voir si on peut aller sur une lane latérale
+        if (PlayerManager.Instance.playerCurrentLane == 1)
+        {
+            // on tire un rayon en direction de la direction 
+            RaycastHit hit;
+            Vector3 playerPos = playerController.transform.position;
+
+            if (Physics.Raycast(playerPos, Vector3.right * direction, out hit, Mathf.Infinity, laneLayerMask))
+            {
+                Debug.Log("Hit = " + hit.collider.gameObject.name);
+                return true;
+            }
+            else
+            {
+                Debug.Log("NO RAYCAST HIT");
+                return false;
+            }
+        }
+        else
+            return true;
     }
 
     public void ReleasePlayerArmAnimation(int direction)
@@ -163,6 +191,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void BendPlayerTowardDirection(int direction)
     {
+        //if (playerCurrentLane != 1) return;
+
         //Debug.Log("Bend on : "+direction);
         switch (direction)
         {
@@ -250,14 +280,15 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void IncreaseScore(float boundZCollider, float positionBeatPerfect, int pointObstacle)
     {
-        Debug.Log("positionBeatPerfectZ : " + positionBeatPerfect);
-        Debug.Log("ScoreMultipliyer : " + (Math.Abs(positionBeatPerfect - playerController.transform.position.z) / boundZCollider / 2) / 2);
+        //Debug.Log("positionBeatPerfectZ : " + positionBeatPerfect);
+        //Debug.Log("ScoreMultipliyer : " + (Math.Abs(positionBeatPerfect - playerController.transform.position.z) / boundZCollider / 2) / 2);
+
         float distanceToCenter = Math.Abs(positionBeatPerfect - playerController.transform.position.z);
         if (distanceToCenter > boundZCollider / 2)
             scoreSequence += scoreMultipliyer * pointObstacle;
         else
             scoreSequence += (scoreMultipliyer + (scoreMultipliyer / 2)) * pointObstacle;
         scoreSequence = (float)Math.Round(scoreSequence, 1);
-        Debug.Log("nouveau score = " + scoreSequence);
+        //Debug.Log("nouveau score = " + scoreSequence);
     }
 }

@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: 6584846868746400809
-    second: Arms Rig|Neutral
+    second: Neutral
   - first:
       74: -4975139192746894291
     second: Arms Rig|Run_Cycle
@@ -141,6 +141,69 @@ ModelImporter:
   - first:
       74: 2235697303449609434
     second: Arms Rig|Break Action 3
+  - first:
+      74: 2402035341520666266
+    second: Arms Rig|LeanLeftBuild
+  - first:
+      74: -8653677986654045454
+    second: Arms Rig|LeanRightBuild
+  - first:
+      74: -7050284320796430628
+    second: Arms Rig|LeanRightLoop
+  - first:
+      74: 231820737467920006
+    second: Arms Rig|LeanLeftLoop
+  - first:
+      74: -2533574528580239092
+    second: Wall_Contact_Left
+  - first:
+      74: -5064494799639258751
+    second: Wall_Contact_Right
+  - first:
+      74: -3639478349462550110
+    second: Wall_Loop_Left
+  - first:
+      74: 7619773646332016167
+    second: Wall_Loop_Right
+  - first:
+      74: 3200596647906892651
+    second: Action_Snap_Left
+  - first:
+      74: -6282171755563897146
+    second: Action_Snap_Right
+  - first:
+      74: 5678090831941759846
+    second: Slide_Loop
+  - first:
+      74: -8996476934021918700
+    second: Lean_Build_Left
+  - first:
+      74: 6777423060010990399
+    second: Lean_Build_Right
+  - first:
+      74: 2857442932636165427
+    second: Lean_Jump_Left
+  - first:
+      74: -4680783996227561572
+    second: Lean_Jump_RIght
+  - first:
+      74: 9132621246556906753
+    second: Wall_Jump_Left
+  - first:
+      74: -1033027304376084263
+    second: Wall_Jump_Right
+  - first:
+      74: 209897781211380415
+    second: Action_Break_Left
+  - first:
+      74: -3908345165519688109
+    second: Action_Break_Right
+  - first:
+      74: -368386228197433683
+    second: Lean_Loop_Left
+  - first:
+      74: 6194692014824213315
+    second: Lean_Loop_RIght
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -192,7 +255,7 @@ ModelImporter:
     clipAnimations:
     - serializedVersion: 16
       name: Skate_Cycle
-      takeName: Arms Rig|Skate_Cycle
+      takeName: Arms Rig|SkateCycle
       internalID: 0
       firstFrame: 0
       lastFrame: 44
@@ -220,8 +283,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: LaneContactLeft
-      takeName: Arms Rig|LaneContactLeft
+      name: Wall_Contact_Left
+      takeName: Arms Rig|Wall_Contact_Left
       internalID: 0
       firstFrame: 0
       lastFrame: 10
@@ -249,8 +312,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: LaneContactRight
-      takeName: Arms Rig|LaneContactRight
+      name: Wall_Contact_Right
+      takeName: Arms Rig|Wall_Contact_Right
       internalID: 0
       firstFrame: 0
       lastFrame: 10
@@ -278,8 +341,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: LaneSlideLeft
-      takeName: Arms Rig|LaneSlideLeft
+      name: Wall_Loop_Left
+      takeName: Arms Rig|Wall_Loop_Left
       internalID: 0
       firstFrame: 0
       lastFrame: 22
@@ -307,8 +370,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: LaneSlideRight
-      takeName: Arms Rig|LaneSlideRight
+      name: Wall_Loop_Right
+      takeName: Arms Rig|Wall_Loop_Right
       internalID: 0
       firstFrame: 0
       lastFrame: 22
@@ -336,8 +399,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Snap_L_Action_1
-      takeName: Arms Rig|Snap_L_Action_1
+      name: Action_Snap_Left
+      takeName: Arms Rig|Action_Snap_Left
       internalID: 0
       firstFrame: 0
       lastFrame: 39
@@ -365,11 +428,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Snap_L_Action_2
-      takeName: Arms Rig|Snap_L_Action_2
+      name: Action_Snap_Right
+      takeName: Arms Rig|Action_Snap_Right
       internalID: 0
       firstFrame: 0
-      lastFrame: 22
+      lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -394,37 +457,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Snap_R_Action_2
-      takeName: Arms Rig|Snap_R_Action_2
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 10
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: SlidePose
-      takeName: Arms Rig|SlidePose
+      name: Slide_Loop
+      takeName: Arms Rig|Slide_Loop
       internalID: 0
       firstFrame: 0
       lastFrame: 10
@@ -452,8 +486,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: LeanLeft
-      takeName: Arms Rig|LeanLeft
+      name: Lean_Build_Left
+      takeName: Arms Rig|Lean_Build_Left
       internalID: 0
       firstFrame: 0
       lastFrame: 22
@@ -481,8 +515,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: LeanRight
-      takeName: Arms Rig|LeanRight
+      name: Lean_Build_Right
+      takeName: Arms Rig|Lean_Build_Right
       internalID: 0
       firstFrame: 0
       lastFrame: 22
@@ -510,8 +544,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: LeanLeftJump
-      takeName: Arms Rig|LeanLeftJump
+      name: Lean_Jump_Left
+      takeName: Arms Rig|Lean_Jump_Left
       internalID: 0
       firstFrame: 0
       lastFrame: 10
@@ -539,8 +573,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: LeanRightJump
-      takeName: Arms Rig|LeanRightJump
+      name: Lean_Jump_RIght
+      takeName: Arms Rig|Lean_Jump_RIght
       internalID: 0
       firstFrame: 0
       lastFrame: 10
@@ -597,8 +631,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: LaneJumpLeft
-      takeName: Arms Rig|LaneJumpLeft
+      name: Wall_Jump_Left
+      takeName: Arms Rig|Wall_Jump_Left
       internalID: 0
       firstFrame: 0
       lastFrame: 10
@@ -626,8 +660,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: LaneJumpRight
-      takeName: Arms Rig|LaneJumpRight
+      name: Wall_Jump_Right
+      takeName: Arms Rig|Wall_Jump_Right
       internalID: 0
       firstFrame: 0
       lastFrame: 10
@@ -655,40 +689,127 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Break Anticipation
-      takeName: Arms Rig|Break Anticipation
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 12
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Arms Rig|Break Action 3
-      takeName: Arms Rig|Break Action 3
+      name: Action_Break_Left
+      takeName: Arms Rig|Action_Break_Left
       internalID: 0
       firstFrame: 0
       lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Action_Break_Right
+      takeName: Arms Rig|Action_Break_Right
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Lean_Loop_Left
+      takeName: Arms Rig|Lean_Loop_Left
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 44
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Lean_Loop_RIght
+      takeName: Arms Rig|Lean_Loop_RIght
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 44
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Neutral
+      takeName: Arms Rig|Neutral
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
