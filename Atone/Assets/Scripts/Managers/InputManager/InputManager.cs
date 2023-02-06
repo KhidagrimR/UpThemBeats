@@ -7,9 +7,11 @@ using UnityEngine.PlayerLoop;
 public class InputManager : Singleton<InputManager>
 {
     public static bool onController = false;
+
+    public static bool isRightHanded = false;
     [Header("Pause menu / return")]
 
-    public PlayerAction menuOrReturn = new PlayerAction("menuOrReturn", KeyCode.Escape, KeyCode.Joystick1Button7);
+    public PlayerAction menuOrReturn;
 
     public delegate void OnMenu(bool isPaused);
     public static event OnMenu onMenu; // Needs to be static to not mess things up when communicating to the additive scene
@@ -17,7 +19,7 @@ public class InputManager : Singleton<InputManager>
 
     [Header("Break Bop Action")]
     #region BreakBop
-    public PlayerAction destroyBopAction = new PlayerAction("jump", KeyCode.S, KeyCode.S);
+    public PlayerAction destroyBopAction;
     public delegate void OnDestroyBop();
     public OnDestroyBop onDestroyBop;
     public delegate void OnDestroyBopPressed();
@@ -28,18 +30,18 @@ public class InputManager : Singleton<InputManager>
     #region switchlane
     //     SWITCH
     // RIGHT LANE
-    public PlayerAction goToRightLane = new PlayerAction("rightLane", KeyCode.Space, KeyCode.A);
+    public PlayerAction goToRightLane;
     public delegate void OnGoRightLane();
     public OnGoRightLane onGoRightLane;
     // LEFT LANE
-    public PlayerAction goToLeftLane = new PlayerAction("leftLane", KeyCode.Space, KeyCode.A);
+    public PlayerAction goToLeftLane;
     public delegate void OnGoLeftLane();
     public OnGoLeftLane onGoLeftLane;
 
     //    BEND
     // RIGHT LANE
-    public PlayerAction bendToRightLane = new PlayerAction("bendRightLane", KeyCode.E, KeyCode.A);
-    public PlayerAction bendToLeftLane = new PlayerAction("bendLeftLane", KeyCode.A, KeyCode.A);
+    public PlayerAction bendToRightLane;
+    public PlayerAction bendToLeftLane;
     public delegate void OnBendLane(int direction);
     public OnBendLane onBendLane;
 
@@ -48,11 +50,16 @@ public class InputManager : Singleton<InputManager>
     #endregion
 
     [Header("Destroy Wall Action")]
-    public PlayerAction destroyWallAction = new PlayerAction("destroy", KeyCode.Z, KeyCode.E);
+    public PlayerAction destroyWallAction;
     public delegate void OnDestroyWall();
     public OnDestroyWall onDestroyWall;
     public delegate void OnDestroyWallPressed();
     public OnDestroyWallPressed onDestroyWallPressed;
+
+    // SLIDE
+    public PlayerAction slide;
+    public delegate void OnSlide(bool slide);
+    public OnSlide onSlide;
 
     // Bend update state vars
     float rightPressedTime = 0; // store the last moment the right bend was pressed
@@ -60,103 +67,61 @@ public class InputManager : Singleton<InputManager>
 
     void Update()
     {
+        #region UI
+        // OPEN MENU
+        if (menuOrReturn.GetAction(onController,isRightHanded))
+        {
+            // Current setup is hacky, need to change it later. Might need to add a future check to verify that we are not in the main menu scene            
+            GameManager.Instance.TogglePauseState();
+            onMenu?.Invoke(GameManager.Instance.isGameCurrentlyPaused);
+        }
+        #endregion
+        #region Slide
+        if(slide.GetActionReleased(onController, isRightHanded))
+        {
+            if (onSlide != null)
+                onSlide(false);
+        }
+        if (slide.GetAction(onController, isRightHanded))
+        {
+            if (onSlide != null)
+                onSlide(true);
+            return;
+        }
+        #endregion
+        CheckIfControllerOrKeyBoardIsActive();
+        //print("onController" + onController);
         #region Destroy Obstacle
         // DESTROY WALL
-        if (destroyWallAction.GetAction(onController))
+        if (destroyWallAction.GetAction(onController, isRightHanded))
             if (onDestroyWall != null)
                 onDestroyWall();
 
         // DESTROY BOP
-        if (destroyBopAction.GetAction(onController))
+        if (destroyBopAction.GetAction(onController, isRightHanded))
             if (onDestroyBop != null)
                 onDestroyBop();
 
         #endregion
         #region switch lane
         // SWITCH LANE
-        if (goToLeftLane.GetAction(onController) && bendToLeftLane.GetActionPressed(onController))
+        if (goToLeftLane.GetAction(onController,isRightHanded) && bendToLeftLane.GetActionPressed(onController,isRightHanded))
             if (onGoLeftLane != null)
                 onGoLeftLane();
 
-        if (goToRightLane.GetAction(onController) && bendToRightLane.GetActionPressed(onController))
+        if (goToRightLane.GetAction(onController,isRightHanded) && bendToRightLane.GetActionPressed(onController,isRightHanded))
             if (onGoRightLane != null)
                 onGoRightLane();
         #endregion
         #region Bend
 
-        #region commented
-        // BEND ON RIGHT/LEFT LANE
-        /*if (bendToRightLane.GetActionReleased(onController))
-        {
-            if (!bendToLeftLane.GetActionPressed(onController))
-            {
-                if (onBendRightLane != null)
-                    onBendRightLane(1);
-            }
-            else
-            {
-                if (onBendRightLane != null)
-                    onBendRightLane(2);
-            }
-        }
+        bool rightPressed = bendToRightLane.GetAction(onController,isRightHanded);
+        bool rightMaintained = bendToRightLane.GetActionPressed(onController,isRightHanded);
+        bool rightReleased = bendToRightLane.GetActionReleased(onController,isRightHanded);
 
-        if (bendToLeftLane.GetActionReleased(onController))
-        {
-            if (!bendToRightLane.GetActionPressed(onController))
-            {
-                if (onBendLeftLane != null)
-                    onBendLeftLane(1);
-            }
-            else
-            {
-                if (onBendRightLane != null)
-                    onBendRightLane(0);
-            }
-        }*/
-        /*
-        // Quand le joueur appuye sur "Droite"
-        if ()
-        {
-            // si il est à gauche
-            if (bendToLeftLane.GetActionPressed(onController))
-            {
-                // il va à droite
-                if (onBendRightLane != null)
-                    onBendRightLane(2);
-            }
-            // si il relache le bouton gauche
-            if (bendToLeftLane.GetActionReleased(onController))
-            {
-                // il va à droite
-                if (onBendRightLane != null)
-                    onBendRightLane(2);
-            }
-
-            // si il appuye sur gauche
-
-
-            // il va à droite
-            if (onBendRightLane != null)
-                onBendRightLane(2);
-        }
-        // Quand le joueur appuye sur "Gauche"
-        else if (bendToLeftLane.GetAction(onController))
-        {
-            // il va a gauche
-            if (onBendLeftLane != null)
-                onBendLeftLane(0);
-        }
-*/
-
-        #endregion
-
-        bool rightPressed = bendToRightLane.GetAction(onController);
-        bool rightMaintained = bendToRightLane.GetActionPressed(onController);
-        bool rightReleased = bendToRightLane.GetActionReleased(onController);
-
-        bool leftPressed = bendToLeftLane.GetAction(onController);
-        bool leftMaintained = bendToLeftLane.GetActionPressed(onController);
-        bool leftReleased = bendToLeftLane.GetActionReleased(onController);
+        bool leftPressed = bendToLeftLane.GetAction(onController,isRightHanded);
+        bool leftMaintained = bendToLeftLane.GetActionPressed(onController,isRightHanded);
+        bool leftReleased = bendToLeftLane.GetActionReleased(onController,isRightHanded);
 
         if (rightPressed) rightPressedTime = Time.time;
         if (leftPressed) leftPressedTime = Time.time;
@@ -237,17 +202,33 @@ public class InputManager : Singleton<InputManager>
         }
 
         #endregion
-        #region UI
-        // OPEN MENU
-        if (menuOrReturn.GetAction(onController))
-        {
-            // Current setup is hacky, need to change it later. Might need to add a future check to verify that we are not in the main menu scene            
-            GameManager.Instance.TogglePauseState();
-            onMenu?.Invoke(GameManager.Instance.isGameCurrentlyPaused);
-        }
-        #endregion
+
     }
 
+    public void CheckIfControllerOrKeyBoardIsActive() {
+        CheckIfAxisIsTrigger();
+        foreach (KeyCode kc in Enum.GetValues(typeof(KeyCode)))
+        {
+            if (Input.GetKey(kc))
+            {
+                //print("kc" + kc.ToString());
+                if (kc.ToString().Contains("Joystick"))
+                {
+
+                    onController = true;
+                }
+                else
+                    onController = false;
+            }
+        }
+    }
+
+    public void CheckIfAxisIsTrigger() {
+        if (Input.GetAxis("StickleftHorizontal") != 0 || Input.GetAxis("StickleftVertical") != 0 || Input.GetAxis("ShareTriggerRTLT") != 0 ||
+            Input.GetAxis("RT") != 0 || Input.GetAxis("LT") != 0 || Input.GetAxis("StickrightHorizontal") != 0 || 
+            Input.GetAxis("StickrightHorizontal") != 0 || Input.GetAxis("DirectionalCrossHorizontal") != 0 || Input.GetAxis("DirectionalCrossVertical") != 0)
+            onController = true;
+    }
 
     public static void SetOnController()
     {

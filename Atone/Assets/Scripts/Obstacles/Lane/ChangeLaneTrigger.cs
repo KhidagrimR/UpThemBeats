@@ -7,6 +7,8 @@ public class ChangeLaneTrigger : MonoBehaviour
     [InspectorReadOnly]
     public bool isTrigger;
 
+    public int pointObstacle;
+
     void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag(PlayerManager.PLAYER_TAG))
@@ -15,6 +17,7 @@ public class ChangeLaneTrigger : MonoBehaviour
             {
                 isTrigger = true;
                 player.isAbleToChangeLane = true;
+                PlayerManager.Instance.gameObjectTriggerChangeLane = this;
             }
 
         }
@@ -28,6 +31,7 @@ public class ChangeLaneTrigger : MonoBehaviour
             {
                 isTrigger = false;
                 player.isAbleToChangeLane = false;
+                PlayerManager.Instance.gameObjectTriggerChangeLane = null;
             }
         }
     }

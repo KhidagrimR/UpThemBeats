@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class BopTriggerDestruction : MonoBehaviour
 {
@@ -10,14 +11,18 @@ public class BopTriggerDestruction : MonoBehaviour
     public Material materialTrigger;
     public Material initMaterial;
 
+    public ParticleSystem bopExplosion;
 
+    public int pointObstacle;
 
     public GameObject bopVisuel;
+    public StudioEventEmitter SFXArrival;
+    public StudioEventEmitter SFXDestroy;
 
     void OnTriggerEnter(Collider col){
-        if(col.name == "Player"){
+        if (col.CompareTag(PlayerManager.PLAYER_TAG)){ 
             isTrigger = true;
-            bopVisuel.GetComponent<MeshRenderer>().materials[2] = materialTrigger;
+            //bopVisuel.GetComponent<MeshRenderer>().materials[2] = materialTrigger;
             PlayerController.gameObjectsColliding.Add(gameObject);
         }
     }
@@ -26,16 +31,22 @@ public class BopTriggerDestruction : MonoBehaviour
         //print("exit");
         if(col.name == "Player"){
             isTrigger = false;
-            bopVisuel.GetComponent<MeshRenderer>().materials[2] = initMaterial;
+            //bopVisuel.GetComponent<MeshRenderer>().materials[2] = initMaterial;
             //print(bopVisuel.GetComponent<MeshRenderer>().materials[2]);
             PlayerController.gameObjectsColliding.Remove(gameObject);
         }
     }
 
     public void BopAction(){
-        if(isTrigger){
+        if(isTrigger && !isDestroy){
             bopVisuel.SetActive(false);
+            SFXArrival.Stop();
+            bopExplosion.transform.position = bopVisuel.transform.position;
+            bopExplosion.Play();
+            SFXDestroy.Play();
             isDestroy = true;
+
+            PlayerManager.Instance.IncreaseScore(gameObject.GetComponent<BoxCollider>().bounds.extents.z, gameObject.transform.position.z, pointObstacle);
         }
             
         else

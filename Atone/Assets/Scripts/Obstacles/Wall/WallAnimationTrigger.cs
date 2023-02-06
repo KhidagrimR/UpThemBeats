@@ -15,6 +15,7 @@ public class WallAnimationTrigger : MonoBehaviour
         //si c est le joueur
         if (other.CompareTag(PlayerManager.PLAYER_TAG))
         {
+            //Debug.Log("trigger Anim");
             
             if(targetPlayerAnim) // si l'animation est pour le joueur
             {

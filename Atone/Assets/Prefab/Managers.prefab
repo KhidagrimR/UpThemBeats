@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &274484863838705638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7456829751631337547}
+  - component: {fileID: 5363021689168483715}
+  m_Layer: 0
+  m_Name: SequenceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7456829751631337547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274484863838705638}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6341438436953146819}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5363021689168483715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274484863838705638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea332fe190f0d6147af89b6159ca462b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sequencesPrefab:
+  - {fileID: 1827712851758725077, guid: d8145d19dc3a08e4dbc778d9e881566c, type: 3}
+  - {fileID: 1827712851758725077, guid: bbce5f4b15726fc4bb72c012dbf4b524, type: 3}
+  - {fileID: 1827712851758725077, guid: fe0e9710da14de0419833eb1ce6e78fa, type: 3}
+  sequences: []
+  currentSequenceIndex: 0
+  roadPrefab: {fileID: 4252543333268015580, guid: 43b59dd9e92a55a499b84bc5883e1049, type: 3}
+  transitionBetweenSequences: 0
+  currentSequence: {fileID: 0}
 --- !u!1 &794377114544737474
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,13 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1956a412dc7584f9b5aa607a14c0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicFMODEvent:
-    Guid:
-      Data1: -282826335
-      Data2: 1164788982
-      Data3: 706224002
-      Data4: 214115588
-    Path: event:/Julien_Test_Music_00
+  timelineInfo:
+    currentBeat: 0
+    currentBar: 0
+    currentTempo: 0
+    currentPositionInMS: 0
+    songLength: 0
+  test: {fileID: 7673866146837170857, guid: d399a4ffe10ea1847891d46008003b6f, type: 3}
 --- !u!1 &6341438436302581879
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,32 +150,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuOrReturn:
     m_Name: menuOrReturn
-    m_ActionKeyBoard: 27
-    m_ActionController: 357
+    m_ActionKeyBoardRightHanded: 27
+    m_ActionKeyBoardLeftHanded: 27
+    m_ActionController: 337
+    m_axis: 0
   destroyBopAction:
     m_Name: bop
-    m_ActionKeyBoard: 115
-    m_ActionController: 115
+    m_ActionKeyBoardRightHanded: 122
+    m_ActionKeyBoardLeftHanded: 122
+    m_ActionController: 330
+    m_axis: 0
   goToRightLane:
     m_Name: rightLane
-    m_ActionKeyBoard: 32
-    m_ActionController: 335
+    m_ActionKeyBoardRightHanded: 32
+    m_ActionKeyBoardLeftHanded: 32
+    m_ActionController: 330
+    m_axis: 0
   goToLeftLane:
     m_Name: leftLane
-    m_ActionKeyBoard: 32
-    m_ActionController: 333
+    m_ActionKeyBoardRightHanded: 32
+    m_ActionKeyBoardLeftHanded: 32
+    m_ActionController: 330
+    m_axis: 0
   bendToRightLane:
     m_Name: bendRightLane
-    m_ActionKeyBoard: 101
-    m_ActionController: 97
+    m_ActionKeyBoardRightHanded: 100
+    m_ActionKeyBoardLeftHanded: 100
+    m_ActionController: 0
+    m_axis: 3
   bendToLeftLane:
     m_Name: bendLeftLane
-    m_ActionKeyBoard: 97
-    m_ActionController: 97
+    m_ActionKeyBoardRightHanded: 113
+    m_ActionKeyBoardLeftHanded: 113
+    m_ActionController: 0
+    m_axis: 4
   destroyWallAction:
     m_Name: destroy
-    m_ActionKeyBoard: 122
-    m_ActionController: 101
+    m_ActionKeyBoardRightHanded: 101
+    m_ActionKeyBoardLeftHanded: 101
+    m_ActionController: 331
+    m_axis: 0
+  slide:
+    m_Name: slide
+    m_ActionKeyBoardRightHanded: 115
+    m_ActionKeyBoardLeftHanded: 115
+    m_ActionController: 334
+    m_axis: 0
 --- !u!1 &6341438436592442146
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eca1367beb476b4c9ea36896c9421f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uI_Loader: {fileID: 1172588192285575461}
 --- !u!114 &1172588192285575461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +286,7 @@ Transform:
   - {fileID: 6341438437020692616}
   - {fileID: 6341438436592442147}
   - {fileID: 6668483747726264853}
+  - {fileID: 7456829751631337547}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -263,9 +338,13 @@ MonoBehaviour:
   playerHead: {fileID: 0}
   rootPivot: {fileID: 0}
   cvm: {fileID: 0}
+  laneLayerMask:
+    serializedVersion: 2
+    m_Bits: 8192
   lanes:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   playerCurrentLane: 1
   tweenDutchDuration: 0.4
+  gameObjectTriggerChangeLane: {fileID: 0}

@@ -7,10 +7,11 @@ public class WallTrigger : MonoBehaviour
     public bool isTrigger = false;
     public bool isDestroy = false;
 
-    public List<Material> materials;
-
+    public FMODUnity.StudioEventEmitter fmodStudioEventEmitter;
 
     public GameObject visualWall;
+
+    public int pointObstacle;
 
     void OnTriggerEnter(Collider col)
     {
@@ -37,7 +38,12 @@ public class WallTrigger : MonoBehaviour
         if (isTrigger && !isDestroy){
             Destroy(visualWall);
             transform.parent.GetComponent<AnimationTrigger>().PlayAnimation(AnimationEnum.Death);  // AnimationTrigger.AnimationEnum.Death
+
+            if(fmodStudioEventEmitter != null) 
+                fmodStudioEventEmitter.Play();
+                
             isDestroy = true;
+            PlayerManager.Instance.IncreaseScore(gameObject.GetComponent<BoxCollider>().bounds.extents.z, gameObject.transform.position.z, pointObstacle);
         }
         else
             print("mur rat�");
