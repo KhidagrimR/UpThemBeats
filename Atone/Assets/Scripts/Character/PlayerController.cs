@@ -318,7 +318,7 @@ public class PlayerController : MonoBehaviour
                 playerCollider.transform.position = new Vector3(playerCollider.transform.position.x, startingHeadPosition.y - x, playerCollider.transform.position.z);
             });
 
-            // déclencher une anim
+            animationTrigger.PlayAnimation(AnimationEnum.SlideStart);
 
             isSliding = true;
         }
@@ -331,7 +331,7 @@ public class PlayerController : MonoBehaviour
                 playerCollider.transform.position = new Vector3(playerCollider.transform.position.x, x, playerCollider.transform.position.z);
             });
 
-            // déclencher une anim
+            animationTrigger.PlayAnimation(AnimationEnum.SlideStop);
 
             isSliding = false;
         }

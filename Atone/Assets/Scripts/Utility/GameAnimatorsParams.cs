@@ -60,7 +60,7 @@ public enum AnimationEnum
     LeanLeft,
     LeanRight,
     LeanStop,
-    Slide,
+    SlideStart,
     SlideStop,
     Break,
     SpeedScaleFactor,
