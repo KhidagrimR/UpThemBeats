@@ -306,7 +306,7 @@ public void CheckIfBopToDestroy()
     public float headYMovementTween = 0.5f;
     public void Slide(bool pIsSliding)
     {
-        Debug.Log("Slide Called on : " + pIsSliding);
+        //Debug.Log("Slide Called on : " + pIsSliding);
         if (pIsSliding)
         {
             // se pencher / glisser 
