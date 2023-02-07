@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
         else if (PlayerManager.Instance.playerCurrentLane == 2)
         {
             transform.position = new Vector3(1.75f, transform.position.y, transform.position.z);
-            animationTrigger.PlayAnimation(AnimationEnum.LeanLeft);
+            animationTrigger.PlayAnimation(AnimationEnum.LeanRight);
         }
     }
 
@@ -234,7 +234,7 @@ public class PlayerController : MonoBehaviour
                 if (gameObjectsColliding[i].GetComponent<WallTrigger>() != null)
                 {
                     gameObjectsColliding[i].GetComponent<WallTrigger>().WallAction();
-                    animationTrigger.PlayAnimation(AnimationEnum.Break);
+                    animationTrigger.PlayAnimation(AnimationEnum.BreakLeft);
                 }
                 else
                     print("coolDown - mur raté PC");
@@ -244,7 +244,8 @@ public class PlayerController : MonoBehaviour
             print("cooldown");
     }
 
-public void CheckIfBopToDestroy()
+private int switchArmsOnBopDestroy = 0;
+    public void CheckIfBopToDestroy()
     {
         if (gameObjectsColliding.Count != 0)
             for (int i = 0; i < gameObjectsColliding.Count; i += 1)
@@ -253,8 +254,8 @@ public void CheckIfBopToDestroy()
                 {
                     bop.BopAction();
 
-                    int rd = MusicManager.Instance.timelineInfo.currentBeat %2 == 0 ? 1 : 0;
-                    if (rd == 0)
+                    switchArmsOnBopDestroy++;
+                    if (switchArmsOnBopDestroy % 2 == 0)
                         animationTrigger.PlayAnimation(AnimationEnum.SnapLeft);
                     else
                         animationTrigger.PlayAnimation(AnimationEnum.SnapRight);
