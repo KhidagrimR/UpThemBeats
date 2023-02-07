@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{e3a39350-eafd-41fc-b9b6-b8ebfdc58fd8}">
 		<property name="name">
-			<value>Sequence_04</value>
+			<value>Sequence_02_3</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -25,6 +25,7 @@
 		<relationship name="markerTracks">
 			<destination>{f083c9c2-d6d0-4087-954d-79582887d174}</destination>
 			<destination>{942b4005-0825-47d4-bd30-056aadc7f31f}</destination>
+			<destination>{0ea80f45-9c1f-4fde-9a2f-6c15de73dfc3}</destination>
 		</relationship>
 		<relationship name="groupTracks">
 			<destination>{fd23ae70-e6e2-4f83-af3e-c861855ea7d2}</destination>
@@ -63,6 +64,7 @@
 	<object class="EventAutomatableProperties" id="{704ae3ee-de89-40f0-a9d8-771b639ea8c7}" />
 	<object class="MarkerTrack" id="{f083c9c2-d6d0-4087-954d-79582887d174}" />
 	<object class="MarkerTrack" id="{942b4005-0825-47d4-bd30-056aadc7f31f}" />
+	<object class="MarkerTrack" id="{0ea80f45-9c1f-4fde-9a2f-6c15de73dfc3}" />
 	<object class="GroupTrack" id="{fd23ae70-e6e2-4f83-af3e-c861855ea7d2}">
 		<relationship name="modules">
 			<destination>{eb68737e-55a2-4fbf-bb58-4b3a5b82f960}</destination>
@@ -127,7 +129,7 @@
 	<object class="MixerBusPanner" id="{14dc17be-969a-4b68-a6dc-1ef38fb760c9}" />
 	<object class="SingleSound" id="{eb68737e-55a2-4fbf-bb58-4b3a5b82f960}">
 		<property name="length">
-			<value>456</value>
+			<value>15</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{5495b0e1-dd51-41a3-aeb5-d24015d935f6}</destination>
@@ -149,7 +151,7 @@
 	</object>
 	<object class="SingleSound" id="{5adffa53-d4ec-4d4f-b06e-6c93113c6583}">
 		<property name="length">
-			<value>456</value>
+			<value>15</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{45ffddac-e4b5-43ba-b4ff-332577c460e3}</destination>
@@ -171,7 +173,7 @@
 	</object>
 	<object class="SingleSound" id="{001e0077-d65b-40c0-9cd9-da8d9f15c7fe}">
 		<property name="length">
-			<value>454.49999999999983</value>
+			<value>15</value>
 		</property>
 		<property name="timelockedOffset">
 			<value>1.5</value>
@@ -200,7 +202,7 @@
 	</object>
 	<object class="SingleSound" id="{ee89016e-6156-4f9f-a76a-a11dc7094354}">
 		<property name="length">
-			<value>456</value>
+			<value>15</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{aacda653-3753-467c-ab78-e7edd1f98fef}</destination>
@@ -250,7 +252,7 @@
 	</object>
 	<object class="NamedMarker" id="{ba0c4a3c-33d8-4386-85fb-81f1dd42f15c}">
 		<property name="position">
-			<value>15</value>
+			<value>14.25</value>
 		</property>
 		<property name="name">
 			<value>LoopSequence</value>
@@ -259,7 +261,7 @@
 			<destination>{7fe97607-8f24-4efe-ae27-e49f95bb026a}</destination>
 		</relationship>
 		<relationship name="markerTrack">
-			<destination>{942b4005-0825-47d4-bd30-056aadc7f31f}</destination>
+			<destination>{0ea80f45-9c1f-4fde-9a2f-6c15de73dfc3}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{5b107fee-69ce-4c9c-9db9-467f58b616d4}">
