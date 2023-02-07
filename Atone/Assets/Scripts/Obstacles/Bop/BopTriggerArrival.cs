@@ -74,7 +74,9 @@ public class BopTriggerArrival : MonoBehaviour
         bopVisuel.gameObject.transform.DOMove(endpoint, halfToCenterDuration * speedMultiplier - timePausesOnMovement).SetEase(Ease.InOutQuad);
         yield return new WaitForSeconds(halfToCenterDuration);
         countDown = 0;
-        SFXArrival.Play();
+
+        /* EVENT NOT FOUND*/
+       // SFXArrival.Play();
 
         yield return new WaitForSeconds(timeStayCenter);
 
