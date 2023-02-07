@@ -56,6 +56,7 @@ public class BopTriggerArrival : MonoBehaviour
 
         Vector3 startPoint = Vector3.zero + bopVisuel.transform.position;
         Vector3 endpoint = arrivalPointBop.transform.position;
+        float direction = startPoint.x > endpoint.x ? 1 : -1;
 
         float halfToCenterDuration = travelTimeToCenter / 2;
 
@@ -65,7 +66,7 @@ public class BopTriggerArrival : MonoBehaviour
 
         // le bop se déplace en 2 temps
         // on doit connaitre la moitié de la distance
-        Vector3 halfDistancePoint = new Vector3(Vector3.Distance(startPoint, endpoint) / 2, startPoint.y, startPoint.z);
+        Vector3 halfDistancePoint = new Vector3(Vector3.Distance(startPoint, endpoint) / 2 * direction, startPoint.y, startPoint.z);
 
         bopVisuel.gameObject.transform.DOMove(halfDistancePoint, halfToCenterDuration * speedMultiplier - timePausesOnMovement).SetEase(Ease.InOutQuad);
         yield return new WaitForSeconds(halfToCenterDuration);
