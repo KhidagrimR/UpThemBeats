@@ -244,7 +244,7 @@ public class PlayerController : MonoBehaviour
             print("cooldown");
     }
 
-    public void CheckIfBopToDestroy()
+public void CheckIfBopToDestroy()
     {
         if (gameObjectsColliding.Count != 0)
             for (int i = 0; i < gameObjectsColliding.Count; i += 1)
@@ -253,11 +253,11 @@ public class PlayerController : MonoBehaviour
                 {
                     bop.BopAction();
 
-                    int rd = Random.Range(0, 1);
+                    int rd = MusicManager.Instance.timelineInfo.currentBeat %2 == 0 ? 1 : 0;
                     if (rd == 0)
-                        animationTrigger.PlayAnimation(AnimationEnum.LeftSnap);
+                        animationTrigger.PlayAnimation(AnimationEnum.SnapLeft);
                     else
-                        animationTrigger.PlayAnimation(AnimationEnum.LeftSnap);
+                        animationTrigger.PlayAnimation(AnimationEnum.SnapRight);
                 }
                 else
                     print("coolDown - bop raté PC");
