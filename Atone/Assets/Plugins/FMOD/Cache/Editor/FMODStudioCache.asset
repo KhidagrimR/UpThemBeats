@@ -144,6 +144,24 @@ MonoBehaviour:
   lastModified: 638111071746583035
   FileSizes: []
   Exists: 1
+--- !u!114 &-7621965158055905140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Joan.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMODBanks/Desktop/Joan.bank
+  Name: Joan
+  StudioPath: bank:/Joan
+  lastModified: 638113920178144832
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-7020288320368619945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,10 +177,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Test_Julien.strings.bank
   Name: Test_Julien.strings
   StudioPath: bank:/Test_Julien.strings
-  lastModified: 638112228180621612
+  lastModified: 638113920181356781
   FileSizes:
   - Name: 
-    Value: 2112
+    Value: 2360
   Exists: 1
 --- !u!114 &-6979090818983574870
 MonoBehaviour:
@@ -252,7 +270,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Master.bank
   Name: FMODBanks/Desktop/Master
   StudioPath: bank:/Master
-  lastModified: 638112228178698654
+  lastModified: 638113920178184897
   FileSizes: []
   Exists: 1
 --- !u!114 &-5726905475943262585
@@ -324,7 +342,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Sequences.bank
   Name: FMODBanks/Desktop/Sequences
   StudioPath: bank:/Sequences
-  lastModified: 638112228179726230
+  lastModified: 638113920180023247
   FileSizes: []
   Exists: 1
 --- !u!114 &-5585078537374095237
@@ -590,6 +608,24 @@ MonoBehaviour:
   lastModified: 638111071746782503
   FileSizes: []
   Exists: 1
+--- !u!114 &-2677336558257639111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Bank A.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMODBanks/Desktop/Bank A.bank
+  Name: Bank A
+  StudioPath: bank:/Bank A
+  lastModified: 638113920177744817
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-2644022623981531866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,10 +867,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638112228178708870
+  lastModified: 638113920178194818
   FileSizes:
   - Name: 
-    Value: 2112
+    Value: 2360
   Exists: 1
 --- !u!114 &-487581937176809863
 MonoBehaviour:
@@ -896,7 +932,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/ObstacleRouge_Sfx.bank
   Name: FMODBanks/Desktop/ObstacleRouge_Sfx
   StudioPath: bank:/ObstacleRouge_Sfx
-  lastModified: 638112228178878163
+  lastModified: 638113920178644267
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -921,6 +957,8 @@ MonoBehaviour:
   - {fileID: 2928030347720800636}
   - {fileID: 7572239666932677739}
   - {fileID: 2498125064849427250}
+  - {fileID: -2677336558257639111}
+  - {fileID: -7621965158055905140}
   EditorEvents:
   - {fileID: -8646908238139908956}
   - {fileID: -7869806424077482523}
@@ -940,6 +978,10 @@ MonoBehaviour:
   - {fileID: -9123113281869099964}
   - {fileID: 8228193162193859030}
   - {fileID: -3892758892587794411}
+  - {fileID: 4696612953544052683}
+  - {fileID: 8065165007593971154}
+  - {fileID: 6967559203792536496}
+  - {fileID: 2426715732778609459}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5909815992459405421}
@@ -947,7 +989,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -863168524951933926}
   - {fileID: -7020288320368619945}
-  cacheTime: 638112228181391355
+  cacheTime: 638113920182254162
   cacheVersion: 131593
 --- !u!114 &181618280437248023
 MonoBehaviour:
@@ -1129,6 +1171,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 546
+--- !u!114 &2426715732778609459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Patins/Patin D
+  m_EditorClassIdentifier: 
+  Path: event:/Patins/Patin D
+  Guid:
+    Data1: 676761496
+    Data2: 1099316325
+    Data3: -1682521167
+    Data4: -1428441895
+  Banks:
+  - {fileID: -7621965158055905140}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 386
 --- !u!114 &2498125064849427250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1144,7 +1213,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/ObstacleJauneSfx.bank
   Name: ObstacleJauneSfx
   StudioPath: bank:/ObstacleJauneSfx
-  lastModified: 638112228181391355
+  lastModified: 638113920178392216
   FileSizes: []
   Exists: 1
 --- !u!114 &2662750995567843330
@@ -1244,7 +1313,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Thomas.bank
   Name: FMODBanks/Desktop/Thomas
   StudioPath: bank:/Thomas
-  lastModified: 638112228180945063
+  lastModified: 638113920181924115
   FileSizes: []
   Exists: 1
 --- !u!114 &3130830688717005770
@@ -1379,6 +1448,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 120500
+--- !u!114 &4696612953544052683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Patins/Reception
+  m_EditorClassIdentifier: 
+  Path: event:/Patins/Reception
+  Guid:
+    Data1: -1848638965
+    Data2: 1329514543
+    Data3: 1215418762
+    Data4: -793341588
+  Banks:
+  - {fileID: -7621965158055905140}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 750
 --- !u!114 &4956362973021151994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1479,7 +1575,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1406
+  Length: 0
 --- !u!114 &6257136023337914619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1534,6 +1630,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &6967559203792536496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Patins/Saut
+  m_EditorClassIdentifier: 
+  Path: event:/Patins/Saut
+  Guid:
+    Data1: 562865377
+    Data2: 1228758506
+    Data3: 2039063431
+    Data4: 1752529396
+  Banks:
+  - {fileID: -7621965158055905140}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 750
 --- !u!114 &7086717526149191214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1603,7 +1726,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Thomas2.bank
   Name: FMODBanks/Desktop/Thomas2
   StudioPath: bank:/Thomas2
-  lastModified: 638112228181106902
+  lastModified: 638113920182254162
   FileSizes: []
   Exists: 1
 --- !u!114 &7614220921029850879
@@ -1648,7 +1771,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Test_Julien.bank
   Name: FMODBanks/Desktop/Test_Julien
   StudioPath: bank:/Test_Julien
-  lastModified: 638112228180611636
+  lastModified: 638113920181336783
   FileSizes: []
   Exists: 1
 --- !u!114 &7678129122642797336
@@ -1726,6 +1849,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 38000
+--- !u!114 &8065165007593971154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Patins/Patin G
+  m_EditorClassIdentifier: 
+  Path: event:/Patins/Patin G
+  Guid:
+    Data1: -439364994
+    Data2: 1177708249
+    Data3: 1455442345
+    Data4: -388517991
+  Banks:
+  - {fileID: -7621965158055905140}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 421
 --- !u!114 &8228193162193859030
 MonoBehaviour:
   m_ObjectHideFlags: 0
