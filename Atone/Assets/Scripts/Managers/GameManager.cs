@@ -5,7 +5,8 @@ using FMODUnity;
 
 public class GameManager : Singleton<GameManager>
 {
-    public UI_Loader uI_Loader;
+    public UI_Loader uI_Loader;    
+    private FMOD.Studio.Bus gameplayBus;
     private bool _isReady;
     public bool isReady
     {
@@ -77,18 +78,19 @@ public class GameManager : Singleton<GameManager>
 
         if (SequenceManager.Instance != null)
         {
+            gameplayBus = RuntimeManager.GetBus("bus:/Gameplay_Master");
             SequenceManager.Instance.StartSequence();
         }
         Debug.Log("### READY ###");
         _isReady = true;
     }
-
     public void TogglePauseState()
     {
         isGameCurrentlyPaused = !isGameCurrentlyPaused;
         // SoundCreator.ToggleMusicPause(isGameCurrentlyPaused);
-        RuntimeManager.PauseAllEvents(isGameCurrentlyPaused);
-        //MusicManager.ToggleMusicPause(isGameCurrentlyPaused);
+        // RuntimeManager.PauseAllEvents(isGameCurrentlyPaused);
+        gameplayBus.setPaused(isGameCurrentlyPaused);
+        // MusicManager.ToggleMusicPause(isGameCurrentlyPaused);
         Time.timeScale = isGameCurrentlyPaused ? 0 : 1;
     }
 }
