@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using FMODUnity;
 
 public class PlayerController : MonoBehaviour
 {
@@ -62,6 +63,8 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     public GameObject playerVisual;
     public Collider playerCollider;
+    public StudioEventEmitter patinDroitFMODEmitter;
+    public StudioEventEmitter patinGaucheFMODEmitter;
 
     public static List<GameObject> gameObjectsColliding;
     public static Vector3 checkpoint;
@@ -82,6 +85,7 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.onSlide += Slide;
         MusicManager.Instance.onMusicEnd += StopPlayer;
         MusicManager.Instance.onMusicStart += StartPlayer;
+        MusicManager.beatUpdated += PlayPatinSounds;
 
         gameObjectsColliding = new List<GameObject>();
         hp = initHp;
@@ -100,6 +104,7 @@ public class PlayerController : MonoBehaviour
             InputManager.Instance.onSlide -= Slide;
             MusicManager.Instance.onMusicEnd -= StopPlayer;
             MusicManager.Instance.onMusicStart -= StartPlayer;
+            MusicManager.beatUpdated -= PlayPatinSounds;
         }
 
     }
@@ -112,6 +117,20 @@ public class PlayerController : MonoBehaviour
     void StartPlayer()
     {
         canPlayerMove = true;
+    }
+
+    private int beat;
+    void PlayPatinSounds()
+    {
+        beat++;
+        if(beat%2==0)
+        {
+            patinDroitFMODEmitter.Play();
+        }
+        else
+        {
+            patinGaucheFMODEmitter.Play();
+        }
     }
 
     public bool canPlayerMove = false;
