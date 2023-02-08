@@ -8,6 +8,56 @@ public class UI_Crosshair : MonoBehaviour
     [SerializeField] private GameObject CrosshairGroup;
     [SerializeField] private GameObject RealCrosshair;
 
+    [SerializeField] private GameObject dotStyle;
+    [SerializeField] private GameObject plusStyle;
+    [SerializeField] private GameObject basicStyle;
+    [SerializeField] private GameObject shorterStyle;
+
+    public void ChangeCrosshair(int value)
+    {
+        GameObject clone;
+        switch (value)
+        {
+            case 0:
+                clone = ApplyCrosshair(CrosshairGroup, dotStyle);
+                clone.transform.position += new Vector3(0, 90, 0);
+                ApplyCrosshair(RealCrosshair, dotStyle);
+                break;
+            case 1:
+                clone = ApplyCrosshair(CrosshairGroup, plusStyle);
+                clone.transform.position += new Vector3(0, 90, 0);
+                ApplyCrosshair(RealCrosshair, plusStyle);
+                break;
+            case 2:
+                clone = ApplyCrosshair(CrosshairGroup, basicStyle);
+                clone.transform.position += new Vector3(0, 90, 0);
+                ApplyCrosshair(RealCrosshair, basicStyle);
+                break;
+            case 3:
+                clone = ApplyCrosshair(CrosshairGroup, shorterStyle);
+                clone.transform.position += new Vector3(0, 90, 0);
+                ApplyCrosshair(RealCrosshair, shorterStyle);
+                break;
+            default:
+                clone = ApplyCrosshair(CrosshairGroup, dotStyle);
+                clone.transform.position += new Vector3(0, 90, 0);
+                ApplyCrosshair(RealCrosshair, dotStyle);
+                break;
+        }
+    }
+
+    GameObject ApplyCrosshair(GameObject crosshair, GameObject newStyle)
+    {
+        foreach (Transform child in crosshair.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        GameObject clone = Instantiate(newStyle, new Vector3(0, 0, 1), Quaternion.identity);
+        clone.SetActive(true);
+        clone.transform.SetParent(crosshair.transform);
+        return clone;
+    }
+
     public void ChangeColor(int value)
     {
         switch (value)
