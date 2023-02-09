@@ -25,7 +25,7 @@ namespace Atone_UI
             else {
                 throw new System.ArgumentException ("busPath field must not be empty");
             }
-            
+
             bus.getVolume(out float volume);
             
             try {
