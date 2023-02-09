@@ -67,6 +67,7 @@ public class InputManager : Singleton<InputManager>
 
     void Update()
     {
+        if(!GameManager.Instance.isReady) return;
         #region UI
         // OPEN MENU
         if (menuOrReturn.GetAction(onController,isRightHanded))
