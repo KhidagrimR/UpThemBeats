@@ -237,7 +237,7 @@ public class PlayerController : MonoBehaviour
         target.z += distanceZ;
         isChangingLane = true;
 
-        Debug.Log("Target = " + target);
+        //Debug.Log("Target = " + target);
 
         transform.DOMove(target, changeLaneDuration).OnComplete(() =>
         {
