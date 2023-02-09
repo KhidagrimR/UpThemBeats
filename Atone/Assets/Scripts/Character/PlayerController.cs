@@ -11,26 +11,22 @@ public class PlayerController : MonoBehaviour
     Vector3 playerVelocity;
 
     [Header("Status (can't be modified in inspector)")]
-    [InspectorReadOnly]
-    public bool isGrounded;
-    [InspectorReadOnly]
-    public bool isSliding;
-
-    public int initHp;
-    [InspectorReadOnly]
-    public static int hp;
-
-    public float scoreMultipliyer;
-
-    [InspectorReadOnly]
-    public bool isChangingLane;
-    [InspectorReadOnly]
-    public bool isAbleToChangeLane = false;
+    [InspectorReadOnly] public bool isGrounded;
+    [InspectorReadOnly] public bool isSliding; // is the player sliding
+    [InspectorReadOnly] public bool isChangingLane; // momentum while player is moving from a lane to an other
+    [InspectorReadOnly] public bool isAbleToChangeLane = false;
+    [InspectorReadOnly] public bool canPlayerMove = false;
 
     [Header("Input parameters")]
     [SerializeField]
     bool isAutorunActivated = true;
 
+    [Header("Player Life and Score")]
+    public int initHp;
+    [InspectorReadOnly]
+    public static int hp;
+
+    public float scoreMultipliyer;
 
     [Header("Physics parameters")]
     [SerializeField]
@@ -79,10 +75,6 @@ public class PlayerController : MonoBehaviour
         startingPlayerY = transform.position.y;
         startingHeadPosition = playerCollider.transform.position;
 
-        InputManager.Instance.onDestroyWall += CheckIfWallToDestroy;
-        InputManager.Instance.onDestroyWall += CheckIfWall3ToDestroy;
-        InputManager.Instance.onDestroyBop += CheckIfBopToDestroy;
-        InputManager.Instance.onSlide += Slide;
         MusicManager.Instance.onMusicEnd += StopPlayer;
         MusicManager.Instance.onMusicStart += StartPlayer;
         MusicManager.beatUpdated += PlayPatinSounds;
@@ -98,10 +90,6 @@ public class PlayerController : MonoBehaviour
     {
         if (InputManager.Instance != null)
         {
-            InputManager.Instance.onDestroyWall -= CheckIfWallToDestroy;
-            InputManager.Instance.onDestroyBop -= CheckIfBopToDestroy;
-            InputManager.Instance.onDestroyWall -= CheckIfWall3ToDestroy;
-            InputManager.Instance.onSlide -= Slide;
             MusicManager.Instance.onMusicEnd -= StopPlayer;
             MusicManager.Instance.onMusicStart -= StartPlayer;
             MusicManager.beatUpdated -= PlayPatinSounds;
@@ -123,7 +111,7 @@ public class PlayerController : MonoBehaviour
     void PlayPatinSounds()
     {
         beat++;
-        if(beat%2==0)
+        if (beat % 2 == 0)
         {
             patinDroitFMODEmitter.Play();
         }
@@ -133,7 +121,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public bool canPlayerMove = false;
+
     // Update is called once per frame
     void Update()
     {
@@ -227,7 +215,7 @@ public class PlayerController : MonoBehaviour
 
         //Debug.Log("Has changed lane");
         Vector3 target;
-        if(PlayerManager.Instance.playerCurrentLane == 1)
+        if (PlayerManager.Instance.playerCurrentLane == 1)
             target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
         else
             target = new Vector3(lanePosition.x, lanePosition.y + 0.35f, transform.position.z);
@@ -263,7 +251,7 @@ public class PlayerController : MonoBehaviour
             print("cooldown");
     }
 
-private int switchArmsOnBopDestroy = 0;
+    private int switchArmsOnBopDestroy = 0;
     public void CheckIfBopToDestroy()
     {
         if (gameObjectsColliding.Count != 0)
