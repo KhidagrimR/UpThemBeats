@@ -238,9 +238,13 @@ public class PlayerController : MonoBehaviour
         if (gameObjectsColliding.Count != 0)
             for (int i = 0; i < gameObjectsColliding.Count; i += 1)
             {
-                if (gameObjectsColliding[i].GetComponent<WallTrigger>() != null)
+                if (gameObjectsColliding[i].TryGetComponent<WallTrigger>(out WallTrigger wall))
                 {
-                    gameObjectsColliding[i].GetComponent<WallTrigger>().WallAction();
+                    //Debug.Log("<color=green>there is a wall to destroy</color>");
+                    if(wall.isDestroy == true)
+                        return;
+
+                    wall.WallAction();
                     animationTrigger.PlayAnimation(AnimationEnum.BreakLeft);
                 }
                 else

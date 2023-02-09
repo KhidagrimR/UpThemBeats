@@ -223,7 +223,9 @@ public class PlayerManager : Singleton<PlayerManager>
     public void MakePlayerDestroyWall()
     {
         if (isPlayerAbleToDestroyObstacles)
+        {
             playerController.CheckIfWallToDestroy();
+        }
     }
 
     public void MakePlayerDestroyBop()
