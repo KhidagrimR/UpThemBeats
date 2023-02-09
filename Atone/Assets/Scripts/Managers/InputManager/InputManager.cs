@@ -70,6 +70,15 @@ public class InputManager : Singleton<InputManager>
         if (!GameManager.Instance.isReady) return;
         CheckIfControllerOrKeyBoardIsActive();
 
+        ReadUIInput();
+        
+        // si le jeu est en pause on ne prends pas les inputs de jeu du joueur
+        if (GameManager.Instance.isGameCurrentlyPaused) return;
+
+        ReadGameInput();
+    }
+    void ReadUIInput()
+    {
         #region UI
         // OPEN MENU
         if (menuOrReturn.GetAction(onController, isRightHanded))
@@ -79,6 +88,9 @@ public class InputManager : Singleton<InputManager>
             onMenu?.Invoke(GameManager.Instance.isGameCurrentlyPaused);
         }
         #endregion
+    }
+    void ReadGameInput()
+    {
         #region Slide
         if (slide.GetActionReleased(onController, isRightHanded))
         {
@@ -212,9 +224,7 @@ public class InputManager : Singleton<InputManager>
             if (onBendReleaseLane != null)
                 onBendReleaseLane(2);
         }
-
         #endregion
-
     }
 
     public void CheckIfControllerOrKeyBoardIsActive()
