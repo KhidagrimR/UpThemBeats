@@ -222,14 +222,14 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void MakePlayerDestroyWall()
     {
-
-        playerController.CheckIfWallToDestroy();
+        if (isPlayerAbleToDestroyObstacles)
+            playerController.CheckIfWallToDestroy();
     }
 
     public void MakePlayerDestroyBop()
     {
-
-        playerController.CheckIfBopToDestroy();
+        if (isPlayerAbleToDestroyObstacles)
+            playerController.CheckIfBopToDestroy();
     }
 
 
