@@ -259,6 +259,9 @@ public class PlayerController : MonoBehaviour
             {
                 if (gameObjectsColliding[i].TryGetComponent<BopTriggerDestruction>(out BopTriggerDestruction bop))
                 {
+                    if(bop.isDestroy == true) 
+                        return;
+                    
                     bop.BopAction();
 
                     switchArmsOnBopDestroy++;
