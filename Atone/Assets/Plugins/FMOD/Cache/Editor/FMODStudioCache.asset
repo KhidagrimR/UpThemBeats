@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Test_Julien.strings.bank
   Name: Test_Julien.strings
   StudioPath: bank:/Test_Julien.strings
-  lastModified: 638114568805207992
+  lastModified: 638116167902115297
   FileSizes:
   - Name: 
-    Value: 2488
+    Value: 2588
   Exists: 1
 --- !u!114 &-9123113281869099964
 MonoBehaviour:
@@ -798,7 +798,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Joan.bank
   Name: Joan
   StudioPath: bank:/Joan
-  lastModified: 638114568801656743
+  lastModified: 638116167894259160
   FileSizes: []
   Exists: 1
 --- !u!114 &-4676807402692621656
@@ -988,10 +988,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638114568801686586
+  lastModified: 638116167894374522
   FileSizes:
   - Name: 
-    Value: 2488
+    Value: 2588
   Exists: 1
 --- !u!114 &-3007987691698194044
 MonoBehaviour:
@@ -1008,7 +1008,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/ObstacleJauneSfx.bank
   Name: ObstacleJauneSfx
   StudioPath: bank:/ObstacleJauneSfx
-  lastModified: 638114568801846165
+  lastModified: 638116167895287442
   FileSizes: []
   Exists: 1
 --- !u!114 &-2663715843975873444
@@ -1143,7 +1143,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638114568801676613
+  lastModified: 638116167894344468
   FileSizes: []
   Exists: 1
 --- !u!114 &-2274248914396930888
@@ -1336,6 +1336,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-1251666980650191397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Drone/DestructionDrone
+  m_EditorClassIdentifier: 
+  Path: event:/Drone/DestructionDrone
+  Guid:
+    Data1: 1301120524
+    Data2: 1279280461
+    Data3: -1159902533
+    Data4: -1295584922
+  Banks:
+  - {fileID: -3007987691698194044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 657
 --- !u!114 &-1098933870032501919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1534,8 +1561,6 @@ MonoBehaviour:
   - {fileID: 5492032868088131947}
   - {fileID: -4857691866236130758}
   EditorEvents:
-  - {fileID: 8908114330623732196}
-  - {fileID: 8448943385599451300}
   - {fileID: 3166918089309488746}
   - {fileID: -7258516227499105116}
   - {fileID: 6685636347830518904}
@@ -1559,6 +1584,10 @@ MonoBehaviour:
   - {fileID: 5147220154105800432}
   - {fileID: 7954256071996527103}
   - {fileID: 4595629300395052056}
+  - {fileID: -1251666980650191397}
+  - {fileID: 4142570734394891385}
+  - {fileID: 502440571462945120}
+  - {fileID: 3259644504092058334}
   EditorParameters: []
   MasterBanks:
   - {fileID: -2429487259836105459}
@@ -1566,7 +1595,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -3105249576905893823}
   - {fileID: -9170264160750687457}
-  cacheTime: 638114568805810545
+  cacheTime: 638116167903014582
   cacheVersion: 131593
 --- !u!114 &128787778161093764
 MonoBehaviour:
@@ -1703,6 +1732,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 800
+--- !u!114 &502440571462945120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Drone/LoadDataDrone
+  m_EditorClassIdentifier: 
+  Path: event:/Drone/LoadDataDrone
+  Guid:
+    Data1: -1516348792
+    Data2: 1253474633
+    Data3: 1939804592
+    Data4: 308967838
+  Banks:
+  - {fileID: -3007987691698194044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 820
 --- !u!114 &835729658450254591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1792,7 +1848,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/ObstacleRouge_Sfx.bank
   Name: ObstacleRouge_Sfx
   StudioPath: bank:/ObstacleRouge_Sfx
-  lastModified: 638114568802023874
+  lastModified: 638116167895570552
   FileSizes: []
   Exists: 1
 --- !u!114 &1237206563009061995
@@ -1882,7 +1938,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Sequences.bank
   Name: Sequences
   StudioPath: bank:/Sequences
-  lastModified: 638114568804191630
+  lastModified: 638116167900528028
   FileSizes: []
   Exists: 1
 --- !u!114 &2152735724800394252
@@ -2256,6 +2312,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1000
+--- !u!114 &3259644504092058334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Drone/ValidationDataDrone
+  m_EditorClassIdentifier: 
+  Path: event:/Drone/ValidationDataDrone
+  Guid:
+    Data1: 1077599965
+    Data2: 1079486938
+    Data3: 1161344426
+    Data4: -1132198898
+  Banks:
+  - {fileID: -3007987691698194044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 544
 --- !u!114 &3497395012635303353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2487,6 +2570,33 @@ MonoBehaviour:
   lastModified: 638113796508182351
   FileSizes: []
   Exists: 1
+--- !u!114 &4142570734394891385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Drone/ArrivalDrone
+  m_EditorClassIdentifier: 
+  Path: event:/Drone/ArrivalDrone
+  Guid:
+    Data1: -178466941
+    Data2: 1332077780
+    Data3: -810457464
+    Data4: -78648475
+  Banks:
+  - {fileID: -3007987691698194044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 375
 --- !u!114 &4528718586637830654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2630,7 +2740,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Test_Julien.bank
   Name: Test_Julien
   StudioPath: bank:/Test_Julien
-  lastModified: 638114568805197745
+  lastModified: 638116167902064801
   FileSizes: []
   Exists: 1
 --- !u!114 &5147220154105800432
@@ -2702,7 +2812,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Thomas2.bank
   Name: Thomas2
   StudioPath: bank:/Thomas2
-  lastModified: 638114568805810545
+  lastModified: 638116167903014582
   FileSizes: []
   Exists: 1
 --- !u!114 &5492032868088131947
@@ -2720,7 +2830,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Bank A.bank
   Name: Bank A
   StudioPath: bank:/Bank A
-  lastModified: 638114568801467178
+  lastModified: 638116167893733555
   FileSizes: []
   Exists: 1
 --- !u!114 &5534308404263955520
@@ -2765,7 +2875,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Thomas.bank
   Name: Thomas
   StudioPath: bank:/Thomas
-  lastModified: 638114568805531055
+  lastModified: 638116167902756101
   FileSizes: []
   Exists: 1
 --- !u!114 &5633078502916587577
@@ -3268,33 +3378,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &8448943385599451300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Drone/DroneStart
-  m_EditorClassIdentifier: 
-  Path: event:/Drone/DroneStart
-  Guid:
-    Data1: -709803364
-    Data2: 1189752384
-    Data3: 664677562
-    Data4: -1436655684
-  Banks:
-  - {fileID: -3007987691698194044}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &8463965488517444814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3322,33 +3405,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 30000
---- !u!114 &8908114330623732196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Drone/DroneDestruction
-  m_EditorClassIdentifier: 
-  Path: event:/Drone/DroneDestruction
-  Guid:
-    Data1: 1301120524
-    Data2: 1279280461
-    Data3: -1159902533
-    Data4: -1295584922
-  Banks:
-  - {fileID: -3007987691698194044}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3000
 --- !u!114 &8958353659485491629
 MonoBehaviour:
   m_ObjectHideFlags: 0
