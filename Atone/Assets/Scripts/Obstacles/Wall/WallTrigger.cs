@@ -13,12 +13,19 @@ public class WallTrigger : MonoBehaviour
 
     public int pointObstacle;
 
+    public Renderer renderer;
+    public Color color;
+    public float intensity;
+
     void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag(PlayerManager.PLAYER_TAG)){
             isTrigger = true;
             //visualWall.GetComponent<MeshRenderer>().material = materials[1];
             PlayerController.gameObjectsColliding.Add(gameObject);
+            renderer.materials[0].color=color*Mathf.LinearToGammaSpace(intensity);
+            renderer.materials[4].color = color * Mathf.LinearToGammaSpace(intensity);
+            renderer.materials[6].color = color * Mathf.LinearToGammaSpace(intensity);
         }
     }
 
@@ -28,7 +35,10 @@ public class WallTrigger : MonoBehaviour
             PlayerController.gameObjectsColliding.Remove(gameObject);
             isTrigger = false;
             //if (!isDestroy)
-                //visualWall.GetComponent<MeshRenderer>().material = materials[0];
+            //visualWall.GetComponent<MeshRenderer>().material = materials[0];
+            renderer.materials[0].color = color;
+            renderer.materials[4].color = color;
+            renderer.materials[6].color = color;
         }
     }
 

@@ -73,7 +73,6 @@ public class AnimationTrigger : MonoBehaviour
 
     public void PlayVFX()
     {
-        Debug.Log("VFX");
         vfxArrival.Play();
     }
 
