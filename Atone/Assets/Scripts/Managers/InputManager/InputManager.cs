@@ -8,7 +8,7 @@ public class InputManager : Singleton<InputManager>
 {
     public static bool onController = false;
 
-    public static bool isRightHanded = false;
+    public bool isRightHanded = true;
     [Header("Pause menu / return")]
 
     public PlayerAction menuOrReturn;
@@ -67,17 +67,32 @@ public class InputManager : Singleton<InputManager>
 
     void Update()
     {
+        if (!GameManager.Instance.isReady) return;
+        CheckIfControllerOrKeyBoardIsActive();
+
+        ReadUIInput();
+        
+        // si le jeu est en pause on ne prends pas les inputs de jeu du joueur
+        if (GameManager.Instance.isGameCurrentlyPaused) return;
+
+        ReadGameInput();
+    }
+    void ReadUIInput()
+    {
         #region UI
         // OPEN MENU
-        if (menuOrReturn.GetAction(onController,isRightHanded))
+        if (menuOrReturn.GetAction(onController, isRightHanded))
         {
             // Current setup is hacky, need to change it later. Might need to add a future check to verify that we are not in the main menu scene            
             GameManager.Instance.TogglePauseState();
             onMenu?.Invoke(GameManager.Instance.isGameCurrentlyPaused);
         }
         #endregion
+    }
+    void ReadGameInput()
+    {
         #region Slide
-        if(slide.GetActionReleased(onController, isRightHanded))
+        if (slide.GetActionReleased(onController, isRightHanded))
         {
             if (onSlide != null)
                 onSlide(false);
@@ -89,43 +104,48 @@ public class InputManager : Singleton<InputManager>
             return;
         }
         #endregion
-        CheckIfControllerOrKeyBoardIsActive();
+
         //print("onController" + onController);
         #region Destroy Obstacle
         // DESTROY WALL
         if (destroyWallAction.GetAction(onController, isRightHanded))
+        {
             if (onDestroyWall != null)
+            {
+                //Debug.Log("<color=green>Input Pressed for destroy wall</color>");
                 onDestroyWall();
-
+            }
+        }
         // DESTROY BOP
         if (destroyBopAction.GetAction(onController, isRightHanded))
+        {
             if (onDestroyBop != null)
             {
                 onDestroyBop();
-                Debug.Log("player pos = " + PlayerManager.Instance.playerController.transform.position);
-
+                //Debug.Log("player pos = " + PlayerManager.Instance.playerController.transform.position);
             }
+        }
 
         #endregion
         #region switch lane
         // SWITCH LANE
-        if (goToLeftLane.GetAction(onController,isRightHanded) && bendToLeftLane.GetActionPressed(onController,isRightHanded))
+        if (goToLeftLane.GetAction(onController, isRightHanded) && bendToLeftLane.GetActionPressed(onController, isRightHanded))
             if (onGoLeftLane != null)
                 onGoLeftLane();
 
-        if (goToRightLane.GetAction(onController,isRightHanded) && bendToRightLane.GetActionPressed(onController,isRightHanded))
+        if (goToRightLane.GetAction(onController, isRightHanded) && bendToRightLane.GetActionPressed(onController, isRightHanded))
             if (onGoRightLane != null)
                 onGoRightLane();
         #endregion
         #region Bend
 
-        bool rightPressed = bendToRightLane.GetAction(onController,isRightHanded);
-        bool rightMaintained = bendToRightLane.GetActionPressed(onController,isRightHanded);
-        bool rightReleased = bendToRightLane.GetActionReleased(onController,isRightHanded);
+        bool rightPressed = bendToRightLane.GetAction(onController, isRightHanded);
+        bool rightMaintained = bendToRightLane.GetActionPressed(onController, isRightHanded);
+        bool rightReleased = bendToRightLane.GetActionReleased(onController, isRightHanded);
 
-        bool leftPressed = bendToLeftLane.GetAction(onController,isRightHanded);
-        bool leftMaintained = bendToLeftLane.GetActionPressed(onController,isRightHanded);
-        bool leftReleased = bendToLeftLane.GetActionReleased(onController,isRightHanded);
+        bool leftPressed = bendToLeftLane.GetAction(onController, isRightHanded);
+        bool leftMaintained = bendToLeftLane.GetActionPressed(onController, isRightHanded);
+        bool leftReleased = bendToLeftLane.GetActionReleased(onController, isRightHanded);
 
         if (rightPressed) rightPressedTime = Time.time;
         if (leftPressed) leftPressedTime = Time.time;
@@ -204,12 +224,11 @@ public class InputManager : Singleton<InputManager>
             if (onBendReleaseLane != null)
                 onBendReleaseLane(2);
         }
-
         #endregion
-
     }
 
-    public void CheckIfControllerOrKeyBoardIsActive() {
+    public void CheckIfControllerOrKeyBoardIsActive()
+    {
         CheckIfAxisIsTrigger();
         foreach (KeyCode kc in Enum.GetValues(typeof(KeyCode)))
         {
@@ -227,9 +246,10 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
-    public void CheckIfAxisIsTrigger() {
+    public void CheckIfAxisIsTrigger()
+    {
         if (Input.GetAxis("StickleftHorizontal") != 0 || Input.GetAxis("StickleftVertical") != 0 || Input.GetAxis("ShareTriggerRTLT") != 0 ||
-            Input.GetAxis("RT") != 0 || Input.GetAxis("LT") != 0 || Input.GetAxis("StickrightHorizontal") != 0 || 
+            Input.GetAxis("RT") != 0 || Input.GetAxis("LT") != 0 || Input.GetAxis("StickrightHorizontal") != 0 ||
             Input.GetAxis("StickrightHorizontal") != 0 || Input.GetAxis("DirectionalCrossHorizontal") != 0 || Input.GetAxis("DirectionalCrossVertical") != 0)
             onController = true;
     }

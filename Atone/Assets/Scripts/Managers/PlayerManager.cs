@@ -23,13 +23,34 @@ public class PlayerManager : Singleton<PlayerManager>
         get { return _isReady; }
     }
 
+    #region getter on player status
     public bool isPlayerAbleToChangeLane
     {
         get
         {
-            return (playerController.isAbleToChangeLane || playerCurrentLane != 1); // 1 => center lane
+            // le joueur peut changer LIBREMENT de Lane s'il n'est pas déjà en train de changer de lane OU s'il n'est pas sur la lane centrale
+            return ((playerController.isAbleToChangeLane || playerCurrentLane != 1) && !playerController.isSliding); // 1 => center lane
         }
     }
+    public bool isPlayerAbleToSlide
+    {
+        get
+        {
+            // le joueur peut Slider tant qu'il n'est pas en train de courir sur un mur et en train de changer de lane
+            return (!playerController.isChangingLane && playerCurrentLane == 1); // 1 => center lane
+        }
+    }
+
+    public bool isPlayerAbleToDestroyObstacles
+    {
+        get
+        {
+            // le joueur peut détruire un obstacle s' il, n'est pas en train de slider ou de wall run
+            return (!playerController.isChangingLane && playerCurrentLane == 1 && !playerController.isSliding); // 1 => center lane
+        }
+    }
+
+    #endregion
 
     public Transform[] lanes;
 
@@ -59,6 +80,11 @@ public class PlayerManager : Singleton<PlayerManager>
         InputManager.Instance.onBendLane += BendPlayerTowardDirection;
         InputManager.Instance.onBendReleaseLane += ReleasePlayerArmAnimation;
 
+        InputManager.Instance.onDestroyWall += MakePlayerDestroyWall;
+        InputManager.Instance.onDestroyBop += MakePlayerDestroyBop;
+
+        InputManager.Instance.onSlide += MakePlayerSlide;
+
         playerCurrentLane = 1;
         scoreSequence = 0;
         scoreBoard = new Dictionary<string, Dictionary<string, float>>();
@@ -71,6 +97,11 @@ public class PlayerManager : Singleton<PlayerManager>
         {
             InputManager.Instance.onGoLeftLane -= MovePlayerToLeftLane;
             InputManager.Instance.onGoRightLane -= MovePlayerToRightLane;
+
+            InputManager.Instance.onSlide -= MakePlayerSlide;
+
+            InputManager.Instance.onDestroyWall -= MakePlayerDestroyWall;
+            InputManager.Instance.onDestroyBop -= MakePlayerDestroyBop;
 
             InputManager.Instance.onBendLane -= BendPlayerTowardDirection;
             InputManager.Instance.onBendReleaseLane -= ReleasePlayerArmAnimation;
@@ -187,6 +218,33 @@ public class PlayerManager : Singleton<PlayerManager>
             playerController.BendOnLeft();
         }
         */
+    }
+
+    public void MakePlayerDestroyWall()
+    {
+        if (isPlayerAbleToDestroyObstacles)
+        {
+            playerController.CheckIfWallToDestroy();
+        }
+    }
+
+    public void MakePlayerDestroyBop()
+    {
+        if (isPlayerAbleToDestroyObstacles)
+            playerController.CheckIfBopToDestroy();
+    }
+
+
+    public void MakePlayerSlide(bool pIsSliding)
+    {
+        // if the player is NOT sliding but the button is released (means that we want the player to stand up while he is already)
+        // it may trigger the animator when we don't want
+        // disallow that action instead
+        if (pIsSliding == false && !playerController.isSliding)
+            return;
+
+        if (isPlayerAbleToSlide)
+            playerController.Slide(pIsSliding);
     }
 
     public void BendPlayerTowardDirection(int direction)
