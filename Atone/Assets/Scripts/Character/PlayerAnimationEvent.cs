@@ -15,12 +15,31 @@ public class PlayerAnimationEvent : MonoBehaviour
     public VisualEffect VFXWallrunRight;
     public VisualEffect VFXBreakLeft;
     public VisualEffect VFXBreakRight;
-
+    public VisualEffect VFXLaneSwitchLeft;
+    public VisualEffect VFXLaneSwitchRight;
+    public VisualEffect VFXSpeedLines;
     public PlayerController playerController;
 
     public void VFXWallrunLeftTrigger()
     {
         VFXWallrunLeft.Play();
+        VFXSpeedLines.Play();
+        VFXLaneSwitchLeft.Stop();
+
+    }
+
+    public void VFXWallrunRightTrigger()
+    {
+        VFXWallrunRight.Play();
+        VFXSpeedLines.Play();
+        VFXLaneSwitchRight.Stop();
+    }
+
+    public void VFXWallrunStopTrigger()
+    {
+        VFXWallrunLeft.Stop();
+        VFXWallrunRight.Stop();
+        VFXSpeedLines.Play();
     }
 
     public void VFXSlideTrigger()
@@ -28,19 +47,42 @@ public class PlayerAnimationEvent : MonoBehaviour
         VFXSlide.Play();
     }
 
-    public void VFXWallrunRightTrigger()
-    {
-        VFXWallrunRight.Play();
-    }
-
     public void VFXSlideStopTrigger()
     {
         VFXSlide.Stop();
     }
 
-    public void VFXWallrunStopTrigger()
+    public void VFXSnapLeftTrigger()
     {
-        VFXWallrunLeft.Stop();
-        VFXWallrunRight.Stop();
+        VFXSnapLeft.Play();
+    }
+
+    public void VFXSnapRightTrigger()
+    {
+        VFXSnapRight.Play();
+    }
+
+    public void VFXBreakLeftTrigger()
+    {
+
+    }
+
+    public void VFXBreakRightTrigger()
+    {
+
+    }
+
+    public void VFXLaneSwitchLeftTrigger()
+    {
+        VFXSpeedLines.Stop();
+        VFXLaneSwitchLeft.Play();
+        Debug.Log("SwitchLeftFVX");
+    }
+
+    public void VFXLaneSwitchRightTrigger()
+    {
+        VFXSpeedLines.Stop();
+        VFXLaneSwitchRight.Play();
+        Debug.Log("SwitchRightFVX");
     }
 }
