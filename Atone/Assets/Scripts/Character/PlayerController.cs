@@ -225,7 +225,7 @@ public class PlayerController : MonoBehaviour
         target.z += distanceZ;
         isChangingLane = true;
 
-        Debug.Log("Target = " + target);
+        //Debug.Log("Target = " + target);
 
         transform.DOMove(target, changeLaneDuration).OnComplete(() =>
         {
@@ -233,6 +233,8 @@ public class PlayerController : MonoBehaviour
             animationTrigger.PlayAnimation(AnimationEnum.JumpStop);
         });
     }
+
+    private int switchArmsOnWallDestroy = 0;
     public void CheckIfWallToDestroy()
     {
         if (gameObjectsColliding.Count != 0)
@@ -246,6 +248,12 @@ public class PlayerController : MonoBehaviour
 
                     wall.WallAction();
                     animationTrigger.PlayAnimation(AnimationEnum.BreakLeft);
+
+                    switchArmsOnWallDestroy++;
+                    if (switchArmsOnBopDestroy % 2 == 0)
+                        animationTrigger.PlayAnimation(AnimationEnum.BreakLeft);
+                    else
+                        animationTrigger.PlayAnimation(AnimationEnum.BreakRight);
                 }
                 else
                     print("coolDown - mur raté PC");
@@ -334,7 +342,6 @@ public class PlayerController : MonoBehaviour
             });
 
             animationTrigger.PlayAnimation(AnimationEnum.SlideStart);
-
             isSliding = true;
         }
         else
@@ -347,7 +354,6 @@ public class PlayerController : MonoBehaviour
             });
 
             animationTrigger.PlayAnimation(AnimationEnum.SlideStop);
-
             isSliding = false;
         }
     }

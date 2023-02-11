@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using UnityEngine.VFX;
 
 public class BopTriggerDestruction : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class BopTriggerDestruction : MonoBehaviour
     public Material materialTrigger;
     public Material initMaterial;
 
-    public ParticleSystem bopExplosion;
+    public VisualEffect bopExplosion;
     public ParticleSystem bopBreakable;
 
     public int pointObstacle;

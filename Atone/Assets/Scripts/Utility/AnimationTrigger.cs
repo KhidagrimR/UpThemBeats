@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class AnimationTrigger : MonoBehaviour
 {
     public Animator animator;
+
+    public VisualEffect vfxArrival;
 
     // public enum AnimationEnum {Spawn, Jump, Death, Hit, Idle, Run, Disactivated, LeftRun, RightRun, LeftSnapPrepare };
     // Déplacé hors de la classe (voir plus bas) pour un accès plus facile
@@ -67,4 +70,11 @@ public class AnimationTrigger : MonoBehaviour
         // }
         
     }
+
+    public void PlayVFX()
+    {
+        vfxArrival.Play();
+    }
+
+
 }
