@@ -181,6 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1667177801536740941}
+  - component: {fileID: 6336221231910144301}
   m_Layer: 0
   m_Name: SFXManager
   m_TagString: Untagged
@@ -202,9 +203,27 @@ Transform:
   m_Children:
   - {fileID: 1516651927499153458}
   - {fileID: 3724902406817568853}
+  - {fileID: 8210948682254969316}
+  - {fileID: 7461552266905550853}
   m_Father: {fileID: 3607614243795058292}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6336221231910144301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829171910600944376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3668297236975d40b66a420078ad318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrivalSound: {fileID: 1059394212308177841}
+  destructionSound: {fileID: 628254861632640302}
+  loadDataSound: {fileID: 4634878582972403885}
+  validationDataSound: {fileID: 5270740014780672865}
 --- !u!1 &2438747377508214072
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +376,7 @@ MonoBehaviour:
   bopBreakable: {fileID: 8319762258939847904}
   pointObstacle: 2
   bopVisuel: {fileID: 3012431036483725529}
-  SFXManager: {fileID: 0}
+  SFXManager: {fileID: 829171910600944376}
 --- !u!1 &3607614243795058289
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +412,68 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4708080484268095106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8210948682254969316}
+  - component: {fileID: 4634878582972403885}
+  m_Layer: 0
+  m_Name: SFXLoadData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8210948682254969316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4708080484268095106}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1667177801536740941}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4634878582972403885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4708080484268095106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1516348792
+      Data2: 1253474633
+      Data3: 1939804592
+      Data4: 308967838
+    Path: event:/Drone/LoadDataDrone
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &5798475906683555480
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,7 +618,7 @@ MonoBehaviour:
   bopVisuel: {fileID: 3012431036483725529}
   arrivalPointBop: {fileID: 5798475906683555480}
   bopTrigger: {fileID: 3569183565070336910}
-  SFXManager: {fileID: 0}
+  SFXManager: {fileID: 829171910600944376}
   countDownText: {fileID: 3285356256558224025}
   travelTimeToCenter: 3
   timeStayCenter: 0.25
@@ -5456,6 +5537,68 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &7578057502652302439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7461552266905550853}
+  - component: {fileID: 5270740014780672865}
+  m_Layer: 0
+  m_Name: SFXValidationData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7461552266905550853
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7578057502652302439}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1667177801536740941}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5270740014780672865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7578057502652302439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1077599965
+      Data2: 1079486938
+      Data3: 1161344426
+      Data4: -1132198898
+    Path: event:/Drone/ValidationDataDrone
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &8219678744443872161
 GameObject:
   m_ObjectHideFlags: 0
