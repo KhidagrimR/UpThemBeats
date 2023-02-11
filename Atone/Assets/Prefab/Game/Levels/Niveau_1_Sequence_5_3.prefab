@@ -512,7 +512,7 @@ MonoBehaviour:
       Data2: 1275522095
       Data3: -427338624
       Data4: -1455347813
-    Path: event:/Sequence/Sequence_05_3
+    Path: 
 --- !u!1 &1827712852192652097
 GameObject:
   m_ObjectHideFlags: 0
@@ -3425,6 +3425,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1827712853011844797}
     m_Modifications:
+    - target: {fileID: 628254861632640302, guid: 43601fbef4cb33a4789171079f421ec0, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/Drone/DroneDestruction
+      objectReference: {fileID: 0}
     - target: {fileID: 3607614243795058289, guid: 43601fbef4cb33a4789171079f421ec0, type: 3}
       propertyPath: m_Name
       value: BopObstacleLeft

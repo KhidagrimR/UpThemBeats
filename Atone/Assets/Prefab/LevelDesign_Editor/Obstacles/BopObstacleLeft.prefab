@@ -51,7 +51,7 @@ MonoBehaviour:
       Data2: 1279280461
       Data3: -1159902533
       Data4: -1295584922
-    Path: event:/Drone/DroneDestruction
+    Path: event:/Drone/DestructionDrone
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -357,8 +357,7 @@ MonoBehaviour:
   bopBreakable: {fileID: 8319762258939847904}
   pointObstacle: 2
   bopVisuel: {fileID: 3012431036483725529}
-  SFXArrival: {fileID: 1059394212308177841}
-  SFXDestroy: {fileID: 628254861632640302}
+  SFXManager: {fileID: 0}
 --- !u!1 &3607614243795058289
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +537,7 @@ MonoBehaviour:
   bopVisuel: {fileID: 3012431036483725529}
   arrivalPointBop: {fileID: 5798475906683555480}
   bopTrigger: {fileID: 3569183565070336910}
-  SFXArrival: {fileID: 1059394212308177841}
+  SFXManager: {fileID: 0}
   countDownText: {fileID: 3285356256558224025}
   travelTimeToCenter: 3
   timeStayCenter: 0.25
@@ -5504,11 +5503,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -709803364
-      Data2: 1189752384
-      Data3: 664677562
-      Data4: -1436655684
-    Path: event:/Drone/DroneStart
+      Data1: -178466941
+      Data2: 1332077780
+      Data3: -810457464
+      Data4: -78648475
+    Path: event:/Drone/ArrivalDrone
   Event: 
   PlayEvent: 0
   StopEvent: 0
