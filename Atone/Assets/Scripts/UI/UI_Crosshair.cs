@@ -112,9 +112,7 @@ public class UI_Crosshair : MonoBehaviour
         foreach (Image child in elements)
         {
             Color newColor = new Color(child.color.r, child.color.g, child.color.b, value);
-
             child.color = newColor;
-            print(child.color.a);
         }
     }
 }
