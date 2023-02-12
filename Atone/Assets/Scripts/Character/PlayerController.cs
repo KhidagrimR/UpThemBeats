@@ -12,7 +12,28 @@ public class PlayerController : MonoBehaviour
 
     [Header("Status (can't be modified in inspector)")]
     [InspectorReadOnly] public bool isGrounded;
-    [InspectorReadOnly] public bool isSliding; // is the player sliding
+    [InspectorReadOnly] public bool _isSliding; // is the player sliding
+    public bool isSliding
+    {
+        get { return _isSliding; }
+        set {
+
+            // code for trigger event here
+            // trigger once on true
+            if (_isSliding != value)
+            {
+                if (value == true)
+                {
+                    playerAnimationEvent.VFXSlideTrigger();
+                }
+                else
+                {
+                    playerAnimationEvent.VFXSlideStopTrigger();
+                }
+            }
+            _isSliding = value;
+        }
+    }
     [InspectorReadOnly] public bool isChangingLane; // momentum while player is moving from a lane to an other
     [InspectorReadOnly] public bool isAbleToChangeLane = false;
     [InspectorReadOnly] public bool canPlayerMove = false;
@@ -64,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     public static List<GameObject> gameObjectsColliding;
     public static Vector3 checkpoint;
-
+    public PlayerAnimationEvent playerAnimationEvent;
     // Start is called before the first frame update
     public void Start()
     {
@@ -250,7 +271,7 @@ public class PlayerController : MonoBehaviour
                     animationTrigger.PlayAnimation(AnimationEnum.BreakLeft);
 
                     switchArmsOnWallDestroy++;
-                    if (switchArmsOnBopDestroy % 2 == 0)
+                    if (switchArmsOnWallDestroy % 2 == 0)
                         animationTrigger.PlayAnimation(AnimationEnum.BreakLeft);
                     else
                         animationTrigger.PlayAnimation(AnimationEnum.BreakRight);
@@ -335,6 +356,7 @@ public class PlayerController : MonoBehaviour
             // se pencher / glisser 
             // baisser la tête
             //playerCollider.transform.position = new Vector3(playerCollider.transform.position.x, headYMovement, playerCollider.transform.position.z);
+            if (isSliding) return;
 
             DOVirtual.Float(playerCollider.transform.position.x, headYMovement, headYMovementTween, (float x) =>
             {

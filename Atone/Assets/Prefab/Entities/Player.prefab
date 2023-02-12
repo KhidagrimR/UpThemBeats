@@ -892,7 +892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
-  isSliding: 0
+  _isSliding: 0
   isChangingLane: 0
   isAbleToChangeLane: 0
   canPlayerMove: 0
@@ -908,6 +908,7 @@ MonoBehaviour:
   playerCollider: {fileID: 1528257034252375122}
   patinDroitFMODEmitter: {fileID: 1735748940153194224}
   patinGaucheFMODEmitter: {fileID: 4581836104144927275}
+  playerAnimationEvent: {fileID: 1919678360889752193}
   headYMovement: 0.6
   headYMovementTween: 0.3
 --- !u!143 &4322100284170343566
@@ -3683,6 +3684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6047485809841884324}
+  vfxArrival: {fileID: 0}
 --- !u!114 &1919678360889752193
 MonoBehaviour:
   m_ObjectHideFlags: 0
