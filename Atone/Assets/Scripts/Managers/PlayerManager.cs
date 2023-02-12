@@ -153,9 +153,6 @@ public class PlayerManager : Singleton<PlayerManager>
             if (gameObjectTriggerChangeLane != null)
                 IncreaseScore(gameObjectTriggerChangeLane.GetComponent<BoxCollider>().bounds.extents.z, gameObjectTriggerChangeLane.transform.position.z, gameObjectTriggerChangeLane.pointObstacle);
 
-            if (playerCurrentLane != 1)
-                playerController.animationTrigger.PlayAnimation(AnimationEnum.Jump);
-
             playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
             playerController.ChangeLane(GetLanePosition(playerCurrentLane));
         }
@@ -170,9 +167,6 @@ public class PlayerManager : Singleton<PlayerManager>
 
             if (gameObjectTriggerChangeLane != null)
                 IncreaseScore(gameObjectTriggerChangeLane.GetComponent<BoxCollider>().bounds.extents.z, gameObjectTriggerChangeLane.transform.position.z, gameObjectTriggerChangeLane.pointObstacle);
-
-            if (playerCurrentLane != 1)
-                playerController.animationTrigger.PlayAnimation(AnimationEnum.Jump);
 
             playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
             playerController.ChangeLane(GetLanePosition(playerCurrentLane));
@@ -293,7 +287,6 @@ public class PlayerManager : Singleton<PlayerManager>
                 });
                 //cvm.m_Lens.Dutch = -20;
                 playerHead.localPosition = new Vector3(1, playerHead.localPosition.y, playerHead.localPosition.z);
-                playerController.animationTrigger.PlayAnimation(AnimationEnum.LeftRun);    // AnimationTrigger.AnimationEnum.LeftRun
                 break;
 
             case 1: // centre
@@ -303,7 +296,6 @@ public class PlayerManager : Singleton<PlayerManager>
                     cvm.m_Lens.Dutch = x;
                 });
                 playerHead.localPosition = new Vector3(0, playerHead.localPosition.y, playerHead.localPosition.z);
-                playerController.animationTrigger.PlayAnimation(AnimationEnum.Run);
                 break;
 
             case 2: // droite
@@ -313,7 +305,6 @@ public class PlayerManager : Singleton<PlayerManager>
                     cvm.m_Lens.Dutch = x;
                 });
                 playerHead.localPosition = new Vector3(-1, playerHead.localPosition.y, playerHead.localPosition.z);
-                playerController.animationTrigger.PlayAnimation(AnimationEnum.RightRun);
                 break;
         }
 
