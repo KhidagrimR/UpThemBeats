@@ -9,11 +9,11 @@ public class LaunchTutorial : MonoBehaviour
     public Sprite spriteKeyController;
     public string textAfterImage;
     public float timeToStayToScreen;
-    public bool timer;
+    public bool timerWithText;
 
     public void OnTriggerEnter(Collider other) {
         if (other.name == "Player") {
-            StartCoroutine(Tutorial.Instance.LaunchTutorial(timeToStayToScreen, textBeforeImage, spriteKeyKeyBoard, spriteKeyController, textAfterImage, timer));
+            StartCoroutine(Tutorial.Instance.LaunchTutorial(timeToStayToScreen, textBeforeImage, spriteKeyKeyBoard, spriteKeyController, textAfterImage, timerWithText));
         }
     }
 }

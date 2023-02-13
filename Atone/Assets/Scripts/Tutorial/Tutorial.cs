@@ -14,10 +14,10 @@ public class Tutorial : Singleton<Tutorial>
     public TextMeshProUGUI m_textTimer;
     public GameObject container;
     public GameObject containerText;
-    public IEnumerator LaunchTutorial(float timeToStayToScreen, string textBeforeImage, Sprite spriteKeyKeyBoard, Sprite spriteKeyController, string textAfterImage, bool timer) {
+    public IEnumerator LaunchTutorial(float timeToStayToScreen, string textBeforeImage, Sprite spriteKeyKeyBoard, Sprite spriteKeyController, string textAfterImage, bool timerWithText) {
         container.SetActive(true);
-        if (timer){
-            StartCoroutine(LaunchTimer());
+        StartCoroutine(LaunchTimer());
+        if (!timerWithText){
             yield return new WaitForSeconds(2.25f);
         }
         containerText.SetActive(true);
