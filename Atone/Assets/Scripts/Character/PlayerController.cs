@@ -379,4 +379,37 @@ public class PlayerController : MonoBehaviour
             isSliding = false;
         }
     }
+
+    public IEnumerator CheckIfPlayerCanStayOnWall()
+    {
+        while(PlayerManager.Instance.playerCurrentLane != 1)
+        {
+            
+            yield return new WaitForSeconds(0.3f);
+            bool canPlayerStillWallRun = true;
+
+            if(PlayerManager.Instance.playerCurrentLane == 0)
+            {
+                //Debug.Log("<color=green>CHECK</color>");
+                canPlayerStillWallRun = PlayerManager.Instance.CheckIfCanStayOnWall(-1);
+                if(canPlayerStillWallRun == false)
+                {
+                    PlayerManager.Instance.MovePlayerToRightLane();
+                    PlayerManager.Instance.BendPlayerTowardDirection(1);
+                }
+            }
+            else if(PlayerManager.Instance.playerCurrentLane == 2)
+            {
+                canPlayerStillWallRun = PlayerManager.Instance.CheckIfCanStayOnWall(1);
+                if(canPlayerStillWallRun == false)
+                {
+                    PlayerManager.Instance.MovePlayerToLeftLane();
+                    PlayerManager.Instance.BendPlayerTowardDirection(1);
+                }
+            }
+                
+
+            // check if player has a wall on left and on right
+        }
+    }
 }

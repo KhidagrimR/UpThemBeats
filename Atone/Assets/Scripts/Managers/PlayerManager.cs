@@ -57,6 +57,7 @@ public class PlayerManager : Singleton<PlayerManager>
     [InspectorReadOnly]
     public int playerCurrentLane = 1;
 
+
     [Header("To Tweak")]
     public float tweenDutchDuration = 0.4f;
 
@@ -154,7 +155,15 @@ public class PlayerManager : Singleton<PlayerManager>
                 IncreaseScore(gameObjectTriggerChangeLane.GetComponent<BoxCollider>().bounds.extents.z, gameObjectTriggerChangeLane.transform.position.z, gameObjectTriggerChangeLane.pointObstacle);
 
             if (playerCurrentLane != 1)
+            {
                 playerController.animationTrigger.PlayAnimation(AnimationEnum.Jump);
+                StartCoroutine(playerController.CheckIfPlayerCanStayOnWall());
+            }
+            else
+            {
+                StopCoroutine(playerController.CheckIfPlayerCanStayOnWall());
+            }
+                
 
             playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
             playerController.ChangeLane(GetLanePosition(playerCurrentLane));
@@ -172,19 +181,53 @@ public class PlayerManager : Singleton<PlayerManager>
                 IncreaseScore(gameObjectTriggerChangeLane.GetComponent<BoxCollider>().bounds.extents.z, gameObjectTriggerChangeLane.transform.position.z, gameObjectTriggerChangeLane.pointObstacle);
 
             if (playerCurrentLane != 1)
+            {
                 playerController.animationTrigger.PlayAnimation(AnimationEnum.Jump);
+                StartCoroutine(playerController.CheckIfPlayerCanStayOnWall());
+            }
+            else
+            {
+                StopCoroutine(playerController.CheckIfPlayerCanStayOnWall());
+            }
+                
 
             playerCurrentLane = Mathf.Clamp(playerCurrentLane, 0, lanes.Length - 1);
             playerController.ChangeLane(GetLanePosition(playerCurrentLane));
         }
     }
 
-    bool CheckIfCanSwitchLane(int direction)
+    public bool CheckIfCanSwitchLane(int direction)
     {
-        Debug.Log("CHECK LANE SWITCH : direction = " + direction);
+        //Debug.Log("CHECK LANE SWITCH : direction = " + direction);
         direction = direction > 0 ? 1 : -1;
         // si on est sur la ligne du centre, on veut voir si on peut aller sur une lane latérale
         if (PlayerManager.Instance.playerCurrentLane == 1)
+        {
+            // on tire un rayon en direction de la direction 
+            RaycastHit hit;
+            Vector3 playerPos = playerController.transform.position;
+
+            if (Physics.Raycast(playerPos, Vector3.right * direction, out hit, Mathf.Infinity, laneLayerMask))
+            {
+                Debug.Log("Hit = " + hit.collider.gameObject.name);
+                return true;
+            }
+            else
+            {
+                Debug.Log("NO RAYCAST HIT");
+                return false;
+            }
+        }
+        else
+            return true;
+    }
+
+    public bool CheckIfCanStayOnWall(int direction)
+    {
+        //Debug.Log("CHECK LANE SWITCH : direction = " + direction);
+        direction = direction > 0 ? 1 : -1;
+        // si on est sur un mur, on veut savoir si on est tjr sur le mur
+        if (PlayerManager.Instance.playerCurrentLane != 1)
         {
             // on tire un rayon en direction de la direction 
             RaycastHit hit;
