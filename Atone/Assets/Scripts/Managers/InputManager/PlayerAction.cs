@@ -11,9 +11,15 @@ public class PlayerAction
     [SerializeField]
     private KeyCode m_ActionKeyBoardRightHanded;
     [SerializeField]
+    private KeyCode m_AlternativeActionKeyBoardRightHanded;
+    [SerializeField]
     private KeyCode m_ActionKeyBoardLeftHanded;
     [SerializeField]
+    private KeyCode m_AlternativeActionKeyBoardLeftHanded;
+    [SerializeField]
     private KeyCode m_ActionController;
+    [SerializeField]
+    private KeyCode m_AlternativeActionController;
 
     public enum Axis {
         None,
@@ -28,56 +34,61 @@ public class PlayerAction
     [SerializeField]
     private Axis m_axis;
 
-    public PlayerAction(string name, KeyCode actionKeyBoardRightHanded, KeyCode actionKeyBoardLeftHanded, KeyCode actionController, Axis axis){
+    public PlayerAction(string name, KeyCode actionKeyBoardRightHanded, KeyCode alternativeActionKeyBoardRightHanded, 
+                        KeyCode actionKeyBoardLeftHanded, KeyCode alternativeActionKeyBoardLeftHanded, 
+                        KeyCode actionController, KeyCode alternativeActionController, Axis axis){
         this.m_Name = name;
         this.m_ActionKeyBoardRightHanded = actionKeyBoardRightHanded;
+        this.m_AlternativeActionKeyBoardRightHanded = alternativeActionKeyBoardRightHanded;
         this.m_ActionKeyBoardLeftHanded = actionKeyBoardLeftHanded;
+        this.m_AlternativeActionKeyBoardLeftHanded = alternativeActionKeyBoardLeftHanded;
         this.m_ActionController = actionController;
+        this.m_AlternativeActionController = alternativeActionController;
         this.m_axis = axis;
     }
 
     public bool GetActionDown(bool onController, bool isRightHanded){
         if (onController){
             if (m_axis == Axis.None)
-                return Input.GetKeyDown(m_ActionController);
+                return Input.GetKeyDown(m_ActionController) || Input.GetKeyDown(m_AlternativeActionController) ;
             else
                 return GetAxisDirectionTrigger();
         }
 
         else
             if(isRightHanded)
-                return Input.GetKeyDown(m_ActionKeyBoardRightHanded);
+                return Input.GetKeyDown(m_ActionKeyBoardRightHanded) || Input.GetKeyDown(m_AlternativeActionKeyBoardRightHanded);
             else
-                return Input.GetKeyDown(m_ActionKeyBoardLeftHanded);
+                return Input.GetKeyDown(m_ActionKeyBoardLeftHanded) || Input.GetKeyDown(m_AlternativeActionKeyBoardLeftHanded);
     }
 
     public bool GetActionPressed(bool onController, bool isRightHanded){
         if(onController){
             if (m_axis == Axis.None)
-                return Input.GetKey(m_ActionController);
+                return Input.GetKey(m_ActionController) || Input.GetKey(m_AlternativeActionController);
             else
                 return GetAxisDirectionTrigger();
         }
         else
             if(isRightHanded)
-                return Input.GetKey(m_ActionKeyBoardRightHanded);
+                return Input.GetKey(m_ActionKeyBoardRightHanded) || Input.GetKey(m_AlternativeActionKeyBoardRightHanded);
             else 
-                return Input.GetKey(m_ActionKeyBoardLeftHanded);
+                return Input.GetKey(m_ActionKeyBoardLeftHanded) || Input.GetKey(m_AlternativeActionKeyBoardLeftHanded); 
     }
 
     public bool GetActionReleased(bool onController, bool isRightHanded)
     {
         if(onController){
             if (m_axis == Axis.None)
-                return Input.GetKeyUp(m_ActionController);
+                return Input.GetKeyUp(m_ActionController) || Input.GetKeyUp(m_AlternativeActionController);
             else
                 return GetAxisDirectionTrigger();
         }
         else
             if(isRightHanded)
-                return Input.GetKeyUp(m_ActionKeyBoardRightHanded);
-            else
-                return Input.GetKeyUp(m_ActionKeyBoardLeftHanded);
+                return Input.GetKeyUp(m_ActionKeyBoardRightHanded) || Input.GetKeyUp(m_AlternativeActionKeyBoardRightHanded);
+        else
+                return Input.GetKeyUp(m_ActionKeyBoardLeftHanded) || Input.GetKeyUp(m_AlternativeActionKeyBoardLeftHanded);
     }
 
     public bool GetAxisDirectionTrigger() {
