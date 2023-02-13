@@ -52,7 +52,7 @@ public class TutorialDown : Singleton<TutorialDown> {
         }
         else
         {
-            if (InputManager.Instance.isRightHanded)
+            if (InputManager.isRightHanded)
             {
                 m_imageKey.sprite = m_spriteKeyKeyBoardRightHanded;
                 m_imageAlternativeKey.sprite = m_spriteAlternativeKeyKeyBoardRightHanded;
