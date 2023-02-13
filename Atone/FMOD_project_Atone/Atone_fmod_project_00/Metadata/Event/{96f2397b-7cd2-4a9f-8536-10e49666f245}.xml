@@ -126,6 +126,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{3629916c-fd0a-4b08-b543-53caffc05f3d}">
+		<property name="volume">
+			<value>-5</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -148,6 +151,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{56e0aa13-59ff-46a8-8583-78a44b21efc7}">
+		<property name="volume">
+			<value>-14.5</value>
+		</property>
 		<property name="name">
 			<value>Audio 2</value>
 		</property>
@@ -170,6 +176,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{9ebd6909-ae63-4cb1-ab45-132171bb68ab}">
+		<property name="volume">
+			<value>-3</value>
+		</property>
 		<property name="name">
 			<value>Audio 5</value>
 		</property>
@@ -227,10 +236,10 @@
 	</object>
 	<object class="NamedMarker" id="{016447ff-acdd-43a0-afef-56c29ae7b0ff}">
 		<property name="position">
-			<value>6</value>
+			<value>4.5</value>
 		</property>
 		<property name="name">
-			<value>Seq2_Top</value>
+			<value>Dafuq</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{7d474403-d5b9-47bb-a30f-4767d750a0da}</destination>
@@ -256,6 +265,7 @@
 	<object class="MixerBusEffectChain" id="{30f18519-a79c-4bb8-b919-a810017a1ae9}">
 		<relationship name="effects">
 			<destination>{a0cb0640-d537-4c6a-9902-a0936fbcb216}</destination>
+			<destination>{bc9bfb9e-307c-4414-ab65-15fd2634386e}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{99aef5d7-734d-4064-a114-11b95a5bb8cb}" />
@@ -279,6 +289,17 @@
 	</object>
 	<object class="MixerBusPanner" id="{4e56a354-b8dd-4902-8d23-3af8e1f8b05b}" />
 	<object class="MixerBusFader" id="{a0cb0640-d537-4c6a-9902-a0936fbcb216}" />
+	<object class="SFXReverbEffect" id="{bc9bfb9e-307c-4414-ab65-15fd2634386e}">
+		<property name="diffusion">
+			<value>38</value>
+		</property>
+		<property name="lowShelfGain">
+			<value>-6.5</value>
+		</property>
+		<property name="highCut">
+			<value>160</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{cff154dd-44c8-4158-a10f-ccd258571af5}" />
 	<object class="MixerBusFader" id="{36c1b750-1769-48b6-91a6-1382e2d1e868}" />
 	<object class="MixerBusFader" id="{09396237-a6ed-46c6-93f0-2e669c989798}" />
