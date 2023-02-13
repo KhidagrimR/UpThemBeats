@@ -8,7 +8,7 @@ public class InputManager : Singleton<InputManager>
 {
     public static bool onController = false;
 
-    public bool isRightHanded = true;
+    public static bool isRightHanded = true;
     [Header("Pause menu / return")]
 
     public PlayerAction menuOrReturn;
