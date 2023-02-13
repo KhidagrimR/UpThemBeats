@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Tutorial : Singleton<Tutorial>
+public class TutorialUp : Singleton<TutorialUp>
 {
     public TextMeshProUGUI m_textBeforeImage;
     public Image m_imageKey;

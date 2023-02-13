@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaunchTutorial : MonoBehaviour
+public class LaunchTutorialDown : MonoBehaviour
 {
     public string textBeforeImage;
     public Sprite spriteKeyKeyBoard;
@@ -13,7 +13,7 @@ public class LaunchTutorial : MonoBehaviour
 
     public void OnTriggerEnter(Collider other) {
         if (other.name == "Player") {
-            StartCoroutine(Tutorial.Instance.LaunchTutorial(timeToStayToScreen, textBeforeImage, spriteKeyKeyBoard, spriteKeyController, textAfterImage, timerWithText));
+            StartCoroutine(TutorialDown.Instance.LaunchTutorial(timeToStayToScreen, textBeforeImage, spriteKeyKeyBoard, spriteKeyController, textAfterImage, timerWithText));
         }
     }
 }
