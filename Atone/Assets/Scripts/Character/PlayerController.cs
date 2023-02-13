@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using FMODUnity;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,26 +11,22 @@ public class PlayerController : MonoBehaviour
     Vector3 playerVelocity;
 
     [Header("Status (can't be modified in inspector)")]
-    [InspectorReadOnly]
-    public bool isGrounded;
-    [InspectorReadOnly]
-    public bool isSliding;
-
-    public int initHp;
-    [InspectorReadOnly]
-    public static int hp;
-
-    public float scoreMultipliyer;
-
-    [InspectorReadOnly]
-    public bool isChangingLane;
-    [InspectorReadOnly]
-    public bool isAbleToChangeLane = false;
+    [InspectorReadOnly] public bool isGrounded;
+    [InspectorReadOnly] public bool isSliding; // is the player sliding
+    [InspectorReadOnly] public bool isChangingLane; // momentum while player is moving from a lane to an other
+    [InspectorReadOnly] public bool isAbleToChangeLane = false;
+    [InspectorReadOnly] public bool canPlayerMove = false;
 
     [Header("Input parameters")]
     [SerializeField]
     bool isAutorunActivated = true;
 
+    [Header("Player Life and Score")]
+    public int initHp;
+    [InspectorReadOnly]
+    public static int hp;
+
+    public float scoreMultipliyer;
 
     [Header("Physics parameters")]
     [SerializeField]
@@ -62,6 +59,8 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     public GameObject playerVisual;
     public Collider playerCollider;
+    public StudioEventEmitter patinDroitFMODEmitter;
+    public StudioEventEmitter patinGaucheFMODEmitter;
 
     public static List<GameObject> gameObjectsColliding;
     public static Vector3 checkpoint;
@@ -76,12 +75,9 @@ public class PlayerController : MonoBehaviour
         startingPlayerY = transform.position.y;
         startingHeadPosition = playerCollider.transform.position;
 
-        InputManager.Instance.onDestroyWall += CheckIfWallToDestroy;
-        InputManager.Instance.onDestroyWall += CheckIfWall3ToDestroy;
-        InputManager.Instance.onDestroyBop += CheckIfBopToDestroy;
-        InputManager.Instance.onSlide += Slide;
         MusicManager.Instance.onMusicEnd += StopPlayer;
         MusicManager.Instance.onMusicStart += StartPlayer;
+        MusicManager.beatUpdated += PlayPatinSounds;
 
         gameObjectsColliding = new List<GameObject>();
         hp = initHp;
@@ -94,12 +90,9 @@ public class PlayerController : MonoBehaviour
     {
         if (InputManager.Instance != null)
         {
-            InputManager.Instance.onDestroyWall -= CheckIfWallToDestroy;
-            InputManager.Instance.onDestroyBop -= CheckIfBopToDestroy;
-            InputManager.Instance.onDestroyWall -= CheckIfWall3ToDestroy;
-            InputManager.Instance.onSlide -= Slide;
             MusicManager.Instance.onMusicEnd -= StopPlayer;
             MusicManager.Instance.onMusicStart -= StartPlayer;
+            MusicManager.beatUpdated -= PlayPatinSounds;
         }
 
     }
@@ -114,7 +107,21 @@ public class PlayerController : MonoBehaviour
         canPlayerMove = true;
     }
 
-    public bool canPlayerMove = false;
+    private int beat;
+    void PlayPatinSounds()
+    {
+        beat++;
+        if (beat % 2 == 0)
+        {
+            patinDroitFMODEmitter.Play();
+        }
+        else
+        {
+            patinGaucheFMODEmitter.Play();
+        }
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -198,7 +205,7 @@ public class PlayerController : MonoBehaviour
         else if (PlayerManager.Instance.playerCurrentLane == 2)
         {
             transform.position = new Vector3(1.75f, transform.position.y, transform.position.z);
-            animationTrigger.PlayAnimation(AnimationEnum.LeanLeft);
+            animationTrigger.PlayAnimation(AnimationEnum.LeanRight);
         }
     }
 
@@ -208,7 +215,7 @@ public class PlayerController : MonoBehaviour
 
         //Debug.Log("Has changed lane");
         Vector3 target;
-        if(PlayerManager.Instance.playerCurrentLane == 1)
+        if (PlayerManager.Instance.playerCurrentLane == 1)
             target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
         else
             target = new Vector3(lanePosition.x, lanePosition.y + 0.35f, transform.position.z);
@@ -231,10 +238,14 @@ public class PlayerController : MonoBehaviour
         if (gameObjectsColliding.Count != 0)
             for (int i = 0; i < gameObjectsColliding.Count; i += 1)
             {
-                if (gameObjectsColliding[i].GetComponent<WallTrigger>() != null)
+                if (gameObjectsColliding[i].TryGetComponent<WallTrigger>(out WallTrigger wall))
                 {
-                    gameObjectsColliding[i].GetComponent<WallTrigger>().WallAction();
-                    animationTrigger.PlayAnimation(AnimationEnum.Break);
+                    //Debug.Log("<color=green>there is a wall to destroy</color>");
+                    if(wall.isDestroy == true)
+                        return;
+
+                    wall.WallAction();
+                    animationTrigger.PlayAnimation(AnimationEnum.BreakLeft);
                 }
                 else
                     print("coolDown - mur raté PC");
@@ -244,6 +255,7 @@ public class PlayerController : MonoBehaviour
             print("cooldown");
     }
 
+    private int switchArmsOnBopDestroy = 0;
     public void CheckIfBopToDestroy()
     {
         if (gameObjectsColliding.Count != 0)
@@ -251,13 +263,16 @@ public class PlayerController : MonoBehaviour
             {
                 if (gameObjectsColliding[i].TryGetComponent<BopTriggerDestruction>(out BopTriggerDestruction bop))
                 {
+                    if(bop.isDestroy == true) 
+                        return;
+                    
                     bop.BopAction();
 
-                    int rd = Random.Range(0, 1);
-                    if (rd == 0)
-                        animationTrigger.PlayAnimation(AnimationEnum.LeftSnap);
+                    switchArmsOnBopDestroy++;
+                    if (switchArmsOnBopDestroy % 2 == 0)
+                        animationTrigger.PlayAnimation(AnimationEnum.SnapLeft);
                     else
-                        animationTrigger.PlayAnimation(AnimationEnum.LeftSnap);
+                        animationTrigger.PlayAnimation(AnimationEnum.SnapRight);
                 }
                 else
                     print("coolDown - bop raté PC");
@@ -306,7 +321,7 @@ public class PlayerController : MonoBehaviour
     public float headYMovementTween = 0.5f;
     public void Slide(bool pIsSliding)
     {
-        Debug.Log("Slide Called on : " + pIsSliding);
+        //Debug.Log("Slide Called on : " + pIsSliding);
         if (pIsSliding)
         {
             // se pencher / glisser 
@@ -318,7 +333,7 @@ public class PlayerController : MonoBehaviour
                 playerCollider.transform.position = new Vector3(playerCollider.transform.position.x, startingHeadPosition.y - x, playerCollider.transform.position.z);
             });
 
-            // déclencher une anim
+            animationTrigger.PlayAnimation(AnimationEnum.SlideStart);
 
             isSliding = true;
         }
@@ -331,7 +346,7 @@ public class PlayerController : MonoBehaviour
                 playerCollider.transform.position = new Vector3(playerCollider.transform.position.x, x, playerCollider.transform.position.z);
             });
 
-            // déclencher une anim
+            animationTrigger.PlayAnimation(AnimationEnum.SlideStop);
 
             isSliding = false;
         }

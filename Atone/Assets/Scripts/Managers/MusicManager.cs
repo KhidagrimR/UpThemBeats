@@ -35,6 +35,8 @@ public class MusicManager : Singleton<MusicManager>
     // Spawners and actions will listen for those. Example: shooting bullets on beat, bending world on marker
     public delegate void BeatIsHit();
     public static BeatIsHit beatUpdated;
+    public delegate void HalfBeatIsHit();
+    public static HalfBeatIsHit halfBeatUpdated;
     public delegate void MarkerIsHit();
     public static MarkerIsHit markerUpdated;
 
