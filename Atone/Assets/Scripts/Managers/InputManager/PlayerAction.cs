@@ -36,7 +36,7 @@ public class PlayerAction
         this.m_axis = axis;
     }
 
-    public bool GetAction(bool onController, bool isRightHanded){
+    public bool GetActionDown(bool onController, bool isRightHanded){
         if (onController){
             if (m_axis == Axis.None)
                 return Input.GetKeyDown(m_ActionController);
@@ -54,7 +54,7 @@ public class PlayerAction
     public bool GetActionPressed(bool onController, bool isRightHanded){
         if(onController){
             if (m_axis == Axis.None)
-                return Input.GetKeyDown(m_ActionController);
+                return Input.GetKey(m_ActionController);
             else
                 return GetAxisDirectionTrigger();
         }
@@ -69,7 +69,7 @@ public class PlayerAction
     {
         if(onController){
             if (m_axis == Axis.None)
-                return Input.GetKeyDown(m_ActionController);
+                return Input.GetKeyUp(m_ActionController);
             else
                 return GetAxisDirectionTrigger();
         }
