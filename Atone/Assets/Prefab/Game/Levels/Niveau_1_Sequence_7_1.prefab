@@ -1707,7 +1707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1320802290468684985
 Transform:
   m_ObjectHideFlags: 0
@@ -10057,8 +10057,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 476900114659364571, guid: ee85ca5b23bdeaa4082e31312343921d, type: 3}
       propertyPath: textAfterImage
-      value: pour bouger la camera
+      value: pour glisser
       objectReference: {fileID: 0}
+    - target: {fileID: 476900114659364571, guid: ee85ca5b23bdeaa4082e31312343921d, type: 3}
+      propertyPath: textBeforeImage
+      value: Maintenez
+      objectReference: {fileID: 0}
+    - target: {fileID: 476900114659364571, guid: ee85ca5b23bdeaa4082e31312343921d, type: 3}
+      propertyPath: spriteKeyKeyBoard
+      value: 
+      objectReference: {fileID: 21300000, guid: b1b3987428751644dbdde2a71b283ca2, type: 3}
+    - target: {fileID: 476900114659364571, guid: ee85ca5b23bdeaa4082e31312343921d, type: 3}
+      propertyPath: timeToStayToScreen
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 476900114659364571, guid: ee85ca5b23bdeaa4082e31312343921d, type: 3}
+      propertyPath: spriteKeyController
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b3c58a732f863449b16e2a968a75f74, type: 3}
     - target: {fileID: 476900114659364575, guid: ee85ca5b23bdeaa4082e31312343921d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -10073,7 +10089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 476900114659364575, guid: ee85ca5b23bdeaa4082e31312343921d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 145
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 476900114659364575, guid: ee85ca5b23bdeaa4082e31312343921d, type: 3}
       propertyPath: m_LocalRotation.w

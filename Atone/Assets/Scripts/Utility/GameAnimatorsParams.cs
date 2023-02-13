@@ -46,15 +46,12 @@ public static class GameAnimatorsParams
 public enum AnimationEnum 
 {
     Spawn, 
-    Jump, 
+    JumpStart, 
     JumpStop,
     Death, 
     Hit, 
     Idle, 
-    Run, 
     Disactivated, 
-    LeftRun, 
-    RightRun, 
     LeftSnapPrepare,
     SnapLeft,
     SnapRight,

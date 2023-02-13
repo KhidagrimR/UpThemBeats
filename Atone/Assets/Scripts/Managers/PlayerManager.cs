@@ -336,7 +336,7 @@ public class PlayerManager : Singleton<PlayerManager>
                 });
                 //cvm.m_Lens.Dutch = -20;
                 playerHead.localPosition = new Vector3(1, playerHead.localPosition.y, playerHead.localPosition.z);
-                playerController.animationTrigger.PlayAnimation(AnimationEnum.LeftRun);    // AnimationTrigger.AnimationEnum.LeftRun
+                playerController.animationTrigger.PlayAnimation(AnimationEnum.LeftRun);
                 break;
 
             case 1: // centre

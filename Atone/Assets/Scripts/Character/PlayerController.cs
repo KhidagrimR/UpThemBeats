@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour
     public bool isSliding
     {
         get { return _isSliding; }
-        set {
+        set
+        {
 
             // code for trigger event here
             // trigger once on true
@@ -205,11 +206,6 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(-0.3f, transform.position.y, transform.position.z);
             animationTrigger.PlayAnimation(AnimationEnum.LeanLeft);
         }
-        else if (PlayerManager.Instance.playerCurrentLane == 0)
-        {
-            transform.position = new Vector3(-1.75f, transform.position.y, transform.position.z);
-            animationTrigger.PlayAnimation(AnimationEnum.LeanLeft);
-        }
     }
     public void ResetBend()
     {
@@ -223,21 +219,19 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(0.3f, transform.position.y, transform.position.z);
             animationTrigger.PlayAnimation(AnimationEnum.LeanRight);
         }
-        else if (PlayerManager.Instance.playerCurrentLane == 2)
-        {
-            transform.position = new Vector3(1.75f, transform.position.y, transform.position.z);
-            animationTrigger.PlayAnimation(AnimationEnum.LeanRight);
-        }
     }
 
     public void ChangeLane(Vector3 lanePosition)
     {
         if (isChangingLane) return;
-
-        //Debug.Log("Has changed lane");
+        animationTrigger.PlayAnimation(AnimationEnum.JumpStart);
         Vector3 target;
         if (PlayerManager.Instance.playerCurrentLane == 1)
+        {
             target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
+            animationTrigger.PlayAnimation(AnimationEnum.JumpStop);
+        }
+
         else
             target = new Vector3(lanePosition.x, lanePosition.y + 0.35f, transform.position.z);
 
@@ -251,7 +245,7 @@ public class PlayerController : MonoBehaviour
         transform.DOMove(target, changeLaneDuration).OnComplete(() =>
         {
             isChangingLane = false;
-            animationTrigger.PlayAnimation(AnimationEnum.JumpStop);
+
         });
     }
 
@@ -264,12 +258,10 @@ public class PlayerController : MonoBehaviour
                 if (gameObjectsColliding[i].TryGetComponent<WallTrigger>(out WallTrigger wall))
                 {
                     //Debug.Log("<color=green>there is a wall to destroy</color>");
-                    if(wall.isDestroy == true)
+                    if (wall.isDestroy == true)
                         return;
 
                     wall.WallAction();
-                    animationTrigger.PlayAnimation(AnimationEnum.BreakLeft);
-
                     switchArmsOnWallDestroy++;
                     if (switchArmsOnWallDestroy % 2 == 0)
                         animationTrigger.PlayAnimation(AnimationEnum.BreakLeft);
@@ -292,9 +284,9 @@ public class PlayerController : MonoBehaviour
             {
                 if (gameObjectsColliding[i].TryGetComponent<BopTriggerDestruction>(out BopTriggerDestruction bop))
                 {
-                    if(bop.isDestroy == true) 
+                    if (bop.isDestroy == true)
                         return;
-                    
+
                     bop.BopAction();
 
                     switchArmsOnBopDestroy++;
