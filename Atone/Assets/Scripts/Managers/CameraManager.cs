@@ -20,7 +20,7 @@ public class CameraManager : Singleton<CameraManager>
     public List<CameraEffect> cameraEffects = new List<CameraEffect>();
 
     // Start is called before the first frame update
-    void Update()
+    /*void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -34,7 +34,7 @@ public class CameraManager : Singleton<CameraManager>
         {
             ShakeCamera(CameraEffect.EffectType.Recoil);
         }
-    }
+    }*/
 
     public void ShakeCamera(CameraEffect.EffectType effect)
     {

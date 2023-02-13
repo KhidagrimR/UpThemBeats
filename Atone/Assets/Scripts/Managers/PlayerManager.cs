@@ -209,12 +209,12 @@ public class PlayerManager : Singleton<PlayerManager>
 
             if (Physics.Raycast(playerPos, Vector3.right * direction, out hit, Mathf.Infinity, laneLayerMask))
             {
-                Debug.Log("Hit = " + hit.collider.gameObject.name);
+                //Debug.Log("Hit = " + hit.collider.gameObject.name);
                 return true;
             }
             else
             {
-                Debug.Log("NO RAYCAST HIT");
+                //Debug.Log("NO RAYCAST HIT");
                 return false;
             }
         }
@@ -235,12 +235,12 @@ public class PlayerManager : Singleton<PlayerManager>
 
             if (Physics.Raycast(playerPos, Vector3.right * direction, out hit, Mathf.Infinity, laneLayerMask))
             {
-                Debug.Log("Hit = " + hit.collider.gameObject.name);
+                //Debug.Log("Hit = " + hit.collider.gameObject.name);
                 return true;
             }
             else
             {
-                Debug.Log("NO RAYCAST HIT");
+                //Debug.Log("NO RAYCAST HIT");
                 return false;
             }
         }
