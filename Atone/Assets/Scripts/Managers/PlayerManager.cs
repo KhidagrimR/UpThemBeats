@@ -156,7 +156,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
             if (playerCurrentLane != 1)
             {
-                playerController.animationTrigger.PlayAnimation(AnimationEnum.Jump);
+                playerController.animationTrigger.PlayAnimation(AnimationEnum.JumpStart);
                 StartCoroutine(playerController.CheckIfPlayerCanStayOnWall());
             }
             else
@@ -182,7 +182,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
             if (playerCurrentLane != 1)
             {
-                playerController.animationTrigger.PlayAnimation(AnimationEnum.Jump);
+                playerController.animationTrigger.PlayAnimation(AnimationEnum.JumpStart);
                 StartCoroutine(playerController.CheckIfPlayerCanStayOnWall());
             }
             else
@@ -336,7 +336,7 @@ public class PlayerManager : Singleton<PlayerManager>
                 });
                 //cvm.m_Lens.Dutch = -20;
                 playerHead.localPosition = new Vector3(1, playerHead.localPosition.y, playerHead.localPosition.z);
-                playerController.animationTrigger.PlayAnimation(AnimationEnum.LeftRun);
+                //playerController.animationTrigger.PlayAnimation(AnimationEnum.LeftRun);
                 break;
 
             case 1: // centre
@@ -346,7 +346,7 @@ public class PlayerManager : Singleton<PlayerManager>
                     cvm.m_Lens.Dutch = x;
                 });
                 playerHead.localPosition = new Vector3(0, playerHead.localPosition.y, playerHead.localPosition.z);
-                playerController.animationTrigger.PlayAnimation(AnimationEnum.Run);
+                //playerController.animationTrigger.PlayAnimation(AnimationEnum.Run);
                 break;
 
             case 2: // droite
@@ -356,7 +356,7 @@ public class PlayerManager : Singleton<PlayerManager>
                     cvm.m_Lens.Dutch = x;
                 });
                 playerHead.localPosition = new Vector3(-1, playerHead.localPosition.y, playerHead.localPosition.z);
-                playerController.animationTrigger.PlayAnimation(AnimationEnum.RightRun);
+                //playerController.animationTrigger.PlayAnimation(AnimationEnum.RightRun);
                 break;
         }
 
