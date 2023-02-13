@@ -9,7 +9,7 @@ public class Subtitle : Singleton<Subtitle>
 {
     public GameObject subtitleText;
     public IEnumerator LaunchSubtitle(string whichDialogue){
-        StreamReader reader = new StreamReader("Assets/Resources/Dialogues/" + whichDialogue + "/" + whichDialogue + ".txt");
+        StreamReader reader = new StreamReader("Assets/Resources/Dialogues/" + whichDialogue + ".txt");
         string line;
         while((line = reader.ReadLine()) != null){
             string[] subtitle = line.Split(new string[] { " | " }, StringSplitOptions.None);

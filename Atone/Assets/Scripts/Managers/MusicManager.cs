@@ -169,7 +169,7 @@ public class MusicManager : Singleton<MusicManager>
         if (timelineInfo.currentPositionInMS >= timelineInfo.songLength && triggerOnceMusicEnd == true)
         {
             //Debug.Log("Musics end A");
-            if (onMusicEnd != null)
+            if (onMusicEnd != null && SequenceManager.Instance.isDeathRestartingMusic == false)
             {
                 //Debug.Log("Musics end B");
                 triggerOnceMusicEnd = false;
@@ -207,11 +207,11 @@ public class MusicManager : Singleton<MusicManager>
         GUI.Box(new Rect(Screen.width - 300, 0, 300, 50), $"Current Beat = {timelineInfo.currentBeat} | Last marker = {(string)timelineInfo.markerHit}");
 
         // Place gameobject behind the player, watch scene while playing to see if beats are in time
-        if (timelineInfo.currentBeat != lastBeatTest)
+        /*if (timelineInfo.currentBeat != lastBeatTest)
         {
             lastBeatTest = timelineInfo.currentBeat;
             Instantiate(test, PlayerManager.Instance.playerController.transform.position, Quaternion.identity);
-        }
+        }*/
 
     }
 
@@ -228,6 +228,11 @@ public class MusicManager : Singleton<MusicManager>
         musicFMODInstance.start();      // FMOD Test Julien
 
         //musicFMODInstance.release();    // FMOD Test Julien
+    }
+
+    public void StopMusic()
+    {
+        musicFMODInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);      // FMOD Test Julien
     }
 
     public void SetFMODEvent(EventReference pmusicFMODEvent)

@@ -12,7 +12,7 @@ public class Checkpoint : MonoBehaviour
         if(!GameManager.Instance.isReady) {return;}
         
         if (other.CompareTag(PlayerManager.PLAYER_TAG)){
-            PlayerController.checkpoint = gameObject.transform.position;
+            PlayerManager.Instance.playerController.currentCheckpoint = gameObject.transform.position;
             StartCoroutine(DisplayScore.Instance.DisplayScoreWhenPlay(PlayerManager.scoreSequence));
             SaveScore();
             PlayerManager.scoreSequence = 0;
