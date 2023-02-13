@@ -11,7 +11,7 @@ public class MusicManager : Singleton<MusicManager>
     #region MEMBER VARIABLES
     // Note to self: remember that the Singleton status allows us to use the public static MusicManager.Instance
     //[SerializeField][BankRef] private string currentSoundBank;    
-    /*[SerializeField]*/ private EventReference musicFMODEvent; //FMOD Event reference.    
+    /*[SerializeField]*/ private EventReference musicFMODEvent; //FMOD Event reference. Set by Sequence manager via SetFMODEvent function
 
     public TimelineInfo timelineInfo = null;
 
@@ -35,6 +35,8 @@ public class MusicManager : Singleton<MusicManager>
     // Spawners and actions will listen for those. Example: shooting bullets on beat, bending world on marker
     public delegate void BeatIsHit();
     public static BeatIsHit beatUpdated;
+    public delegate void HalfBeatIsHit();
+    public static HalfBeatIsHit halfBeatUpdated;
     public delegate void MarkerIsHit();
     public static MarkerIsHit markerUpdated;
 

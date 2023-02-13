@@ -10,7 +10,8 @@ public class BopTriggerArrival : MonoBehaviour
     public GameObject bopVisuel;
     public GameObject arrivalPointBop;
     public GameObject bopTrigger;
-    public StudioEventEmitter SFXArrival;
+
+    public GameObject SFXManager;
 
     public TextMeshProUGUI countDownText;
     private int _countDown;
@@ -51,7 +52,7 @@ public class BopTriggerArrival : MonoBehaviour
 
     public IEnumerator LaunchArrival()
     {
-        bopVisuel.SetActive(true);
+        SFXManager.GetComponent<SFXManagerBop>().arrivalSound.Play();
         countDown = 2;
 
         Vector3 startPoint = Vector3.zero + bopVisuel.transform.position;
@@ -72,15 +73,15 @@ public class BopTriggerArrival : MonoBehaviour
         yield return new WaitForSeconds(halfToCenterDuration);
         countDown = 1;
 
+        SFXManager.GetComponent<SFXManagerBop>().loadDataSound.Play();
         bopVisuel.gameObject.transform.DOMove(endpoint, halfToCenterDuration * speedMultiplier - timePausesOnMovement).SetEase(Ease.InOutQuad);
         yield return new WaitForSeconds(halfToCenterDuration);
         countDown = 0;
 
-        /* EVENT NOT FOUND*/
-       // SFXArrival.Play();
 
         yield return new WaitForSeconds(timeStayCenter);
-
+        if(!gameObject.transform.parent.GetComponentInChildren<BopTriggerDestruction>().isDestroy)
+            SFXManager.GetComponent<SFXManagerBop>().validationDataSound.Play();
         bopVisuel.gameObject.transform.DOMoveY(-20, halfToCenterDuration * speedMultiplier);
     }
 }

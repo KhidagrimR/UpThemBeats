@@ -5,7 +5,8 @@ using FMODUnity;
 
 public class GameManager : Singleton<GameManager>
 {
-    public UI_Loader uI_Loader;
+    public UI_Loader uI_Loader;    
+    private FMOD.Studio.Bus gameplayBus;
     private bool _isReady;
     public bool isReady
     {
@@ -34,14 +35,14 @@ public class GameManager : Singleton<GameManager>
         {
             SoundCreator.Instance.Init();
             yield return new WaitUntil(() => SoundCreator.Instance.isReady);
-            Debug.Log("soundcreator is ready");
+            Debug.Log("<color=red>soundcreator is ready</color>");
         }
 
         if (uI_Loader != null)
         {
             uI_Loader.Init();
             yield return new WaitUntil(() => uI_Loader.isReady);
-            Debug.Log("UI is ready");
+            Debug.Log("<color=red>UI is ready</color>");
         }
 
         /*if (MusicManager.Instance != null)
@@ -55,14 +56,14 @@ public class GameManager : Singleton<GameManager>
         {
             PlayerManager.Instance.Init();
             yield return new WaitUntil(() => PlayerManager.Instance.isReady);
-            Debug.Log("Player Manager is ready");
+            Debug.Log("<color=red>Player Manager is ready</color>");
         }
 
         if (SequenceManager.Instance != null)
         {
             SequenceManager.Instance.Init();
             yield return new WaitUntil(() => SequenceManager.Instance.isReady);
-            Debug.Log("Sequence Manager is ready");
+            Debug.Log("<color=red>Sequence Manager is ready</color>");
         }
 
         // if (SoundCreator.Instance != null)
@@ -82,19 +83,20 @@ public class GameManager : Singleton<GameManager>
 
         if (SequenceManager.Instance != null)
         {
+            gameplayBus = RuntimeManager.GetBus("bus:/Gameplay_Master");
             SequenceManager.Instance.StartSequence();
         }
 
-        Debug.Log("### READY ###");
+        Debug.Log("<color=red>### READY ###</color>");
         _isReady = true;
     }
-
     public void TogglePauseState()
     {
         isGameCurrentlyPaused = !isGameCurrentlyPaused;
         // SoundCreator.ToggleMusicPause(isGameCurrentlyPaused);
-        RuntimeManager.PauseAllEvents(isGameCurrentlyPaused);
-        //MusicManager.ToggleMusicPause(isGameCurrentlyPaused);
+        // RuntimeManager.PauseAllEvents(isGameCurrentlyPaused);
+        gameplayBus.setPaused(isGameCurrentlyPaused);
+        // MusicManager.ToggleMusicPause(isGameCurrentlyPaused);
         Time.timeScale = isGameCurrentlyPaused ? 0 : 1;
     }
 }

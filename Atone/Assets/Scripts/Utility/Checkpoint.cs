@@ -8,10 +8,10 @@ public class Checkpoint : MonoBehaviour
     public string niveau;
     public string sequence;
     public bool endGame;
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(PlayerManager.PLAYER_TAG))
-        {
+    public void OnTriggerEnter(Collider other){
+        if(!GameManager.Instance.isReady) {return;}
+        
+        if (other.CompareTag(PlayerManager.PLAYER_TAG)){
             PlayerController.checkpoint = gameObject.transform.position;
             StartCoroutine(DisplayScore.Instance.DisplayScoreWhenPlay(PlayerManager.scoreSequence));
             SaveScore();
