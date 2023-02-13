@@ -62,6 +62,16 @@ public class PlayerAnimationEvent : MonoBehaviour
         VFXSnapRight.Play();
     }
 
+    public void VFXLeanLeftTrigger()
+    {
+
+    }
+
+    public void VFXLeanRightTrigger()
+    {
+
+    }
+
     public void VFXBreakLeftTrigger()
     {
 
