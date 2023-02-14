@@ -24,6 +24,7 @@ public class WallAnimationTrigger : MonoBehaviour
             else // si on cherche ̄ animer l'obstacle
             {
                 animationTrigger.PlayAnimation(animationToTrigger);
+                animationTrigger.PlayArrivalVFX();
             }
         }
     }

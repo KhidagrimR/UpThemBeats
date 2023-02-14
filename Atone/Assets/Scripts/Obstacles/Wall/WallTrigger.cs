@@ -17,6 +17,8 @@ public class WallTrigger : MonoBehaviour
     public Color color;
     public float intensity;
 
+    public AnimationTrigger animationTrigger;
+
     void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag(PlayerManager.PLAYER_TAG)){
@@ -48,6 +50,8 @@ public class WallTrigger : MonoBehaviour
         if (isTrigger && !isDestroy){
             Destroy(visualWall);
             transform.parent.GetComponent<AnimationTrigger>().PlayAnimation(AnimationEnum.Death);  // AnimationTrigger.AnimationEnum.Death
+            if (animationTrigger !=null)
+                animationTrigger.PlayDeathVFX();
 
             if(fmodStudioEventEmitter != null) 
                 fmodStudioEventEmitter.Play();

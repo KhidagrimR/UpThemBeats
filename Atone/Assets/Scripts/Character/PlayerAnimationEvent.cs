@@ -64,12 +64,12 @@ public class PlayerAnimationEvent : MonoBehaviour
 
     public void VFXBreakLeftTrigger()
     {
-
+        VFXBreakLeft.Play();
     }
 
     public void VFXBreakRightTrigger()
     {
-
+        VFXBreakRight.Play();
     }
 
     public void VFXLaneSwitchLeftTrigger()
