@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sequencesPrefab:
+  - {fileID: 1827712851758725077, guid: 9588e4e226999834d9bf397812bbe7c2, type: 3}
   - {fileID: 1827712851758725077, guid: d8145d19dc3a08e4dbc778d9e881566c, type: 3}
   - {fileID: 1827712851758725077, guid: f2a9099c06fa28e44adae2bc25b38edb, type: 3}
   - {fileID: 1827712851758725077, guid: e014e5c6039009448ad36e3b1794ccbc, type: 3}
@@ -56,7 +57,6 @@ MonoBehaviour:
   - {fileID: 1827712851758725077, guid: 1ba818ed55e4bb44d9a6dff92516a9c9, type: 3}
   - {fileID: 1827712851758725077, guid: dfb5ea2a342965845b8b2e0a78721ba5, type: 3}
   - {fileID: 1827712851758725077, guid: 976bc6c39b15cc84a9c478df27310933, type: 3}
-  - {fileID: 1827712851758725077, guid: 9588e4e226999834d9bf397812bbe7c2, type: 3}
   - {fileID: 1827712851758725077, guid: 57c615bcac8d53346aa8adfffd5a4eb5, type: 3}
   - {fileID: 1827712851758725077, guid: 14f3efd4d9a7f8f418224381b0ed1064, type: 3}
   - {fileID: 1827712851758725077, guid: 00402beb2e270404a8e03862662af03e, type: 3}
@@ -64,7 +64,6 @@ MonoBehaviour:
   sequences: []
   currentSequenceIndex: 0
   roadPrefab: {fileID: 4252543333268015580, guid: 43b59dd9e92a55a499b84bc5883e1049, type: 3}
-  transitionBetweenSequences: 0
   isDeathRestartingMusic: 0
 --- !u!1 &794377114544737474
 GameObject:
@@ -161,6 +160,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb492a4cbce8d0499b3a29af5ef7b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  postProcessVolume: {fileID: 0}
+  bloomBlueColor:
+    m_OverrideState: 0
+    m_Value: {r: 0.088679194, g: 0.33773094, b: 1, a: 1}
+  bloomRedColor:
+    m_OverrideState: 0
+    m_Value: {r: 0.8679245, g: 0.46180135, b: 0.46180135, a: 1}
+  bloomYellowColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 0.9970818, b: 0.04150939, a: 1}
 --- !u!1 &6341438436302581879
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,4 +484,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f054230303eb0ab4b961cbc267f0b148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraEffects: []
+  cameraEffects:
+  - impulseEffectRef: {fileID: 0}
+    effectType: 0
+    impulseStr: 0.25
+  - impulseEffectRef: {fileID: 0}
+    effectType: 1
+    impulseStr: 0.25
+  - impulseEffectRef: {fileID: 0}
+    effectType: 2
+    impulseStr: 0.25
+  - impulseEffectRef: {fileID: 0}
+    effectType: 3
+    impulseStr: 0.25
