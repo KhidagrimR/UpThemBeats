@@ -20,6 +20,7 @@ public class PostProcessManager : Singleton<PostProcessManager>
     public ColorParameter bloomBlueColor;
     public ColorParameter bloomRedColor;
     public ColorParameter bloomYellowColor;
+    private Color bloomStartingColor = new Color();
     UnityEngine.Rendering.Universal.Bloom bloom;
 
     #endregion
@@ -28,98 +29,114 @@ public class PostProcessManager : Singleton<PostProcessManager>
     {
         volumeProfile = postProcessVolume.profile;
 
+        if(!volumeProfile.TryGet(out bloom)) 
+         throw new System.NullReferenceException(nameof(bloom));
+
+        bloomStartingColor = bloom.tint.value;
+
         _isReady = true;
     }
 
-    public void ChangeColorToRed(float duration = 1.0f)
+    public void ChangeColorToRed(float transitionDuration = 1.0f)
     {
-       if(!volumeProfile.TryGet(out bloom)) 
-         throw new System.NullReferenceException(nameof(bloom));
-
         // Change RED color
         float from = bloom.tint.value.r;
         float to = bloomRedColor.value.r;
-        DOVirtual.Float(from, to, duration, (float x) => {
+        DOVirtual.Float(from, to, transitionDuration, (float x) => {
             bloom.tint.value = new Color(x,bloom.tint.value.g,bloom.tint.value.b,bloom.tint.value.a);
         });
 
         // Change GREEN color
         from = bloom.tint.value.g;
         to = bloomRedColor.value.g;
-        DOVirtual.Float(from, to, duration, (float x) => {
+        DOVirtual.Float(from, to, transitionDuration, (float x) => {
             bloom.tint.value = new Color(bloom.tint.value.r,x,bloom.tint.value.b,bloom.tint.value.a);
         });
 
         // Change BLUE color
         from = bloom.tint.value.b;
         to = bloomRedColor.value.b;
-        DOVirtual.Float(from, to, duration, (float x) => {
+        DOVirtual.Float(from, to, transitionDuration, (float x) => {
             bloom.tint.value = new Color(bloom.tint.value.r,bloom.tint.value.g,x,bloom.tint.value.a);
         });
     }
 
-        public void ChangeColorToYellow(float duration = 1.0f)
+    public void ChangeColorToYellow(float transitionDuration = 1.0f)
     {
-       if(!volumeProfile.TryGet(out bloom)) 
-         throw new System.NullReferenceException(nameof(bloom));
-
         // Change RED color
         float from = bloom.tint.value.r;
         float to = bloomYellowColor.value.r;
-        DOVirtual.Float(from, to, duration, (float x) => {
+        DOVirtual.Float(from, to, transitionDuration, (float x) => {
             bloom.tint.value = new Color(x,bloom.tint.value.g,bloom.tint.value.b,bloom.tint.value.a);
         });
 
         // Change GREEN color
         from = bloom.tint.value.g;
         to = bloomYellowColor.value.g;
-        DOVirtual.Float(from, to, duration, (float x) => {
+        DOVirtual.Float(from, to, transitionDuration, (float x) => {
             bloom.tint.value = new Color(bloom.tint.value.r,x,bloom.tint.value.b,bloom.tint.value.a);
         });
 
         // Change BLUE color
         from = bloom.tint.value.b;
         to = bloomYellowColor.value.b;
-        DOVirtual.Float(from, to, duration, (float x) => {
+        DOVirtual.Float(from, to, transitionDuration, (float x) => {
             bloom.tint.value = new Color(bloom.tint.value.r,bloom.tint.value.g,x,bloom.tint.value.a);
         });
     }
 
-        public void ChangeColorToBlue(float duration = 1.0f)
+    public void ChangeColorToBlue(float transitionDuration = 1.0f)
     {
-       if(!volumeProfile.TryGet(out bloom)) 
-         throw new System.NullReferenceException(nameof(bloom));
-
         // Change RED color
         float from = bloom.tint.value.r;
         float to = bloomBlueColor.value.r;
-        DOVirtual.Float(from, to, duration, (float x) => {
+        DOVirtual.Float(from, to, transitionDuration, (float x) => {
             bloom.tint.value = new Color(x,bloom.tint.value.g,bloom.tint.value.b,bloom.tint.value.a);
         });
 
         // Change GREEN color
         from = bloom.tint.value.g;
         to = bloomBlueColor.value.g;
-        DOVirtual.Float(from, to, duration, (float x) => {
+        DOVirtual.Float(from, to, transitionDuration, (float x) => {
             bloom.tint.value = new Color(bloom.tint.value.r,x,bloom.tint.value.b,bloom.tint.value.a);
         });
 
         // Change BLUE color
         from = bloom.tint.value.b;
         to = bloomBlueColor.value.b;
-        DOVirtual.Float(from, to, duration, (float x) => {
+        DOVirtual.Float(from, to, transitionDuration, (float x) => {
             bloom.tint.value = new Color(bloom.tint.value.r,bloom.tint.value.g,x,bloom.tint.value.a);
         });
     }
 
-    void Update()
+    public void ResetBloomColor(float transitionDuration = 1.0f)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ChangeColorToBlue(10.0f);
-        }
+        // Change RED color
+        float from = bloom.tint.value.r;
+        float to = bloomStartingColor.r;
+        DOVirtual.Float(from, to, transitionDuration, (float x) => {
+            bloom.tint.value = new Color(x,bloom.tint.value.g,bloom.tint.value.b,bloom.tint.value.a);
+        });
+
+        // Change GREEN color
+        from = bloom.tint.value.g;
+        to = bloomStartingColor.g;
+        DOVirtual.Float(from, to, transitionDuration, (float x) => {
+            bloom.tint.value = new Color(bloom.tint.value.r,x,bloom.tint.value.b,bloom.tint.value.a);
+        });
+
+        // Change BLUE color
+        from = bloom.tint.value.b;
+        to = bloomStartingColor.b;
+        DOVirtual.Float(from, to, transitionDuration, (float x) => {
+            bloom.tint.value = new Color(bloom.tint.value.r,bloom.tint.value.g,x,bloom.tint.value.a);
+        });
     }
 
+    public void ChangeBloomIntensity(float val = 2.0f)
+    {
+        bloom.intensity = new MinFloatParameter(val, 0f);
+    }
     
     /*void Start()
     {
