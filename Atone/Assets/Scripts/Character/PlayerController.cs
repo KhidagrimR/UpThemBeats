@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour
             animationTrigger.PlayAnimation(AnimationEnum.JumpStop);
         }
         else
-            target = new Vector3(lanePosition.x, lanePosition.y + 0.5f, transform.position.z);
+            target = new Vector3(lanePosition.x, lanePosition.y + 0.35f, transform.position.z);
 
         float distanceZ = playerSpeed * changeLaneDuration; //v * t
 

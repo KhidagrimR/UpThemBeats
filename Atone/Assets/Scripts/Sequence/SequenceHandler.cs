@@ -19,6 +19,7 @@ public class SequenceHandler : MonoBehaviour
     public void Init()
     {
         currentAmountOFObstacleDestroyed = 0f;
+        PlayerController.hp = PlayerManager.Instance.playerController.initHp;
     }
 
     public bool CheckLoopConditions()
