@@ -59,6 +59,7 @@ public class WallTrigger : MonoBehaviour
             isDestroy = true;
             PlayerManager.Instance.IncreaseScore(gameObject.GetComponent<BoxCollider>().bounds.extents.z, gameObject.transform.position.z, pointObstacle);
             SequenceManager.Instance.currentSequence.currentAmountOFObstacleDestroyed++;
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Explosion);
         }
         else
             print("mur rat�");
