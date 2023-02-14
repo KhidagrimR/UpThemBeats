@@ -58,11 +58,65 @@ public class PostProcessManager : Singleton<PostProcessManager>
         });
     }
 
+        public void ChangeColorToYellow(float duration = 1.0f)
+    {
+       if(!volumeProfile.TryGet(out bloom)) 
+         throw new System.NullReferenceException(nameof(bloom));
+
+        // Change RED color
+        float from = bloom.tint.value.r;
+        float to = bloomYellowColor.value.r;
+        DOVirtual.Float(from, to, duration, (float x) => {
+            bloom.tint.value = new Color(x,bloom.tint.value.g,bloom.tint.value.b,bloom.tint.value.a);
+        });
+
+        // Change GREEN color
+        from = bloom.tint.value.g;
+        to = bloomYellowColor.value.g;
+        DOVirtual.Float(from, to, duration, (float x) => {
+            bloom.tint.value = new Color(bloom.tint.value.r,x,bloom.tint.value.b,bloom.tint.value.a);
+        });
+
+        // Change BLUE color
+        from = bloom.tint.value.b;
+        to = bloomYellowColor.value.b;
+        DOVirtual.Float(from, to, duration, (float x) => {
+            bloom.tint.value = new Color(bloom.tint.value.r,bloom.tint.value.g,x,bloom.tint.value.a);
+        });
+    }
+
+        public void ChangeColorToBlue(float duration = 1.0f)
+    {
+       if(!volumeProfile.TryGet(out bloom)) 
+         throw new System.NullReferenceException(nameof(bloom));
+
+        // Change RED color
+        float from = bloom.tint.value.r;
+        float to = bloomBlueColor.value.r;
+        DOVirtual.Float(from, to, duration, (float x) => {
+            bloom.tint.value = new Color(x,bloom.tint.value.g,bloom.tint.value.b,bloom.tint.value.a);
+        });
+
+        // Change GREEN color
+        from = bloom.tint.value.g;
+        to = bloomBlueColor.value.g;
+        DOVirtual.Float(from, to, duration, (float x) => {
+            bloom.tint.value = new Color(bloom.tint.value.r,x,bloom.tint.value.b,bloom.tint.value.a);
+        });
+
+        // Change BLUE color
+        from = bloom.tint.value.b;
+        to = bloomBlueColor.value.b;
+        DOVirtual.Float(from, to, duration, (float x) => {
+            bloom.tint.value = new Color(bloom.tint.value.r,bloom.tint.value.g,x,bloom.tint.value.a);
+        });
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ChangeColorToRed(10.0f);
+            ChangeColorToBlue(10.0f);
         }
     }
 
