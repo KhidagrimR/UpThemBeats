@@ -96,7 +96,7 @@ MonoBehaviour:
     m_MaxSpeed: 100
     m_AccelTime: 0.1
     m_DecelTime: 0.1
-    m_InputAxisName: Mouse Y
+    m_InputAxisName: MoveCameraY
     m_InputAxisValue: 0
     m_InvertInput: 1
     m_MinValue: -8
@@ -120,7 +120,7 @@ MonoBehaviour:
     m_MaxSpeed: 100
     m_AccelTime: 0.1
     m_DecelTime: 0.1
-    m_InputAxisName: Mouse X
+    m_InputAxisName: MoveCameraX
     m_InputAxisValue: 0
     m_InvertInput: 0
     m_MinValue: -8
@@ -149,6 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 100409477827565572}
   - component: {fileID: 100409477827565575}
+  - component: {fileID: 1946906231}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -163,7 +164,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100409477827565574}
-  m_LocalRotation: {x: -0.15470806, y: 0.7228747, z: -0.17192547, w: -0.65112156}
+  m_LocalRotation: {x: 0.15471207, y: -0.72287124, z: 0.17192736, w: 0.6511239}
   m_LocalPosition: {x: 0, y: 1.1700001, z: 0.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -171,7 +172,7 @@ Transform:
   - {fileID: 100409477219967817}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 26.746, y: -95.975, z: 0.014}
 --- !u!114 &100409477827565575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +198,7 @@ MonoBehaviour:
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
-    Dutch: 0
+    Dutch: -5.5644e-41
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
@@ -210,3 +211,26 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 100409477219967817}
+--- !u!114 &1946906231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100409477827565574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 2
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}

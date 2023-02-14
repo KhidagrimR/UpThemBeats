@@ -19646,11 +19646,6 @@ Transform:
   m_Father: {fileID: 208020632}
   m_RootOrder: 234
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!1 &1559391832 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100409477827565574, guid: 47063214332c1194b9c62fbab8717de5, type: 3}
-  m_PrefabInstance: {fileID: 100409477088802418}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1570885305
 GameObject:
   m_ObjectHideFlags: 0
@@ -25476,35 +25471,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 100409477827565575, guid: 47063214332c1194b9c62fbab8717de5, type: 3}
   m_PrefabInstance: {fileID: 100409477088802418}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1559391832}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1946906231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1559391832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ApplyAfter: 2
-  m_ChannelMask: 1
-  m_Gain: 1
-  m_Use2DDistance: 0
-  m_UseCameraSpace: 1
-  m_ReactionSettings:
-    m_SecondaryNoise: {fileID: 0}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_Duration: 1
-    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1955343771
 GameObject:
   m_ObjectHideFlags: 0
@@ -27937,6 +27909,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 100409477219967794, guid: 47063214332c1194b9c62fbab8717de5, type: 3}
+      propertyPath: m_VerticalAxis.m_InputAxisName
+      value: MoveCameraY
+      objectReference: {fileID: 0}
+    - target: {fileID: 100409477219967794, guid: 47063214332c1194b9c62fbab8717de5, type: 3}
+      propertyPath: m_HorizontalAxis.m_InputAxisName
+      value: MoveCameraX
+      objectReference: {fileID: 0}
     - target: {fileID: 100409477827565572, guid: 47063214332c1194b9c62fbab8717de5, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -27989,10 +27969,6 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 261809301}
-    - target: {fileID: 100409477827565575, guid: 47063214332c1194b9c62fbab8717de5, type: 3}
-      propertyPath: m_Lens.Dutch
-      value: -5.5644e-41
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47063214332c1194b9c62fbab8717de5, type: 3}
 --- !u!1001 &6341438436137178570
