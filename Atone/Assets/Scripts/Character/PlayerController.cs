@@ -244,6 +244,7 @@ public class PlayerController : MonoBehaviour
         transform.DOMove(target, changeLaneDuration).OnComplete(() =>
         {
             isChangingLane = false;
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.WallrunHit);
 
         });
     }
@@ -326,12 +327,14 @@ public class PlayerController : MonoBehaviour
             hp = initHp;
             StartCoroutine(SequenceManager.Instance.RestartCurrentSequence());
             animationTrigger.PlayAnimation(AnimationEnum.Death);
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Damage);
         }
         else
         {
             print("take damage");
             //print("new HP : " + hp);
             animationTrigger.PlayAnimation(AnimationEnum.HitTaken);
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Damage);
         }
 
     }
@@ -359,6 +362,7 @@ public class PlayerController : MonoBehaviour
 
             animationTrigger.PlayAnimation(AnimationEnum.SlideStart);
             isSliding = true;
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Slide);
         }
         else
         {
@@ -371,6 +375,7 @@ public class PlayerController : MonoBehaviour
 
             animationTrigger.PlayAnimation(AnimationEnum.SlideStop);
             isSliding = false;
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.SlideStop);
         }
     }
 
