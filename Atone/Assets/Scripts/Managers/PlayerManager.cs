@@ -287,7 +287,10 @@ public class PlayerManager : Singleton<PlayerManager>
             return;
 
         if (isPlayerAbleToSlide)
+        {
             playerController.Slide(pIsSliding);
+            //StartCoroutine(CameraManager.Instance.ShakeCameraWhileSliding());
+        }
     }
 
     public void BendPlayerTowardDirection(int direction)

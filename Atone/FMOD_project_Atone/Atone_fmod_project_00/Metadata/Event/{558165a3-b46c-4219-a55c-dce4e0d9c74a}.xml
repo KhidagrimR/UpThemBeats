@@ -59,7 +59,7 @@
 			<destination>{49469cd4-145c-4f88-bbad-653c5dad36f6}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{8ceb5511-10fb-485c-84d4-376e13a6c118}</destination>
+			<destination>{aec73cfa-8b77-4f29-9542-b9d4c5be8bc5}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{1f12240d-6c22-41cb-a054-2e87e672fd3f}" />
@@ -114,6 +114,7 @@
 			<destination>{53bc1078-ef60-4e87-88e4-70cbbcb0cf29}</destination>
 			<destination>{d1989769-1fbb-4f4c-8f77-2f29fa7dcbd7}</destination>
 			<destination>{ae19d13f-e127-4216-9f48-e88247f58002}</destination>
+			<destination>{f6191f09-4cca-40e2-9221-2914ccceede8}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{4da152d1-bd1d-478c-a33b-b16934fdd319}">
@@ -301,6 +302,20 @@
 		</relationship>
 		<relationship name="markerTrack">
 			<destination>{62f8839d-5514-42c7-9c2d-e752f88d3858}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{f6191f09-4cca-40e2-9221-2914ccceede8}">
+		<property name="position">
+			<value>1.5</value>
+		</property>
+		<property name="name">
+			<value>Spiral</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{e5b2f2e9-06a9-47c2-9115-4544e7da3d3f}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{421d058c-b1c1-4d74-8040-b95b0d7bd70f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{67df71ab-441f-4835-8a9b-7765fccb13be}">

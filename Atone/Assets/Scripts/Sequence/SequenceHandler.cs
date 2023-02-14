@@ -9,13 +9,23 @@ public class SequenceHandler : MonoBehaviour
     public Transform[] lanes;
     public EventReference musicFMODEvent; //FMOD Event reference.  
 
+
+    // minimum number of obstacle to destroy on loop sequences to let the player continue
+    public float minAmountOfObstacleDestroyed;
+
+    [InspectorReadOnly]
+    public float currentAmountOFObstacleDestroyed;
+
     public void Init()
     {
-
+        currentAmountOFObstacleDestroyed = 0f;
     }
 
     public bool CheckLoopConditions()
     {
-        return false;
+        if(currentAmountOFObstacleDestroyed >= minAmountOfObstacleDestroyed)
+            return false; // the sequence will not loop
+        
+        return true; // the sequence will loop
     }
 }

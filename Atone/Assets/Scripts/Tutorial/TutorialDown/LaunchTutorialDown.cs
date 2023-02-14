@@ -15,8 +15,10 @@ public class LaunchTutorialDown : MonoBehaviour {
     public Sprite spriteAlternativeKeyController;
 
     public string textAfterImage;
+
     public float timeToStayToScreen;
     public bool timerWithText;
+    public bool alternativeKey;
 
     public void OnTriggerEnter(Collider other) {
         if (other.name == "Player")
@@ -24,7 +26,7 @@ public class LaunchTutorialDown : MonoBehaviour {
             StartCoroutine(TutorialDown.Instance.LaunchTutorial(timeToStayToScreen, textBeforeImage,
                            spriteKeyKeyBoardRightHanded, spriteAlternativeKeyKeyBoardRightHanded,
                            spriteKeyKeyBoardLeftHanded, spriteAlternativeKeyKeyBoardLeftHanded,
-                           spriteKeyController, spriteAlternativeKeyController, textAfterImage, timerWithText));
+                           spriteKeyController, spriteAlternativeKeyController, textAfterImage, timerWithText, alternativeKey));
         }
     }
 }
