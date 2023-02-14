@@ -7,9 +7,11 @@ public class SequenceManager : Singleton<SequenceManager>
 {
     public List<GameObject> sequencesPrefab;
     public List<GameObject> sequences;
+
+    [InspectorReadOnly]
     public int currentSequenceIndex = 0;
+
     public GameObject roadPrefab;
-    public int transitionBetweenSequences;
 
     [HideInInspector] public SequenceHandler currentSequence
     {
@@ -97,7 +99,7 @@ public class SequenceManager : Singleton<SequenceManager>
             if (SequenceManager.Instance.currentSequence.CheckLoopConditions())
             {
                 Debug.Log("Sequence will loop");
-
+                currentSequence.gameObject.SetActive(false);
             }
             else
             {
@@ -110,6 +112,7 @@ public class SequenceManager : Singleton<SequenceManager>
     }
 
     float sequenceFadeDuration = 5.0f;
+    [InspectorReadOnly]
     public bool isDeathRestartingMusic;
 
     public IEnumerator RestartCurrentSequence()
