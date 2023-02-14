@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
     public StudioEventEmitter patinGaucheFMODEmitter;
 
     public static List<GameObject> gameObjectsColliding;
-    public static Vector3 checkpoint;
+    public Vector3 currentCheckpoint;
     public PlayerAnimationEvent playerAnimationEvent;
     // Start is called before the first frame update
     public void Start()
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
 
         gameObjectsColliding = new List<GameObject>();
         hp = initHp;
-        checkpoint = gameObject.transform.position;
+        currentCheckpoint = gameObject.transform.position;
 
         PlayerManager.scoreMultipliyer = scoreMultipliyer;
     }
@@ -295,12 +295,12 @@ public class PlayerController : MonoBehaviour
                     else
                         animationTrigger.PlayAnimation(AnimationEnum.SnapRight);
                 }
-                else
-                    print("coolDown - bop raté PC");
+                /*else
+                    print("coolDown - bop raté PC");*/
             }
 
-        else
-            print("cooldown");
+        /*else
+            print("cooldown");*/
     }
 
     public void CheckIfWall3ToDestroy()
@@ -310,22 +310,23 @@ public class PlayerController : MonoBehaviour
             {
                 if (gameObjectsColliding[i].GetComponent<WallTrigger3>() != null)
                     gameObjectsColliding[i].GetComponent<WallTrigger3>().WallAction();
-                else
-                    print("coolDown - mur raté PC");
+                /*else
+                    print("coolDown - mur raté PC");*/
             }
 
-        else
-            print("cooldown");
+        /*else
+            print("cooldown");*/
     }
 
     public void TakeDamage()
     {
-        if ((hp -= 1) == 0)
+        hp --;
+        if (hp <= 0)
         {
-            gameObject.transform.position = checkpoint;
+           
             hp = initHp;
+            StartCoroutine(SequenceManager.Instance.RestartCurrentSequence());
         }
-
         else
         {
             print("take damage");
@@ -369,6 +370,39 @@ public class PlayerController : MonoBehaviour
 
             animationTrigger.PlayAnimation(AnimationEnum.SlideStop);
             isSliding = false;
+        }
+    }
+
+    public IEnumerator CheckIfPlayerCanStayOnWall()
+    {
+        while(PlayerManager.Instance.playerCurrentLane != 1)
+        {
+            
+            yield return new WaitForSeconds(0.3f);
+            bool canPlayerStillWallRun = true;
+
+            if(PlayerManager.Instance.playerCurrentLane == 0)
+            {
+                //Debug.Log("<color=green>CHECK</color>");
+                canPlayerStillWallRun = PlayerManager.Instance.CheckIfCanStayOnWall(-1);
+                if(canPlayerStillWallRun == false)
+                {
+                    PlayerManager.Instance.MovePlayerToRightLane();
+                    PlayerManager.Instance.BendPlayerTowardDirection(1);
+                }
+            }
+            else if(PlayerManager.Instance.playerCurrentLane == 2)
+            {
+                canPlayerStillWallRun = PlayerManager.Instance.CheckIfCanStayOnWall(1);
+                if(canPlayerStillWallRun == false)
+                {
+                    PlayerManager.Instance.MovePlayerToLeftLane();
+                    PlayerManager.Instance.BendPlayerTowardDirection(1);
+                }
+            }
+                
+
+            // check if player has a wall on left and on right
         }
     }
 }

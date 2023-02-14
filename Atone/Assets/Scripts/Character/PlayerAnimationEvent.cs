@@ -62,6 +62,16 @@ public class PlayerAnimationEvent : MonoBehaviour
         VFXSnapRight.Play();
     }
 
+    public void VFXLeanLeftTrigger()
+    {
+
+    }
+
+    public void VFXLeanRightTrigger()
+    {
+
+    }
+
     public void VFXBreakLeftTrigger()
     {
         VFXBreakLeft.Play();
@@ -76,13 +86,13 @@ public class PlayerAnimationEvent : MonoBehaviour
     {
         VFXSpeedLines.Stop();
         VFXLaneSwitchLeft.Play();
-        Debug.Log("SwitchLeftFVX");
+        //Debug.Log("SwitchLeftFVX");
     }
 
     public void VFXLaneSwitchRightTrigger()
     {
         VFXSpeedLines.Stop();
         VFXLaneSwitchRight.Play();
-        Debug.Log("SwitchRightFVX");
+        //Debug.Log("SwitchRightFVX");
     }
 }

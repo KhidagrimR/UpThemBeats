@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class SequenceManager : Singleton<SequenceManager>
 {
@@ -10,9 +11,10 @@ public class SequenceManager : Singleton<SequenceManager>
     public GameObject roadPrefab;
     public int transitionBetweenSequences;
 
-
-
-    [HideInInspector] public SequenceHandler currentSequence;
+    [HideInInspector] public SequenceHandler currentSequence
+    {
+        get{return sequences[sequences.Count - 1].GetComponent<SequenceHandler>();}
+    }   
 
 
     private bool _isReady;
@@ -43,8 +45,7 @@ public class SequenceManager : Singleton<SequenceManager>
 
     public void StartSequence()
     {
-        // on prends la séquence chargée
-        currentSequence = sequences[currentSequenceIndex].GetComponent<SequenceHandler>();
+        Debug.Log("Start Sequence NOW");
         // on l'active
         currentSequence.gameObject.SetActive(true);
         currentSequence.Init();
@@ -85,6 +86,7 @@ public class SequenceManager : Singleton<SequenceManager>
         {
             // on passe a la suivante 
             currentSequenceIndex++;
+            
         }
         else // sinon
         {
@@ -105,5 +107,43 @@ public class SequenceManager : Singleton<SequenceManager>
         }
         LoadTargetSequenceByIndex(currentSequenceIndex);
         StartSequence();
+    }
+
+    float sequenceFadeDuration = 5.0f;
+    public bool isDeathRestartingMusic;
+
+    public IEnumerator RestartCurrentSequence()
+    {
+        isDeathRestartingMusic = true;
+        SpriteRenderer cameraBlackFade = Camera.main.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        DOVirtual.Float(0f, 1f, sequenceFadeDuration, (float x) => 
+        {
+            cameraBlackFade.color = new Color(
+            cameraBlackFade.color.r, 
+            cameraBlackFade.color.g, 
+            cameraBlackFade.color.b, 
+            x);
+        });
+        
+        PlayerManager.Instance.playerController.canPlayerMove = false;
+        MusicManager.Instance.StopMusic();
+        //sequences[currentSequenceIndex].SetActive(false);
+        CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Recoil);
+
+        yield return new WaitForSeconds(sequenceFadeDuration);
+        PlayerManager.Instance.playerController.transform.position = new Vector3(0, 1.07f, PlayerManager.Instance.playerController.currentCheckpoint.z);
+        PlayerManager.Instance.playerController.canPlayerMove = true;
+
+
+        //LoadTargetSequenceByIndex(currentSequenceIndex);
+        StartSequence();
+        //sequences[sequences.Count - 1].gameObject.SetActive(false);
+
+        cameraBlackFade.color = new Color(
+            cameraBlackFade.color.r, 
+            cameraBlackFade.color.g, 
+            cameraBlackFade.color.b, 
+            0);
+        isDeathRestartingMusic = false;
     }
 }

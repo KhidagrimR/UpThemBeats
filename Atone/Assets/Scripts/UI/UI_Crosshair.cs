@@ -13,6 +13,9 @@ public class UI_Crosshair : MonoBehaviour
     [SerializeField] private GameObject basicStyle;
     [SerializeField] private GameObject shorterStyle;
 
+    private Color colorPicked = Color.white;
+    private float opacityPicked = 1;
+
     public void ChangeCrosshair(int value)
     {
         GameObject clone;
@@ -53,7 +56,8 @@ public class UI_Crosshair : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
         GameObject clone = Instantiate(newStyle, new Vector3(0, 0, 1), Quaternion.identity);
-        clone.SetActive(true);
+        ApplyColor(clone, colorPicked);
+        ApplyOpacity(clone, opacityPicked);
         clone.transform.SetParent(crosshair.transform);
         return clone;
     }
@@ -63,26 +67,32 @@ public class UI_Crosshair : MonoBehaviour
         switch (value)
         {
             case 0:
+                colorPicked = Color.white;
                 ApplyColor(CrosshairGroup, Color.white);
                 ApplyColor(RealCrosshair, Color.white);
                 break;
             case 1:
+                colorPicked = Color.red;
                 ApplyColor(CrosshairGroup, Color.red);
                 ApplyColor(RealCrosshair, Color.red);
                 break;
             case 2:
+                colorPicked = Color.yellow;
                 ApplyColor(CrosshairGroup, Color.yellow);
                 ApplyColor(RealCrosshair, Color.yellow);
                 break;
             case 3:
+                colorPicked = Color.cyan;
                 ApplyColor(CrosshairGroup, Color.cyan);
                 ApplyColor(RealCrosshair, Color.cyan);
                 break;
             case 4:
+                colorPicked = Color.magenta;
                 ApplyColor(CrosshairGroup, Color.magenta);
                 ApplyColor(RealCrosshair, Color.magenta);
                 break;
             default:
+                colorPicked = Color.white;
                 ApplyColor(CrosshairGroup, Color.white);
                 ApplyColor(RealCrosshair, Color.white);
                 break;
@@ -102,6 +112,7 @@ public class UI_Crosshair : MonoBehaviour
 
     public void ChangeOpacity(float value)
     {
+        opacityPicked = value;
         ApplyOpacity(CrosshairGroup, value);
         ApplyOpacity(RealCrosshair, value);
     }
