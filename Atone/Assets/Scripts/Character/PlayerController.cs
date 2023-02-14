@@ -249,7 +249,8 @@ public class PlayerController : MonoBehaviour
         });
     }
 
-    private int switchArmsOnWallDestroy = 0;
+    private int switchArmsState = 0; // for bop and red wall
+
     public void CheckIfWallToDestroy()
     {
         if (gameObjectsColliding.Count != 0)
@@ -262,8 +263,8 @@ public class PlayerController : MonoBehaviour
                         return;
 
                     wall.WallAction();
-                    switchArmsOnWallDestroy++;
-                    if (switchArmsOnWallDestroy % 2 == 0)
+                    switchArmsState++;
+                    if (switchArmsState % 2 == 0)
                         animationTrigger.PlayAnimation(AnimationEnum.BreakLeft);
                     else
                         animationTrigger.PlayAnimation(AnimationEnum.BreakRight);
@@ -276,7 +277,6 @@ public class PlayerController : MonoBehaviour
             print("cooldown");
     }
 
-    private int switchArmsOnBopDestroy = 0;
     public void CheckIfBopToDestroy()
     {
         if (gameObjectsColliding.Count != 0)
@@ -289,8 +289,8 @@ public class PlayerController : MonoBehaviour
 
                     bop.BopAction();
 
-                    switchArmsOnBopDestroy++;
-                    if (switchArmsOnBopDestroy % 2 == 0)
+                    switchArmsState++;
+                    if (switchArmsState % 2 == 0)
                         animationTrigger.PlayAnimation(AnimationEnum.SnapLeft);
                     else
                         animationTrigger.PlayAnimation(AnimationEnum.SnapRight);

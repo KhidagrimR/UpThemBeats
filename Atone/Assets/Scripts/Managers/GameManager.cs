@@ -76,6 +76,13 @@ public class GameManager : Singleton<GameManager>
             MusicManager.Instance.StartMusicManager();
         }*/
 
+        if (PostProcessManager.Instance != null)
+        {
+            PostProcessManager.Instance.Init();
+            yield return new WaitUntil(() => PostProcessManager.Instance.isReady);
+            Debug.Log("<color=red>PostProcessManager is ready</color>");
+        }
+
         if(UIManager.Instance != null)
         {
             UIManager.Instance.SetupUIGame();
