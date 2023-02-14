@@ -61,7 +61,7 @@
 			<destination>{f4edd7a9-2c3c-480d-a9d3-00ece51d30d6}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{8ceb5511-10fb-485c-84d4-376e13a6c118}</destination>
+			<destination>{aec73cfa-8b77-4f29-9542-b9d4c5be8bc5}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{45491226-30c0-4374-b51d-9025027abc01}" />
@@ -132,6 +132,7 @@
 			<destination>{96b6e1bb-14fc-4f82-b185-65a3b7c02264}</destination>
 			<destination>{6fcbd196-34d2-4d72-bcfa-64bdfb0c828c}</destination>
 			<destination>{8a7c5fc4-a6fc-4ba0-a733-2f7c98d91eec}</destination>
+			<destination>{d8c3914c-36a6-4a86-8806-c76b113a96c6}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{7f4a3ba3-f67b-4e7a-a717-9609de970f0d}">
@@ -365,10 +366,24 @@
 	</object>
 	<object class="NamedMarker" id="{8a7c5fc4-a6fc-4ba0-a733-2f7c98d91eec}">
 		<property name="position">
-			<value>13.5</value>
+			<value>16.5</value>
 		</property>
 		<property name="name">
 			<value>LoopSequence</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{cf24fb3d-c498-4780-92e4-bdb4d681c87c}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{33ff94e8-4b4b-4b58-a5ca-da7a41c283c2}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{d8c3914c-36a6-4a86-8806-c76b113a96c6}">
+		<property name="position">
+			<value>7.5</value>
+		</property>
+		<property name="name">
+			<value>VirageRight</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{cf24fb3d-c498-4780-92e4-bdb4d681c87c}</destination>

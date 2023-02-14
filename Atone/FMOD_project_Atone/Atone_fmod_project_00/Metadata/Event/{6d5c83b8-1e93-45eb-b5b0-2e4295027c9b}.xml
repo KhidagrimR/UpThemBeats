@@ -58,7 +58,7 @@
 			<destination>{4dd47c2d-6015-4252-9f22-8d533e8f35d9}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{8ceb5511-10fb-485c-84d4-376e13a6c118}</destination>
+			<destination>{aec73cfa-8b77-4f29-9542-b9d4c5be8bc5}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{af2ad833-2b1e-487e-9dc2-302f75c1380d}" />
@@ -115,6 +115,8 @@
 		<relationship name="markers">
 			<destination>{67a7a6c5-b93e-44f8-aa02-e445ca1ce636}</destination>
 			<destination>{0a0607c7-bd37-42f5-8fdc-152a9e56d0b3}</destination>
+			<destination>{91f5d2c3-dfd2-479e-847a-ad5f3595534c}</destination>
+			<destination>{236d8522-a84f-47b6-b06a-ffd2d6a72422}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{aab3377b-a221-4b80-8e1f-fa4ad5d8580b}">
@@ -291,6 +293,34 @@
 		</relationship>
 		<relationship name="markerTrack">
 			<destination>{8daa38a4-9d44-4f82-89eb-c7f13c679042}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{91f5d2c3-dfd2-479e-847a-ad5f3595534c}">
+		<property name="position">
+			<value>6</value>
+		</property>
+		<property name="name">
+			<value>StairsLeft1</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{07625fbf-4011-459d-8bb2-69aed4f97e9a}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{abb94716-b4e1-4864-8b86-1ae1220cc59f}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{236d8522-a84f-47b6-b06a-ffd2d6a72422}">
+		<property name="position">
+			<value>18</value>
+		</property>
+		<property name="name">
+			<value>StairsRight1</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{07625fbf-4011-459d-8bb2-69aed4f97e9a}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{abb94716-b4e1-4864-8b86-1ae1220cc59f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{2c2d2627-cff0-47fc-aada-cad7d297d7f1}">

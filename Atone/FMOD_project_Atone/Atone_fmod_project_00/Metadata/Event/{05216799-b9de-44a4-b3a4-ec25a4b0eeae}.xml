@@ -59,7 +59,7 @@
 			<destination>{5d44c049-053f-4729-9191-599754dbcdf1}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{8ceb5511-10fb-485c-84d4-376e13a6c118}</destination>
+			<destination>{aec73cfa-8b77-4f29-9542-b9d4c5be8bc5}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{ecd0a03e-516d-42e7-8117-15bdb996a2dd}" />
@@ -110,6 +110,8 @@
 			<destination>{016b3220-573b-4628-a878-41e8e9958060}</destination>
 			<destination>{fe1a8ec4-a45b-4bd9-9220-17e69c2af150}</destination>
 			<destination>{2751896d-d7d6-46b9-81e5-07dc43a31df3}</destination>
+			<destination>{c43b15d4-24bc-4a70-bc2e-853459990018}</destination>
+			<destination>{07f810ba-8074-425d-9322-6526ef0fbd1f}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{360ddaa1-838b-49e1-b9c4-b59693fe594d}">
@@ -269,6 +271,34 @@
 		</relationship>
 		<relationship name="markerTrack">
 			<destination>{68cc05a7-abf9-41ce-b7af-b49e4b0aec4b}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{c43b15d4-24bc-4a70-bc2e-853459990018}">
+		<property name="position">
+			<value>4.5</value>
+		</property>
+		<property name="name">
+			<value>Top5</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{d18ea451-7cdb-4c63-9d63-7c0fc0fc891b}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{69a21461-156d-4628-afb1-f4f56a4095e9}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{07f810ba-8074-425d-9322-6526ef0fbd1f}">
+		<property name="position">
+			<value>9</value>
+		</property>
+		<property name="name">
+			<value>Top1</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{d18ea451-7cdb-4c63-9d63-7c0fc0fc891b}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{69a21461-156d-4628-afb1-f4f56a4095e9}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{8f6a9063-2fd1-4cb3-ba3d-43c64b359444}">
