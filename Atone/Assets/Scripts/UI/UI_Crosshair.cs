@@ -56,6 +56,7 @@ public class UI_Crosshair : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
         GameObject clone = Instantiate(newStyle, new Vector3(0, 0, 1), Quaternion.identity);
+        clone.SetActive(true);
         ApplyColor(clone, colorPicked);
         ApplyOpacity(clone, opacityPicked);
         clone.transform.SetParent(crosshair.transform);

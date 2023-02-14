@@ -9,7 +9,8 @@ public class UI_Subtitles : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI SampleSub;
     [SerializeField] private TextMeshProUGUI subtitleInGame;
-
+    [SerializeField] private TextMeshProUGUI tutoFirst;
+    [SerializeField] private TextMeshProUGUI tutoSecond;
 
     public void ShowOrHideSubs(bool show)
     {
@@ -40,6 +41,8 @@ public class UI_Subtitles : MonoBehaviour
     {
         string str1 = SampleSub.text;
         string str2 = subtitleInGame.text;
+        string str3 = tutoFirst.text;
+        string str4 = tutoSecond.text;
 
         Regex rich = new Regex(@"<[^>]*>");
 
@@ -47,12 +50,20 @@ public class UI_Subtitles : MonoBehaviour
         {
             str1 = rich.Replace(str1, string.Empty);
             str2 = rich.Replace(str2, string.Empty);
+            str3 = rich.Replace(str3, string.Empty);
+            str4 = rich.Replace(str4, string.Empty);
         }
         SampleSub.color = textColor;
         SampleSub.text = "<mark="+ bgColor + " padding='50,50,0,0'>" + str1 + "</mark>";
 
         subtitleInGame.color = textColor;
         subtitleInGame.text = "<mark=" + bgColor + " padding='50,50,0,0'>" + str2 + "</mark>";
+
+        tutoFirst.color = textColor;
+        tutoFirst.text = "<mark=" + bgColor + " padding='50,50,0,0'>" + str3 + "</mark>";
+
+        tutoSecond.color = textColor;
+        tutoSecond.text = "<mark=" + bgColor + " padding='50,50,0,0'>" + str4 + "</mark>";
     }
 
     public void ChangeSize(float value)
@@ -60,5 +71,7 @@ public class UI_Subtitles : MonoBehaviour
         int[] size = { 18, 23, 28, 33, 38 };
         SampleSub.fontSize = size[(int)value];
         subtitleInGame.fontSize = size[(int)value];
+        tutoFirst.fontSize = size[(int)value];
+        tutoSecond.fontSize = size[(int)value];
     }
 }
