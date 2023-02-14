@@ -12,7 +12,7 @@ public static class PlayerAnimatorParams
     {
         animParams.Add(AnimationEnum.Spawn, Animator.StringToHash("Spawn"));
         animParams.Add(AnimationEnum.Death, Animator.StringToHash("Death"));
-        animParams.Add(AnimationEnum.Hit, Animator.StringToHash("Hit"));
+        animParams.Add(AnimationEnum.HitTaken, Animator.StringToHash("Hit"));
         animParams.Add(AnimationEnum.Idle, Animator.StringToHash("Idle"));
         animParams.Add(AnimationEnum.Disactivated, Animator.StringToHash("Disactivated"));
         animParams.Add(AnimationEnum.LeftSnapPrepare, Animator.StringToHash("LeftSnapPrepare"));

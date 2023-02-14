@@ -326,11 +326,13 @@ public class PlayerController : MonoBehaviour
            
             hp = initHp;
             StartCoroutine(SequenceManager.Instance.RestartCurrentSequence());
+            animationTrigger.PlayAnimation(AnimationEnum.Death);
         }
         else
         {
             print("take damage");
             //print("new HP : " + hp);
+            animationTrigger.PlayAnimation(AnimationEnum.HitTaken);
         }
 
     }
