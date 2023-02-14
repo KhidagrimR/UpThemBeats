@@ -37,19 +37,31 @@ public class Checkpoint : MonoBehaviour
         if (!Directory.Exists(path))
             Directory.CreateDirectory(path);
 
-        //GetNamePlayer()
-        string name = "Pedro";
+        string name = GetPlayerName(path);
 
-        StreamWriter sw = new StreamWriter(path + "/" + name + "Score.txt");
+        StreamWriter sw = new StreamWriter(path + "/" + name + "_Score.txt");
 
         sw.WriteLine(name);
         sw.WriteLine();
+        float scoreTotal = 0;
         foreach (string niveau in PlayerManager.Instance.scoreBoard.Keys)
         {
             sw.WriteLine(niveau + " : ");
-            foreach (string sequence in PlayerManager.Instance.scoreBoard[niveau].Keys)
+            foreach (string sequence in PlayerManager.Instance.scoreBoard[niveau].Keys) {
                 sw.WriteLine("    " + sequence + " : " + PlayerManager.Instance.scoreBoard[niveau][sequence].ToString());
+                scoreTotal += PlayerManager.Instance.scoreBoard[niveau][sequence];
+            }
+                
         }
+        sw.WriteLine("Score Total : " + scoreTotal);
         sw.Close();
+    }
+
+    public string GetPlayerName(string path) {
+        string[] files = Directory.GetFiles(path, ".txt");
+        int nb = 0;
+        if (files.Length > 0)
+            nb = int.Parse(files[files.Length - 1].Split("_")[1]) + 1;
+        return "Player_" + nb;
     }
 }
