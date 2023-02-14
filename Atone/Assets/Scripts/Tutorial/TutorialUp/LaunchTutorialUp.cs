@@ -20,13 +20,14 @@ public class LaunchTutorialUp : MonoBehaviour
 
     public bool timer;
     public bool timerWithText;
+    public bool alternativeKey;
 
     public void OnTriggerEnter(Collider other) {
         if (other.name == "Player") {
             StartCoroutine(TutorialUp.Instance.LaunchTutorial(timeToStayToScreen, textBeforeImage,
                            spriteKeyKeyBoardRightHanded, spriteAlternativeKeyKeyBoardRightHanded,
                            spriteKeyKeyBoardLeftHanded, spriteAlternativeKeyKeyBoardLeftHanded, 
-                           spriteKeyController, spriteAlternativeKeyController, textAfterImage, timer, timerWithText));
+                           spriteKeyController, spriteAlternativeKeyController, textAfterImage, timer, timerWithText, alternativeKey));
         }
     }
 }
