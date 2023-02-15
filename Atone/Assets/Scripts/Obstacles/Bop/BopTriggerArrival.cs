@@ -73,7 +73,7 @@ public class BopTriggerArrival : MonoBehaviour
         yield return new WaitForSeconds(halfToCenterDuration);
         countDown = 1;
 
-        SFXManager.GetComponent<SFXManagerBop>().loadDataSound.Play();
+        //SFXManager.GetComponent<SFXManagerBop>().loadDataSound.Play();
         bopVisuel.gameObject.transform.DOMove(endpoint, halfToCenterDuration * speedMultiplier - timePausesOnMovement).SetEase(Ease.InOutQuad);
         yield return new WaitForSeconds(halfToCenterDuration);
         countDown = 0;
