@@ -27,6 +27,7 @@
 			<destination>{928acec3-65b5-4286-8dbc-9587c66c9817}</destination>
 			<destination>{148ec9d7-924d-45cb-97db-47b264c52f29}</destination>
 			<destination>{d0174def-b6b7-4bf5-b534-e1ffe4b41705}</destination>
+			<destination>{0c9e3192-e39b-448c-881e-0cc784c44dd8}</destination>
 		</relationship>
 		<relationship name="groupTracks">
 			<destination>{856009fa-fc72-4b4b-a358-cb3386d9d79d}</destination>
@@ -59,7 +60,7 @@
 			<destination>{5a74cc0a-358e-4e34-9543-fe42306850a7}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{8ceb5511-10fb-485c-84d4-376e13a6c118}</destination>
+			<destination>{aec73cfa-8b77-4f29-9542-b9d4c5be8bc5}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{d41aed4b-ae09-4661-98f0-d28ed19fe4b9}" />
@@ -67,6 +68,7 @@
 	<object class="MarkerTrack" id="{928acec3-65b5-4286-8dbc-9587c66c9817}" />
 	<object class="MarkerTrack" id="{148ec9d7-924d-45cb-97db-47b264c52f29}" />
 	<object class="MarkerTrack" id="{d0174def-b6b7-4bf5-b534-e1ffe4b41705}" />
+	<object class="MarkerTrack" id="{0c9e3192-e39b-448c-881e-0cc784c44dd8}" />
 	<object class="GroupTrack" id="{856009fa-fc72-4b4b-a358-cb3386d9d79d}">
 		<relationship name="modules">
 			<destination>{22454bed-c0ca-49ee-be2c-54d71ff567ec}</destination>
@@ -110,6 +112,8 @@
 			<destination>{8eccacc9-21fc-43fe-a7b9-0e6018533f55}</destination>
 			<destination>{08d2d78b-713b-47fb-8977-77abbd712fd3}</destination>
 			<destination>{bf77edf4-7670-458a-ba63-f66094076c0b}</destination>
+			<destination>{3ce78dfb-91d7-4f7d-b6e9-2f99ab4025b3}</destination>
+			<destination>{fef9fe26-479b-4e31-b455-c0957decef96}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{851122bf-5363-4c86-842e-8187636336d8}">
@@ -131,7 +135,7 @@
 	<object class="MixerBusPanner" id="{5a74cc0a-358e-4e34-9543-fe42306850a7}" />
 	<object class="SingleSound" id="{22454bed-c0ca-49ee-be2c-54d71ff567ec}">
 		<property name="length">
-			<value>12</value>
+			<value>15</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{5495b0e1-dd51-41a3-aeb5-d24015d935f6}</destination>
@@ -156,7 +160,7 @@
 	</object>
 	<object class="SingleSound" id="{c5a989b1-fbf9-4808-a5c7-a38e3d9c4410}">
 		<property name="length">
-			<value>12</value>
+			<value>15</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{985b637b-1753-49fc-97dc-29181497b1d5}</destination>
@@ -181,7 +185,7 @@
 	</object>
 	<object class="SingleSound" id="{aa28162d-f62e-428a-ba16-ce688adfa93c}">
 		<property name="length">
-			<value>12</value>
+			<value>15</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{aacda653-3753-467c-ab78-e7edd1f98fef}</destination>
@@ -206,7 +210,7 @@
 	</object>
 	<object class="SingleSound" id="{7c45f994-070a-45f1-8373-545a16423bc4}">
 		<property name="length">
-			<value>12</value>
+			<value>15</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{69c05af8-c7d0-44fd-96b7-a3e3b46cd691}</destination>
@@ -259,10 +263,38 @@
 	</object>
 	<object class="NamedMarker" id="{bf77edf4-7670-458a-ba63-f66094076c0b}">
 		<property name="position">
-			<value>10.5</value>
+			<value>13.5</value>
 		</property>
 		<property name="name">
 			<value>LoopSequence</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{ecd30d2f-5ee5-474a-89d6-efaa9cd41023}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{0c9e3192-e39b-448c-881e-0cc784c44dd8}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{3ce78dfb-91d7-4f7d-b6e9-2f99ab4025b3}">
+		<property name="position">
+			<value>13.875</value>
+		</property>
+		<property name="name">
+			<value>(Spiral)</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{ecd30d2f-5ee5-474a-89d6-efaa9cd41023}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{148ec9d7-924d-45cb-97db-47b264c52f29}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{fef9fe26-479b-4e31-b455-c0957decef96}">
+		<property name="position">
+			<value>14.114039408866994</value>
+		</property>
+		<property name="name">
+			<value>Bot5</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{ecd30d2f-5ee5-474a-89d6-efaa9cd41023}</destination>

@@ -26,7 +26,7 @@ public class FirstPersonVisuals : MonoBehaviour
     }
 
     // G H J K L M
-    void Update()
+    /*void Update()
     {
         if(Input.GetKeyDown(KeyCode.G)){
             DOTween.KillAll();
@@ -43,7 +43,7 @@ public class FirstPersonVisuals : MonoBehaviour
             DOTween.KillAll();
             SynchronizedTweenTest_00(4);
         }
-    }
+    }*/
 
     void OnDisable()
     {

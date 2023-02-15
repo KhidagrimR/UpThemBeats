@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [Header("Status (can't be modified in inspector)")]
     [InspectorReadOnly] public bool isGrounded;
     [InspectorReadOnly] public bool _isSliding; // is the player sliding
+    [InspectorReadOnly] public bool isIndestructible; // is the player sliding
     public bool isSliding
     {
         get { return _isSliding; }
@@ -132,14 +133,17 @@ public class PlayerController : MonoBehaviour
     private int beat;
     void PlayPatinSounds()
     {
-        beat++;
-        if (beat % 2 == 0)
+        if(!isSliding && PlayerManager.Instance.playerCurrentLane == 1)
         {
-            patinDroitFMODEmitter.Play();
-        }
-        else
-        {
-            patinGaucheFMODEmitter.Play();
+            beat++;
+            if (beat % 2 == 0)
+            {
+                patinDroitFMODEmitter.Play();
+            }
+            else
+            {
+                patinGaucheFMODEmitter.Play();
+            }
         }
     }
 
@@ -175,23 +179,6 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (playerSpeed * Time.deltaTime));
     }
-
-    #region Test
-    // NEW WAY TO MOVE
-    /*bool isMoving;
-    void Move()
-    {
-        //transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (playerSpeed * Time.deltaTime));
-
-        isMoving = true;
-        Vector3 targetPosition = new Vector3(0f,0f,20f);
-        float duration = MusicManager.Instance.SecPerBeat;
-        // on sait qu'il commence 
-        transform.DOMove(transform.position + targetPosition, duration).OnComplete(() => {
-            isMoving = false;
-        });
-    }*/
-    #endregion
 
     void ApplyGravity()
     {
@@ -231,7 +218,6 @@ public class PlayerController : MonoBehaviour
             target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
             animationTrigger.PlayAnimation(AnimationEnum.JumpStop);
         }
-
         else
             target = new Vector3(lanePosition.x, lanePosition.y + 0.35f, transform.position.z);
 
@@ -245,11 +231,13 @@ public class PlayerController : MonoBehaviour
         transform.DOMove(target, changeLaneDuration).OnComplete(() =>
         {
             isChangingLane = false;
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.WallrunHit);
 
         });
     }
 
-    private int switchArmsOnWallDestroy = 0;
+    private int switchArmsState = 0; // for bop and red wall
+
     public void CheckIfWallToDestroy()
     {
         if (gameObjectsColliding.Count != 0)
@@ -262,8 +250,8 @@ public class PlayerController : MonoBehaviour
                         return;
 
                     wall.WallAction();
-                    switchArmsOnWallDestroy++;
-                    if (switchArmsOnWallDestroy % 2 == 0)
+                    switchArmsState++;
+                    if (switchArmsState % 2 == 0)
                         animationTrigger.PlayAnimation(AnimationEnum.BreakLeft);
                     else
                         animationTrigger.PlayAnimation(AnimationEnum.BreakRight);
@@ -276,7 +264,6 @@ public class PlayerController : MonoBehaviour
             print("cooldown");
     }
 
-    private int switchArmsOnBopDestroy = 0;
     public void CheckIfBopToDestroy()
     {
         if (gameObjectsColliding.Count != 0)
@@ -289,8 +276,8 @@ public class PlayerController : MonoBehaviour
 
                     bop.BopAction();
 
-                    switchArmsOnBopDestroy++;
-                    if (switchArmsOnBopDestroy % 2 == 0)
+                    switchArmsState++;
+                    if (switchArmsState % 2 == 0)
                         animationTrigger.PlayAnimation(AnimationEnum.SnapLeft);
                     else
                         animationTrigger.PlayAnimation(AnimationEnum.SnapRight);
@@ -320,22 +307,26 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
+        if(isIndestructible) return;
+        StartCoroutine(SetIndestructible());
         hp --;
         if (hp <= 0)
         {
            
             hp = initHp;
             StartCoroutine(SequenceManager.Instance.RestartCurrentSequence());
+            animationTrigger.PlayAnimation(AnimationEnum.Death);
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Damage);
         }
         else
         {
             print("take damage");
             //print("new HP : " + hp);
+            animationTrigger.PlayAnimation(AnimationEnum.HitTaken);
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Damage);
         }
 
     }
-
-
 
     private Vector3 startingHeadPosition;
     [Header("Slide")]
@@ -358,6 +349,7 @@ public class PlayerController : MonoBehaviour
 
             animationTrigger.PlayAnimation(AnimationEnum.SlideStart);
             isSliding = true;
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Slide);
         }
         else
         {
@@ -370,6 +362,7 @@ public class PlayerController : MonoBehaviour
 
             animationTrigger.PlayAnimation(AnimationEnum.SlideStop);
             isSliding = false;
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.SlideStop);
         }
     }
 
@@ -404,5 +397,12 @@ public class PlayerController : MonoBehaviour
 
             // check if player has a wall on left and on right
         }
+    }
+
+    public IEnumerator SetIndestructible()
+    {
+        isIndestructible = true;
+        yield return new WaitForSeconds(0.5f);
+        isIndestructible = false;
     }
 }

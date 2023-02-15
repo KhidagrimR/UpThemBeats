@@ -513,6 +513,8 @@ MonoBehaviour:
       Data3: 348735630
       Data4: -899018791
     Path: event:/Sequence/Sequence_03_3
+  minAmountOfObstacleDestroyed: 0
+  currentAmountOFObstacleDestroyed: 0
 --- !u!1 &1827712852192652097
 GameObject:
   m_ObjectHideFlags: 0
@@ -4262,7 +4264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3829289803741352088, guid: fc9c959d4d1ae6749a0050ac55770771, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 210
+      value: 230
       objectReference: {fileID: 0}
     - target: {fileID: 3829289803741352088, guid: fc9c959d4d1ae6749a0050ac55770771, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5410,6 +5412,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 76949754}
     m_Modifications:
+    - target: {fileID: 834376829044329473, guid: 4bef948edeb40ec47aba47ee589e94ed, type: 3}
+      propertyPath: niveau
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 834376829044329473, guid: 4bef948edeb40ec47aba47ee589e94ed, type: 3}
+      propertyPath: sequence
+      value: 3.3
+      objectReference: {fileID: 0}
     - target: {fileID: 834376829044329482, guid: 4bef948edeb40ec47aba47ee589e94ed, type: 3}
       propertyPath: m_Name
       value: Checkpoint
@@ -6730,7 +6740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8777741032222292367, guid: a6d3efe345c567a4ca339a015b5b3cb5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 160
+      value: 165
       objectReference: {fileID: 0}
     - target: {fileID: 8777741032222292367, guid: a6d3efe345c567a4ca339a015b5b3cb5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8308,7 +8318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7992280303768891874, guid: d1b85b24e3bc4a543a687c315a28a452, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 80
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 7992280303768891874, guid: d1b85b24e3bc4a543a687c315a28a452, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8440,7 +8450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8777741032222292367, guid: dc6a845d16271a043bdab95470415e9f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 280
+      value: 285
       objectReference: {fileID: 0}
     - target: {fileID: 8777741032222292367, guid: dc6a845d16271a043bdab95470415e9f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10842,7 +10852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7992280303768891874, guid: ea582e8d54abd0549b415935808b1dce, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 200
+      value: 225
       objectReference: {fileID: 0}
     - target: {fileID: 7992280303768891874, guid: ea582e8d54abd0549b415935808b1dce, type: 3}
       propertyPath: m_LocalRotation.w

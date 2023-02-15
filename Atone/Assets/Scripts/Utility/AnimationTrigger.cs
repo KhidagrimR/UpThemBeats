@@ -9,6 +9,8 @@ public class AnimationTrigger : MonoBehaviour
 
     public VisualEffect vfxArrival;
 
+    public VisualEffect vfxDeath;
+
     // public enum AnimationEnum {Spawn, Jump, Death, Hit, Idle, Run, Disactivated, LeftRun, RightRun, LeftSnapPrepare };
     // Déplacé hors de la classe (voir plus bas) pour un accès plus facile
 
@@ -16,14 +18,15 @@ public class AnimationTrigger : MonoBehaviour
 
     public void PlayAnimation(AnimationEnum triggerName, bool overrideAnimIfIdentical = true)
     {
-        if(!overrideAnimIfIdentical)
+        if (!overrideAnimIfIdentical)
         {
-            if(currentAnimation == triggerName) return;
+            if (currentAnimation == triggerName) return;
         }
 
         currentAnimation = triggerName;
 
         animator.SetTrigger(GameAnimatorsParams.AnimParamsDict[triggerName]);
+        PlayArrivalVFX();
 
 
         // switch(triggerName)
@@ -68,12 +71,31 @@ public class AnimationTrigger : MonoBehaviour
         //         animator.SetTrigger("LeftSnapPrepare");
         //     break;
         // }
-        
+
     }
 
+    public void PlayArrivalVFX()
+    {
+        if (vfxArrival != null)
+            vfxArrival.Play();
+    }
+
+    public void PlayDeathVFX()
+    {
+        if(vfxDeath != null)
+        vfxDeath.Play();
+    }
+
+
+    // coming from griffe wallrun 1|Armature action 003
     public void PlayVFX()
     {
-        vfxArrival.Play();
+
+    }
+
+    public void DropCameraShake()
+    {
+        CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.RedwallDrop);
     }
 
 

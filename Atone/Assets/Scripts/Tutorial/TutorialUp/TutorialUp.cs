@@ -22,14 +22,18 @@ public class TutorialUp : Singleton<TutorialUp>
 
     public TextMeshProUGUI m_textAfterImage;
     public TextMeshProUGUI m_textTimer;
+
     public GameObject container;
     public GameObject containerText;
+    public GameObject containerAlternativeKey;
     public IEnumerator LaunchTutorial(float timeToStayToScreen, string textBeforeImage,
                                       Sprite spriteKeyKeyBoardRightHanded, Sprite spriteAlternativeKeyKeyBoardRightHanded,
                                       Sprite spriteKeyKeyBoardLeftHanded, Sprite spriteAlternativeKeyKeyBoardLeftHanded,
                                       Sprite spriteKeyController, Sprite spriteAlternativeKeyController, 
-                                      string textAfterImage, bool timer, bool timerWithText) {
+                                      string textAfterImage, bool timer, bool timerWithText, bool alternativeKey) {
         container.SetActive(true);
+        if (alternativeKey)
+            containerAlternativeKey.SetActive(true);
         if(timer)
             StartCoroutine(LaunchTimer());
         if (timer && !timerWithText){
@@ -61,9 +65,12 @@ public class TutorialUp : Singleton<TutorialUp>
                 m_imageAlternativeKey.sprite = m_spriteAlternativeKeyKeyBoardLeftHanded;
             }
         }
-            m_imageKey.sprite = m_spriteKeyKeyBoardRightHanded;
+        
+        m_imageKey.sprite = m_spriteKeyKeyBoardRightHanded;
         m_textAfterImage.text = textAfterImage;
         yield return new WaitForSeconds(timeToStayToScreen);
+        containerAlternativeKey.SetActive(false);
+        containerText.SetActive(false);
         container.SetActive(false);
     }
 
