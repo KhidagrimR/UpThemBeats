@@ -72,6 +72,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{a2fd66a5-94cc-465f-803e-00ab78105ee4}">
+		<property name="volume">
+			<value>10</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{62766127-bb17-408c-bfec-de73dc2b8b1b}</destination>
 		</relationship>
@@ -98,7 +101,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{af6b68b5-8236-4876-9b11-43e2da5b3dcc}">
 		<property name="volume">
-			<value>-3.5</value>
+			<value>1</value>
 		</property>
 		<property name="name">
 			<value>Audio 1</value>
@@ -117,11 +120,15 @@
 		<relationship name="effects">
 			<destination>{f1e165e3-1740-4fd0-9b00-02475fcb395f}</destination>
 			<destination>{83dc85bc-1688-4fe4-be94-3e4dfa5fa3ce}</destination>
-			<destination>{87ec72f3-6a7d-42c0-984c-dfc8e31bf6fc}</destination>
 			<destination>{c692b6d5-d279-4d02-8c25-a75fcdf97942}</destination>
+			<destination>{87ec72f3-6a7d-42c0-984c-dfc8e31bf6fc}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{0d95fdb5-81d3-4518-adb6-542fb9d9fca8}" />
+	<object class="MixerBusPanner" id="{0d95fdb5-81d3-4518-adb6-542fb9d9fca8}">
+		<property name="surroundLFELevel">
+			<value>-26</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{e57b0e0f-283a-4aac-85da-876a49fdd3f7}" />
 	<object class="MixerBusEffectChain" id="{4d147b88-13e1-4482-964b-f7a4439ae633}">
 		<relationship name="effects">
@@ -138,7 +145,6 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{83dc85bc-1688-4fe4-be94-3e4dfa5fa3ce}" />
-	<object class="SpatialiserEffect" id="{87ec72f3-6a7d-42c0-984c-dfc8e31bf6fc}" />
 	<object class="SFXReverbEffect" id="{c692b6d5-d279-4d02-8c25-a75fcdf97942}">
 		<property name="decayTime">
 			<value>2800</value>
@@ -148,6 +154,20 @@
 		</property>
 		<property name="HFDecayRatio">
 			<value>73</value>
+		</property>
+		<property name="wetLevel">
+			<value>0</value>
+		</property>
+		<property name="dryLevel">
+			<value>3.5</value>
+		</property>
+	</object>
+	<object class="SpatialiserEffect" id="{87ec72f3-6a7d-42c0-984c-dfc8e31bf6fc}">
+		<property name="distanceRolloffType">
+			<value>4</value>
+		</property>
+		<property name="extentMode">
+			<value>2</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{94805d4c-d6a2-4b3f-b0cb-fb2cc971d3ba}" />
