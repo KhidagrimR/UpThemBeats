@@ -73,9 +73,14 @@ namespace Atone_UI
 
         private void SetLandingCanvas(MenuType menuType)
         {
-            pauseMenuLanding.SetActive(menuType == MenuType.PAUSE_MENU);
-            mainMenuLanding.SetActive(menuType == MenuType.MAIN_MENU);
-            settingsLanding.SetActive(menuType == MenuType.SETTINGS);
+            if(pauseMenuLanding != null)
+                pauseMenuLanding.SetActive(menuType == MenuType.PAUSE_MENU);
+
+            if(mainMenuLanding != null)
+                mainMenuLanding.SetActive(menuType == MenuType.MAIN_MENU);
+
+            if(settingsLanding != null)
+                settingsLanding.SetActive(menuType == MenuType.SETTINGS);
         }
 
         private void DisplayMenuSettings(SubMenuType submenu)
