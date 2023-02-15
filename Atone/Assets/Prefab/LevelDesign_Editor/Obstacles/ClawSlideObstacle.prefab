@@ -197,6 +197,82 @@ MonoBehaviour:
   animationToTrigger: 0
   animationTrigger: {fileID: 7778168904623160659}
   targetPlayerAnim: 0
+--- !u!1 &8251887685229967713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3753321730238530012}
+  - component: {fileID: 7817625911676433578}
+  - component: {fileID: 4432162612916961240}
+  m_Layer: 11
+  m_Name: SFXCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3753321730238530012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8251887685229967713}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8634547983092317165}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7817625911676433578
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8251887685229967713}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.0284019, y: 0.60378456, z: 1}
+  m_Center: {x: -0.093152285, y: 0.19810772, z: 0}
+--- !u!114 &4432162612916961240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8251887685229967713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  EventReference:
+    Guid:
+      Data1: -1732244817
+      Data2: 1088512175
+      Data3: 157425040
+      Data4: -950334886
+    Path: event:/Blue/Claws
+  Event: 
+  PlayEvent: 3
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &8634547983092317170
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,6 +306,7 @@ Transform:
   - {fileID: 8634547983989079616}
   - {fileID: 1087515238940942005}
   - {fileID: 1547889522486369674}
+  - {fileID: 3753321730238530012}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -457,6 +534,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7211139632066840251}
   vfxArrival: {fileID: 0}
+  vfxDeath: {fileID: 0}
+  soundImpact: {fileID: 0}
 --- !u!1001 &8634547984817108546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -622,3 +701,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 554310983295696814}
   vfxArrival: {fileID: 0}
+  vfxDeath: {fileID: 0}
+  soundImpact: {fileID: 0}
