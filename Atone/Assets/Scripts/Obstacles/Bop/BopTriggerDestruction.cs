@@ -46,7 +46,7 @@ public class BopTriggerDestruction : MonoBehaviour
     public void BopAction(){
         if(isTrigger && !isDestroy){
             bopVisuel.SetActive(false);
-            SFXManager.GetComponent<SFXManagerBop>().loadDataSound.Stop();
+            //SFXManager.GetComponent<SFXManagerBop>().loadDataSound.Stop();
             bopExplosion.transform.position = bopVisuel.transform.position;
             bopExplosion.Play();
             SFXManager.GetComponent<SFXManagerBop>().destructionSound.Play();

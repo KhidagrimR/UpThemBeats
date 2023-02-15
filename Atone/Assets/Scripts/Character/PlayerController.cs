@@ -83,6 +83,14 @@ public class PlayerController : MonoBehaviour
     public Collider playerCollider;
     public StudioEventEmitter patinDroitFMODEmitter;
     public StudioEventEmitter patinGaucheFMODEmitter;
+    public StudioEventEmitter playerJump;
+    public StudioEventEmitter playerLand;
+    public StudioEventEmitter playerSlide;
+    public StudioEventEmitter playerWallrunL;
+    public StudioEventEmitter playerWallrunR;
+    public StudioEventEmitter playerHit;
+    public StudioEventEmitter playerDeath;
+    public StudioEventEmitter playerSnap;
 
     public static List<GameObject> gameObjectsColliding;
     public Vector3 currentCheckpoint;
@@ -225,11 +233,13 @@ public class PlayerController : MonoBehaviour
     {
         if (isChangingLane) return;
         animationTrigger.PlayAnimation(AnimationEnum.JumpStart);
+        playerJump.Play();
         Vector3 target;
         if (PlayerManager.Instance.playerCurrentLane == 1)
         {
             target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
             animationTrigger.PlayAnimation(AnimationEnum.JumpStop);
+            playerLand.Play();
         }
 
         else
@@ -290,6 +300,7 @@ public class PlayerController : MonoBehaviour
                     bop.BopAction();
 
                     switchArmsState++;
+                    playerSnap.Play();
                     if (switchArmsState % 2 == 0)
                         animationTrigger.PlayAnimation(AnimationEnum.SnapLeft);
                     else
@@ -321,10 +332,12 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage()
     {
         hp --;
+        playerHit.Play();
         if (hp <= 0)
         {
            
             hp = initHp;
+            playerDeath.Play();
             StartCoroutine(SequenceManager.Instance.RestartCurrentSequence());
         }
         else
@@ -356,6 +369,7 @@ public class PlayerController : MonoBehaviour
                 playerCollider.transform.position = new Vector3(playerCollider.transform.position.x, startingHeadPosition.y - x, playerCollider.transform.position.z);
             });
 
+            playerSlide.Play();
             animationTrigger.PlayAnimation(AnimationEnum.SlideStart);
             isSliding = true;
         }
@@ -368,6 +382,7 @@ public class PlayerController : MonoBehaviour
                 playerCollider.transform.position = new Vector3(playerCollider.transform.position.x, x, playerCollider.transform.position.z);
             });
 
+            playerSlide.Stop();
             animationTrigger.PlayAnimation(AnimationEnum.SlideStop);
             isSliding = false;
         }

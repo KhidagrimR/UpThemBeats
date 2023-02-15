@@ -64,7 +64,6 @@ MonoBehaviour:
   sequences: []
   currentSequenceIndex: 0
   roadPrefab: {fileID: 4252543333268015580, guid: 43b59dd9e92a55a499b84bc5883e1049, type: 3}
-  transitionBetweenSequences: 0
   isDeathRestartingMusic: 0
 --- !u!1 &794377114544737474
 GameObject:
@@ -161,6 +160,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb492a4cbce8d0499b3a29af5ef7b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  postProcessVolume: {fileID: 0}
+  bloomBlueColor:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 0}
+  bloomRedColor:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 0}
+  bloomYellowColor:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &6341438436302581879
 GameObject:
   m_ObjectHideFlags: 0
