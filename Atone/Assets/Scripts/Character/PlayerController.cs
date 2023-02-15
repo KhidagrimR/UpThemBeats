@@ -227,9 +227,22 @@ public class PlayerController : MonoBehaviour
             target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
             animationTrigger.PlayAnimation(AnimationEnum.JumpStop);
             playerLand.Play();
+            playerWallrunL.Stop();
+            playerWallrunR.Stop();
         }
         else
+        {
             target = new Vector3(lanePosition.x, lanePosition.y + 0.35f, transform.position.z);
+            if (PlayerManager.Instance.playerCurrentLane == 2)
+            {
+                playerWallrunR.Play();
+            }
+            else
+            {
+                playerWallrunL.Play();
+            }
+        }
+            
 
         float distanceZ = playerSpeed * changeLaneDuration; //v * t
 
