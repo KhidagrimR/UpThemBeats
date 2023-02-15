@@ -133,14 +133,17 @@ public class PlayerController : MonoBehaviour
     private int beat;
     void PlayPatinSounds()
     {
-        beat++;
-        if (beat % 2 == 0)
+        if(!isSliding && PlayerManager.Instance.playerCurrentLane == 1)
         {
-            patinDroitFMODEmitter.Play();
-        }
-        else
-        {
-            patinGaucheFMODEmitter.Play();
+            beat++;
+            if (beat % 2 == 0)
+            {
+                patinDroitFMODEmitter.Play();
+            }
+            else
+            {
+                patinGaucheFMODEmitter.Play();
+            }
         }
     }
 
