@@ -59,9 +59,17 @@ public class Checkpoint : MonoBehaviour
 
     public string GetPlayerName(string path) {
         string[] files = Directory.GetFiles(path, ".txt");
-        int nb = 0;
-        if (files.Length > 0)
-            nb = int.Parse(files[files.Length - 1].Split("_")[1]) + 1;
-        return "Player_" + nb;
+        PlayerName.Instance.container.SetActive(true);
+        bool isSameName = true;
+        while (isSameName){
+            isSameName = false;
+            foreach(string file in files){
+                if (PlayerName.Instance.name == file.Split("/")[file.Split("/").Length - 1].Split("_")[0]){
+                    isSameName = true;
+                    PlayerName.Instance.textError.SetActive(true);
+                }  
+            }
+        }
+        return PlayerName.Instance.name;
     }
 }
