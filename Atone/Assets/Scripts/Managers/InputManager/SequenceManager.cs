@@ -117,6 +117,7 @@ public class SequenceManager : Singleton<SequenceManager>
 
     public IEnumerator RestartCurrentSequence()
     {
+        GameManager.Instance.isPlayerDead = true;
         isDeathRestartingMusic = true;
         SpriteRenderer cameraBlackFade = Camera.main.transform.GetChild(0).GetComponent<SpriteRenderer>();
         DOVirtual.Float(0f, 1f, sequenceFadeDuration, (float x) => 
@@ -151,5 +152,6 @@ public class SequenceManager : Singleton<SequenceManager>
             cameraBlackFade.color.b, 
             0);
         isDeathRestartingMusic = false;
+        GameManager.Instance.isPlayerDead = false;
     }
 }

@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
 {
     public UI_Loader uI_Loader;    
     private FMOD.Studio.Bus gameplayBus;
+    [InspectorReadOnly] public bool isPlayerDead;
     private bool _isReady;
     public bool isReady
     {

@@ -73,7 +73,7 @@ public class InputManager : Singleton<InputManager>
         ReadUIInput();
         
         // si le jeu est en pause on ne prends pas les inputs de jeu du joueur
-        if (GameManager.Instance.isGameCurrentlyPaused) return;
+        if (GameManager.Instance.isGameCurrentlyPaused || GameManager.Instance.isPlayerDead) return;
 
         ReadGameInput();
     }
