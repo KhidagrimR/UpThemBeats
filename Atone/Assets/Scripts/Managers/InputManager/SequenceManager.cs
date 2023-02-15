@@ -134,13 +134,16 @@ public class SequenceManager : Singleton<SequenceManager>
         CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Recoil);
 
         yield return new WaitForSeconds(sequenceFadeDuration);
-        PlayerManager.Instance.playerController.transform.position = new Vector3(0, 1.07f, PlayerManager.Instance.playerController.currentCheckpoint.z);
-        PlayerManager.Instance.playerController.canPlayerMove = true;
+        PlayerController player = PlayerManager.Instance.playerController;
+        
+        StartCoroutine(player.SetIndestructible());
+        player.transform.position = new Vector3(0, 1.07f, player.currentCheckpoint.z);
 
-
-        //LoadTargetSequenceByIndex(currentSequenceIndex);
+        currentSequence.gameObject.SetActive(false);
+        LoadTargetSequenceByIndex(currentSequenceIndex);
         StartSequence();
         //sequences[sequences.Count - 1].gameObject.SetActive(false);
+        player.canPlayerMove = true;
 
         cameraBlackFade.color = new Color(
             cameraBlackFade.color.r, 

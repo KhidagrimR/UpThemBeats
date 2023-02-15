@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [Header("Status (can't be modified in inspector)")]
     [InspectorReadOnly] public bool isGrounded;
     [InspectorReadOnly] public bool _isSliding; // is the player sliding
+    [InspectorReadOnly] public bool isIndestructible; // is the player sliding
     public bool isSliding
     {
         get { return _isSliding; }
@@ -176,23 +177,6 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (playerSpeed * Time.deltaTime));
     }
 
-    #region Test
-    // NEW WAY TO MOVE
-    /*bool isMoving;
-    void Move()
-    {
-        //transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (playerSpeed * Time.deltaTime));
-
-        isMoving = true;
-        Vector3 targetPosition = new Vector3(0f,0f,20f);
-        float duration = MusicManager.Instance.SecPerBeat;
-        // on sait qu'il commence 
-        transform.DOMove(transform.position + targetPosition, duration).OnComplete(() => {
-            isMoving = false;
-        });
-    }*/
-    #endregion
-
     void ApplyGravity()
     {
         // apply gravity
@@ -319,6 +303,8 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
+        if(isIndestructible) return;
+        StartCoroutine(SetIndestructible());
         hp --;
         if (hp <= 0)
         {
@@ -335,8 +321,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
-
 
     private Vector3 startingHeadPosition;
     [Header("Slide")]
@@ -405,5 +389,12 @@ public class PlayerController : MonoBehaviour
 
             // check if player has a wall on left and on right
         }
+    }
+
+    public IEnumerator SetIndestructible()
+    {
+        isIndestructible = true;
+        yield return new WaitForSeconds(0.5f);
+        isIndestructible = false;
     }
 }
