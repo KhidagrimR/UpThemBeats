@@ -89,7 +89,14 @@ public class AnimationTrigger : MonoBehaviour
 
     // coming from griffe wallrun 1|Armature action 003
     public void PlayVFX()
-    {}
+    {
+
+    }
+
+    public void DropCameraShake()
+    {
+        CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.RedwallDrop);
+    }
 
 
 }

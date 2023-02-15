@@ -131,7 +131,7 @@ public class SequenceManager : Singleton<SequenceManager>
         PlayerManager.Instance.playerController.canPlayerMove = false;
         MusicManager.Instance.StopMusic();
         //sequences[currentSequenceIndex].SetActive(false);
-        CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Recoil);
+        CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Death);
 
         yield return new WaitForSeconds(sequenceFadeDuration);
         PlayerController player = PlayerManager.Instance.playerController;

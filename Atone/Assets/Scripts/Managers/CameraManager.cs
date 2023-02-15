@@ -11,7 +11,7 @@ public class CameraManager : Singleton<CameraManager>
     {
         public CinemachineImpulseSource impulseEffectRef;
         public enum EffectType {
-            Explosion, Bump, Recoil, Rumble
+            RedwallDestroy, RedwallDrop, Slide, SlideStop, WallrunLoop, WallrunHit, BopDestroy, Damage, Death
         }
         public EffectType effectType;
         public float impulseStr = 5f;
@@ -51,7 +51,7 @@ public class CameraManager : Singleton<CameraManager>
         while(PlayerManager.Instance.playerController.isSliding)
         {
             yield return new WaitForSeconds(.2f);
-            ShakeCamera(CameraEffect.EffectType.Rumble);
+            //ShakeCamera(CameraEffect.EffectType.Slide);
         }
     }
 }
