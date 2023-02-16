@@ -10,7 +10,8 @@ public class Checkpoint : MonoBehaviour
     public string sequence;
     public bool endGame;
 
-    public static string path = "Assets/ScoreBoard";
+    public static string path = "Assets/ScoreBoard/PlayerScore";
+    public static string pathLeaderboard = "Assets/ScoreBoard";
     public void OnTriggerEnter(Collider other){
         if(!GameManager.Instance.isReady) {return;}
         
@@ -61,6 +62,7 @@ public class Checkpoint : MonoBehaviour
         }
         sw.WriteLine("Score Total : " + scoreTotal);
         sw.Close();
+        Leaderboard.Instance.finalScore.text = scoreTotal.ToString();
     }
 
     public static void WriteLeaderBoard() {
@@ -83,12 +85,18 @@ public class Checkpoint : MonoBehaviour
             sr.Close();
         }
 
-        StreamWriter sw = new StreamWriter(path + "/Leaderboard.txt");
+        StreamWriter sw = new StreamWriter(pathLeaderboard + "/Leaderboard.txt");
         List<KeyValuePair<string, float>> sortedLeaderboard = leaderboard.ToList();
         sortedLeaderboard.Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value));
+        if (sortedLeaderboard.Count > 30) {
+            File.Delete(path + "/" + sortedLeaderboard[sortedLeaderboard.Count - 1].Key + "_Score.txt");
+            sortedLeaderboard.RemoveAt(sortedLeaderboard.Count - 1);
+        }
+             
         foreach (KeyValuePair<string, float> player in sortedLeaderboard)
-            sw.WriteLine(player.Key + "    " + player.Value);
+            sw.WriteLine(player.Key + " - " + player.Value);
         sw.Close();
+
     }
 
 

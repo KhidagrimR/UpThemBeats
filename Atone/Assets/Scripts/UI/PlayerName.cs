@@ -27,6 +27,7 @@ public class PlayerName : Singleton<PlayerName>
         if (!isSameName){
             Checkpoint.WriteScoreToFile(name);
             Checkpoint.WriteLeaderBoard();
+            Leaderboard.Instance.containerFinalScore.SetActive(true);
             container.SetActive(false);
         }
             
