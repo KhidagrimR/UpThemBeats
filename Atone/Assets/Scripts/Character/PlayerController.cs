@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [Header("Status (can't be modified in inspector)")]
     [InspectorReadOnly] public bool isGrounded;
     [InspectorReadOnly] public bool _isSliding; // is the player sliding
+    [InspectorReadOnly] public bool isIndestructible; // is the player sliding
     public bool isSliding
     {
         get { return _isSliding; }
@@ -83,6 +84,14 @@ public class PlayerController : MonoBehaviour
     public Collider playerCollider;
     public StudioEventEmitter patinDroitFMODEmitter;
     public StudioEventEmitter patinGaucheFMODEmitter;
+    public StudioEventEmitter playerJump;
+    public StudioEventEmitter playerLand;
+    public StudioEventEmitter playerSlide;
+    public StudioEventEmitter playerWallrunL;
+    public StudioEventEmitter playerWallrunR;
+    public StudioEventEmitter playerHit;
+    public StudioEventEmitter playerDeath;
+    public StudioEventEmitter playerSnap;
 
     public static List<GameObject> gameObjectsColliding;
     public Vector3 currentCheckpoint;
@@ -132,14 +141,17 @@ public class PlayerController : MonoBehaviour
     private int beat;
     void PlayPatinSounds()
     {
-        beat++;
-        if (beat % 2 == 0)
+        if(!isSliding && PlayerManager.Instance.playerCurrentLane == 1)
         {
-            patinDroitFMODEmitter.Play();
-        }
-        else
-        {
-            patinGaucheFMODEmitter.Play();
+            beat++;
+            if (beat % 2 == 0)
+            {
+                patinDroitFMODEmitter.Play();
+            }
+            else
+            {
+                patinGaucheFMODEmitter.Play();
+            }
         }
     }
 
@@ -176,23 +188,6 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (playerSpeed * Time.deltaTime));
     }
 
-    #region Test
-    // NEW WAY TO MOVE
-    /*bool isMoving;
-    void Move()
-    {
-        //transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (playerSpeed * Time.deltaTime));
-
-        isMoving = true;
-        Vector3 targetPosition = new Vector3(0f,0f,20f);
-        float duration = MusicManager.Instance.SecPerBeat;
-        // on sait qu'il commence 
-        transform.DOMove(transform.position + targetPosition, duration).OnComplete(() => {
-            isMoving = false;
-        });
-    }*/
-    #endregion
-
     void ApplyGravity()
     {
         // apply gravity
@@ -225,15 +220,29 @@ public class PlayerController : MonoBehaviour
     {
         if (isChangingLane) return;
         animationTrigger.PlayAnimation(AnimationEnum.JumpStart);
+        playerJump.Play();
         Vector3 target;
         if (PlayerManager.Instance.playerCurrentLane == 1)
         {
             target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
             animationTrigger.PlayAnimation(AnimationEnum.JumpStop);
+            playerLand.Play();
+            playerWallrunL.Stop();
+            playerWallrunR.Stop();
         }
-
         else
+        {
             target = new Vector3(lanePosition.x, lanePosition.y + 0.35f, transform.position.z);
+            if (PlayerManager.Instance.playerCurrentLane == 2)
+            {
+                playerWallrunR.Play();
+            }
+            else
+            {
+                playerWallrunL.Play();
+            }
+        }
+            
 
         float distanceZ = playerSpeed * changeLaneDuration; //v * t
 
@@ -245,6 +254,7 @@ public class PlayerController : MonoBehaviour
         transform.DOMove(target, changeLaneDuration).OnComplete(() =>
         {
             isChangingLane = false;
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.WallrunHit);
 
         });
     }
@@ -290,6 +300,7 @@ public class PlayerController : MonoBehaviour
                     bop.BopAction();
 
                     switchArmsState++;
+                    playerSnap.Play();
                     if (switchArmsState % 2 == 0)
                         animationTrigger.PlayAnimation(AnimationEnum.SnapLeft);
                     else
@@ -320,22 +331,28 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
+        if(isIndestructible) return;
+        StartCoroutine(SetIndestructible());
         hp --;
+        playerHit.Play();
         if (hp <= 0)
         {
            
             hp = initHp;
+            playerDeath.Play();
             StartCoroutine(SequenceManager.Instance.RestartCurrentSequence());
+            animationTrigger.PlayAnimation(AnimationEnum.Death);
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Damage);
         }
         else
         {
             print("take damage");
             //print("new HP : " + hp);
+            animationTrigger.PlayAnimation(AnimationEnum.HitTaken);
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Damage);
         }
 
     }
-
-
 
     private Vector3 startingHeadPosition;
     [Header("Slide")]
@@ -356,8 +373,10 @@ public class PlayerController : MonoBehaviour
                 playerCollider.transform.position = new Vector3(playerCollider.transform.position.x, startingHeadPosition.y - x, playerCollider.transform.position.z);
             });
 
+            playerSlide.Play();
             animationTrigger.PlayAnimation(AnimationEnum.SlideStart);
             isSliding = true;
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Slide);
         }
         else
         {
@@ -368,8 +387,10 @@ public class PlayerController : MonoBehaviour
                 playerCollider.transform.position = new Vector3(playerCollider.transform.position.x, x, playerCollider.transform.position.z);
             });
 
+            playerSlide.Stop();
             animationTrigger.PlayAnimation(AnimationEnum.SlideStop);
             isSliding = false;
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.SlideStop);
         }
     }
 
@@ -404,5 +425,12 @@ public class PlayerController : MonoBehaviour
 
             // check if player has a wall on left and on right
         }
+    }
+
+    public IEnumerator SetIndestructible()
+    {
+        isIndestructible = true;
+        yield return new WaitForSeconds(0.5f);
+        isIndestructible = false;
     }
 }

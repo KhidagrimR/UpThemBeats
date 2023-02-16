@@ -117,6 +117,7 @@ public class SequenceManager : Singleton<SequenceManager>
 
     public IEnumerator RestartCurrentSequence()
     {
+        GameManager.Instance.isPlayerDead = true;
         isDeathRestartingMusic = true;
         SpriteRenderer cameraBlackFade = Camera.main.transform.GetChild(0).GetComponent<SpriteRenderer>();
         DOVirtual.Float(0f, 1f, sequenceFadeDuration, (float x) => 
@@ -131,16 +132,19 @@ public class SequenceManager : Singleton<SequenceManager>
         PlayerManager.Instance.playerController.canPlayerMove = false;
         MusicManager.Instance.StopMusic();
         //sequences[currentSequenceIndex].SetActive(false);
-        CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Recoil);
+        CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Death);
 
         yield return new WaitForSeconds(sequenceFadeDuration);
-        PlayerManager.Instance.playerController.transform.position = new Vector3(0, 1.07f, PlayerManager.Instance.playerController.currentCheckpoint.z);
-        PlayerManager.Instance.playerController.canPlayerMove = true;
+        PlayerController player = PlayerManager.Instance.playerController;
+        
+        StartCoroutine(player.SetIndestructible());
+        player.transform.position = new Vector3(0, 1.07f, player.currentCheckpoint.z);
 
-
-        //LoadTargetSequenceByIndex(currentSequenceIndex);
+        currentSequence.gameObject.SetActive(false);
+        LoadTargetSequenceByIndex(currentSequenceIndex);
         StartSequence();
         //sequences[sequences.Count - 1].gameObject.SetActive(false);
+        player.canPlayerMove = true;
 
         cameraBlackFade.color = new Color(
             cameraBlackFade.color.r, 
@@ -148,5 +152,6 @@ public class SequenceManager : Singleton<SequenceManager>
             cameraBlackFade.color.b, 
             0);
         isDeathRestartingMusic = false;
+        GameManager.Instance.isPlayerDead = false;
     }
 }

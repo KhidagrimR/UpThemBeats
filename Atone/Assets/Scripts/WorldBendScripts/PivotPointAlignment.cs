@@ -11,7 +11,7 @@ public class PivotPointAlignment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.forward = playerTransform.forward;
+        //transform.forward = playerTransform.forward;
         transform.position += transform.forward * pSpeed * Time.deltaTime;
     }
 }

@@ -7,6 +7,6 @@ public class SFXManagerBop : MonoBehaviour
 {
     public StudioEventEmitter arrivalSound;
     public StudioEventEmitter destructionSound;
-    public StudioEventEmitter loadDataSound;
+    //public StudioEventEmitter loadDataSound;
     public StudioEventEmitter validationDataSound;
 }

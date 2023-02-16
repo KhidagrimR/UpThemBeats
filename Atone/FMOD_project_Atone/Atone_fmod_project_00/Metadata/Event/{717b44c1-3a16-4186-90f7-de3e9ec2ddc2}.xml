@@ -59,7 +59,7 @@
 			<destination>{64e360d9-3cd1-4f8c-9802-1e8ebf3a0a41}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{aec73cfa-8b77-4f29-9542-b9d4c5be8bc5}</destination>
+			<destination>{8ceb5511-10fb-485c-84d4-376e13a6c118}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{9585b7d2-df5c-4834-b9a4-715c6e3b359f}" />
@@ -134,6 +134,7 @@
 			<destination>{dc503728-e3b6-43ee-84fa-fe1fb1ccca07}</destination>
 			<destination>{4d99ffa3-71f2-435d-a6fa-66766fd36b69}</destination>
 			<destination>{6bfa6c62-4da7-4f88-8b1e-2622d046ff76}</destination>
+			<destination>{e4f0a681-5558-427e-9d9c-eb7c50c8c427}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{379f2349-2c8c-40cd-9408-1e6626ef3623}">
@@ -392,7 +393,21 @@
 			<value>6</value>
 		</property>
 		<property name="name">
-			<value>WTFLeft</value>
+			<value>(WTFLeft)</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{84ee89b2-d275-42c7-b8a7-c00b90a2ab2a}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{6c89e8f6-9499-400b-953d-799e83c09278}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{e4f0a681-5558-427e-9d9c-eb7c50c8c427}">
+		<property name="position">
+			<value>5.625</value>
+		</property>
+		<property name="name">
+			<value>LeftBot5</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{84ee89b2-d275-42c7-b8a7-c00b90a2ab2a}</destination>

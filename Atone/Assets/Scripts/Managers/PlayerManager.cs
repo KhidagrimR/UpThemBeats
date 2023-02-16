@@ -4,6 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
 using System;
+using FMODUnity;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
@@ -187,7 +188,7 @@ public class PlayerManager : Singleton<PlayerManager>
             }
             else
             {
-                StopCoroutine(playerController.CheckIfPlayerCanStayOnWall());
+                StopCoroutine(playerController.CheckIfPlayerCanStayOnWall()); 
             }
                 
 
@@ -287,7 +288,9 @@ public class PlayerManager : Singleton<PlayerManager>
             return;
 
         if (isPlayerAbleToSlide)
+        {
             playerController.Slide(pIsSliding);
+        }
     }
 
     public void BendPlayerTowardDirection(int direction)

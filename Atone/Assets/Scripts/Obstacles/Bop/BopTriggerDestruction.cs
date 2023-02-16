@@ -46,7 +46,7 @@ public class BopTriggerDestruction : MonoBehaviour
     public void BopAction(){
         if(isTrigger && !isDestroy){
             bopVisuel.SetActive(false);
-            SFXManager.GetComponent<SFXManagerBop>().loadDataSound.Stop();
+            //SFXManager.GetComponent<SFXManagerBop>().loadDataSound.Stop();
             bopExplosion.transform.position = bopVisuel.transform.position;
             bopExplosion.Play();
             SFXManager.GetComponent<SFXManagerBop>().destructionSound.Play();
@@ -54,6 +54,7 @@ public class BopTriggerDestruction : MonoBehaviour
 
             PlayerManager.Instance.IncreaseScore(gameObject.GetComponent<BoxCollider>().bounds.extents.z, gameObject.transform.position.z, pointObstacle);
             SequenceManager.Instance.currentSequence.currentAmountOFObstacleDestroyed++;
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.BopDestroy);
         }
             
         else

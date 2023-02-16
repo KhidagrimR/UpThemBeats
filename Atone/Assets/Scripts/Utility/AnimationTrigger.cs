@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class AnimationTrigger : MonoBehaviour
     public VisualEffect vfxArrival;
 
     public VisualEffect vfxDeath;
+
+    public StudioEventEmitter soundImpact;
 
     // public enum AnimationEnum {Spawn, Jump, Death, Hit, Idle, Run, Disactivated, LeftRun, RightRun, LeftSnapPrepare };
     // Déplacé hors de la classe (voir plus bas) pour un accès plus facile
@@ -89,7 +92,19 @@ public class AnimationTrigger : MonoBehaviour
 
     // coming from griffe wallrun 1|Armature action 003
     public void PlayVFX()
-    {}
+    {
+
+    }
+
+    public void DropCameraShake()
+    {
+        CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.RedwallDrop);
+    }
+    
+    public void PlaySFX()
+    {
+        soundImpact.Play();
+    }
 
 
 }

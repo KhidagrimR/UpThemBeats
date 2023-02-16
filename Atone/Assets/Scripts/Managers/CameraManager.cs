@@ -11,7 +11,7 @@ public class CameraManager : Singleton<CameraManager>
     {
         public CinemachineImpulseSource impulseEffectRef;
         public enum EffectType {
-            Explosion, Bump, Recoil
+            RedwallDestroy, RedwallDrop, Slide, SlideStop, WallrunLoop, WallrunHit, BopDestroy, Damage, Death
         }
         public EffectType effectType;
         public float impulseStr = 5f;
@@ -41,8 +41,17 @@ public class CameraManager : Singleton<CameraManager>
         CameraEffect cameraEffect = cameraEffects.Find(x => x.effectType == effect);
         if(cameraEffect != null)
         {
-            Debug.Log("<color=red>Impulse</color>");
+            //Debug.Log("<color=red>Impulse</color>");
             cameraEffect.impulseEffectRef.GenerateImpulse(cameraEffect.impulseStr);
+        }
+    }
+
+    public IEnumerator ShakeCameraWhileSliding()
+    {
+        while(PlayerManager.Instance.playerController.isSliding)
+        {
+            yield return new WaitForSeconds(.2f);
+            //ShakeCamera(CameraEffect.EffectType.Slide);
         }
     }
 }

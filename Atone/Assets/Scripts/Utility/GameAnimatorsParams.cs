@@ -49,7 +49,7 @@ public enum AnimationEnum
     JumpStart, 
     JumpStop,
     Death, 
-    Hit, 
+    HitTaken, 
     Idle, 
     Disactivated, 
     LeftSnapPrepare,
