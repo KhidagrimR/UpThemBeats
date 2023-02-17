@@ -9,6 +9,8 @@ public class InputManager : Singleton<InputManager>
     public static bool onController = false;
 
     public static bool isRightHanded = true;
+
+    public bool onLeaderboard = false;
     [Header("Pause menu / return")]
 
     public PlayerAction menuOrReturn;
@@ -70,6 +72,8 @@ public class InputManager : Singleton<InputManager>
         if (!GameManager.Instance.isReady) return;
         CheckIfControllerOrKeyBoardIsActive();
 
+        //si le jeu est sur le leaderboard on ne peut pas mettre pause
+        if (onLeaderboard) return;
         ReadUIInput();
         
         // si le jeu est en pause on ne prends pas les inputs de jeu du joueur
