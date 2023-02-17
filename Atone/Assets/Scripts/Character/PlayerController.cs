@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using FMODUnity;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -221,14 +222,18 @@ public class PlayerController : MonoBehaviour
         if (isChangingLane) return;
         animationTrigger.PlayAnimation(AnimationEnum.JumpStart);
         playerJump.Play();
+        CameraManager.Instance.ChangeHeadbobType(CameraManager.HeadbobNoiseSettings.HeadbobType.WallrunBob);
         Vector3 target;
+        PostProcessManager.Instance.ChangeColorToBlue(0.5f);
         if (PlayerManager.Instance.playerCurrentLane == 1)
         {
             target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
             animationTrigger.PlayAnimation(AnimationEnum.JumpStop);
+            CameraManager.Instance.ChangeHeadbobType(CameraManager.HeadbobNoiseSettings.HeadbobType.UpstandBob);
             playerLand.Play();
             playerWallrunL.Stop();
             playerWallrunR.Stop();
+            PostProcessManager.Instance.ResetBloomColor(0.5f);
         }
         else
         {
@@ -274,6 +279,7 @@ public class PlayerController : MonoBehaviour
 
                     wall.WallAction();
                     switchArmsState++;
+                    PostProcessManager.Instance.ChangeColorToRed(.2f);
                     if (switchArmsState % 2 == 0)
                         animationTrigger.PlayAnimation(AnimationEnum.BreakLeft);
                     else
@@ -301,6 +307,7 @@ public class PlayerController : MonoBehaviour
 
                     switchArmsState++;
                     playerSnap.Play();
+                    PostProcessManager.Instance.ChangeColorToYellow(0.2f);
                     if (switchArmsState % 2 == 0)
                         animationTrigger.PlayAnimation(AnimationEnum.SnapLeft);
                     else
@@ -377,6 +384,10 @@ public class PlayerController : MonoBehaviour
             animationTrigger.PlayAnimation(AnimationEnum.SlideStart);
             isSliding = true;
             CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Slide);
+            CameraManager.Instance.ChangeHeadbobType(CameraManager.HeadbobNoiseSettings.HeadbobType.SlideBob);
+            PostProcessManager.Instance.ChangeColorToBlue(0.5f);
+            //vcam.m_Lens.FieldOfView = 1;
+            //Debug.Log("<color=orange>Vcam = "+vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain+"</color>");
         }
         else
         {
@@ -391,6 +402,8 @@ public class PlayerController : MonoBehaviour
             animationTrigger.PlayAnimation(AnimationEnum.SlideStop);
             isSliding = false;
             CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.SlideStop);
+            CameraManager.Instance.ChangeHeadbobType(CameraManager.HeadbobNoiseSettings.HeadbobType.UpstandBob);
+            PostProcessManager.Instance.ResetBloomColor(.5f);
         }
     }
 

@@ -64,4 +64,6 @@ public enum AnimationEnum
     BreakRight,
     SpeedScaleFactor,
     SkateCycleOffset,
+    BobStart,
+    BobStop,
 };

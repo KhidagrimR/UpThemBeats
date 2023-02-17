@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using Cinemachine;
 
 public class PlayerAnimationEvent : MonoBehaviour
 {
@@ -94,5 +95,15 @@ public class PlayerAnimationEvent : MonoBehaviour
         VFXSpeedLines.Stop();
         VFXLaneSwitchRight.Play();
         //Debug.Log("SwitchRightFVX");
+    }
+
+    public void ResetSnapBloomColor()
+    {
+        PostProcessManager.Instance.ResetBloomColor(0.2f);
+    }
+
+    public void ResetBreakBloomColor()
+    {
+        PostProcessManager.Instance.ResetBloomColor(0.2f);
     }
 }
