@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 public class Checkpoint : MonoBehaviour
 {
@@ -32,7 +33,11 @@ public class Checkpoint : MonoBehaviour
             PlayerManager.Instance.scoreBoard[niveau].Add(sequence, PlayerManager.scoreSequence);
             
         if (endGame){
+            GameManager.Instance.TogglePauseState();
+            Cursor.lockState = CursorLockMode.None;
+            InputManager.Instance.onLeaderboard = true;
             PlayerName.Instance.container.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(PlayerName.Instance.selectableInputField);
         }
             
     }
