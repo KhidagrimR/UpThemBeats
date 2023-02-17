@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sequencesPrefab:
-  - {fileID: 1827712851758725077, guid: bd211436470ae2449b111f65c5cf658a, type: 3}
   - {fileID: 1827712851758725077, guid: d8145d19dc3a08e4dbc778d9e881566c, type: 3}
   - {fileID: 1827712851758725077, guid: f2a9099c06fa28e44adae2bc25b38edb, type: 3}
   - {fileID: 1827712851758725077, guid: e014e5c6039009448ad36e3b1794ccbc, type: 3}
+  - {fileID: 1827712851758725077, guid: bd211436470ae2449b111f65c5cf658a, type: 3}
   - {fileID: 1827712851758725077, guid: 483103d9b64920a4987bc0f89b0690e2, type: 3}
   - {fileID: 1827712851758725077, guid: 3087e92648c6fa847af261b4086bf505, type: 3}
   - {fileID: 1827712851758725077, guid: 26d86ab71b5112643a8e097ab4bda44d, type: 3}
@@ -62,9 +62,8 @@ MonoBehaviour:
   - {fileID: 1827712851758725077, guid: 00402beb2e270404a8e03862662af03e, type: 3}
   - {fileID: 1827712851758725077, guid: 506d9984448f37640918a99308666474, type: 3}
   - {fileID: 1827712851758725077, guid: 016bf2ea306710249921d0cfa0fc86c2, type: 3}
-  sequences: []
-  currentSequenceIndex: 0
-  roadPrefab: {fileID: 4252543333268015580, guid: 43b59dd9e92a55a499b84bc5883e1049, type: 3}
+  currentSequence: {fileID: 0}
+  startingSequenceIndex: 0
   isDeathRestartingMusic: 0
 --- !u!1 &794377114544737474
 GameObject:
@@ -215,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9c6ab4a3669ac5e85d346e68b7a712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onLeaderboard: 0
   menuOrReturn:
     m_Name: menuOrReturn
     m_ActionKeyBoardRightHanded: 27
