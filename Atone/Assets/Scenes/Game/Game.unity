@@ -3729,6 +3729,11 @@ Transform:
   m_Father: {fileID: 208020632}
   m_RootOrder: 144
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!20 &241405950 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5784406930670978891, guid: ac98e17abcc58dd4497df91af8e8604e, type: 3}
+  m_PrefabInstance: {fileID: 261809296}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &251016582
 GameObject:
   m_ObjectHideFlags: 0
@@ -7018,11 +7023,6 @@ Transform:
   m_Father: {fileID: 208020632}
   m_RootOrder: 163
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!20 &535282047 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 535282047, guid: ac98e17abcc58dd4497df91af8e8604e, type: 3}
-  m_PrefabInstance: {fileID: 261809296}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &537319535
 GameObject:
   m_ObjectHideFlags: 0
@@ -10097,7 +10097,7 @@ PrefabInstance:
     - target: {fileID: 184292262658145329, guid: 2846670eece1f0e40a9533b28f445f94, type: 3}
       propertyPath: m_Cameras.Array.data[1]
       value: 
-      objectReference: {fileID: 535282047}
+      objectReference: {fileID: 241405950}
     - target: {fileID: 184292262658145341, guid: 2846670eece1f0e40a9533b28f445f94, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -28106,6 +28106,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1946906229}
     - target: {fileID: 2357018547315483252, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
+      propertyPath: headbobNoiseSettings.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357018547315483252, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
       propertyPath: cameraEffects.Array.data[0].impulseEffectRef
       value: 
       objectReference: {fileID: 8105424901081143819}
@@ -28137,6 +28141,26 @@ PrefabInstance:
       propertyPath: cameraEffects.Array.data[8].impulseEffectRef
       value: 
       objectReference: {fileID: 8105424901081143815}
+    - target: {fileID: 2357018547315483252, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
+      propertyPath: headbobNoiseSettings.Array.data[1].headbobType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357018547315483252, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
+      propertyPath: headbobNoiseSettings.Array.data[2].headbobType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357018547315483252, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
+      propertyPath: headbobNoiseSettings.Array.data[0].noiseSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 7102ddb4cf3970448b341e5020c36168, type: 2}
+    - target: {fileID: 2357018547315483252, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
+      propertyPath: headbobNoiseSettings.Array.data[1].noiseSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 40a24b2b9016a5d4096f366b2adb53e0, type: 2}
+    - target: {fileID: 2357018547315483252, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
+      propertyPath: headbobNoiseSettings.Array.data[2].noiseSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 4c8cb6edfc3d1dd42b46fed504e04c86, type: 2}
     - target: {fileID: 4545899665252050823, guid: b62c04c3672d59f489384c82b9cb4bab, type: 3}
       propertyPath: postProcessVolume
       value: 
