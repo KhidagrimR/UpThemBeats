@@ -219,7 +219,7 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeLane(Vector3 lanePosition)
     {
-        if (isChangingLane) return;
+        //if (isChangingLane) return;
         animationTrigger.PlayAnimation(AnimationEnum.JumpStart);
         playerJump.Play();
         CameraManager.Instance.ChangeHeadbobType(CameraManager.HeadbobNoiseSettings.HeadbobType.WallrunBob);
