@@ -199,20 +199,39 @@ public class PlayerController : MonoBehaviour
     {
         if (PlayerManager.Instance.playerCurrentLane == 1)
         {
-            transform.position = new Vector3(-0.3f, transform.position.y, transform.position.z);
+            float from = transform.position.x;
+            float to = -0.3f;
+            float duration = 0.25f;
+            DOVirtual.Float(from, to, duration, (float x) => {
+                 transform.position = new Vector3(x, transform.position.y, transform.position.z);
+            });
+
+            //transform.position = new Vector3(-0.3f, transform.position.y, transform.position.z);
             animationTrigger.PlayAnimation(AnimationEnum.LeanLeft);
         }
     }
     public void ResetBend()
     {
-        transform.position = new Vector3(0f, transform.position.y, transform.position.z);
+        float from = transform.position.x;
+        float to = 0.0f;
+        float duration = 0.25f;
+        DOVirtual.Float(from, to, duration, (float x) => {
+            transform.position = new Vector3(x, transform.position.y, transform.position.z);
+        });
+        //transform.position = new Vector3(0f, transform.position.y, transform.position.z);
         animationTrigger.PlayAnimation(AnimationEnum.LeanStop);
     }
     public void BendOnRight()
     {
         if (PlayerManager.Instance.playerCurrentLane == 1)
         {
-            transform.position = new Vector3(0.3f, transform.position.y, transform.position.z);
+            float from = transform.position.x;
+            float to = 0.3f;
+            float duration = 0.25f;
+            DOVirtual.Float(from, to, duration, (float x) => {
+                 transform.position = new Vector3(x, transform.position.y, transform.position.z);
+            });
+            //transform.position = new Vector3(0.3f, transform.position.y, transform.position.z);
             animationTrigger.PlayAnimation(AnimationEnum.LeanRight);
         }
     }
