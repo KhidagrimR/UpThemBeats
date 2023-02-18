@@ -66,4 +66,6 @@ public enum AnimationEnum
     SkateCycleOffset,
     BobStart,
     BobStop,
+    TriggerLeftJump,
+    TriggerRightJump
 };
