@@ -191,7 +191,7 @@ public class MusicManager : Singleton<MusicManager>
         musicFMODInstance.setUserData(IntPtr.Zero);
         musicFMODInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         musicFMODInstance.release();
-        timelineHandle.Free();  // Or suffer the memory leak curse
+        if(timelineHandle.IsAllocated) {timelineHandle.Free();}  // Or suffer the memory leak curse
     }
 
     public GameObject test;
