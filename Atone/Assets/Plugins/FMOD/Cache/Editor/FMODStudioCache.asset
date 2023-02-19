@@ -286,7 +286,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Sequences.bank
   Name: Sequences
   StudioPath: bank:/Sequences
-  lastModified: 638123729369017286
+  lastModified: 638124093991110792
   FileSizes: []
   Exists: 1
 --- !u!114 &-5557453411477566070
@@ -412,7 +412,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Joan.bank
   Name: Joan
   StudioPath: bank:/Joan
-  lastModified: 638123729365657006
+  lastModified: 638124093813356850
   FileSizes: []
   Exists: 1
 --- !u!114 &-4829137026712022518
@@ -484,7 +484,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Thomas.bank
   Name: Thomas
   StudioPath: bank:/Thomas
-  lastModified: 638123729370503320
+  lastModified: 638124094008057140
   FileSizes: []
   Exists: 1
 --- !u!114 &-3885743766092200560
@@ -853,7 +853,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/ObstacleRouge_Sfx.bank
   Name: ObstacleRouge_Sfx
   StudioPath: bank:/ObstacleRouge_Sfx
-  lastModified: 638123729366026025
+  lastModified: 638124093824601988
   FileSizes: []
   Exists: 1
 --- !u!114 &-1570076054562813609
@@ -1060,10 +1060,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Test_Julien.strings.bank
   Name: Test_Julien.strings
   StudioPath: bank:/Test_Julien.strings
-  lastModified: 638123729370124333
+  lastModified: 638124093993930081
   FileSizes:
   - Name: 
-    Value: 4630
+    Value: 4754
   Exists: 1
 --- !u!114 &-513260043451066932
 MonoBehaviour:
@@ -1134,7 +1134,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/ObstacleJauneSfx.bank
   Name: ObstacleJauneSfx
   StudioPath: bank:/ObstacleJauneSfx
-  lastModified: 638123729365836526
+  lastModified: 638124093823818357
   FileSizes: []
   Exists: 1
 --- !u!114 &-187246369752453483
@@ -1179,7 +1179,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Dialogues.bank
   Name: Dialogues
   StudioPath: bank:/Dialogues
-  lastModified: 638123729371520627
+  lastModified: 638124093808047952
   FileSizes: []
   Exists: 1
 --- !u!114 &-149974194703746162
@@ -1338,12 +1338,15 @@ MonoBehaviour:
   - {fileID: -2663172177994270085}
   - {fileID: 5206028238213372400}
   - {fileID: -5259792022522866198}
+  - {fileID: 3662202159173789398}
+  - {fileID: 8725020957032548374}
+  - {fileID: 2352209671115701382}
   EditorParameters: []
   MasterBanks:
   - {fileID: 334020952590969689}
   StringsBanks:
   - {fileID: -791699698764568661}
-  cacheTime: 638123729371779933
+  cacheTime: 638124094011010091
   cacheVersion: 131593
 --- !u!114 &53700009093405016
 MonoBehaviour:
@@ -1387,7 +1390,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Test_Julien.bank
   Name: Test_Julien
   StudioPath: bank:/Test_Julien
-  lastModified: 638123729370114362
+  lastModified: 638124093993750587
   FileSizes: []
   Exists: 1
 --- !u!114 &867175263285784106
@@ -1621,9 +1624,36 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Narration.bank
   Name: Narration
   StudioPath: bank:/Narration
-  lastModified: 638123729371779933
+  lastModified: 638124093823147625
   FileSizes: []
   Exists: 1
+--- !u!114 &2352209671115701382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sequence/Sequence_13
+  m_EditorClassIdentifier: 
+  Path: event:/Sequence/Sequence_13
+  Guid:
+    Data1: 1325290030
+    Data2: 1278574120
+    Data3: 1605643937
+    Data4: 1736486145
+  Banks:
+  - {fileID: -6217783408229508772}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 24000
 --- !u!114 &2432072433838080860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1666,7 +1696,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Bank A.bank
   Name: Bank A
   StudioPath: bank:/Bank A
-  lastModified: 638123729365307946
+  lastModified: 638124093733417770
   FileSizes: []
   Exists: 1
 --- !u!114 &2722502716490725958
@@ -1723,6 +1753,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3072
+--- !u!114 &3662202159173789398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sequence/Sequence_hidden2
+  m_EditorClassIdentifier: 
+  Path: event:/Sequence/Sequence_hidden2
+  Guid:
+    Data1: 1108776707
+    Data2: 1260998180
+    Data3: 1182959519
+    Data4: 1438570855
+  Banks:
+  - {fileID: -6217783408229508772}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 25500
 --- !u!114 &3825759459901890917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1819,7 +1876,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Thomas2.bank
   Name: Thomas2
   StudioPath: bank:/Thomas2
-  lastModified: 638123729370832437
+  lastModified: 638124094011010091
   FileSizes: []
   Exists: 1
 --- !u!114 &4697676877785345352
@@ -2309,6 +2366,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 31653
+--- !u!114 &8725020957032548374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sequence/Sequence_hidden
+  m_EditorClassIdentifier: 
+  Path: event:/Sequence/Sequence_hidden
+  Guid:
+    Data1: 1998091539
+    Data2: 1322718077
+    Data3: 739958661
+    Data4: 973493960
+  Banks:
+  - {fileID: -6217783408229508772}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 24000
 --- !u!114 &8764880668297476136
 MonoBehaviour:
   m_ObjectHideFlags: 0
