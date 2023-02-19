@@ -3764,6 +3764,7 @@ GameObject:
   - component: {fileID: 1671670260901665505}
   - component: {fileID: 1671670260901665507}
   - component: {fileID: 7648010550889365234}
+  - component: {fileID: 1047491837}
   m_Layer: 5
   m_Name: EventsHandler
   m_TagString: Untagged
@@ -3804,9 +3805,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SampleSub: {fileID: 1671670261018202876}
-  subtitleInGame: {fileID: 0}
-  tutoFirst: {fileID: 0}
-  tutoSecond: {fileID: 0}
+  subtitleInGameA: {fileID: 0}
+  subtitleInGameB: {fileID: 0}
+  tutoFirstA: {fileID: 0}
+  tutoSecondA: {fileID: 0}
+  tutoFirstB: {fileID: 0}
+  tutoSecondB: {fileID: 0}
 --- !u!114 &1671670260901665507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3848,6 +3852,22 @@ MonoBehaviour:
   endIntro: {fileID: 6733265122073665398}
   back: {fileID: 2597034115910593839}
   next: {fileID: 1671670261321470133}
+  yes: {fileID: 1671670259836659156}
+  no: {fileID: 1671670259861872854}
+--- !u!114 &1047491837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671670260901665504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 501a588ca53168941a51be5c68d84dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playButton: {fileID: 6733265122073665398}
+  continueButton: {fileID: 0}
 --- !u!1 &1671670261015039422
 GameObject:
   m_ObjectHideFlags: 0
@@ -4631,12 +4651,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 1671670259861872854}
+    m_SelectOnDown: {fileID: 1671670259836659156}
+    m_SelectOnLeft: {fileID: 2597034115910593839}
+    m_SelectOnRight: {fileID: 2597034115910593839}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -5708,12 +5728,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 1671670259861872854}
+    m_SelectOnDown: {fileID: 1671670259836659156}
+    m_SelectOnLeft: {fileID: 1671670261321470133}
+    m_SelectOnRight: {fileID: 1671670261321470133}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -6595,19 +6615,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1017756077628248189}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Atone_UI.UI_LandingCanvasController, Assembly-CSharp
-        m_MethodName: PlayGame
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1671670259563442123}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &9149993670389576445
 GameObject:
   m_ObjectHideFlags: 0

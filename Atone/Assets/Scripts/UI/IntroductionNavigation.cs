@@ -6,18 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class IntroductionNavigation : MonoBehaviour
 {
-    [SerializeField] GameObject titleCard;
-    [SerializeField] GameObject title;
-    [SerializeField] GameObject txtFirstS;
-    [SerializeField] GameObject txtFirstD;
-    [SerializeField] GameObject txtSecondS;
-    [SerializeField] GameObject txtSecondD;
-    [SerializeField] GameObject crosshairS;
-    [SerializeField] GameObject crosshairD;
-    [SerializeField] GameObject endIntro;
+    [SerializeField] private GameObject titleCard;
+    [SerializeField] private GameObject title;
+    [SerializeField] private GameObject txtFirstS;
+    [SerializeField] private GameObject txtFirstD;
+    [SerializeField] private GameObject txtSecondS;
+    [SerializeField] private GameObject txtSecondD;
+    [SerializeField] private GameObject crosshairS;
+    [SerializeField] private GameObject crosshairD;
+    [SerializeField] private GameObject endIntro;
 
-    [SerializeField] Button back;
-    [SerializeField] Button next;
+    [SerializeField] private Button back;
+    [SerializeField] private Button next;
+    [SerializeField] private Button yes;
+    [SerializeField] private Button no;
 
     List<GameObject> cards;
     int nb = 0;
@@ -27,6 +29,8 @@ public class IntroductionNavigation : MonoBehaviour
         cards = new List<GameObject>(new GameObject[] { txtFirstS, txtFirstD, txtSecondS, txtSecondD, crosshairS, crosshairD, endIntro });
         next.onClick.AddListener(Next);
         back.onClick.AddListener(Back);
+        yes.onClick.AddListener(Next);
+        no.onClick.AddListener(Next);
     }
 
     public void Next()

@@ -84,7 +84,9 @@ namespace Atone_UI
 
             if(settingsLanding != null)
                 settingsLanding.SetActive(menuType == MenuType.SETTINGS);
-            introLanding.SetActive(menuType == MenuType.INTRODUCTION);
+            
+            if(introLanding != null) 
+                introLanding.SetActive(menuType == MenuType.INTRODUCTION);
         }
 
         private void DisplayMenuSettings(SubMenuType submenu)
