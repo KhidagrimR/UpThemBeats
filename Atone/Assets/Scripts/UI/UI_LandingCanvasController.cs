@@ -11,6 +11,7 @@ namespace Atone_UI
         [SerializeField] private GameObject mainMenuLanding;
         [SerializeField] private GameObject pauseMenuLanding;
         [SerializeField] private GameObject settingsLanding;
+        [SerializeField] private GameObject introLanding;
 
         [SerializeField] private GameObject volumeSettings;
         [SerializeField] private GameObject graphicSettings;
@@ -59,11 +60,9 @@ namespace Atone_UI
             }
         }
 
-
-        public void PlayGame(GameObject menu)
+        public void LaunchIntro()
         {
-            menu.SetActive(false);
-            SceneManager.LoadScene("Game");
+            SetLandingCanvas(MenuType.INTRODUCTION);
         }
 
         public void Quit()
@@ -76,6 +75,7 @@ namespace Atone_UI
             pauseMenuLanding.SetActive(menuType == MenuType.PAUSE_MENU);
             mainMenuLanding.SetActive(menuType == MenuType.MAIN_MENU);
             settingsLanding.SetActive(menuType == MenuType.SETTINGS);
+            introLanding.SetActive(menuType == MenuType.INTRODUCTION);
         }
 
         private void DisplayMenuSettings(SubMenuType submenu)
@@ -122,7 +122,8 @@ namespace Atone_UI
         NONE_GAME_PLAYING,
         MAIN_MENU,
         PAUSE_MENU,
-        SETTINGS
+        SETTINGS,
+        INTRODUCTION
     }
 
     public enum SubMenuType
