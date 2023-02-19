@@ -239,6 +239,7 @@ public class PlayerController : MonoBehaviour
     public void ChangeLane(Vector3 lanePosition)
     {
             //if (isChangingLane) return;
+        SequenceManager.Instance.currentSequence.currentAmountOFObstacleDestroyed++;
         isChangingLane = true;
 
         if(PlayerManager.Instance.playerCurrentLane == 0)
