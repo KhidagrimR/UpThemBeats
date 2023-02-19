@@ -14,12 +14,14 @@ public class Subtitle : Singleton<Subtitle>
         string line;
         while((line = reader.ReadLine()) != null){
             string[] subtitles = line.Split(new string[] { " | " }, StringSplitOptions.None);
-            subtitleTextUp.GetComponent<TextMeshProUGUI>().text = subtitles[0].Split(" \n ")[0];
-            if (subtitles[0].Split(" \n ").Length > 1)
-                subtitleTextUp.GetComponent<TextMeshProUGUI>().text = subtitles[0].Split(" \n ")[1];
+            print("sous-titres : " + subtitles[0].Split(" \\n ").Length);
+            subtitleTextUp.GetComponent<TextMeshProUGUI>().text = subtitles[0].Split(" \\n ")[0];
+            if (subtitles[0].Split(" \\n ").Length > 1)
+                subtitleTextDown.GetComponent<TextMeshProUGUI>().text = subtitles[0].Split(" \\n ")[1];
             yield return new WaitForSeconds(float.Parse(subtitles[1]));
+            subtitleTextUp.GetComponent<TextMeshProUGUI>().text = "";
+            subtitleTextDown.GetComponent<TextMeshProUGUI>().text = "";
         }
-        subtitleTextUp.GetComponent<TextMeshProUGUI>().text = "";
-        subtitleTextDown.GetComponent<TextMeshProUGUI>().text = "";
+        
     }
 }
