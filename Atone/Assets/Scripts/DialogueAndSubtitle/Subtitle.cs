@@ -7,15 +7,19 @@ using System;
 
 public class Subtitle : Singleton<Subtitle>
 {
-    public GameObject subtitleText;
+    public GameObject subtitleTextUp;
+    public GameObject subtitleTextDown;
     public IEnumerator LaunchSubtitle(string whichDialogue){
         StreamReader reader = new StreamReader("Assets/Resources/Dialogues/" + whichDialogue + ".txt");
         string line;
         while((line = reader.ReadLine()) != null){
-            string[] subtitle = line.Split(new string[] { " | " }, StringSplitOptions.None);
-            subtitleText.GetComponent<TextMeshProUGUI>().text = subtitle[0];
-            yield return new WaitForSeconds(float.Parse(subtitle[1]));
+            string[] subtitles = line.Split(new string[] { " | " }, StringSplitOptions.None);
+            subtitleTextUp.GetComponent<TextMeshProUGUI>().text = subtitles[0].Split(" \n ")[0];
+            if (subtitles[0].Split(" \n ").Length > 1)
+                subtitleTextUp.GetComponent<TextMeshProUGUI>().text = subtitles[0].Split(" \n ")[1];
+            yield return new WaitForSeconds(float.Parse(subtitles[1]));
         }
-        subtitleText.GetComponent<TextMeshProUGUI>().text = "";
+        subtitleTextUp.GetComponent<TextMeshProUGUI>().text = "";
+        subtitleTextDown.GetComponent<TextMeshProUGUI>().text = "";
     }
 }
