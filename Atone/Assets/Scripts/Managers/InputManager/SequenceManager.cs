@@ -5,19 +5,14 @@ using DG.Tweening;
 
 public class SequenceManager : Singleton<SequenceManager>
 {
+    // All sequences in prefab
     public List<GameObject> sequencesPrefab;
-    public List<GameObject> sequences;
 
     [InspectorReadOnly]
-    public int currentSequenceIndex = 0;
+    // current instanciated Sequences
+    public SequenceHandler currentSequence;
 
-    public GameObject roadPrefab;
-
-    [HideInInspector] public SequenceHandler currentSequence
-    {
-        get{return sequences[sequences.Count - 1].GetComponent<SequenceHandler>();}
-    }   
-
+    public int startingSequenceIndex = 0; // 0 means the game start with the first sequence of the list, 5 means the game starts with the 6th sequence of the list
 
     private bool _isReady;
     public bool isReady
@@ -30,11 +25,14 @@ public class SequenceManager : Singleton<SequenceManager>
         get { return _isNextSequenceLooping; }
         set { _isNextSequenceLooping = value; }
     }
-
+    
+    float sequenceFadeDuration = 5.0f;
+    [InspectorReadOnly]
+    public bool isDeathRestartingMusic;
 
     public void Init()
     {
-        LoadTargetSequenceByIndex(currentSequenceIndex);
+        LoadTargetSequenceByIndex(startingSequenceIndex);
         MusicManager.Instance.onMusicEnd += LoadNextSequence;
         _isReady = true;
     }
@@ -44,6 +42,12 @@ public class SequenceManager : Singleton<SequenceManager>
         if (MusicManager.Instance != null)
             MusicManager.Instance.onMusicEnd -= LoadNextSequence;
     }
+
+    // Sequence Manager work flow
+    // Load a sequence, remove the previous(if there is one) then star the sequence
+    
+
+
 
     public void StartSequence()
     {
@@ -63,31 +67,30 @@ public class SequenceManager : Singleton<SequenceManager>
 
     public void LoadTargetSequenceByIndex(int targetSequenceIndex)
     {
-        Vector3 targetSpawnPosition;
-        if (sequences.Count == 0)
-            targetSpawnPosition = Vector3.zero;
-        else
+        // get spawn position
+        Vector3 targetSpawnPosition = Vector3.zero;
+        if (currentSequence != null)
         {
             // on prends le transform de la sequence précédente
-            Transform centerRoad = sequences[sequences.Count - 1].GetComponent<SequenceHandler>().lanes[1];
+            Transform centerRoad = currentSequence.lanes[1];
             targetSpawnPosition = new Vector3(0f, 0f, PlayerManager.Instance.playerController.transform.position.z) ; //centerRoad.GetChild(centerRoad.childCount - 1).position + new Vector3(0, 0, 10); // 10 is the length of a road tile
+        
+            // on détruit l'ancienne sequence
+            Destroy(currentSequence.gameObject);
         }
 
-        GameObject sequence = Instantiate(sequencesPrefab[targetSequenceIndex], targetSpawnPosition, Quaternion.identity);
-        PlayerManager.Instance.lanes = sequence.GetComponent<SequenceHandler>().lanes;
-        sequences.Add(sequence);
+        GameObject targetSequence = Instantiate(sequencesPrefab[targetSequenceIndex], targetSpawnPosition, Quaternion.identity);
+        currentSequence = targetSequence.GetComponent<SequenceHandler>();
+        PlayerManager.Instance.lanes = currentSequence.lanes;
     }
 
     void LoadNextSequence()
     {
-        //GameManager.Instance.TogglePauseState();
-        sequences[currentSequenceIndex].SetActive(false);
-
         // si on ne loop PAS la sequence
         if (!isNextSequenceLooping)
         {
             // on passe a la suivante 
-            currentSequenceIndex++;
+            startingSequenceIndex++;
             
         }
         else // sinon
@@ -99,25 +102,49 @@ public class SequenceManager : Singleton<SequenceManager>
             if (SequenceManager.Instance.currentSequence.CheckLoopConditions())
             {
                 Debug.Log("Sequence will loop");
-                currentSequence.gameObject.SetActive(false);
             }
             else
             {
                 // si le joueur a reussi correctement le niveau loopable, on passe a la sequence suivante
-                currentSequenceIndex++;
+                startingSequenceIndex++;
             }
         }
-        LoadTargetSequenceByIndex(currentSequenceIndex);
+        LoadTargetSequenceByIndex(startingSequenceIndex);
         StartSequence();
     }
 
-    float sequenceFadeDuration = 5.0f;
-    [InspectorReadOnly]
-    public bool isDeathRestartingMusic;
-
     public IEnumerator RestartCurrentSequence()
     {
+        GameManager.Instance.isPlayerDead = true;
         isDeathRestartingMusic = true;
+        PlayerManager.Instance.playerController.canPlayerMove = false;
+
+        FadeInCamera();
+        MusicManager.Instance.StopMusic();
+        CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Death);
+
+        yield return new WaitForSeconds(sequenceFadeDuration);
+
+        // reset player position, set him temporary indestructible to avoid multiple life loss
+        PlayerController player = PlayerManager.Instance.playerController;
+        StartCoroutine(player.SetIndestructible());
+        player.transform.position = new Vector3(0, 1.07f, player.currentCheckpoint.z);
+
+        // load current Sequence once more
+        LoadTargetSequenceByIndex(startingSequenceIndex);
+        StartSequence();
+
+        //Make player move again
+        player.canPlayerMove = true;
+
+        FadeOutCamera();
+
+        isDeathRestartingMusic = false;
+        GameManager.Instance.isPlayerDead = false;
+    }
+
+    void FadeInCamera()
+    {
         SpriteRenderer cameraBlackFade = Camera.main.transform.GetChild(0).GetComponent<SpriteRenderer>();
         DOVirtual.Float(0f, 1f, sequenceFadeDuration, (float x) => 
         {
@@ -127,26 +154,15 @@ public class SequenceManager : Singleton<SequenceManager>
             cameraBlackFade.color.b, 
             x);
         });
-        
-        PlayerManager.Instance.playerController.canPlayerMove = false;
-        MusicManager.Instance.StopMusic();
-        //sequences[currentSequenceIndex].SetActive(false);
-        CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Recoil);
+    }
 
-        yield return new WaitForSeconds(sequenceFadeDuration);
-        PlayerManager.Instance.playerController.transform.position = new Vector3(0, 1.07f, PlayerManager.Instance.playerController.currentCheckpoint.z);
-        PlayerManager.Instance.playerController.canPlayerMove = true;
-
-
-        //LoadTargetSequenceByIndex(currentSequenceIndex);
-        StartSequence();
-        //sequences[sequences.Count - 1].gameObject.SetActive(false);
-
+    void FadeOutCamera()
+    {
+        SpriteRenderer cameraBlackFade = Camera.main.transform.GetChild(0).GetComponent<SpriteRenderer>();
         cameraBlackFade.color = new Color(
             cameraBlackFade.color.r, 
             cameraBlackFade.color.g, 
             cameraBlackFade.color.b, 
             0);
-        isDeathRestartingMusic = false;
     }
 }

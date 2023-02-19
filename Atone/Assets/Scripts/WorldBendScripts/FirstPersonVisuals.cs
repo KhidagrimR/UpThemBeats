@@ -26,7 +26,7 @@ public class FirstPersonVisuals : MonoBehaviour
     }
 
     // G H J K L M
-    void Update()
+    /*void Update()
     {
         if(Input.GetKeyDown(KeyCode.G)){
             DOTween.KillAll();
@@ -43,7 +43,7 @@ public class FirstPersonVisuals : MonoBehaviour
             DOTween.KillAll();
             SynchronizedTweenTest_00(4);
         }
-    }
+    }*/
 
     void OnDisable()
     {
@@ -63,11 +63,13 @@ public class FirstPersonVisuals : MonoBehaviour
             {
                 SequenceManager.Instance.isNextSequenceLooping = true;
             }
-            if(string.Compare(MusicManager.Instance.timelineInfo.markerHit, "Start") == 0)
+            else if(string.Compare(MusicManager.Instance.timelineInfo.markerHit, "Start") == 0)
             {
                 if(MusicManager.Instance.onMusicStart != null)
                     MusicManager.Instance.onMusicStart();
             }
+            else if(((string) MusicManager.Instance.timelineInfo.markerHit).Contains("st_"))
+                StartCoroutine(Subtitle.Instance.LaunchSubtitle(MusicManager.Instance.timelineInfo.markerHit));
             return;
         }
 

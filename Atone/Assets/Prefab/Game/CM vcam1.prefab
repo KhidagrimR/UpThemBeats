@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 100409477219967817}
   - component: {fileID: 100409477219967821}
-  - component: {fileID: 100409477219967820}
-  - component: {fileID: 100409477219967822}
-  - component: {fileID: 100409477219967794}
+  - component: {fileID: 171126021}
+  - component: {fileID: 171126025}
+  - component: {fileID: 171126026}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -47,37 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &100409477219967820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100409477219967816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36d1163fa822e8b418a0a603ec078d5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Damping: 0
---- !u!114 &100409477219967822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100409477219967816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_NoiseProfile: {fileID: 11400000, guid: 20e46be82478fa24b90f748044c06b4b, type: 2}
-  m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0.8
-  m_FrequencyGain: 0.25
-  mNoiseOffsets: {x: 0, y: 0, z: 0}
---- !u!114 &100409477219967794
+--- !u!114 &171126021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,11 +66,11 @@ MonoBehaviour:
     m_MaxSpeed: 100
     m_AccelTime: 0.1
     m_DecelTime: 0.1
-    m_InputAxisName: MoveCameraY
+    m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
     m_InvertInput: 1
-    m_MinValue: -8
-    m_MaxValue: 8
+    m_MinValue: -15
+    m_MaxValue: 15
     m_Wrap: 0
     m_Recentering:
       m_enabled: 0
@@ -109,7 +79,7 @@ MonoBehaviour:
       m_LegacyHeadingDefinition: -1
       m_LegacyVelocityFilterStrength: -1
   m_VerticalRecentering:
-    m_enabled: 0
+    m_enabled: 1
     m_WaitTime: 1
     m_RecenteringTime: 2
     m_LegacyHeadingDefinition: -1
@@ -120,11 +90,11 @@ MonoBehaviour:
     m_MaxSpeed: 100
     m_AccelTime: 0.1
     m_DecelTime: 0.1
-    m_InputAxisName: MoveCameraX
+    m_InputAxisName: Mouse X
     m_InputAxisValue: 0
     m_InvertInput: 0
-    m_MinValue: -8
-    m_MaxValue: 8
+    m_MinValue: -15
+    m_MaxValue: 15
     m_Wrap: 0
     m_Recentering:
       m_enabled: 0
@@ -139,6 +109,36 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_ApplyBeforeBody: 0
+--- !u!114 &171126025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100409477219967816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 7102ddb4cf3970448b341e5020c36168, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0.75
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &171126026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100409477219967816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d1163fa822e8b418a0a603ec078d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Damping: 0
 --- !u!1 &100409477827565574
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,9 +196,9 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 90
     OrthographicSize: 10
-    NearClipPlane: 0.1
+    NearClipPlane: 0.001
     FarClipPlane: 5000
-    Dutch: -5.5644e-41
+    Dutch: -6.977235e-21
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2

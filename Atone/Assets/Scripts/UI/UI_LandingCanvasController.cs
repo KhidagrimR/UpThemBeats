@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 namespace Atone_UI
 {
@@ -16,6 +17,8 @@ namespace Atone_UI
         [SerializeField] private GameObject volumeSettings;
         [SerializeField] private GameObject graphicSettings;
         [SerializeField] private GameObject gameplaySettings;
+        
+        [SerializeField] private GameObject selectableObjectWhenPause;
 
         private Dictionary<SubMenuType, GameObject> menuComponentsDict;
         private GameObject currrentlyActiveSettings = null;
@@ -50,6 +53,7 @@ namespace Atone_UI
             if (isGameBeingPaused)
             {
                 SetLandingCanvas(MenuType.PAUSE_MENU);
+                EventSystem.current.SetSelectedGameObject(selectableObjectWhenPause);
                 Cursor.lockState = CursorLockMode.None; // Frees the cursor in order to navigate menu
             }
             else
@@ -72,9 +76,14 @@ namespace Atone_UI
 
         private void SetLandingCanvas(MenuType menuType)
         {
-            pauseMenuLanding.SetActive(menuType == MenuType.PAUSE_MENU);
-            mainMenuLanding.SetActive(menuType == MenuType.MAIN_MENU);
-            settingsLanding.SetActive(menuType == MenuType.SETTINGS);
+            if(pauseMenuLanding != null)
+                pauseMenuLanding.SetActive(menuType == MenuType.PAUSE_MENU);
+
+            if(mainMenuLanding != null)
+                mainMenuLanding.SetActive(menuType == MenuType.MAIN_MENU);
+
+            if(settingsLanding != null)
+                settingsLanding.SetActive(menuType == MenuType.SETTINGS);
             introLanding.SetActive(menuType == MenuType.INTRODUCTION);
         }
 
