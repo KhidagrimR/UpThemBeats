@@ -388,7 +388,6 @@ public class PlayerController : MonoBehaviour
         playerHitSFX.Play();
         if (hp <= 0)
         {
-           
             hp = initHp;
             playerDeathSFX.Play();
             StartCoroutine(SequenceManager.Instance.RestartCurrentSequence());
@@ -397,7 +396,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            print("take damage");
+            //print("take damage");
             //print("new HP : " + hp);
             animationTrigger.PlayAnimation(AnimationEnum.HitTaken);
             CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Damage);
@@ -411,6 +410,8 @@ public class PlayerController : MonoBehaviour
     public float headYMovementTween = 0.5f;
     public void Slide(bool pIsSliding)
     {
+        animationTrigger.animator.SetBool("isSliding",pIsSliding);
+
         //Debug.Log("Slide Called on : " + pIsSliding);
         if (pIsSliding)
         {
