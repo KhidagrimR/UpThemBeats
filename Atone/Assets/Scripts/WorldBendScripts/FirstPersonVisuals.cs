@@ -63,11 +63,13 @@ public class FirstPersonVisuals : MonoBehaviour
             {
                 SequenceManager.Instance.isNextSequenceLooping = true;
             }
-            if(string.Compare(MusicManager.Instance.timelineInfo.markerHit, "Start") == 0)
+            else if(string.Compare(MusicManager.Instance.timelineInfo.markerHit, "Start") == 0)
             {
                 if(MusicManager.Instance.onMusicStart != null)
                     MusicManager.Instance.onMusicStart();
             }
+            else if(((string) MusicManager.Instance.timelineInfo.markerHit).Contains("st_"))
+                StartCoroutine(Subtitle.Instance.LaunchSubtitle(MusicManager.Instance.timelineInfo.markerHit));
             return;
         }
 
