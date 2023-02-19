@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Rendering;
+using System;
 
 public class PostProcessManager : Singleton<PostProcessManager>
 {
@@ -24,6 +25,26 @@ public class PostProcessManager : Singleton<PostProcessManager>
     UnityEngine.Rendering.Universal.Bloom bloom;
 
     #endregion
+    [Serializable]
+    public class VignetteData
+    {
+        public enum VignetteDataType {typeA, typeB, typeC};
+        public VignetteDataType vignetteDataType;
+
+        public ColorParameter color;
+        public Vector2 center;
+        [Range(0,1)]
+        public float intensity;
+        [Range(0.01f,1)]
+        public float smoothness;
+
+        public float transitionDuration = 0.25f;
+    }
+
+    [Header("Vignette")]
+    public List<VignetteData> vignetteDataList;
+    UnityEngine.Rendering.Universal.Vignette vignette;
+    VignetteData vignetteStartingParam;
 
     public void Init()
     {
@@ -32,11 +53,16 @@ public class PostProcessManager : Singleton<PostProcessManager>
         if(!volumeProfile.TryGet(out bloom)) 
          throw new System.NullReferenceException(nameof(bloom));
 
+         if(!volumeProfile.TryGet(out vignette)) 
+         throw new System.NullReferenceException(nameof(vignette));
+
         bloomStartingColor = bloom.tint.value;
+        Debug.Log("Vignette = "+vignette.color);
 
         _isReady = true;
     }
 
+    #region Bloom
     public void ChangeColorToRed(float transitionDuration = 1.0f)
     {
         // Change RED color
@@ -137,7 +163,38 @@ public class PostProcessManager : Singleton<PostProcessManager>
     {
         bloom.intensity = new MinFloatParameter(val, 0f);
     }
-    
+
+    #endregion
+    #region Vignette
+
+    //PostProcessManager.Instance.ChangeVignette(PostProcessManager.VignetteData.VignetteDataType.typeA);
+    public void ChangeVignette(VignetteData.VignetteDataType _vignetteDataType)
+    {
+        VignetteData vignetteData = vignetteDataList.Find(x => x.vignetteDataType == _vignetteDataType);
+
+        if(vignetteData != null)
+            ChangeVignette(vignetteData);
+        else
+            throw new Exception("That vignette data :"+_vignetteDataType.ToString()+" can not be found");
+    }
+
+    void ChangeVignette(VignetteData vignetteData)
+    {
+        //Debug.Log("Change Vignette CALLLED in "+vignetteData.transitionDuration);
+        DOVirtual.Float(0f, 1f, vignetteData.transitionDuration, (float x) => 
+        {
+           vignette.color.value = new Color (
+                vignetteData.color.value.r * x,
+                vignetteData.color.value.b * x,
+                vignetteData.color.value.g * x
+            );
+            vignette.intensity.value = vignetteData.intensity * x;
+            vignette.smoothness.value = vignetteData.smoothness * x;
+            vignette.center.value = vignetteData.center;
+        });
+    }   
+
+    #endregion
     /*void Start()
     {
        var vignette = ScriptableObject.CreateInstance<Vignette>();
