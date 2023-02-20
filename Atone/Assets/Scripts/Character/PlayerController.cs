@@ -343,20 +343,23 @@ public class PlayerController : MonoBehaviour
         if (gameObjectsColliding.Count != 0)
             for (int i = 0; i < gameObjectsColliding.Count; i += 1)
             {
-                if (gameObjectsColliding[i].TryGetComponent<BopTriggerDestruction>(out BopTriggerDestruction bop))
+                if(gameObjectsColliding[i] != null)
                 {
-                    if (bop.isDestroy == true)
-                        return;
+                    if (gameObjectsColliding[i].TryGetComponent<BopTriggerDestruction>(out BopTriggerDestruction bop))
+                    {
+                        if (bop.isDestroy == true)
+                            return;
 
-                    bop.BopAction();
+                        bop.BopAction();
 
-                    switchArmsState++;
-                    playerSnapSFX.Play();
-                    PostProcessManager.Instance.ChangeColorToYellow(0.2f);
-                    if (switchArmsState % 2 == 0)
-                        animationTrigger.PlayAnimation(AnimationEnum.SnapLeft);
-                    else
-                        animationTrigger.PlayAnimation(AnimationEnum.SnapRight);
+                        switchArmsState++;
+                        playerSnapSFX.Play();
+                        PostProcessManager.Instance.ChangeColorToYellow(0.2f);
+                        if (switchArmsState % 2 == 0)
+                            animationTrigger.PlayAnimation(AnimationEnum.SnapLeft);
+                        else
+                            animationTrigger.PlayAnimation(AnimationEnum.SnapRight);
+                    }
                 }
                 /*else
                     print("coolDown - bop raté PC");*/

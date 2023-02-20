@@ -165,4 +165,14 @@ public class SequenceManager : Singleton<SequenceManager>
             cameraBlackFade.color.b, 
             0);
     }
+
+    public void GoToTargetSequence(int sequenceIndexChosen)
+    {
+        isDeathRestartingMusic = true;
+        MusicManager.Instance.StopMusic();
+        startingSequenceIndex = sequenceIndexChosen;
+        LoadTargetSequenceByIndex(startingSequenceIndex);
+        StartSequence();
+        isDeathRestartingMusic = false;
+    }
 }
