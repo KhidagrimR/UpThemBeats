@@ -121,11 +121,11 @@ MonoBehaviour:
   - {fileID: 1827712852192652098}
   musicFMODEvent:
     Guid:
-      Data1: -363100930
-      Data2: 1169562274
-      Data3: -337486410
-      Data4: 1175087020
-    Path: event:/Sequence/Narration_1
+      Data1: 866286390
+      Data2: 1319603886
+      Data3: -1100824396
+      Data4: 973652785
+    Path: event:/Dialogue/Technicians/Scene_1
   minAmountOfObstacleDestroyed: 0
   currentAmountOFObstacleDestroyed: 0
 --- !u!1 &1827712852192652097
@@ -5782,13 +5782,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: SubTitleTrigger
       objectReference: {fileID: 0}
+    - target: {fileID: 1915858272908163768, guid: b66c22a06fcf86046a136e5e49375d70, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1915858272908163772, guid: b66c22a06fcf86046a136e5e49375d70, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1915858272908163774, guid: b66c22a06fcf86046a136e5e49375d70, type: 3}
       propertyPath: dialogue
-      value: Intro
+      value: st_Scene_1
       objectReference: {fileID: 0}
     - target: {fileID: 1915858272908163775, guid: b66c22a06fcf86046a136e5e49375d70, type: 3}
       propertyPath: PlayEvent
@@ -5796,7 +5800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1915858272908163775, guid: b66c22a06fcf86046a136e5e49375d70, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1915858272908163775, guid: b66c22a06fcf86046a136e5e49375d70, type: 3}
       propertyPath: EventReference.Path
