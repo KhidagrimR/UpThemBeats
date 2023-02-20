@@ -30,51 +30,6 @@ public class AnimationTrigger : MonoBehaviour
 
         animator.SetTrigger(GameAnimatorsParams.AnimParamsDict[triggerName]);
         PlayArrivalVFX();
-
-
-        // switch(triggerName)
-        // {
-        //     case AnimationEnum.Idle:
-        //         animator.SetTrigger("Idle");
-        //     break;
-
-        //     case AnimationEnum.Spawn:
-        //         animator.SetTrigger("Spawn");
-        //     break;
-
-        //     case AnimationEnum.Run:
-        //         animator.SetTrigger("Run");
-        //     break;
-
-        //     case AnimationEnum.Death:
-        //         animator.SetTrigger("Death");
-        //     break;
-
-        //     case AnimationEnum.Hit:
-        //         animator.SetTrigger("Hit");
-        //     break;
-
-        //     case AnimationEnum.Jump:
-        //         animator.SetTrigger("Jump");
-        //     break;
-
-        //     case AnimationEnum.Disactivated:
-        //         animator.SetTrigger("Disactivated");
-        //     break;
-
-        //     case AnimationEnum.LeftRun:
-        //         animator.SetTrigger("LeftRun");
-        //     break;
-
-        //     case AnimationEnum.RightRun:
-        //         animator.SetTrigger("RightRun");
-        //     break;
-
-        //     case AnimationEnum.LeftSnapPrepare:
-        //         animator.SetTrigger("LeftSnapPrepare");
-        //     break;
-        // }
-
     }
 
     public void PlayArrivalVFX()
@@ -105,6 +60,4 @@ public class AnimationTrigger : MonoBehaviour
     {
         soundImpact.Play();
     }
-
-
 }

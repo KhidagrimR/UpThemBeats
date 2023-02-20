@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sequencesPrefab:
-  - {fileID: 1827712851758725077, guid: bd211436470ae2449b111f65c5cf658a, type: 3}
   - {fileID: 1827712851758725077, guid: d8145d19dc3a08e4dbc778d9e881566c, type: 3}
   - {fileID: 1827712851758725077, guid: f2a9099c06fa28e44adae2bc25b38edb, type: 3}
   - {fileID: 1827712851758725077, guid: e014e5c6039009448ad36e3b1794ccbc, type: 3}
+  - {fileID: 1827712851758725077, guid: bd211436470ae2449b111f65c5cf658a, type: 3}
   - {fileID: 1827712851758725077, guid: 483103d9b64920a4987bc0f89b0690e2, type: 3}
   - {fileID: 1827712851758725077, guid: 3087e92648c6fa847af261b4086bf505, type: 3}
   - {fileID: 1827712851758725077, guid: 26d86ab71b5112643a8e097ab4bda44d, type: 3}
@@ -62,9 +62,10 @@ MonoBehaviour:
   - {fileID: 1827712851758725077, guid: 00402beb2e270404a8e03862662af03e, type: 3}
   - {fileID: 1827712851758725077, guid: 506d9984448f37640918a99308666474, type: 3}
   - {fileID: 1827712851758725077, guid: 016bf2ea306710249921d0cfa0fc86c2, type: 3}
-  sequences: []
-  currentSequenceIndex: 0
-  roadPrefab: {fileID: 4252543333268015580, guid: 43b59dd9e92a55a499b84bc5883e1049, type: 3}
+  - {fileID: 1827712851758725077, guid: 9fe5da120cfaa9740a78972554bf7874, type: 3}
+  - {fileID: 1827712851758725077, guid: 833e6bb52168bcc419eba513d4cb2f54, type: 3}
+  currentSequence: {fileID: 0}
+  startingSequenceIndex: 11
   isDeathRestartingMusic: 0
 --- !u!1 &794377114544737474
 GameObject:
@@ -164,13 +165,13 @@ MonoBehaviour:
   postProcessVolume: {fileID: 0}
   bloomBlueColor:
     m_OverrideState: 0
-    m_Value: {r: 0.53755784, g: 0.6377852, b: 0.754717, a: 1}
+    m_Value: {r: 0, g: 0, b: 1, a: 1}
   bloomRedColor:
     m_OverrideState: 0
-    m_Value: {r: 0.8962264, g: 0.7228996, b: 0.7228996, a: 1}
+    m_Value: {r: 1, g: 0, b: 0, a: 1}
   bloomYellowColor:
     m_OverrideState: 0
-    m_Value: {r: 0.8867924, g: 0.8394509, b: 0.73202205, a: 1}
+    m_Value: {r: 0.9695823, g: 1, b: 0, a: 1}
 --- !u!1 &6341438436302581879
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9c6ab4a3669ac5e85d346e68b7a712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onLeaderboard: 0
   menuOrReturn:
     m_Name: menuOrReturn
     m_ActionKeyBoardRightHanded: 27
@@ -490,35 +492,29 @@ MonoBehaviour:
   cameraEffects:
   - impulseEffectRef: {fileID: 0}
     effectType: 0
-    impulseStr: 0.5
+    impulseStr: 0.25
   - impulseEffectRef: {fileID: 0}
     effectType: 1
-    impulseStr: 0.05
+    impulseStr: 0.03
   - impulseEffectRef: {fileID: 0}
     effectType: 2
-    impulseStr: 0.5
+    impulseStr: 0.1
   - impulseEffectRef: {fileID: 0}
     effectType: 3
-    impulseStr: 0.5
+    impulseStr: 0.1
   - impulseEffectRef: {fileID: 0}
     effectType: 4
     impulseStr: 0
   - impulseEffectRef: {fileID: 0}
     effectType: 5
-    impulseStr: 0.2
+    impulseStr: 0.03
   - impulseEffectRef: {fileID: 0}
     effectType: 6
-    impulseStr: 0.25
+    impulseStr: 0.05
   - impulseEffectRef: {fileID: 0}
     effectType: 8
     impulseStr: 0.75
   - impulseEffectRef: {fileID: 0}
     effectType: 7
     impulseStr: 0.75
-  headbobNoiseSettings:
-  - headbobType: 0
-    noiseSettings: {fileID: 11400000, guid: 7102ddb4cf3970448b341e5020c36168, type: 2}
-  - headbobType: 1
-    noiseSettings: {fileID: 11400000, guid: 40a24b2b9016a5d4096f366b2adb53e0, type: 2}
-  - headbobType: 2
-    noiseSettings: {fileID: 11400000, guid: 4c8cb6edfc3d1dd42b46fed504e04c86, type: 2}
+  headbobNoiseSettings: []

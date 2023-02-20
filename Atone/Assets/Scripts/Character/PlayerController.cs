@@ -85,14 +85,14 @@ public class PlayerController : MonoBehaviour
     public Collider playerCollider;
     public StudioEventEmitter patinDroitFMODEmitter;
     public StudioEventEmitter patinGaucheFMODEmitter;
-    public StudioEventEmitter playerJump;
-    public StudioEventEmitter playerLand;
-    public StudioEventEmitter playerSlide;
-    public StudioEventEmitter playerWallrunL;
-    public StudioEventEmitter playerWallrunR;
-    public StudioEventEmitter playerHit;
-    public StudioEventEmitter playerDeath;
-    public StudioEventEmitter playerSnap;
+    public StudioEventEmitter playerJumpSFX;
+    public StudioEventEmitter playerLandSFX;
+    public StudioEventEmitter playerSlideSFX;
+    public StudioEventEmitter playerWallrunLSFX;
+    public StudioEventEmitter playerWallrunRSFX;
+    public StudioEventEmitter playerHitSFX;
+    public StudioEventEmitter playerDeathSFX;
+    public StudioEventEmitter playerSnapSFX;
 
     public static List<GameObject> gameObjectsColliding;
     public Vector3 currentCheckpoint;
@@ -199,68 +199,112 @@ public class PlayerController : MonoBehaviour
     {
         if (PlayerManager.Instance.playerCurrentLane == 1)
         {
-            transform.position = new Vector3(-0.3f, transform.position.y, transform.position.z);
+            float from = transform.position.x;
+            float to = -0.3f;
+            float duration = 0.25f;
+            DOVirtual.Float(from, to, duration, (float x) => {
+                 transform.position = new Vector3(x, transform.position.y, transform.position.z);
+            });
+
+            //transform.position = new Vector3(-0.3f, transform.position.y, transform.position.z);
             animationTrigger.PlayAnimation(AnimationEnum.LeanLeft);
         }
     }
     public void ResetBend()
     {
-        transform.position = new Vector3(0f, transform.position.y, transform.position.z);
+        float from = transform.position.x;
+        float to = 0.0f;
+        float duration = 0.25f;
+        DOVirtual.Float(from, to, duration, (float x) => {
+            transform.position = new Vector3(x, transform.position.y, transform.position.z);
+        });
+        //transform.position = new Vector3(0f, transform.position.y, transform.position.z);
         animationTrigger.PlayAnimation(AnimationEnum.LeanStop);
     }
     public void BendOnRight()
     {
         if (PlayerManager.Instance.playerCurrentLane == 1)
         {
-            transform.position = new Vector3(0.3f, transform.position.y, transform.position.z);
+            float from = transform.position.x;
+            float to = 0.3f;
+            float duration = 0.25f;
+            DOVirtual.Float(from, to, duration, (float x) => {
+                 transform.position = new Vector3(x, transform.position.y, transform.position.z);
+            });
+            //transform.position = new Vector3(0.3f, transform.position.y, transform.position.z);
             animationTrigger.PlayAnimation(AnimationEnum.LeanRight);
         }
     }
 
     public void ChangeLane(Vector3 lanePosition)
     {
-        if (isChangingLane) return;
-        animationTrigger.PlayAnimation(AnimationEnum.JumpStart);
-        playerJump.Play();
-        CameraManager.Instance.ChangeHeadbobType(CameraManager.HeadbobNoiseSettings.HeadbobType.WallrunBob);
+            //if (isChangingLane) return;
+        isChangingLane = true;
+
+        if(PlayerManager.Instance.playerCurrentLane == 0)
+        {
+            animationTrigger.animator.SetTrigger(AnimationEnum.TriggerLeftJump.ToString());
+        }
+        else if(PlayerManager.Instance.playerCurrentLane == 2)
+        {
+            animationTrigger.animator.SetTrigger(AnimationEnum.TriggerRightJump.ToString());
+        }   
+        
+        // Changer l'anim du perso
+        animationTrigger.PlayAnimation(AnimationEnum.JumpStart, false);
+        // déclencher le son de saut
+        playerJumpSFX.Play();
+
+        // Target lane position
         Vector3 target;
-        PostProcessManager.Instance.ChangeColorToBlue(0.5f);
+
+        // Dans le cas de la lane centrale
         if (PlayerManager.Instance.playerCurrentLane == 1)
         {
+            // on choisit de placer le joueur sur le bon endroit
             target = new Vector3(lanePosition.x, lanePosition.y + startingPlayerY, transform.position.z);
-            animationTrigger.PlayAnimation(AnimationEnum.JumpStop);
+            // on met le head bob en mode classic
             CameraManager.Instance.ChangeHeadbobType(CameraManager.HeadbobNoiseSettings.HeadbobType.UpstandBob);
-            playerLand.Play();
-            playerWallrunL.Stop();
-            playerWallrunR.Stop();
+
+            // On enleve les sons de wall runs et on met les sons de déplacement classiques
+            playerLandSFX.Play();
+            playerWallrunLSFX.Stop();
+            playerWallrunRSFX.Stop();
+
+            // on reset le bloom (post process)
             PostProcessManager.Instance.ResetBloomColor(0.5f);
+
+            // l'anim de stop jump du joueur se lance
+            animationTrigger.PlayAnimation(AnimationEnum.JumpStop);
         }
         else
         {
+            // Ajouter effet de post process
+            PostProcessManager.Instance.ChangeColorToBlue(0.5f);
+            //Changer le Headbob en mode wall run
+            CameraManager.Instance.ChangeHeadbobType(CameraManager.HeadbobNoiseSettings.HeadbobType.WallrunBob);
+
+            // on set la position de la piste sur laquelle on veut sauter
             target = new Vector3(lanePosition.x, lanePosition.y + 0.35f, transform.position.z);
             if (PlayerManager.Instance.playerCurrentLane == 2)
             {
-                playerWallrunR.Play();
+                playerWallrunRSFX.Play();
             }
             else
             {
-                playerWallrunL.Play();
+                playerWallrunLSFX.Play();
             }
         }
-            
-
+        // la distance à prendre en compte pour pas se décaler du beat
         float distanceZ = playerSpeed * changeLaneDuration; //v * t
-
         target.z += distanceZ;
-        isChangingLane = true;
 
-        //Debug.Log("Target = " + target);
-
+        // on tween
         transform.DOMove(target, changeLaneDuration).OnComplete(() =>
         {
+            // quand le tween est fini, on shake la camera
             isChangingLane = false;
             CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.WallrunHit);
-
         });
     }
 
@@ -306,7 +350,7 @@ public class PlayerController : MonoBehaviour
                     bop.BopAction();
 
                     switchArmsState++;
-                    playerSnap.Play();
+                    playerSnapSFX.Play();
                     PostProcessManager.Instance.ChangeColorToYellow(0.2f);
                     if (switchArmsState % 2 == 0)
                         animationTrigger.PlayAnimation(AnimationEnum.SnapLeft);
@@ -341,12 +385,12 @@ public class PlayerController : MonoBehaviour
         if(isIndestructible) return;
         StartCoroutine(SetIndestructible());
         hp --;
-        playerHit.Play();
+        playerHitSFX.Play();
         if (hp <= 0)
         {
            
             hp = initHp;
-            playerDeath.Play();
+            playerDeathSFX.Play();
             StartCoroutine(SequenceManager.Instance.RestartCurrentSequence());
             animationTrigger.PlayAnimation(AnimationEnum.Death);
             CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Damage);
@@ -380,7 +424,7 @@ public class PlayerController : MonoBehaviour
                 playerCollider.transform.position = new Vector3(playerCollider.transform.position.x, startingHeadPosition.y - x, playerCollider.transform.position.z);
             });
 
-            playerSlide.Play();
+            playerSlideSFX.Play();
             animationTrigger.PlayAnimation(AnimationEnum.SlideStart);
             isSliding = true;
             CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Slide);
@@ -398,7 +442,7 @@ public class PlayerController : MonoBehaviour
                 playerCollider.transform.position = new Vector3(playerCollider.transform.position.x, x, playerCollider.transform.position.z);
             });
 
-            playerSlide.Stop();
+            playerSlideSFX.Stop();
             animationTrigger.PlayAnimation(AnimationEnum.SlideStop);
             isSliding = false;
             CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.SlideStop);
