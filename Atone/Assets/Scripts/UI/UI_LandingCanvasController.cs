@@ -40,7 +40,7 @@ namespace Atone_UI
             // Subscribe to your events here
             GameManager.onMenu += DisplayAppropriateMenuLanding;
             areSubscriptionsDone = true;
-            Debug.Log("Landing canvas controller start cycle done");
+            // Debug.Log("Landing canvas controller start cycle done");
 
         }
         private void OnDestroy()
