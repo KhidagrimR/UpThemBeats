@@ -59,17 +59,20 @@ public class FirstPersonVisuals : MonoBehaviour
         
         if(!DeformationObjectsCollection.LevelBendMarkers.ContainsKey(lastHashedMarkerName))
         {
-            if(string.Compare(MusicManager.Instance.timelineInfo.markerHit, "LoopSequence") == 0)
+            if (string.Compare(MusicManager.Instance.timelineInfo.markerHit, "LoopSequence") == 0)
             {
                 SequenceManager.Instance.isNextSequenceLooping = true;
             }
-            else if(string.Compare(MusicManager.Instance.timelineInfo.markerHit, "Start") == 0)
+            else if (string.Compare(MusicManager.Instance.timelineInfo.markerHit, "Start") == 0)
             {
-                if(MusicManager.Instance.onMusicStart != null)
+                if (MusicManager.Instance.onMusicStart != null)
                     MusicManager.Instance.onMusicStart();
             }
-            else if(((string) MusicManager.Instance.timelineInfo.markerHit).Contains("st_"))
+            else if (((string)MusicManager.Instance.timelineInfo.markerHit).Contains("st_"))
+            { Debug.Log("bite");
                 StartCoroutine(Subtitle.Instance.LaunchSubtitle(MusicManager.Instance.timelineInfo.markerHit));
+            }
+                
             return;
         }
 
