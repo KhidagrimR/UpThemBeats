@@ -22,12 +22,14 @@ public class LaunchTutorialUp : MonoBehaviour
     public bool timerWithText;
     public bool alternativeKey;
 
+    public float timeBetweenTwoCount;
+
     public void OnTriggerEnter(Collider other) {
         if (other.name == "Player") {
             StartCoroutine(TutorialUp.Instance.LaunchTutorial(timeToStayToScreen, textBeforeImage,
                            spriteKeyKeyBoardRightHanded, spriteAlternativeKeyKeyBoardRightHanded,
                            spriteKeyKeyBoardLeftHanded, spriteAlternativeKeyKeyBoardLeftHanded, 
-                           spriteKeyController, spriteAlternativeKeyController, textAfterImage, timer, timerWithText, alternativeKey));
+                           spriteKeyController, spriteAlternativeKeyController, textAfterImage, timer, timerWithText, alternativeKey, timeBetweenTwoCount));
         }
     }
 }

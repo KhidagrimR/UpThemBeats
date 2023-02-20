@@ -30,14 +30,14 @@ public class TutorialUp : Singleton<TutorialUp>
                                       Sprite spriteKeyKeyBoardRightHanded, Sprite spriteAlternativeKeyKeyBoardRightHanded,
                                       Sprite spriteKeyKeyBoardLeftHanded, Sprite spriteAlternativeKeyKeyBoardLeftHanded,
                                       Sprite spriteKeyController, Sprite spriteAlternativeKeyController, 
-                                      string textAfterImage, bool timer, bool timerWithText, bool alternativeKey) {
+                                      string textAfterImage, bool timer, bool timerWithText, bool alternativeKey, float timeBetweenCount) {
         container.SetActive(true);
         if (alternativeKey)
             containerAlternativeKey.SetActive(true);
         if(timer)
-            StartCoroutine(LaunchTimer());
+            StartCoroutine(LaunchTimer(timeBetweenCount));
         if (timer && !timerWithText){
-            yield return new WaitForSeconds(2.25f);
+            yield return new WaitForSeconds(timeBetweenCount*3);
         }
         containerText.SetActive(true);
         m_textBeforeImage.text = textBeforeImage;
@@ -81,10 +81,11 @@ public class TutorialUp : Singleton<TutorialUp>
             m_imageKey.sprite = m_spriteKeyKeyBoardRightHanded;
     }
 
-    public IEnumerator LaunchTimer() {
+    public IEnumerator LaunchTimer(float timeBetweenCount) {
         for(int i = 3; i > 0; i -= 1){
             m_textTimer.text = i.ToString();
-            yield return new WaitForSeconds(0.75f);
+            // add FMOD EVENT 
+            yield return new WaitForSeconds(timeBetweenCount);
         }
         m_textTimer.text = "";
     }
