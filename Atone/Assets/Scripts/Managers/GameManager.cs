@@ -33,6 +33,14 @@ public class GameManager : Singleton<GameManager>
 
         //Time.timeScale = 0.25f;
     }   
+    private void Start()
+    {
+        if( SceneManager.GetActiveScene().name == "Main_Menu_A1"
+            && (uI_Loader != null))  
+        {
+              StartCoroutine(StartMainMenuOnMainMenuScene());                                  
+        }
+    }
 
     IEnumerator Init()
     {
@@ -120,9 +128,18 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("<color=red>### READY ###</color>");
         _isReady = true;
     }
+    IEnumerator StartMainMenuOnMainMenuScene()
+    {
+        while(!Atone_UI.UI_LandingCanvasController.areSubscriptionsDone)
+        {
+            // Wait for next frame (or 2 frames) to ensure that the envent subscription is really done before invoking
+            yield return null;
+        }
+        onMenu?.Invoke(GeneralGameState.MAIN_MENU);
+    }
     public void HandleReturnKeyPress()
     {               
-        Debug.Log(currentState);
+        // Debug.Log(currentState);
         
         onMenu?.Invoke(currentState);
         if(currentState == GeneralGameState.GAME)
@@ -131,7 +148,7 @@ public class GameManager : Singleton<GameManager>
         } 
         else if(currentState == GeneralGameState.PAUSED && !Atone_UI.UI_LandingCanvasController.forbidPauseToggle)
         {
-            Debug.Log("Atone_UI.UI_LandingCanvasController.forbidPauseToggle "+ Atone_UI.UI_LandingCanvasController.forbidPauseToggle);
+            // Debug.Log("Atone_UI.UI_LandingCanvasController.forbidPauseToggle "+ Atone_UI.UI_LandingCanvasController.forbidPauseToggle);
             ResumeGame();
         }
     }
@@ -152,12 +169,12 @@ public class GameManager : Singleton<GameManager>
     }
     public void ResumeGame()
     {
-        Debug.Log("Resuming game...");
+        // Debug.Log("Resuming game...");
         if(currentState == GeneralGameState.MAIN_MENU) {return;}
         currentState = GeneralGameState.GAME;
         gameplayBus.setPaused(false);
         Time.timeScale = isGameCurrentlyPaused ? 0 : 1;
-        Debug.Log("Time.timeScale "+Time.timeScale);
+        // Debug.Log("Time.timeScale "+Time.timeScale);
     }
 }
 public enum GeneralGameState
