@@ -11,6 +11,8 @@ namespace Atone_UI
         [SerializeField] private GameObject mainMenuLanding;
         [SerializeField] private GameObject pauseMenuLanding;
         [SerializeField] private GameObject settingsLanding;
+        [SerializeField] private GameObject introLanding;
+
 
         [SerializeField] private GameObject[] crosshairSettings;
         [SerializeField] private GameObject[] audioSettings;
@@ -125,13 +127,15 @@ namespace Atone_UI
             //     Debug.Log("pausMenuLanding is null");
             //     return;
             // }
-            pauseMenuLanding.SetActive(menuType == MenuType.PAUSE_MENU);
-            mainMenuLanding.SetActive(menuType == MenuType.MAIN_MENU);
-            // bool settingsActive = menuType == MenuType.SETTINGS;
-            // settingsLanding.SetActive(menuType == MenuType.SETTINGS);
-            // if(settingsActive){
-            //     DisplayMenuSettings(SubMenuType.SUBTITLES);
-            // }
+            if(pauseMenuLanding != null)
+                pauseMenuLanding.SetActive(menuType == MenuType.PAUSE_MENU);
+
+            if(mainMenuLanding != null)
+                mainMenuLanding.SetActive(menuType == MenuType.MAIN_MENU);
+            
+            if(introLanding != null)
+                introLanding.SetActive(menuType == MenuType.INTRODUCTION);
+            
             currentMenuLanding = menuType;
         }
 
@@ -218,7 +222,8 @@ namespace Atone_UI
         NONE_GAME_PLAYING,
         MAIN_MENU,
         PAUSE_MENU,
-        SETTINGS
+        SETTINGS,
+        INTRODUCTION
     }
 
     public enum SubMenuType
