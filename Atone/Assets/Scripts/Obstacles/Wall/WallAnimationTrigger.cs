@@ -11,22 +11,19 @@ public class WallAnimationTrigger : MonoBehaviour
 
     public bool targetPlayerAnim = false;
 
-    void OnTriggerEnter(Collider other)
+
+    public void TriggerWallAnimation()
     {
-        //si c est le joueur
-        if (other.CompareTag(PlayerManager.PLAYER_TAG))
-        {
-            //Debug.Log("trigger Anim");
+        //Debug.Log("trigger Anim");
             
-            if(targetPlayerAnim) // si l'animation est pour le joueur
-            {
-                other.GetComponent<PlayerController>().animationTrigger.PlayAnimation(animationToTrigger);
-            }
-            else // si on cherche ̄ animer l'obstacle
-            {
-                animationTrigger.PlayAnimation(animationToTrigger);
-                animationTrigger.PlayArrivalVFX();
-            }
+        if(targetPlayerAnim) // si l'animation est pour le joueur
+        {
+            PlayerManager.Instance.playerController.animationTrigger.PlayAnimation(animationToTrigger);
+        }
+        else // si on cherche ̄ animer l'obstacle
+        {
+            animationTrigger.PlayAnimation(animationToTrigger);
+            animationTrigger.PlayArrivalVFX();
         }
     }
 }
