@@ -49,6 +49,8 @@ public class MusicManager : Singleton<MusicManager>
     private bool isSecPerBeatSet = false;
 
     #endregion
+    [Header("FMOD Events")]
+    public StudioEventEmitter tutoTimer;
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------
     #region INTERNAL CLASS TO WRITE THE TRACK DATA TO

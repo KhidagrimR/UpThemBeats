@@ -30,7 +30,8 @@ public class TutorialUp : Singleton<TutorialUp>
                                       Sprite spriteKeyKeyBoardRightHanded, Sprite spriteAlternativeKeyKeyBoardRightHanded,
                                       Sprite spriteKeyKeyBoardLeftHanded, Sprite spriteAlternativeKeyKeyBoardLeftHanded,
                                       Sprite spriteKeyController, Sprite spriteAlternativeKeyController, 
-                                      string textAfterImage, bool timer, bool timerWithText, bool alternativeKey, float timeBetweenCount) {
+                                      string textAfterImage, bool timer, bool timerWithText, bool alternativeKey, float timeBetweenCount) 
+    {
         container.SetActive(true);
         if (alternativeKey)
             containerAlternativeKey.SetActive(true);
@@ -85,6 +86,7 @@ public class TutorialUp : Singleton<TutorialUp>
         for(int i = 3; i > 0; i -= 1){
             m_textTimer.text = i.ToString();
             // add FMOD EVENT 
+            MusicManager.Instance.tutoTimer.Play();
             yield return new WaitForSeconds(timeBetweenCount);
         }
         m_textTimer.text = "";
