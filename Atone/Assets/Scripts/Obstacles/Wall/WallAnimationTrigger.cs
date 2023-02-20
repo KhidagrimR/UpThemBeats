@@ -26,4 +26,12 @@ public class WallAnimationTrigger : MonoBehaviour
             animationTrigger.PlayArrivalVFX();
         }
     }
+
+    private void OnTriggerEnter(Collider other) 
+    {
+        if (other.CompareTag(PlayerManager.PLAYER_TAG))
+        {
+            TriggerWallAnimation();
+        }
+    }
 }
