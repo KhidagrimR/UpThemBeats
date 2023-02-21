@@ -395,4 +395,23 @@ public class PlayerManager : Singleton<PlayerManager>
         scoreSequence = (float)Math.Round(scoreSequence, 1);
         //Debug.Log("nouveau score = " + scoreSequence);
     }
+
+    public IEnumerator MakeSagesAppear()
+    {
+        PostProcessManager.Instance.isSagesActives = true;
+        SequenceManager.Instance.FadeInCamera(.2f);
+        yield return new WaitForSeconds(.2f);
+        SequenceManager.Instance.FadeOutCamera(.2f);
+        playerController.sages.SetActive(true);
+
+    }
+
+    public IEnumerator MakeSagesDisappear()
+    {
+        SequenceManager.Instance.FadeInCamera(.2f);
+        yield return new WaitForSeconds(.2f);
+        SequenceManager.Instance.FadeOutCamera(.2f);
+        playerController.sages.SetActive(false);
+        PostProcessManager.Instance.isSagesActives = false;
+    }
 }

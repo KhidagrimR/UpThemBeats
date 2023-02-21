@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AtoneWorldBend;
 using DG.Tweening;
+using System;
 
 [RequireComponent(typeof(DeformationObjectsCollection))]
 public class FirstPersonVisuals : MonoBehaviour
@@ -55,22 +56,59 @@ public class FirstPersonVisuals : MonoBehaviour
     void ExamineMarker()
     {        
         int lastHashedMarkerName = Animator.StringToHash(MusicManager.Instance.timelineInfo.markerHit);
+        string marker = MusicManager.Instance.timelineInfo.markerHit;
         //Debug.Log(lastHashedMarkerName);
         
         if(!DeformationObjectsCollection.LevelBendMarkers.ContainsKey(lastHashedMarkerName))
         {
-            if (string.Compare(MusicManager.Instance.timelineInfo.markerHit, "LoopSequence") == 0)
+            if (string.Compare(marker, "LoopSequence") == 0)
             {
                 SequenceManager.Instance.isNextSequenceLooping = true;
             }
-            else if (string.Compare(MusicManager.Instance.timelineInfo.markerHit, "Start") == 0)
+            else if (string.Compare(marker, "Start") == 0)
             {
                 if (MusicManager.Instance.onMusicStart != null)
                     MusicManager.Instance.onMusicStart();
             }
-            else if (((string)MusicManager.Instance.timelineInfo.markerHit).Contains("st_"))
-            { Debug.Log("bite");
-                StartCoroutine(Subtitle.Instance.LaunchSubtitle(MusicManager.Instance.timelineInfo.markerHit));
+            else if (marker.Contains("st_"))
+            { 
+                StartCoroutine(Subtitle.Instance.LaunchSubtitle(marker));
+            }
+            else if (string.Compare(marker, "AppearSages") == 0)
+            {
+                // faire apparaitre les sages
+                StartCoroutine(PlayerManager.Instance.MakeSagesAppear());
+
+            }
+            else if (string.Compare(marker, "DisSages") == 0)
+            {
+                // faire disparaitre les sages
+                StartCoroutine(PlayerManager.Instance.MakeSagesDisappear());
+            }
+            else if (marker.Contains("Bloom_"))
+            {
+                // Changer le Bloom
+                if (string.Compare(marker.Substring(marker.Length - 1), "r") == 0)
+                {
+                    //red
+                    PostProcessManager.Instance.ChangeColorToRedSage();
+                }
+                else if (string.Compare(marker.Substring(marker.Length - 1), "y") == 0)
+                {
+                    //green
+                    PostProcessManager.Instance.ChangeColorToYellowSage();
+                }
+                else
+                {
+                    //blue
+                    PostProcessManager.Instance.ChangeColorToBlueSage();
+                }
+
+            }
+            else if (string.Compare(marker, "ResetBloom") == 0)
+            {
+                // Reset le bloom
+                PostProcessManager.Instance.ResetSagesBloomColor();
             }
                 
             return;

@@ -119,7 +119,7 @@ public class SequenceManager : Singleton<SequenceManager>
         isDeathRestartingMusic = true;
         PlayerManager.Instance.playerController.canPlayerMove = false;
 
-        FadeInCamera();
+        FadeInCamera(sequenceFadeDuration);
         MusicManager.Instance.StopMusic();
         CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Death);
 
@@ -137,16 +137,16 @@ public class SequenceManager : Singleton<SequenceManager>
         //Make player move again
         player.canPlayerMove = true;
 
-        FadeOutCamera();
+        FadeOutCamera(sequenceFadeDuration);
 
         isDeathRestartingMusic = false;
         GameManager.Instance.isPlayerDead = false;
     }
 
-    void FadeInCamera()
+    public void FadeInCamera(float transitionDuration)
     {
         SpriteRenderer cameraBlackFade = Camera.main.transform.GetChild(0).GetComponent<SpriteRenderer>();
-        DOVirtual.Float(0f, 1f, sequenceFadeDuration, (float x) => 
+        DOVirtual.Float(0f, 1f, transitionDuration, (float x) => 
         {
             cameraBlackFade.color = new Color(
             cameraBlackFade.color.r, 
@@ -156,14 +156,18 @@ public class SequenceManager : Singleton<SequenceManager>
         });
     }
 
-    void FadeOutCamera()
+    public void FadeOutCamera(float transitionDuration)
     {
         SpriteRenderer cameraBlackFade = Camera.main.transform.GetChild(0).GetComponent<SpriteRenderer>();
-        cameraBlackFade.color = new Color(
+
+        DOVirtual.Float(1f, 0f, transitionDuration, (float x) => 
+        {
+            cameraBlackFade.color = new Color(
             cameraBlackFade.color.r, 
             cameraBlackFade.color.g, 
             cameraBlackFade.color.b, 
-            0);
+            x);
+        });
     }
 
     public void GoToTargetSequence(int sequenceIndexChosen)

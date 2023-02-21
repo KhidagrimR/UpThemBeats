@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("References")]
     public GameObject playerVisual;
+    public GameObject sages;
     public Collider playerCollider;
     public StudioEventEmitter patinDroitFMODEmitter;
     public StudioEventEmitter patinGaucheFMODEmitter;
