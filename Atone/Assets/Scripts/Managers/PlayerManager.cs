@@ -149,6 +149,9 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         if (isPlayerAbleToChangeLane && CheckIfCanSwitchLane(1))
         {
+            if(playerCurrentLane + 1 > 2)
+                return;
+
             playerCurrentLane++;
             ChangeLaneDutch(playerCurrentLane);
 
@@ -175,6 +178,9 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         if (isPlayerAbleToChangeLane && CheckIfCanSwitchLane(-1))
         {
+            if(playerCurrentLane - 1 < 0)
+                return;
+
             playerCurrentLane--;
             ChangeLaneDutch(playerCurrentLane);
 
