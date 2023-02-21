@@ -92,6 +92,7 @@
 		</relationship>
 		<relationship name="markers">
 			<destination>{ada91dde-8433-4436-b8fa-6ed19eaa30e4}</destination>
+			<destination>{ca272f9c-0472-46b3-b5e3-fd25f8a3d5c9}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{a1be10aa-dd33-4866-b112-66d72bb6c707}">
@@ -195,6 +196,20 @@
 		</property>
 		<property name="tempo">
 			<value>160</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{33dec7cb-6bbe-4bc9-9332-5ded2f11a1e1}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{678bfab9-4f72-4459-844a-453d6e5484f1}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{ca272f9c-0472-46b3-b5e3-fd25f8a3d5c9}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="name">
+			<value>st_Scene_8</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{33dec7cb-6bbe-4bc9-9332-5ded2f11a1e1}</destination>

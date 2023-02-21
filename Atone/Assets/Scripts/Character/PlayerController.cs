@@ -239,6 +239,7 @@ public class PlayerController : MonoBehaviour
     public void ChangeLane(Vector3 lanePosition)
     {
             //if (isChangingLane) return;
+        SequenceManager.Instance.currentSequence.currentAmountOFObstacleDestroyed++;
         isChangingLane = true;
 
         if(PlayerManager.Instance.playerCurrentLane == 0)
@@ -342,20 +343,23 @@ public class PlayerController : MonoBehaviour
         if (gameObjectsColliding.Count != 0)
             for (int i = 0; i < gameObjectsColliding.Count; i += 1)
             {
-                if (gameObjectsColliding[i].TryGetComponent<BopTriggerDestruction>(out BopTriggerDestruction bop))
+                if(gameObjectsColliding[i] != null)
                 {
-                    if (bop.isDestroy == true)
-                        return;
+                    if (gameObjectsColliding[i].TryGetComponent<BopTriggerDestruction>(out BopTriggerDestruction bop))
+                    {
+                        if (bop.isDestroy == true)
+                            return;
 
-                    bop.BopAction();
+                        bop.BopAction();
 
-                    switchArmsState++;
-                    playerSnapSFX.Play();
-                    PostProcessManager.Instance.ChangeColorToYellow(0.2f);
-                    if (switchArmsState % 2 == 0)
-                        animationTrigger.PlayAnimation(AnimationEnum.SnapLeft);
-                    else
-                        animationTrigger.PlayAnimation(AnimationEnum.SnapRight);
+                        switchArmsState++;
+                        playerSnapSFX.Play();
+                        PostProcessManager.Instance.ChangeColorToYellow(0.2f);
+                        if (switchArmsState % 2 == 0)
+                            animationTrigger.PlayAnimation(AnimationEnum.SnapLeft);
+                        else
+                            animationTrigger.PlayAnimation(AnimationEnum.SnapRight);
+                    }
                 }
                 /*else
                     print("coolDown - bop raté PC");*/
@@ -388,7 +392,6 @@ public class PlayerController : MonoBehaviour
         playerHitSFX.Play();
         if (hp <= 0)
         {
-           
             hp = initHp;
             playerDeathSFX.Play();
             StartCoroutine(SequenceManager.Instance.RestartCurrentSequence());
@@ -397,7 +400,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            print("take damage");
+            //print("take damage");
             //print("new HP : " + hp);
             animationTrigger.PlayAnimation(AnimationEnum.HitTaken);
             CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Damage);
@@ -411,6 +414,8 @@ public class PlayerController : MonoBehaviour
     public float headYMovementTween = 0.5f;
     public void Slide(bool pIsSliding)
     {
+        animationTrigger.animator.SetBool("isSliding",pIsSliding);
+
         //Debug.Log("Slide Called on : " + pIsSliding);
         if (pIsSliding)
         {

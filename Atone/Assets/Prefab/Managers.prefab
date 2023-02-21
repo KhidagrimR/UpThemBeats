@@ -65,7 +65,7 @@ MonoBehaviour:
   - {fileID: 1827712851758725077, guid: 9fe5da120cfaa9740a78972554bf7874, type: 3}
   - {fileID: 1827712851758725077, guid: 833e6bb52168bcc419eba513d4cb2f54, type: 3}
   currentSequence: {fileID: 0}
-  startingSequenceIndex: 11
+  startingSequenceIndex: 0
   isDeathRestartingMusic: 0
 --- !u!1 &794377114544737474
 GameObject:
@@ -95,7 +95,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6595559567071426150}
   m_Father: {fileID: 6341438436953146819}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -117,6 +118,7 @@ MonoBehaviour:
     currentTempo: 0
     currentPositionInMS: 0
     songLength: 0
+  tutoTimer: {fileID: 4335335292010947787}
   test: {fileID: 7673866146837170857, guid: d399a4ffe10ea1847891d46008003b6f, type: 3}
 --- !u!1 &3653280669148058546
 GameObject:
@@ -165,13 +167,92 @@ MonoBehaviour:
   postProcessVolume: {fileID: 0}
   bloomBlueColor:
     m_OverrideState: 0
-    m_Value: {r: 0, g: 0, b: 1, a: 1}
+    m_Value: {r: 0.5372549, g: 0.6392157, b: 0.7529412, a: 1}
   bloomRedColor:
     m_OverrideState: 0
-    m_Value: {r: 1, g: 0, b: 0, a: 1}
+    m_Value: {r: 0.8980392, g: 0.72156864, b: 0.72156864, a: 1}
   bloomYellowColor:
     m_OverrideState: 0
-    m_Value: {r: 0.9695823, g: 1, b: 0, a: 1}
+    m_Value: {r: 0.8784314, g: 0.8117647, b: 0.65882355, a: 1}
+  vignetteDataList:
+  - vignetteDataType: 0
+    color:
+      m_OverrideState: 0
+      m_Value: {r: 1, g: 0, b: 0, a: 1}
+    center: {x: 0.5, y: 0.5}
+    intensity: 0.8
+    smoothness: 0.2
+    transitionDuration: 0.2
+  - vignetteDataType: 1
+    color:
+      m_OverrideState: 0
+      m_Value: {r: 0, g: 0, b: 0, a: 1}
+    center: {x: 0.5, y: 0.5}
+    intensity: 0
+    smoothness: 0.2
+    transitionDuration: 0.2
+--- !u!1 &3904941906152911821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6595559567071426150}
+  - component: {fileID: 4335335292010947787}
+  m_Layer: 0
+  m_Name: tutoSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6595559567071426150
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904941906152911821}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6668483747726264853}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4335335292010947787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904941906152911821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 434251387
+      Data2: 1322007609
+      Data3: 1001696936
+      Data4: 611958718
+    Path: event:/Player/Miss
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &6341438436302581879
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +464,7 @@ Transform:
   - {fileID: 7456829751631337547}
   - {fileID: 7335557315069747311}
   - {fileID: 1555668069763470378}
+  - {fileID: 3360947301839292939}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -517,4 +599,106 @@ MonoBehaviour:
   - impulseEffectRef: {fileID: 0}
     effectType: 7
     impulseStr: 0.75
-  headbobNoiseSettings: []
+  headbobNoiseSettings:
+  - headbobType: 0
+    noiseSettings: {fileID: 11400000, guid: 7102ddb4cf3970448b341e5020c36168, type: 2}
+  - headbobType: 1
+    noiseSettings: {fileID: 11400000, guid: 40a24b2b9016a5d4096f366b2adb53e0, type: 2}
+  - headbobType: 2
+    noiseSettings: {fileID: 11400000, guid: 4c8cb6edfc3d1dd42b46fed504e04c86, type: 2}
+--- !u!1 &9085980080513221789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3360947301839292939}
+  - component: {fileID: 8698831402459808033}
+  m_Layer: 0
+  m_Name: CheatCodeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3360947301839292939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9085980080513221789}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6341438436953146819}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8698831402459808033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9085980080513221789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1d03657c80e7f4b8245fba6684e212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cheatCodeArray:
+  - codeInString: tp09
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5363021689168483715}
+          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
+          m_MethodName: GoToTargetSequence
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 9
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - codeInString: tp02
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5363021689168483715}
+          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
+          m_MethodName: GoToTargetSequence
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - codeInString: tp22
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5363021689168483715}
+          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
+          m_MethodName: GoToTargetSequence
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 22
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  allowedDelay: 1
+  _index: 0
+  inputCombinaison: 
