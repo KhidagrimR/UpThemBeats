@@ -15,6 +15,12 @@ ModelImporter:
   - first:
       74: 3168873715677496587
     second: metarig|Idle (1)
+  - first:
+      74: -5115496485181999869
+    second: Control Pose
+  - first:
+      74: -2399411292544619080
+    second: metarig|Control Pose
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -80,8 +86,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Control Idle V2
-      takeName: metarig|Idle
+      name: metarig|Control Pose
+      takeName: metarig|Control Pose
       internalID: 0
       firstFrame: 0
       lastFrame: 179
@@ -114,6 +120,35 @@ ModelImporter:
       internalID: 0
       firstFrame: 0
       lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Control Pose
+      takeName: metarig|Control Pose
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 179
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -198,11 +233,11 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: df0d89e07dd3c46448e19943d42c56ec, type: 3}
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 2
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
