@@ -73,6 +73,7 @@
 		<relationship name="markers">
 			<destination>{914f4e3e-a28f-4dab-b8bc-d5aefc448117}</destination>
 			<destination>{1658c82b-d80d-488d-9de3-dc1bb4474c4e}</destination>
+			<destination>{242bf4b4-53dd-4323-8aee-a3a6b938f914}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{9938ec9d-b512-4e74-b636-48b0783eba2a}">
@@ -93,6 +94,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{e95200f4-245a-44a7-bf63-3920fdb60a1b}" />
 	<object class="SingleSound" id="{8bbfe2a5-0b11-45fe-81bb-70829df615ef}">
+		<property name="start">
+			<value>0.09375</value>
+		</property>
 		<property name="length">
 			<value>8.9009999999999998</value>
 		</property>
@@ -133,10 +137,24 @@
 	</object>
 	<object class="NamedMarker" id="{1658c82b-d80d-488d-9de3-dc1bb4474c4e}">
 		<property name="position">
-			<value>0</value>
+			<value>0.09375</value>
 		</property>
 		<property name="name">
 			<value>st_Scene_18</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{198127a5-dcb8-4bf6-bf89-bf71b49d4004}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{f495da4f-6f8b-4b3d-b7c5-098a8763ab63}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{242bf4b4-53dd-4323-8aee-a3a6b938f914}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="name">
+			<value>Start</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{198127a5-dcb8-4bf6-bf89-bf71b49d4004}</destination>

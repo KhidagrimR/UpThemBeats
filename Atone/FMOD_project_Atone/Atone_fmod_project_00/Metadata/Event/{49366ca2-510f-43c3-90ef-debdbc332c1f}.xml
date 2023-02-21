@@ -24,6 +24,7 @@
 		</relationship>
 		<relationship name="markerTracks">
 			<destination>{df602248-662d-41dc-9c3d-73bd00053980}</destination>
+			<destination>{78ccac75-c99d-4dc4-bb3c-32287ab59b90}</destination>
 		</relationship>
 		<relationship name="groupTracks">
 			<destination>{076bbbef-58d5-40d3-9144-7bb4160f7340}</destination>
@@ -58,6 +59,7 @@
 	</object>
 	<object class="EventAutomatableProperties" id="{6339a5c1-81dc-4837-9a5d-58e7f2d4b87e}" />
 	<object class="MarkerTrack" id="{df602248-662d-41dc-9c3d-73bd00053980}" />
+	<object class="MarkerTrack" id="{78ccac75-c99d-4dc4-bb3c-32287ab59b90}" />
 	<object class="GroupTrack" id="{076bbbef-58d5-40d3-9144-7bb4160f7340}">
 		<relationship name="modules">
 			<destination>{77d47765-9993-4268-8874-02b7e57b1fae}</destination>
@@ -73,6 +75,7 @@
 		<relationship name="markers">
 			<destination>{548a14c4-7606-4fc5-a63b-325222d5e2b6}</destination>
 			<destination>{0ee4b654-a469-41a9-9f65-8d7f892faf18}</destination>
+			<destination>{e343f229-8bc7-4f30-966f-c595664d9138}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{40e326d1-e9df-4ccf-9eb4-44d5aad0cd55}">
@@ -93,6 +96,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{39fc8cd6-ca57-437c-a692-ce63cf680c49}" />
 	<object class="SingleSound" id="{77d47765-9993-4268-8874-02b7e57b1fae}">
+		<property name="start">
+			<value>0.09375</value>
+		</property>
 		<property name="length">
 			<value>31.652999999999999</value>
 		</property>
@@ -133,10 +139,24 @@
 	</object>
 	<object class="NamedMarker" id="{0ee4b654-a469-41a9-9f65-8d7f892faf18}">
 		<property name="position">
-			<value>0</value>
+			<value>0.09375</value>
 		</property>
 		<property name="name">
 			<value>st_Scene_6</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{1f3ed8fc-c520-45dd-b435-c7f0768ba8ac}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{78ccac75-c99d-4dc4-bb3c-32287ab59b90}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{e343f229-8bc7-4f30-966f-c595664d9138}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="name">
+			<value>Start</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{1f3ed8fc-c520-45dd-b435-c7f0768ba8ac}</destination>
