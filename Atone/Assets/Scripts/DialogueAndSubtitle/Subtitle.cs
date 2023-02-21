@@ -9,8 +9,10 @@ public class Subtitle : Singleton<Subtitle>
 {
     public GameObject subtitleTextUp;
     public GameObject subtitleTextDown;
-    public IEnumerator LaunchSubtitle(string whichDialogue){
-        StreamReader reader = new StreamReader("Assets/Resources/Dialogues/" + whichDialogue + ".txt");
+    public IEnumerator LaunchSubtitle(string whichDialogue)
+    {
+        //Debug.Log(Application.dataPath+"/Resources/Dialogues/");
+        StreamReader reader = new StreamReader(Application.dataPath+"/Resources/Dialogues/" + whichDialogue + ".txt");
         string line;
         while((line = reader.ReadLine()) != null){
             string[] subtitles = line.Split(new string[] { " | " }, StringSplitOptions.None);
