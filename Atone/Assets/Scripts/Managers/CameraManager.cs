@@ -13,7 +13,7 @@ public class CameraManager : Singleton<CameraManager>
         public CinemachineImpulseSource impulseEffectRef;
         public enum EffectType
         {
-            RedwallDestroy, RedwallDrop, Slide, SlideStop, WallrunLoop, WallrunHit, BopDestroy, Damage, Death
+            RedwallDestroy, RedwallDrop, Slide, SlideStop, WallrunLoop, WallrunHit, BopDestroy, Damage, Death, AppearSages
         }
         public EffectType effectType;
         public float impulseStr = 5f;

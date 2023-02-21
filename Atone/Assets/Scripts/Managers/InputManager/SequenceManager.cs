@@ -124,6 +124,7 @@ public class SequenceManager : Singleton<SequenceManager>
         CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Death);
 
         yield return new WaitForSeconds(sequenceFadeDuration);
+        PlayerManager.Instance.MakePlayerSlide(false);
 
         // reset player position, set him temporary indestructible to avoid multiple life loss
         PlayerController player = PlayerManager.Instance.playerController;

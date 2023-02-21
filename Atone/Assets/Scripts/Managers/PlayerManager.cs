@@ -38,7 +38,7 @@ public class PlayerManager : Singleton<PlayerManager>
         get
         {
             // le joueur peut Slider tant qu'il n'est pas en train de courir sur un mur et en train de changer de lane
-            return (!playerController.isChangingLane && playerCurrentLane == 1); // 1 => center lane
+            return (playerCurrentLane == 1); // 1 => center lane
         }
     }
 
@@ -279,7 +279,7 @@ public class PlayerManager : Singleton<PlayerManager>
     }
 
 
-    public void MakePlayerSlide(bool pIsSliding)
+    public void MakePlayerSlide(bool pIsSliding, bool repeatToChangeLane = true)
     {
         // if the player is NOT sliding but the button is released (means that we want the player to stand up while he is already)
         // it may trigger the animator when we don't want
@@ -290,6 +290,21 @@ public class PlayerManager : Singleton<PlayerManager>
         if (isPlayerAbleToSlide)
         {
             playerController.Slide(pIsSliding);
+        }
+        else if (repeatToChangeLane == true)
+        {
+            if(playerCurrentLane == 2)
+            {
+                MovePlayerToLeftLane();
+                MakePlayerSlide(true, false);
+                playerController.playerAnimationEvent.VFXWallrunStopTrigger();
+            }
+            if(playerCurrentLane == 0)
+            {
+                MovePlayerToRightLane();
+                MakePlayerSlide(true, false);
+                playerController.playerAnimationEvent.VFXWallrunStopTrigger();
+            }
         }
     }
 
@@ -399,7 +414,9 @@ public class PlayerManager : Singleton<PlayerManager>
     public IEnumerator MakeSagesAppear()
     {
         MusicManager.Instance.sagesAppearSFX.Play();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+        CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.AppearSages);
+        yield return new WaitForSeconds(1f);
         PostProcessManager.Instance.isSagesActives = true;
         SequenceManager.Instance.FadeInCamera(.2f);
         yield return new WaitForSeconds(.2f);

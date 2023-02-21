@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSequence: {fileID: 0}
-  startingSequenceIndex: 1
+  startingSequenceIndex: 0
   sequenceFadeDuration: 3
   isDeathRestartingMusic: 0
   sequencesPrefab:
@@ -679,6 +679,9 @@ MonoBehaviour:
     impulseStr: 0.75
   - impulseEffectRef: {fileID: 0}
     effectType: 7
+    impulseStr: 0.75
+  - impulseEffectRef: {fileID: 0}
+    effectType: 9
     impulseStr: 0.75
   headbobNoiseSettings:
   - headbobType: 0

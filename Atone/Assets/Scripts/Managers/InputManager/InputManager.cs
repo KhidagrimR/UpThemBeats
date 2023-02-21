@@ -60,7 +60,7 @@ public class InputManager : Singleton<InputManager>
 
     // SLIDE
     public PlayerAction slide;
-    public delegate void OnSlide(bool slide);
+    public delegate void OnSlide(bool slide, bool isRepeating = true);
     public OnSlide onSlide;
 
     // Bend update state vars
