@@ -5,8 +5,7 @@ using DG.Tweening;
 
 public class SequenceManager : Singleton<SequenceManager>
 {
-    // All sequences in prefab
-    public List<GameObject> sequencesPrefab;
+    
 
     [InspectorReadOnly]
     // current instanciated Sequences
@@ -26,10 +25,11 @@ public class SequenceManager : Singleton<SequenceManager>
         set { _isNextSequenceLooping = value; }
     }
     
-    float sequenceFadeDuration = 5.0f;
+    public float sequenceFadeDuration = 3.0f;
     [InspectorReadOnly]
     public bool isDeathRestartingMusic;
-
+// All sequences in prefab
+    public List<GameObject> sequencesPrefab;
     public void Init()
     {
         LoadTargetSequenceByIndex(startingSequenceIndex);
