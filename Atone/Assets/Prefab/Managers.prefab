@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea332fe190f0d6147af89b6159ca462b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSequence: {fileID: 0}
+  startingSequenceIndex: 0
+  sequenceFadeDuration: 3
+  isDeathRestartingMusic: 0
   sequencesPrefab:
   - {fileID: 1827712851758725077, guid: d8145d19dc3a08e4dbc778d9e881566c, type: 3}
   - {fileID: 1827712851758725077, guid: f2a9099c06fa28e44adae2bc25b38edb, type: 3}
@@ -64,9 +68,6 @@ MonoBehaviour:
   - {fileID: 1827712851758725077, guid: 016bf2ea306710249921d0cfa0fc86c2, type: 3}
   - {fileID: 1827712851758725077, guid: 9fe5da120cfaa9740a78972554bf7874, type: 3}
   - {fileID: 1827712851758725077, guid: 833e6bb52168bcc419eba513d4cb2f54, type: 3}
-  currentSequence: {fileID: 0}
-  startingSequenceIndex: 0
-  isDeathRestartingMusic: 0
 --- !u!1 &794377114544737474
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,6 +98,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6595559567071426150}
+  - {fileID: 142637306319178091}
   m_Father: {fileID: 6341438436953146819}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -119,6 +121,7 @@ MonoBehaviour:
     currentPositionInMS: 0
     songLength: 0
   tutoTimer: {fileID: 4335335292010947787}
+  sagesAppearSFX: {fileID: 5188322393576687852}
   test: {fileID: 7673866146837170857, guid: d399a4ffe10ea1847891d46008003b6f, type: 3}
 --- !u!1 &3653280669148058546
 GameObject:
@@ -164,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb492a4cbce8d0499b3a29af5ef7b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSagesActives: 0
   postProcessVolume: {fileID: 0}
   bloomBlueColor:
     m_OverrideState: 0
@@ -174,6 +178,15 @@ MonoBehaviour:
   bloomYellowColor:
     m_OverrideState: 0
     m_Value: {r: 0.8784314, g: 0.8117647, b: 0.65882355, a: 1}
+  bloomSageBlueColor:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 0}
+  bloomSageRedColor:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 0}
+  bloomSageYellowColor:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 0}
   vignetteDataList:
   - vignetteDataType: 0
     color:
@@ -526,6 +539,68 @@ MonoBehaviour:
   playerCurrentLane: 1
   tweenDutchDuration: 0.4
   gameObjectTriggerChangeLane: {fileID: 0}
+--- !u!1 &6391044710421040637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 142637306319178091}
+  - component: {fileID: 5188322393576687852}
+  m_Layer: 0
+  m_Name: sageAppearSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &142637306319178091
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6391044710421040637}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6668483747726264853}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5188322393576687852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6391044710421040637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1107567455
+      Data2: 1200630976
+      Data3: 510854569
+      Data4: -1773852277
+    Path: event:/Dialogue/SFX_SagesAppear
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &6509194202181810983
 GameObject:
   m_ObjectHideFlags: 0

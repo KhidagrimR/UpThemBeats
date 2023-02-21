@@ -398,6 +398,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public IEnumerator MakeSagesAppear()
     {
+        MusicManager.Instance.sagesAppearSFX.Play();
+        yield return new WaitForSeconds(2f);
         PostProcessManager.Instance.isSagesActives = true;
         SequenceManager.Instance.FadeInCamera(.2f);
         yield return new WaitForSeconds(.2f);
@@ -408,6 +410,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public IEnumerator MakeSagesDisappear()
     {
+        MusicManager.Instance.sagesAppearSFX.Play();
+        yield return new WaitForSeconds(2f);
         SequenceManager.Instance.FadeInCamera(.2f);
         yield return new WaitForSeconds(.2f);
         SequenceManager.Instance.FadeOutCamera(.2f);

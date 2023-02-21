@@ -51,6 +51,7 @@ public class MusicManager : Singleton<MusicManager>
     #endregion
     [Header("FMOD Events")]
     public StudioEventEmitter tutoTimer;
+    public StudioEventEmitter sagesAppearSFX;
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------
     #region INTERNAL CLASS TO WRITE THE TRACK DATA TO
