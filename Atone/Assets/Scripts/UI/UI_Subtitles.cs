@@ -8,14 +8,19 @@ using TMPro;
 public class UI_Subtitles : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI SampleSub;
-    [SerializeField] private TextMeshProUGUI subtitleInGame;
-    [SerializeField] private TextMeshProUGUI tutoFirst;
-    [SerializeField] private TextMeshProUGUI tutoSecond;
+    [SerializeField] private TextMeshProUGUI subtitleInGameA;
+    [SerializeField] private TextMeshProUGUI subtitleInGameB;
+
+    [SerializeField] private TextMeshProUGUI tutoFirstA;
+    [SerializeField] private TextMeshProUGUI tutoSecondA;
+    [SerializeField] private TextMeshProUGUI tutoFirstB;
+    [SerializeField] private TextMeshProUGUI tutoSecondB;
 
     public void ShowOrHideSubs(bool show)
     {
         SampleSub.enabled = show;
-        subtitleInGame.enabled = show;
+        subtitleInGameA.enabled = show;
+        subtitleInGameB.enabled = show;
     }
 
     public void ChangeTheme(int value)
@@ -40,9 +45,13 @@ public class UI_Subtitles : MonoBehaviour
     void ApplyTheme(Color textColor, string bgColor)
     {
         string str1 = SampleSub.text;
-        string str2 = subtitleInGame.text;
-        string str3 = tutoFirst.text;
-        string str4 = tutoSecond.text;
+        string str2 = subtitleInGameA.text;
+        string str3 = subtitleInGameB.text;
+
+        string str4 = tutoFirstA.text;
+        string str5 = tutoSecondA.text;
+        string str6 = tutoFirstB.text;
+        string str7 = tutoSecondB.text;
 
         Regex rich = new Regex(@"<[^>]*>");
 
@@ -52,26 +61,44 @@ public class UI_Subtitles : MonoBehaviour
             str2 = rich.Replace(str2, string.Empty);
             str3 = rich.Replace(str3, string.Empty);
             str4 = rich.Replace(str4, string.Empty);
+            str5 = rich.Replace(str5, string.Empty);
+            str6 = rich.Replace(str6, string.Empty);
+            str7 = rich.Replace(str7, string.Empty);
         }
         SampleSub.color = textColor;
         SampleSub.text = "<mark="+ bgColor + " padding='50,50,0,0'>" + str1 + "</mark>";
 
-        subtitleInGame.color = textColor;
-        subtitleInGame.text = "<mark=" + bgColor + " padding='50,50,0,0'>" + str2 + "</mark>";
+        subtitleInGameA.color = textColor;
+        subtitleInGameA.text = "<mark=" + bgColor + " padding='50,50,0,0'>" + str2 + "</mark>";
 
-        tutoFirst.color = textColor;
-        tutoFirst.text = "<mark=" + bgColor + " padding='50,50,0,0'>" + str3 + "</mark>";
+        subtitleInGameB.color = textColor;
+        subtitleInGameB.text = "<mark=" + bgColor + " padding='50,50,0,0'>" + str3 + "</mark>";
 
-        tutoSecond.color = textColor;
-        tutoSecond.text = "<mark=" + bgColor + " padding='50,50,0,0'>" + str4 + "</mark>";
+        tutoFirstA.color = textColor;
+        tutoFirstA.text = "<mark=" + bgColor + " padding='50,50,0,0'>" + str4 + "</mark>";
+
+        tutoSecondA.color = textColor;
+        tutoSecondA.text = "<mark=" + bgColor + " padding='50,50,0,0'>" + str5 + "</mark>";
+
+        tutoFirstB.color = textColor;
+        tutoFirstB.text = "<mark=" + bgColor + " padding='50,50,0,0'>" + str6 + "</mark>";
+
+        tutoSecondB.color = textColor;
+        tutoSecondB.text = "<mark=" + bgColor + " padding='50,50,0,0'>" + str7 + "</mark>";
     }
 
     public void ChangeSize(float value)
     {
-        int[] size = { 18, 23, 28, 33, 38 };
-        SampleSub.fontSize = size[(int)value];
-        subtitleInGame.fontSize = size[(int)value];
-        tutoFirst.fontSize = size[(int)value];
-        tutoSecond.fontSize = size[(int)value];
+        int[] sizeSub = { 30, 33, 36, 39, 42 };
+        int[] sizeTuto = { 37, 40, 43, 47, 50 };
+
+        SampleSub.fontSize = sizeSub[(int)value];
+        subtitleInGameA.fontSize = sizeSub[(int)value];
+        subtitleInGameB.fontSize = sizeSub[(int)value];
+
+        tutoFirstA.fontSize = sizeTuto[(int)value];
+        tutoSecondA.fontSize = sizeTuto[(int)value];
+        tutoFirstB.fontSize = sizeTuto[(int)value];
+        tutoSecondB.fontSize = sizeTuto[(int)value];
     }
 }

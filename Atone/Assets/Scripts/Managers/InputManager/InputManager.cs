@@ -15,8 +15,8 @@ public class InputManager : Singleton<InputManager>
 
     public PlayerAction menuOrReturn;
 
-    public delegate void OnMenu(bool isPaused);
-    public static event OnMenu onMenu; // Needs to be static to not mess things up when communicating to the additive scene
+    // public delegate void OnMenu(bool isPaused); // Moved to GameManager
+    // public static event OnMenu onMenu; // Needs to be static to not mess things up when communicating to the additive scene
 
 
     [Header("Break Bop Action")]
@@ -86,10 +86,10 @@ public class InputManager : Singleton<InputManager>
         #region UI
         // OPEN MENU
         if (menuOrReturn.GetActionDown(onController, isRightHanded))
-        {
-            // Current setup is hacky, need to change it later. Might need to add a future check to verify that we are not in the main menu scene            
-            GameManager.Instance.TogglePauseState();
-            onMenu?.Invoke(GameManager.Instance.isGameCurrentlyPaused);
+        {   
+            GameManager.Instance.HandleReturnKeyPress();
+            // Previous setup was hacky, need to change it later. Might need to add a future check to verify that we are not in the main menu scene   
+            // onMenu?.Invoke(GameManager.Instance.isGameCurrentlyPaused);
         }
         #endregion
     }

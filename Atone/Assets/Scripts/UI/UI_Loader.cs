@@ -9,12 +9,18 @@ public class UI_Loader : MonoBehaviour
         get { return _isReady; }
     }
     // Attach to a camera or the game manager. Somewhere where you'll find it
+
+    void Awake(){
+        //Debug.Log("Is UI scene loaded?"+ (SceneManager.GetSceneByName("UI Scene").isLoaded));
+    }
     public void Init()
     {
-        if (SceneManager.GetSceneByName("UI Scene").isLoaded == false)
+        string uiSceneName = "UI Scene";
+        if (SceneManager.GetSceneByName(uiSceneName).isLoaded == false)
         {
-            SceneManager.LoadSceneAsync("UI Scene", LoadSceneMode.Additive);
-            _isReady = true;
+            SceneManager.LoadSceneAsync(uiSceneName, LoadSceneMode.Additive);
+            
         }
+        _isReady = true;
     }
 }

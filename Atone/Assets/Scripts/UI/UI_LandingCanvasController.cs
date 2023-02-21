@@ -12,62 +12,116 @@ namespace Atone_UI
         [SerializeField] private GameObject mainMenuLanding;
         [SerializeField] private GameObject pauseMenuLanding;
         [SerializeField] private GameObject settingsLanding;
-
-        [SerializeField] private GameObject volumeSettings;
-        [SerializeField] private GameObject graphicSettings;
-        [SerializeField] private GameObject gameplaySettings;
+        [SerializeField] private GameObject introLanding;
         
+        [SerializeField] private GameObject creditsRoll;
+
+        [SerializeField] private GameObject[] crosshairSettings;
+        [SerializeField] private GameObject[] audioSettings;
+        [SerializeField] private GameObject[] subtitlesSettings;
+
+        [SerializeField] private GameObject inGameUI;        
         [SerializeField] private GameObject selectableObjectWhenPause;
 
-        private Dictionary<SubMenuType, GameObject> menuComponentsDict;
-        private GameObject currrentlyActiveSettings = null;
+        private Dictionary<SubMenuType, GameObject[]> menuComponentsDict;
+        private GameObject[] currrentlyActiveSettings = null;
         private SubMenuType currentSubMenu = SubMenuType.NONE;
         private MenuType currentMenuLanding = MenuType.NONE_GAME_PLAYING;
 
+        public static bool forbidPauseToggle {get; private set;}    // GameManager will check this to avoid resuming if we are in the settings tab
+        public static bool areSubscriptionsDone {get; private set;}
+
         private void Awake()
         {
-            menuComponentsDict = new Dictionary<SubMenuType, GameObject>(){
-                {SubMenuType.GAMEPLAY, gameplaySettings},
-                {SubMenuType.GRAPHICS, graphicSettings},
-                {SubMenuType.VOLUME, volumeSettings}
+            menuComponentsDict = new Dictionary<SubMenuType, GameObject[]>(){
+                {SubMenuType.SUBTITLES, subtitlesSettings},
+                {SubMenuType.AUDIO, audioSettings},
+                {SubMenuType.CROSSHAIR, crosshairSettings}
             };
         }
 
         private void Start()
         {
             // Subscribe to your events here
-            InputManager.onMenu += TogglePauseMenu;
+            GameManager.onMenu += DisplayAppropriateMenuLanding;
+            areSubscriptionsDone = true;
+            // Debug.Log("Landing canvas controller start cycle done");
 
         }
         private void OnDestroy()
         {
-            if (InputManager.Instance != null)
+            if (GameManager.Instance != null)
             {
-                InputManager.onMenu -= TogglePauseMenu;
+                GameManager.onMenu -= DisplayAppropriateMenuLanding;
             }
+            areSubscriptionsDone = false;
         }
 
-        private void TogglePauseMenu(bool isGameBeingPaused)
+        // private void TogglePauseMenu(bool isGameBeingPaused)
+        // {
+        //     if (isGameBeingPaused)
+        //     {
+        //         SetLandingCanvas(MenuType.PAUSE_MENU);
+        //         EventSystem.current.SetSelectedGameObject(selectableObjectWhenPause);
+        //         Cursor.lockState = CursorLockMode.None; // Frees the cursor in order to navigate menu
+        //     }
+        //     else
+        //     {
+        //         SetLandingCanvas(MenuType.NONE_GAME_PLAYING);
+        //         DisplayMenuSettings(SubMenuType.NONE);
+        //         Cursor.lockState = CursorLockMode.Locked;
+        //     }
+        // }
+
+        private void DisplayAppropriateMenuLanding(GeneralGameState oldStateWeWantToLeave)
         {
-            if (isGameBeingPaused)
+            // Switch to next logical panel based on current game state: "if return called in game -> set to pause", etc.
+            switch(oldStateWeWantToLeave)
             {
-                SetLandingCanvas(MenuType.PAUSE_MENU);
-                EventSystem.current.SetSelectedGameObject(selectableObjectWhenPause);
-                Cursor.lockState = CursorLockMode.None; // Frees the cursor in order to navigate menu
+                case GeneralGameState.MAIN_MENU:
+                    if(creditsRoll.activeSelf) {creditsRoll.SetActive(false);}
+                    SetLandingCanvas(MenuType.MAIN_MENU);
+                    inGameUI.SetActive(false);
+                    Cursor.lockState = CursorLockMode.None;
+                break;
+                case GeneralGameState.PAUSED:
+                    if(currentMenuLanding == MenuType.SETTINGS)
+                    {
+                        // Debug.Log("Handling PAUSED oldstate to return to pause main panel");
+                        HideSettingsPanel();
+                        // SetLandingCanvas(MenuType.PAUSE_MENU);
+                    }
+                    else
+                    {
+                        // Debug.Log("Handling PAUSED oldstate to return to resume game");
+                        ExitPausePanel();
+                    }
+                break;
+                case GeneralGameState.GAME:
+                    // Brings up pause landing page. GameManager will  handle audio and  time scale on its own side
+                    SetLandingCanvas(MenuType.PAUSE_MENU);
+                    EventSystem.current.SetSelectedGameObject(selectableObjectWhenPause);
+                    inGameUI.SetActive(false);
+                    Cursor.lockState = CursorLockMode.None; // Frees the cursor in order to navigate menu
+                break;
             }
-            else
-            {
-                SetLandingCanvas(MenuType.NONE_GAME_PLAYING);
-                DisplayMenuSettings(SubMenuType.NONE);
-                Cursor.lockState = CursorLockMode.Locked;
-            }
+            areSubscriptionsDone = false;
         }
 
-
-        public void PlayGame(GameObject menu)
+        public void LaunchIntro()
         {
-            menu.SetActive(false);
-            SceneManager.LoadScene("Game");
+            SetLandingCanvas(MenuType.INTRODUCTION);
+        }
+
+        public void PlayGame()
+        {
+            SceneManager.UnloadSceneAsync("UI Scene");
+
+            if (SceneManager.GetSceneByName("Game").isLoaded == false)
+            {
+                SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
+            }
+            //SceneManager.LoadScene("Game");
         }
 
         public void Quit()
@@ -82,9 +136,11 @@ namespace Atone_UI
 
             if(mainMenuLanding != null)
                 mainMenuLanding.SetActive(menuType == MenuType.MAIN_MENU);
+            
+            if(introLanding != null) 
+                introLanding.SetActive(menuType == MenuType.INTRODUCTION);
 
-            if(settingsLanding != null)
-                settingsLanding.SetActive(menuType == MenuType.SETTINGS);
+            currentMenuLanding = menuType;
         }
 
         private void DisplayMenuSettings(SubMenuType submenu)
@@ -93,8 +149,9 @@ namespace Atone_UI
             {
                 if (currrentlyActiveSettings != null)
                 {
-                    Debug.Log("current active settings not null");
-                    currrentlyActiveSettings.SetActive(false);
+                    // Debug.Log("current active settings not null");
+                    foreach(var c in currrentlyActiveSettings){ c.SetActive(false);}
+                    // currrentlyActiveSettings.SetActive(false);
                 }
 
                 currentSubMenu = submenu;
@@ -102,9 +159,19 @@ namespace Atone_UI
                 if (submenu != SubMenuType.NONE)
                 {
                     currrentlyActiveSettings = menuComponentsDict[submenu];
-                    currrentlyActiveSettings.SetActive(true);
+                    foreach(var c in currrentlyActiveSettings){ c.SetActive(true);}
+                    // currrentlyActiveSettings.SetActive(true);
                 }
             }
+        }
+
+        private void ExitPausePanel()
+        {
+            forbidPauseToggle = false;
+            SetLandingCanvas(MenuType.NONE_GAME_PLAYING);
+            DisplayMenuSettings(SubMenuType.NONE);
+            inGameUI.SetActive(true);
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         #region function called by menu buttons
@@ -112,11 +179,34 @@ namespace Atone_UI
         {
             DisplayMenuSettings((SubMenuType)submenuIndex);
         }
+        public void DisplayCanvasFromClickEvent(int menuIndex)
+        {
+            SetLandingCanvas((MenuType)menuIndex);
+        }
+        public void DisplaySettingsPanel()
+        {
+            forbidPauseToggle = true;
+            settingsLanding.SetActive(true);
+            DisplayMenuSettings(SubMenuType.SUBTITLES);
+            currentMenuLanding = MenuType.SETTINGS;
+        }
+        public void HideSettingsPanel()
+        {
+            settingsLanding.SetActive(false);
+            DisplayMenuSettings(SubMenuType.NONE);
+            if(mainMenuLanding.activeSelf) {
+                currentMenuLanding = MenuType.MAIN_MENU;
+            }
+            else if(pauseMenuLanding.activeSelf) {
+                currentMenuLanding = MenuType.PAUSE_MENU;
+            }
+        }
         public void ResumeGameFromClickEvent()
         {
-            DisplayMenuSettings(SubMenuType.NONE);
-            TogglePauseMenu(false);
-            GameManager.Instance.TogglePauseState();
+            // DisplayMenuSettings(SubMenuType.NONE);
+            ExitPausePanel();
+            GameManager.Instance.ResumeGame();
+            // TogglePauseMenu(false);
 
         }
         
@@ -131,15 +221,16 @@ namespace Atone_UI
         NONE_GAME_PLAYING,
         MAIN_MENU,
         PAUSE_MENU,
-        SETTINGS
+        SETTINGS,
+        INTRODUCTION
     }
 
     public enum SubMenuType
     {
         NONE,
-        GAMEPLAY,
-        GRAPHICS,
-        VOLUME
+        SUBTITLES,
+        AUDIO,
+        CROSSHAIR
     }
 
 }
