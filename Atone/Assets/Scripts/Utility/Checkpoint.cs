@@ -33,7 +33,8 @@ public class Checkpoint : MonoBehaviour
             PlayerManager.Instance.scoreBoard[niveau].Add(sequence, PlayerManager.scoreSequence);
             
         if (endGame){
-            GameManager.Instance.TogglePauseState();
+            // GameManager.Instance.TogglePauseState();
+            GameManager.Instance.PauseGame();
             Cursor.lockState = CursorLockMode.None;
             InputManager.Instance.onLeaderboard = true;
             PlayerName.Instance.container.SetActive(true);

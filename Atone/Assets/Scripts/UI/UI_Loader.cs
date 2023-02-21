@@ -11,10 +11,12 @@ public class UI_Loader : MonoBehaviour
     // Attach to a camera or the game manager. Somewhere where you'll find it
     public void Init()
     {
-        if (SceneManager.GetSceneByName("UI Scene").isLoaded == false)
+        string uiSceneName = "UI Scene";
+        if (SceneManager.GetSceneByName(uiSceneName).isLoaded == false)
         {
-            SceneManager.LoadSceneAsync("UI Scene", LoadSceneMode.Additive);
-            _isReady = true;
+            SceneManager.LoadSceneAsync(uiSceneName, LoadSceneMode.Additive);
+            
         }
+        _isReady = true;
     }
 }

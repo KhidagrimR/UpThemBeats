@@ -9,7 +9,7 @@ public class UIManager : Singleton<UIManager>
 
     public void SetupUIGame()
     {
-        mainMenuLanding.SetActive(false);
-        menuCamera.SetActive(false);
+        // mainMenuLanding.SetActive(false);
+        //menuCamera.SetActive(false);
     }
 }
