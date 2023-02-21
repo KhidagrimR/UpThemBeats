@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement; 
 
 public class GameManager : Singleton<GameManager>
 {
@@ -20,26 +20,26 @@ public class GameManager : Singleton<GameManager>
     public GeneralGameState currentState { get; private set; }
 
     public delegate void OnMenu(GeneralGameState oldStateWeWantToLeave);
-    public static event OnMenu onMenu; // Needs to be static to not mess things up when communicating to the additive scene
+    public static event OnMenu onMenu; // Needs to be static to not mess things up when communicating to the additive scene 
 
     void Awake()
     {
         // do starting setup stuff here
 
         GameAnimatorsParams.BuildDictionary();
+        // Debug.Log("Is Main_Menu_A1 scene loaded?"+ (SceneManager.GetActiveScene().name));
 
         // init other manager
         StartCoroutine(Init());
 
         //Time.timeScale = 0.25f;
-    }
-
+    }   
     private void Start()
     {
         if( SceneManager.GetActiveScene().name == "Main_Menu_A1"
-            && (uI_Loader != null))
+            && (uI_Loader != null))  
         {
-            StartCoroutine(StartMainMenuOnMainMenuScene());
+              StartCoroutine(StartMainMenuOnMainMenuScene());                                  
         }
     }
 
@@ -47,7 +47,7 @@ public class GameManager : Singleton<GameManager>
     {
         currentState = GeneralGameState.GAME;
         // isGameCurrentlyPaused = false;
-        // isGameAtMainMenu = false;
+        // isGameAtMainMenu = false; 
 
         // Main_Menu_A1
         if( SceneManager.GetActiveScene().name == "Main_Menu_A1"
@@ -57,7 +57,7 @@ public class GameManager : Singleton<GameManager>
             currentState = GeneralGameState.MAIN_MENU;
             uI_Loader.Init();
             yield return new WaitUntil(() => uI_Loader.isReady);
-            Debug.Log("<color=red>UI is ready</color>");
+            Debug.Log("<color=red>UI for main menu is ready</color>");                                    
         }
         // Regular game scenes
         else 
@@ -71,12 +71,12 @@ public class GameManager : Singleton<GameManager>
 
             if (uI_Loader != null)
             {
-                uI_Loader.Init();
+                uI_Loader.Init(); 
                 yield return new WaitUntil(() => uI_Loader.isReady);
                 Debug.Log("<color=red>UI is ready</color>");
             }
 
-            /*if (MusicManager.Instance != null)
+            /*if (MusicManager.Instance != null) 
             {
                 MusicManager.Instance.Init();
                 yield return new WaitUntil(() => MusicManager.Instance.isReady);
@@ -85,29 +85,29 @@ public class GameManager : Singleton<GameManager>
 
             if (PlayerManager.Instance != null)
             {
-                PlayerManager.Instance.Init();
+                PlayerManager.Instance.Init(); 
                 yield return new WaitUntil(() => PlayerManager.Instance.isReady);
                 Debug.Log("<color=red>Player Manager is ready</color>");
             }
 
             if (SequenceManager.Instance != null)
             {
-                SequenceManager.Instance.Init();
+                SequenceManager.Instance.Init(); 
                 yield return new WaitUntil(() => SequenceManager.Instance.isReady);
                 Debug.Log("<color=red>Sequence Manager is ready</color>");
             }
 
-            // if (SoundCreator.Instance != null)
+            // if (SoundCreator.Instance != null) 
             // {   
             //     SoundCreator.Instance.PlayMusic();
             // }
 
-            /*if (MusicManager.Instance != null)
+            /*if (MusicManager.Instance != null) 
             {
                 MusicManager.Instance.StartMusicManager();
             }*/
 
-            if (PostProcessManager.Instance != null)
+            if (PostProcessManager.Instance != null) 
             {
                 PostProcessManager.Instance.Init();
                 yield return new WaitUntil(() => PostProcessManager.Instance.isReady);
@@ -116,7 +116,7 @@ public class GameManager : Singleton<GameManager>
 
             if(UIManager.Instance != null)
             {
-                UIManager.Instance.SetupUIGame();
+                UIManager.Instance.SetupUIGame(); 
             }
 
             if (SequenceManager.Instance != null)
@@ -124,10 +124,10 @@ public class GameManager : Singleton<GameManager>
                 gameplayBus = RuntimeManager.GetBus("bus:/Gameplay_Master");
                 SequenceManager.Instance.StartSequence();
             }
-
-            Debug.Log("<color=red>### READY ###</color>");
-            _isReady = true;
         }
+
+        Debug.Log("<color=red>### READY ###</color>");
+        _isReady = true;
     }
     IEnumerator StartMainMenuOnMainMenuScene()
     {
@@ -170,12 +170,12 @@ public class GameManager : Singleton<GameManager>
     }
     public void ResumeGame()
     {
-        // Debug.Log("Resuming game...");
+        // Debug.Log("Resuming game..."); 
         if(currentState == GeneralGameState.MAIN_MENU) {return;}
         currentState = GeneralGameState.GAME;
         gameplayBus.setPaused(false);
         Time.timeScale = isGameCurrentlyPaused ? 0 : 1;
-        // Debug.Log("Time.timeScale "+Time.timeScale);
+        // Debug.Log("Time.timeScale "+Time.timeScale); 
     }    
 }
 

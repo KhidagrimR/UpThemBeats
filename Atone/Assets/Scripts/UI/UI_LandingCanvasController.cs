@@ -27,8 +27,8 @@ namespace Atone_UI
         private GameObject[] currrentlyActiveSettings = null;
         private SubMenuType currentSubMenu = SubMenuType.NONE;
         private MenuType currentMenuLanding = MenuType.NONE_GAME_PLAYING;
-        
-        public static bool forbidPauseToggle {get; private set;}    // GameManager will check this  to avoid resuming if we are in the settings tab
+
+        public static bool forbidPauseToggle {get; private set;}    // GameManager will check this to avoid resuming if we are in the settings tab
         public static bool areSubscriptionsDone {get; private set;}
 
         private void Awake()
@@ -45,11 +45,12 @@ namespace Atone_UI
             // Subscribe to your events here
             GameManager.onMenu += DisplayAppropriateMenuLanding;
             areSubscriptionsDone = true;
+            // Debug.Log("Landing canvas controller start cycle done");
 
         }
         private void OnDestroy()
         {
-            if (InputManager.Instance != null)
+            if (GameManager.Instance != null)
             {
                 GameManager.onMenu -= DisplayAppropriateMenuLanding;
             }
@@ -99,11 +100,12 @@ namespace Atone_UI
                 case GeneralGameState.GAME:
                     // Brings up pause landing page. GameManager will  handle audio and  time scale on its own side
                     SetLandingCanvas(MenuType.PAUSE_MENU);
+                    EventSystem.current.SetSelectedGameObject(selectableObjectWhenPause);
                     inGameUI.SetActive(false);
-                    Cursor.lockState = CursorLockMode.None; // Frees the cursor  in order to navigate menu
-
+                    Cursor.lockState = CursorLockMode.None; // Frees the cursor in order to navigate menu
                 break;
             }
+            areSubscriptionsDone = false;
         }
 
         public void LaunchIntro()
