@@ -28,7 +28,7 @@ public class PostProcessManager : Singleton<PostProcessManager>
     [Serializable]
     public class VignetteData
     {
-        public enum VignetteDataType {typeA, typeB, typeC};
+        public enum VignetteDataType {Slide,Standing,WallrunLeft,WallrunRight,Snap,Break,Hit,Death};
         public VignetteDataType vignetteDataType;
 
         public ColorParameter color;

@@ -397,6 +397,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(SequenceManager.Instance.RestartCurrentSequence());
             animationTrigger.PlayAnimation(AnimationEnum.Death);
             CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Damage);
+            PostProcessManager.Instance.ChangeVignette(PostProcessManager.VignetteData.VignetteDataType.Hit);
         }
         else
         {
@@ -404,6 +405,7 @@ public class PlayerController : MonoBehaviour
             //print("new HP : " + hp);
             animationTrigger.PlayAnimation(AnimationEnum.HitTaken);
             CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Damage);
+            PostProcessManager.Instance.ChangeVignette(PostProcessManager.VignetteData.VignetteDataType.Hit);
         }
 
     }
@@ -435,6 +437,7 @@ public class PlayerController : MonoBehaviour
             CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.Slide);
             CameraManager.Instance.ChangeHeadbobType(CameraManager.HeadbobNoiseSettings.HeadbobType.SlideBob);
             PostProcessManager.Instance.ChangeColorToBlue(0.5f);
+            PostProcessManager.Instance.ChangeVignette(PostProcessManager.VignetteData.VignetteDataType.Slide);
             //vcam.m_Lens.FieldOfView = 1;
             //Debug.Log("<color=orange>Vcam = "+vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain+"</color>");
         }
@@ -453,6 +456,7 @@ public class PlayerController : MonoBehaviour
             CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.SlideStop);
             CameraManager.Instance.ChangeHeadbobType(CameraManager.HeadbobNoiseSettings.HeadbobType.UpstandBob);
             PostProcessManager.Instance.ResetBloomColor(.5f);
+            PostProcessManager.Instance.ChangeVignette(PostProcessManager.VignetteData.VignetteDataType.Standing);
         }
     }
 
