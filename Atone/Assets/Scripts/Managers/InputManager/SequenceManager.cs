@@ -76,7 +76,7 @@ public class SequenceManager : Singleton<SequenceManager>
             targetSpawnPosition = new Vector3(0f, 0f, PlayerManager.Instance.playerController.transform.position.z) ; //centerRoad.GetChild(centerRoad.childCount - 1).position + new Vector3(0, 0, 10); // 10 is the length of a road tile
         
             // on détruit l'ancienne sequence
-            Destroy(currentSequence.gameObject);
+            Destroy(currentSequence.gameObject, 2.0f);
         }
 
         GameObject targetSequence = Instantiate(sequencesPrefab[targetSequenceIndex], targetSpawnPosition, Quaternion.identity);
