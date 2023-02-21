@@ -70,7 +70,10 @@ public class TutorialUp : Singleton<TutorialUp>
         m_imageKey.sprite = m_spriteKeyKeyBoardRightHanded;
         m_textAfterImage.text = textAfterImage;
         yield return new WaitForSeconds(timeToStayToScreen);
-        containerAlternativeKey.SetActive(false);
+
+        if(containerAlternativeKey != null)
+            containerAlternativeKey.SetActive(false);
+            
         containerText.SetActive(false);
         container.SetActive(false);
     }

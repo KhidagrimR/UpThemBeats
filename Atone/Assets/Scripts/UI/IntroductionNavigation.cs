@@ -21,7 +21,7 @@ public class IntroductionNavigation : MonoBehaviour
     [SerializeField] private Button yes;
     [SerializeField] private Button no;
 
-    List<GameObject> cards;
+    public List<GameObject> cards;
     int nb = 0;
 
     void Awake()
@@ -55,7 +55,10 @@ public class IntroductionNavigation : MonoBehaviour
         }
         
         cards[nb].SetActive(true);
-        cards[nb + 1].SetActive(true);
+
+        if(nb + 1 < cards.Count)
+            cards[nb + 1].SetActive(true);
+
         nb = nb + 2;
     }
 
@@ -74,8 +77,11 @@ public class IntroductionNavigation : MonoBehaviour
         cards[nb].SetActive(false);
         cards[nb + 1].SetActive(false);
 
-        cards[nb - 1].SetActive(true);
-        cards[nb - 2].SetActive(true);
+        if(nb - 1 > 0)
+            cards[nb - 1].SetActive(true);
+
+        if(nb - 2 > 0)
+            cards[nb - 2].SetActive(true);
         print(nb);
     }
 }
