@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea332fe190f0d6147af89b6159ca462b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSequence: {fileID: 0}
+  startingSequenceIndex: 19
+  sequenceFadeDuration: 3
+  isDeathRestartingMusic: 0
   sequencesPrefab:
   - {fileID: 1827712851758725077, guid: 96e150d7519398a41b16f495deb0c107, type: 3}
   - {fileID: 1827712851758725077, guid: d8145d19dc3a08e4dbc778d9e881566c, type: 3}
@@ -84,9 +88,6 @@ MonoBehaviour:
   - {fileID: 1827712851758725077, guid: 4fddb0aada8ac9b4786c04c2f7a25113, type: 3}
   - {fileID: 1827712851758725077, guid: d1dee255561e87b4da45be62c4d1da8a, type: 3}
   - {fileID: 1827712851758725077, guid: a585ad90d2cbdb94ea31b9024d1ec7eb, type: 3}
-  currentSequence: {fileID: 0}
-  startingSequenceIndex: 19
-  isDeathRestartingMusic: 0
 --- !u!1 &794377114544737474
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +140,7 @@ MonoBehaviour:
     currentPositionInMS: 0
     songLength: 0
   tutoTimer: {fileID: 4335335292010947787}
+  sagesAppearSFX: {fileID: 0}
   test: {fileID: 7673866146837170857, guid: d399a4ffe10ea1847891d46008003b6f, type: 3}
 --- !u!1 &3653280669148058546
 GameObject:
@@ -184,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb492a4cbce8d0499b3a29af5ef7b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSagesActives: 0
   postProcessVolume: {fileID: 0}
   bloomBlueColor:
     m_OverrideState: 0
@@ -194,6 +197,15 @@ MonoBehaviour:
   bloomYellowColor:
     m_OverrideState: 0
     m_Value: {r: 0.98949313, g: 1, b: 0.6650944, a: 1}
+  bloomSageBlueColor:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 0}
+  bloomSageRedColor:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 0}
+  bloomSageYellowColor:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 0}
   vignetteDataList:
   - vignetteDataType: 0
     color:
@@ -298,10 +310,10 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 434251387
-      Data2: 1322007609
-      Data3: 1001696936
-      Data4: 611958718
+      Data1: 806834101
+      Data2: 1179697261
+      Data3: 1664310176
+      Data4: -301494738
     Path: event:/Player/Miss
   Event: 
   PlayEvent: 0
