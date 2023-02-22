@@ -35,7 +35,7 @@ public class EndRoomPlayerController : MonoBehaviour
 
         characterController.Move(move * speed * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
             velocity.y = Mathf.Sqrt(jumpHeigt * -2f * gravity);
 
         velocity.y += gravity * Time.deltaTime;

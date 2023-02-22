@@ -66,7 +66,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public static float scoreSequence;
     public static float scoreMultipliyer;
 
-    public Dictionary<string, Dictionary<string, float>> scoreBoard;
+    public static Dictionary<string, Dictionary<string, float>> scoreBoard;
 
     [HideInInspector] public ChangeLaneTrigger gameObjectTriggerChangeLane;
 
