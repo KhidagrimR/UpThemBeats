@@ -16,13 +16,16 @@ public class EndRoomCameraController : MonoBehaviour
 
     
     void Update(){
-        float mouseX = Input.GetAxis("MoveCameraX") * sensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("MoveCameraY") * sensitivity * Time.deltaTime;
+        if (EndRoomPlayerController.endAnimation){
+            float mouseX = Input.GetAxis("MoveCameraX") * sensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("MoveCameraY") * sensitivity * Time.deltaTime;
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        playerTransform.Rotate(Vector3.up * mouseX);  
+            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            playerTransform.Rotate(Vector3.up * mouseX);  
+        }
+        
     }
 }
