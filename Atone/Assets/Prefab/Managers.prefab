@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSequence: {fileID: 0}
-  startingSequenceIndex: 46
+  startingSequenceIndex: 19
   sequenceFadeDuration: 3
   isDeathRestartingMusic: 0
   sequencesPrefab:
@@ -80,7 +80,7 @@ MonoBehaviour:
   - {fileID: 1827712851758725077, guid: 7a558d67fc843e74c9a487b86565a44d, type: 3}
   - {fileID: 1827712851758725077, guid: a479b0d8ddce05b498fbbe98d762c4d5, type: 3}
   - {fileID: 1827712851758725077, guid: 01b98a7e7c194fb4697908c50aea3ea1, type: 3}
-  - {fileID: 1827712851758725077, guid: 016bf2ea306710249921d0cfa0fc86c2, type: 3}
+  - {fileID: 1827712851758725077, guid: 0b31306309e9ece4896267e2cccc6638, type: 3}
   - {fileID: 1827712851758725077, guid: 77fb0de95d7e1e94480a912c4f791edc, type: 3}
   - {fileID: 1827712851758725077, guid: 7680bd06cc454a246a78d2c500bb5720, type: 3}
   - {fileID: 1827712851758725077, guid: 0b31306309e9ece4896267e2cccc6638, type: 3}
@@ -106,7 +106,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6757524453656277950}
   - component: {fileID: 1805260234418238581}
-  - component: {fileID: 749747330617952023}
   m_Layer: 0
   m_Name: ClawsSoundManager
   m_TagString: Untagged
@@ -142,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDurationBetweenClaws: 1
+  soundsClawIndex: 0
   clawsSFXArray:
   - Guid:
       Data1: -1732244817
@@ -149,37 +149,6 @@ MonoBehaviour:
       Data3: 157425040
       Data4: -950334886
     Path: event:/Blue/Claws
-  eventClawEmitter: {fileID: 749747330617952023}
---- !u!114 &749747330617952023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 664207724099103380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1 &794377114544737474
 GameObject:
   m_ObjectHideFlags: 0

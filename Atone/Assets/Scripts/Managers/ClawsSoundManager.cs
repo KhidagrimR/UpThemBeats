@@ -7,14 +7,12 @@ public class ClawsSoundManager : Singleton<ClawsSoundManager>
 {
     public float maxDurationBetweenClaws = 1.0f;
     float lastTimeCheck = 0.0f;
-    int soundsClawIndex = 0;
+    [InspectorReadOnly]
+    public int soundsClawIndex = 0;
     public EventReference[] clawsSFXArray; 
-    public StudioEventEmitter eventClawEmitter;
-    
 
-    public void PlayClawSound()
+    public EventReference GetClawSound()
     {
-        Debug.Log("playe claw sounds");
         float currentTime = Time.time;
 
         if(lastTimeCheck < currentTime + maxDurationBetweenClaws)
@@ -23,12 +21,12 @@ public class ClawsSoundManager : Singleton<ClawsSoundManager>
             soundsClawIndex = 0;
         }
 
-        eventClawEmitter.Event = clawsSFXArray[soundsClawIndex].ToString();
-        eventClawEmitter.Play();
+        EventReference fmodRef = clawsSFXArray[soundsClawIndex];
 
         if(soundsClawIndex < clawsSFXArray.Length)
             soundsClawIndex++;
 
         lastTimeCheck = currentTime;
+        return fmodRef;
     }
 }
