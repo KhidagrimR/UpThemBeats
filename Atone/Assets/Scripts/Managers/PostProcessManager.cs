@@ -45,12 +45,34 @@ public class PostProcessManager : Singleton<PostProcessManager>
         public float smoothness;
 
         public float transitionDuration = 0.25f;
+
+        public VignetteData(VignetteDataType pVignetteDataType, Color pColor, Vector2 pCenter, float pIntensity, float pSmoothness, float pTransitionDuration  )
+        {
+            vignetteDataType = pVignetteDataType;
+            color = new ColorParameter(pColor, false);
+
+            center = pCenter;
+            intensity = pIntensity;
+            smoothness = pSmoothness;
+            transitionDuration = pTransitionDuration;
+        }
+
+        public VignetteData(VignetteData vData)
+        {
+            vignetteDataType = vData.vignetteDataType;
+            ColorParameter color = vData.color;
+            Vector2 center = vData.center;
+            float intensity = vData.intensity;
+            float smoothness = vData.smoothness;
+            float transitionDuration = vData.transitionDuration;
+        }
     }
 
     [Header("Vignette")]
     public List<VignetteData> vignetteDataList;
     UnityEngine.Rendering.Universal.Vignette vignette;
     VignetteData vignetteStartingParam;
+    VignetteData currentVignetteData;
 
     public void Init()
     {
@@ -63,7 +85,7 @@ public class PostProcessManager : Singleton<PostProcessManager>
          throw new System.NullReferenceException(nameof(vignette));
 
         bloomStartingColor = bloom.tint.value;
-        Debug.Log("Vignette = "+vignette.color);
+        ChangeVignette(VignetteData.VignetteDataType.Standing);
 
         _isReady = true;
     }
@@ -286,20 +308,49 @@ public class PostProcessManager : Singleton<PostProcessManager>
             throw new Exception("That vignette data :"+_vignetteDataType.ToString()+" can not be found");
     }
 
+    VignetteData previousVignetteData;
+
     void ChangeVignette(VignetteData vignetteData)
     {
-        //Debug.Log("Change Vignette CALLLED in "+vignetteData.transitionDuration);
-        DOVirtual.Float(0f, 1f, vignetteData.transitionDuration, (float x) => 
+        if(currentVignetteData == null)
         {
-           vignette.color.value = new Color (
-                vignetteData.color.value.r * x,
-                vignetteData.color.value.b * x,
-                vignetteData.color.value.g * x
-            );
-            vignette.intensity.value = vignetteData.intensity * x;
-            vignette.smoothness.value = vignetteData.smoothness * x;
-            vignette.center.value = vignetteData.center;
-        });
+            DOVirtual.Float(0f, 1f, vignetteData.transitionDuration, (float x) => 
+            {
+                vignette.color.value = new Color (
+                    vignetteData.color.value.r * x,
+                    vignetteData.color.value.b * x,
+                    vignetteData.color.value.g * x
+                );
+                vignette.intensity.value = vignetteData.intensity * x;
+                vignette.smoothness.value = vignetteData.smoothness * x;
+                vignette.center.value = vignetteData.center;
+            });
+        }
+        else
+        {
+            previousVignetteData = new VignetteData(currentVignetteData);
+            DOVirtual.Float(0f, 1f, vignetteData.transitionDuration, (float x) => 
+            {
+                vignette.color.value = new Color (
+                    vignetteData.color.value.r * x,
+                    vignetteData.color.value.b * x,
+                    vignetteData.color.value.g * x
+                );
+                // valeur_finale = valeur_precedente + (valeur_choisie - valeur_precedente) * x; 
+                // si valeur precedente = 0.1 et valeur choisie = 0.5
+                // vf = 0.1 + 0;
+                // vf = 0.1 + (0.5 - 0.1) * 0.1 = 0.1 + 0.04
+                // vf = 0.1
+
+                vignette.intensity.value = previousVignetteData.intensity + (vignetteData.intensity - previousVignetteData.intensity) * x; // 0.5 => 0.1
+                vignette.smoothness.value = previousVignetteData.smoothness + (vignetteData.smoothness - previousVignetteData.smoothness)* x;
+                vignette.center.value = vignetteData.center;
+            });
+        }
+
+        //Debug.Log("Change Vignette CALLLED in "+vignetteData.transitionDuration);
+
+        currentVignetteData = vignetteData;
     }   
 
     #endregion
