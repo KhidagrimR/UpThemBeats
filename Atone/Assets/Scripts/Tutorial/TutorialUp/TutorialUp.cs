@@ -80,9 +80,23 @@ public class TutorialUp : Singleton<TutorialUp>
 
     public void Update() {
         if (InputManager.onController)
+        {
             m_imageKey.sprite = m_spriteKeyController;
+            m_imageAlternativeKey.sprite = m_spriteAlternativeKeyController;
+        }
         else
-            m_imageKey.sprite = m_spriteKeyKeyBoardRightHanded;
+        {
+            if (InputManager.isRightHanded)
+            {
+                m_imageKey.sprite = m_spriteKeyKeyBoardRightHanded;
+                m_imageAlternativeKey.sprite = m_spriteAlternativeKeyKeyBoardRightHanded;
+            }
+            else
+            {
+                m_imageKey.sprite = m_spriteKeyKeyBoardLeftHanded;
+                m_imageAlternativeKey.sprite = m_spriteAlternativeKeyKeyBoardLeftHanded;
+            }
+        }
     }
 
     public IEnumerator LaunchTimer(float timeBetweenCount) {
