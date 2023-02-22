@@ -44,10 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea332fe190f0d6147af89b6159ca462b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSequence: {fileID: 0}
-  startingSequenceIndex: 0
-  sequenceFadeDuration: 3
-  isDeathRestartingMusic: 0
   sequencesPrefab:
   - {fileID: 1827712851758725077, guid: 96e150d7519398a41b16f495deb0c107, type: 3}
   - {fileID: 1827712851758725077, guid: d8145d19dc3a08e4dbc778d9e881566c, type: 3}
@@ -74,6 +70,23 @@ MonoBehaviour:
   - {fileID: 1827712851758725077, guid: 85e1dbfc7bcce76459e82cc601f515b7, type: 3}
   - {fileID: 1827712851758725077, guid: 506d9984448f37640918a99308666474, type: 3}
   - {fileID: 1827712851758725077, guid: 4d24c4e1a539a0c4d97e2bf0bfb876da, type: 3}
+  - {fileID: 1827712851758725077, guid: 76b38cc8132689f4c983b39161e670c7, type: 3}
+  - {fileID: 1827712851758725077, guid: 5bc66d44c50f23248b7e7c1588543aa5, type: 3}
+  - {fileID: 1827712851758725077, guid: 01b98a7e7c194fb4697908c50aea3ea1, type: 3}
+  - {fileID: 1827712851758725077, guid: 016bf2ea306710249921d0cfa0fc86c2, type: 3}
+  - {fileID: 1827712851758725077, guid: 77fb0de95d7e1e94480a912c4f791edc, type: 3}
+  - {fileID: 1827712851758725077, guid: 7680bd06cc454a246a78d2c500bb5720, type: 3}
+  - {fileID: 1827712851758725077, guid: 9fe5da120cfaa9740a78972554bf7874, type: 3}
+  - {fileID: 1827712851758725077, guid: 833e6bb52168bcc419eba513d4cb2f54, type: 3}
+  - {fileID: 1827712851758725077, guid: 7d5f51e3d04bc8041ad33c3e8ba93463, type: 3}
+  - {fileID: 1827712851758725077, guid: c5ebc896407d68149b05e4d82456da1f, type: 3}
+  - {fileID: 1827712851758725077, guid: 87a38e74e70863848b2678be547af775, type: 3}
+  - {fileID: 1827712851758725077, guid: 4fddb0aada8ac9b4786c04c2f7a25113, type: 3}
+  - {fileID: 1827712851758725077, guid: d1dee255561e87b4da45be62c4d1da8a, type: 3}
+  - {fileID: 1827712851758725077, guid: a585ad90d2cbdb94ea31b9024d1ec7eb, type: 3}
+  currentSequence: {fileID: 0}
+  startingSequenceIndex: 19
+  isDeathRestartingMusic: 0
 --- !u!1 &794377114544737474
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +117,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6595559567071426150}
-  - {fileID: 142637306319178091}
   m_Father: {fileID: 6341438436953146819}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -127,7 +139,6 @@ MonoBehaviour:
     currentPositionInMS: 0
     songLength: 0
   tutoTimer: {fileID: 4335335292010947787}
-  sagesAppearSFX: {fileID: 5188322393576687852}
   test: {fileID: 7673866146837170857, guid: d399a4ffe10ea1847891d46008003b6f, type: 3}
 --- !u!1 &3653280669148058546
 GameObject:
@@ -173,43 +184,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb492a4cbce8d0499b3a29af5ef7b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSagesActives: 0
   postProcessVolume: {fileID: 0}
   bloomBlueColor:
     m_OverrideState: 0
-    m_Value: {r: 0.5372549, g: 0.6392157, b: 0.7529412, a: 1}
+    m_Value: {r: 0.6650944, g: 0.6650944, b: 1, a: 1}
   bloomRedColor:
     m_OverrideState: 0
-    m_Value: {r: 0.8980392, g: 0.72156864, b: 0.72156864, a: 1}
+    m_Value: {r: 1, g: 0.7122642, b: 0.7122642, a: 1}
   bloomYellowColor:
     m_OverrideState: 0
-    m_Value: {r: 0.8784314, g: 0.8117647, b: 0.65882355, a: 1}
-  bloomSageBlueColor:
-    m_OverrideState: 0
-    m_Value: {r: 0.1932182, g: 0.39175865, b: 0.6132076, a: 1}
-  bloomSageRedColor:
-    m_OverrideState: 0
-    m_Value: {r: 0.764151, g: 0.3200783, b: 0.3200783, a: 1}
-  bloomSageYellowColor:
-    m_OverrideState: 0
-    m_Value: {r: 0.8396226, g: 0.6626456, b: 0.25663936, a: 1}
+    m_Value: {r: 0.98949313, g: 1, b: 0.6650944, a: 1}
   vignetteDataList:
   - vignetteDataType: 0
     color:
       m_OverrideState: 0
-      m_Value: {r: 1, g: 0, b: 0, a: 1}
-    center: {x: 0.5, y: 0.5}
-    intensity: 0.8
-    smoothness: 0.2
-    transitionDuration: 0.2
+      m_Value: {r: 0, g: 0.01, b: 0.0015384626, a: 1}
+    center: {x: 0.5, y: 0.3}
+    intensity: 0.6
+    smoothness: 0.4
+    transitionDuration: 0.25
   - vignetteDataType: 1
     color:
       m_OverrideState: 0
       m_Value: {r: 0, g: 0, b: 0, a: 1}
     center: {x: 0.5, y: 0.5}
-    intensity: 0
+    intensity: 0.4
     smoothness: 0.2
-    transitionDuration: 0.2
+    transitionDuration: 0.25
+  - vignetteDataType: 2
+    color:
+      m_OverrideState: 0
+      m_Value: {r: 0.15686275, g: 0.5019608, b: 0.21176471, a: 1}
+    center: {x: 0.35, y: 0.5}
+    intensity: 0.4
+    smoothness: 0.3
+    transitionDuration: 0.1
+  - vignetteDataType: 3
+    color:
+      m_OverrideState: 0
+      m_Value: {r: 0.15686275, g: 0.5019608, b: 0.21176471, a: 1}
+    center: {x: 0.65, y: 0.5}
+    intensity: 0.4
+    smoothness: 0.3
+    transitionDuration: 0.1
+  - vignetteDataType: 4
+    color:
+      m_OverrideState: 0
+      m_Value: {r: 1, g: 0.31, b: 0.93483347, a: 1}
+    center: {x: 0.5, y: 0.5}
+    intensity: 0.2
+    smoothness: 0.2
+    transitionDuration: 0.01
+  - vignetteDataType: 5
+    color:
+      m_OverrideState: 0
+      m_Value: {r: 1, g: 0.31, b: 0.31, a: 1}
+    center: {x: 0.5, y: 0.5}
+    intensity: 0.2
+    smoothness: 0.2
+    transitionDuration: 0.01
+  - vignetteDataType: 6
+    color:
+      m_OverrideState: 1
+      m_Value: {r: 0, g: 0, b: 0, a: 1}
+    center: {x: 0.5, y: 0.5}
+    intensity: 0.65
+    smoothness: 0.5
+    transitionDuration: 0.15
 --- !u!1 &3904941906152911821
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,10 +298,10 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 806834101
-      Data2: 1179697261
-      Data3: 1664310176
-      Data4: -301494738
+      Data1: 434251387
+      Data2: 1322007609
+      Data3: 1001696936
+      Data4: 611958718
     Path: event:/Player/Miss
   Event: 
   PlayEvent: 0
@@ -545,68 +586,6 @@ MonoBehaviour:
   playerCurrentLane: 1
   tweenDutchDuration: 0.4
   gameObjectTriggerChangeLane: {fileID: 0}
---- !u!1 &6391044710421040637
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 142637306319178091}
-  - component: {fileID: 5188322393576687852}
-  m_Layer: 0
-  m_Name: sageAppearSFX
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &142637306319178091
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6391044710421040637}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6668483747726264853}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5188322393576687852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6391044710421040637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -1107567455
-      Data2: 1200630976
-      Data3: 510854569
-      Data4: -1773852277
-    Path: event:/Dialogue/SFX_SagesAppear
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1 &6509194202181810983
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,9 +659,6 @@ MonoBehaviour:
   - impulseEffectRef: {fileID: 0}
     effectType: 7
     impulseStr: 0.75
-  - impulseEffectRef: {fileID: 0}
-    effectType: 9
-    impulseStr: 0.75
   headbobNoiseSettings:
   - headbobType: 0
     noiseSettings: {fileID: 11400000, guid: 7102ddb4cf3970448b341e5020c36168, type: 2}
@@ -735,151 +711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cheatCodeArray:
-  - codeInString: tp001
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp011
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp012
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp021
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 3
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp022
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 4
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp023
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 5
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp024
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 6
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp031
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 7
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp032
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 8
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp033
+  - codeInString: tp09
     unityEvent:
       m_PersistentCalls:
         m_Calls:
@@ -895,7 +727,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - codeInString: tp034
+  - codeInString: tp02
     unityEvent:
       m_PersistentCalls:
         m_Calls:
@@ -906,188 +738,12 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 10
+            m_IntArgument: 2
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - codeInString: tp041
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 11
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp042
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 12
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp051
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 13
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp052
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 14
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp053
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 15
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp054
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 16
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp061
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 17
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp062
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 18
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp071
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 19
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp072
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 20
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp073
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 21
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp074
+  - codeInString: tp22
     unityEvent:
       m_PersistentCalls:
         m_Calls:
@@ -1099,38 +755,6 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 22
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp081
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 23
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - codeInString: tp082
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5363021689168483715}
-          m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
-          m_MethodName: GoToTargetSequence
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 24
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
