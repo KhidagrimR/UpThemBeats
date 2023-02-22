@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using TMPro;
+using System.Linq;
 
 public class Leaderboard : Singleton<Leaderboard>
 {
@@ -10,10 +11,18 @@ public class Leaderboard : Singleton<Leaderboard>
 
 
     public GameObject containerFinalScore;
-    public TextMeshProUGUI finalScore;
+
+    public TextMeshProUGUI finalScoreEditor;
+    public static TextMeshProUGUI  finalScore;
 
     public GameObject containerLeaderBoard;
 
+    public static string path = "Assets/ScoreBoard/PlayerScore";
+    public static string pathLeaderboard = "Assets/ScoreBoard";
+
+    public void Start() {
+        finalScore = finalScoreEditor;
+    }
 
     public void DisplayLeaderboard() {
         StreamReader sr = new StreamReader(Checkpoint.pathLeaderboard + "/Leaderboard.txt");
@@ -28,5 +37,69 @@ public class Leaderboard : Singleton<Leaderboard>
         }
 
         sr.Close();
+    }
+
+    public static void WriteScoreToFile(string name) {
+
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
+
+
+        print("player name : " + name);
+
+        StreamWriter sw = new StreamWriter(path + "/" + name + "_Score.txt");
+
+        sw.WriteLine(name);
+        sw.WriteLine();
+        float scoreTotal = 0;
+        foreach (string niveau in PlayerManager.scoreBoard.Keys)
+        {
+            sw.WriteLine(niveau + " : ");
+            foreach (string sequence in PlayerManager.scoreBoard[niveau].Keys)
+            {
+                sw.WriteLine("    " + sequence + " : " + PlayerManager.scoreBoard[niveau][sequence].ToString());
+                scoreTotal += PlayerManager.scoreBoard[niveau][sequence];
+            }
+
+        }
+        sw.WriteLine("Score Total : " + scoreTotal);
+        sw.Close();
+        print("score :" + scoreTotal);
+        finalScore.text = scoreTotal.ToString();
+    }
+
+    public static void WriteLeaderBoard() {
+        if (!Directory.Exists(path))
+            print("Repertoire inexistant");
+
+        string[] files = Directory.GetFiles(path, "*.txt");
+        Dictionary<string, float> leaderboard = new Dictionary<string, float>();
+
+        foreach (string file in files)
+        {
+            StreamReader sr = new StreamReader(file);
+            string line = sr.ReadLine();
+            while (line != null)
+            {
+                if (line.Contains("Score Total"))
+                    leaderboard.Add(file.Split("\\")[1].Split("_")[0], float.Parse(line.Split(" : ")[1]));
+                line = sr.ReadLine();
+            }
+            sr.Close();
+        }
+
+        StreamWriter sw = new StreamWriter(pathLeaderboard + "/Leaderboard.txt");
+        List<KeyValuePair<string, float>> sortedLeaderboard = leaderboard.ToList();
+        sortedLeaderboard.Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value));
+        if (sortedLeaderboard.Count > 30)
+        {
+            File.Delete(path + "/" + sortedLeaderboard[sortedLeaderboard.Count - 1].Key + "_Score.txt");
+            sortedLeaderboard.RemoveAt(sortedLeaderboard.Count - 1);
+        }
+
+        foreach (KeyValuePair<string, float> player in sortedLeaderboard)
+            sw.WriteLine(player.Key + " - " + player.Value);
+        sw.Close();
+
     }
 }
