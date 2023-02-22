@@ -30,8 +30,8 @@ public class PlayerName : Singleton<PlayerName>
         print("isValideName : " + isValidName);
         if (isValidName){
             
-            Checkpoint.WriteScoreToFile(name);
-            Checkpoint.WriteLeaderBoard();
+            Leaderboard.WriteScoreToFile(name);
+            Leaderboard.WriteLeaderBoard();
             Leaderboard.Instance.containerFinalScore.SetActive(true);
             container.SetActive(false);
         }
