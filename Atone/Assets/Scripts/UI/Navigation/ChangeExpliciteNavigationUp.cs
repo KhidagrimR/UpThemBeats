@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ChangeExpliciteNavigationUp : MonoBehaviour
 {
 
-    public void ChangeSelectableDownObject(GameObject selectableDownObjact) {
+    public void ChangeSelectableUpObject(GameObject selectableDownObjact) {
         
         UnityEngine.UI.Navigation navigation = gameObject.GetComponent<Selectable>().navigation;
         navigation.selectOnUp = selectableDownObjact.GetComponent<Selectable>();
