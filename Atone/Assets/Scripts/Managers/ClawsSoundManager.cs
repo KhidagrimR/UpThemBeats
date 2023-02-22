@@ -15,15 +15,18 @@ public class ClawsSoundManager : Singleton<ClawsSoundManager>
     {
         float currentTime = Time.time;
 
-        if(lastTimeCheck < currentTime + maxDurationBetweenClaws)
+        //Debug.Log("Current Time = "+currentTime+", lastTimeCheck = "+lastTimeCheck);
+
+        if(lastTimeCheck + maxDurationBetweenClaws < currentTime )
         {
             //reset
+            Debug.Log("RESET");
             soundsClawIndex = 0;
         }
 
         EventReference fmodRef = clawsSFXArray[soundsClawIndex];
 
-        if(soundsClawIndex < clawsSFXArray.Length)
+        if(soundsClawIndex < clawsSFXArray.Length - 1)
             soundsClawIndex++;
 
         lastTimeCheck = currentTime;
