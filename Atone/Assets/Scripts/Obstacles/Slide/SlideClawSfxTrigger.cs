@@ -10,7 +10,7 @@ public class SlideClawSfxTrigger : MonoBehaviour
     {
         if(other.gameObject.CompareTag(PlayerManager.PLAYER_TAG))
         {
-            eventClawEmitter.EventReference = ClawsSoundManager.Instance.GetClawSound();
+            eventClawEmitter.EventReference = ClawsSoundManager.Instance.GetClawSoundCross();
             eventClawEmitter.Play();
         }    
     }
