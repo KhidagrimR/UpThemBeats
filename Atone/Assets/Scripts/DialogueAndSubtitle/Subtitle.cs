@@ -16,7 +16,6 @@ public class Subtitle : Singleton<Subtitle>
         string line;
         while((line = reader.ReadLine()) != null){
             string[] subtitles = line.Split(new string[] { " | " }, StringSplitOptions.None);
-            print("sous-titres : " + subtitles[0].Split(" \\n ").Length);
             subtitleTextUp.GetComponent<TextMeshProUGUI>().text = subtitles[0].Split(" \\n ")[0];
             if (subtitles[0].Split(" \\n ").Length > 1)
                 subtitleTextDown.GetComponent<TextMeshProUGUI>().text = subtitles[0].Split(" \\n ")[1];
