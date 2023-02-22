@@ -5805,6 +5805,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 747492882, guid: ac98e17abcc58dd4497df91af8e8604e, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.z
+      value: 120.01
+      objectReference: {fileID: 0}
     - target: {fileID: 3269478618790823716, guid: ac98e17abcc58dd4497df91af8e8604e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.071
@@ -19300,13 +19304,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1956a412dc7584f9b5aa607a14c0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicFMODEvent:
-    Guid:
-      Data1: -282826335
-      Data2: 1164788982
-      Data3: 706224002
-      Data4: 214115588
-    Path: event:/Julien_Test_Music_00
+  timelineInfo:
+    currentBeat: 0
+    currentBar: 0
+    currentTempo: 0
+    currentPositionInMS: 0
+    songLength: 0
+  tutoTimer: {fileID: 0}
+  sagesAppearSFX: {fileID: 0}
+  test: {fileID: 0}
 --- !u!4 &1052256326
 Transform:
   m_ObjectHideFlags: 0
@@ -21664,7 +21670,7 @@ MonoBehaviour:
       Data2: 1164788982
       Data3: 706224002
       Data4: 214115588
-    Path: event:/Julien_Test_Music_00
+    Path: event:/Placeholders/Julien_Test_Music_00
   secPerBeat: 0.75
   songPosition: 0
   songPositionInBeats: 0
@@ -21978,7 +21984,7 @@ MonoBehaviour:
       Data2: 1164788982
       Data3: 706224002
       Data4: 214115588
-    Path: event:/Julien_Test_Music_00
+    Path: event:/Placeholders/Julien_Test_Music_00
   Event: 
   PlayEvent: 0
   StopEvent: 0

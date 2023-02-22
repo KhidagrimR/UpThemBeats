@@ -122,8 +122,11 @@ GameObject:
   - component: {fileID: 1087515238940942005}
   - component: {fileID: 8894226487893345886}
   - component: {fileID: 7395534720352448281}
-  - component: {fileID: 574062607476830854}
-  - component: {fileID: 8436394358849966739}
+  - component: {fileID: 2386635065892575828}
+  - component: {fileID: 3417236637580534873}
+  - component: {fileID: 8686821362749438103}
+  - component: {fileID: 6268908692309854528}
+  - component: {fileID: 580826181234231987}
   m_Layer: 11
   m_Name: TriggerAnim
   m_TagString: Untagged
@@ -167,7 +170,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6883361326685883707}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &574062607476830854
+--- !u!114 &2386635065892575828
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,13 +179,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 6883361326685883707}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42898b83d189f474eb76abb84521d9d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+--- !u!114 &3417236637580534873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883361326685883707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6717cc3549201a947a14447c9d6d6f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animationToTrigger: 0
   animationTrigger: {fileID: 2868178078338302284}
   targetPlayerAnim: 0
---- !u!114 &8436394358849966739
+  eventClawEmitter: {fileID: 6268908692309854528}
+--- !u!114 &8686821362749438103
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,12 +208,73 @@ MonoBehaviour:
   m_GameObject: {fileID: 6883361326685883707}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42898b83d189f474eb76abb84521d9d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 6717cc3549201a947a14447c9d6d6f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animationToTrigger: 0
   animationTrigger: {fileID: 7778168904623160659}
   targetPlayerAnim: 0
+  eventClawEmitter: {fileID: 580826181234231987}
+--- !u!114 &6268908692309854528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883361326685883707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &580826181234231987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883361326685883707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &8251887685229967713
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +286,7 @@ GameObject:
   - component: {fileID: 3753321730238530012}
   - component: {fileID: 7817625911676433578}
   - component: {fileID: 4432162612916961240}
+  - component: {fileID: 279806512772654638}
   m_Layer: 11
   m_Name: SFXCollider
   m_TagString: Untagged
@@ -255,16 +334,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: Player
+  CollisionTag: 
   EventReference:
     Guid:
-      Data1: -1732244817
-      Data2: 1088512175
-      Data3: 157425040
-      Data4: -950334886
-    Path: event:/Blue/Claws
+      Data1: -1530842575
+      Data2: 1157329554
+      Data3: 2108202642
+      Data4: -596284729
+    Path: event:/Blue/ClawsSides/Cross/Cross
   Event: 
-  PlayEvent: 3
+  PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
@@ -273,6 +352,19 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &279806512772654638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8251887685229967713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc344fad16a9c94bbb8207e6560b3d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventClawEmitter: {fileID: 4432162612916961240}
 --- !u!1 &8634547983092317170
 GameObject:
   m_ObjectHideFlags: 0
