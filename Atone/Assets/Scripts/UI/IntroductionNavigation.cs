@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class IntroductionNavigation : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class IntroductionNavigation : MonoBehaviour
     [SerializeField] private Button yes;
     [SerializeField] private Button no;
 
+    [SerializeField] private GameObject launchGame;
+
+
+ 
     public List<GameObject> cards;
     int nb = 0;
 
@@ -41,6 +46,7 @@ public class IntroductionNavigation : MonoBehaviour
             title.SetActive(false);
             back.gameObject.SetActive(false);
             next.gameObject.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(launchGame);
         }
 
         if (nb == 0)
