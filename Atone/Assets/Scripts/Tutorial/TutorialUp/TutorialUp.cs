@@ -33,7 +33,7 @@ public class TutorialUp : Singleton<TutorialUp>
                                       string textAfterImage, bool timer, bool timerWithText, bool alternativeKey, float timeBetweenCount) 
     {
         container.SetActive(true);
-        if (containerAlternativeKey)
+        /*if (containerAlternativeKey)*/
             containerAlternativeKey.SetActive(true);
         if(timer)
             StartCoroutine(LaunchTimer(timeBetweenCount));
