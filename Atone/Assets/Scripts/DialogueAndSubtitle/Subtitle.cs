@@ -20,7 +20,12 @@ public class Subtitle : Singleton<Subtitle>
             subtitleTextUp.GetComponent<TextMeshProUGUI>().text = subtitles[0].Split(" \\n ")[0];
             if (subtitles[0].Split(" \\n ").Length > 1)
                 subtitleTextDown.GetComponent<TextMeshProUGUI>().text = subtitles[0].Split(" \\n ")[1];
-            yield return new WaitForSeconds(float.Parse(subtitles[1]));
+
+            if(subtitles.Length >= 1)
+            {
+                Debug.Log("Subtitles = "+subtitles.ToString());
+                yield return new WaitForSeconds(float.Parse(subtitles[1]));
+            }
             subtitleTextUp.GetComponent<TextMeshProUGUI>().text = "";
             subtitleTextDown.GetComponent<TextMeshProUGUI>().text = "";
         }

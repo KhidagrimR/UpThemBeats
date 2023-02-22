@@ -89,6 +89,8 @@ public class TutorialDown : Singleton<TutorialDown> {
         for (int i = 3; i > 0; i -= 1)
         {
             m_textTimer.text = i.ToString();
+            // add FMOD EVENT 
+            MusicManager.Instance.tutoTimer.Play();
             yield return new WaitForSeconds(timeBetweenCount);
         }
         m_textTimer.text = "";
