@@ -29,14 +29,14 @@ public class TutorialDown : Singleton<TutorialDown> {
                                       Sprite spriteKeyKeyBoardRightHanded, Sprite spriteAlternativeKeyKeyBoardRightHanded,
                                       Sprite spriteKeyKeyBoardLeftHanded, Sprite spriteAlternativeKeyKeyBoardLeftHanded,
                                       Sprite spriteKeyController, Sprite spriteAlternativeKeyController, 
-                                      string textAfterImage, bool timerWithText, bool alternativeKey) {
+                                      string textAfterImage, bool timerWithText, bool alternativeKey, float timeBetweenCount) {
         container.SetActive(true);
         if (alternativeKey)
             containerAlternativeKey.SetActive(true);
-        StartCoroutine(LaunchTimer());
+        StartCoroutine(LaunchTimer(timeBetweenCount));
         if (!timerWithText)
         {
-            yield return new WaitForSeconds(2.25f);
+            yield return new WaitForSeconds(timeBetweenCount*3);
         }
         containerText.SetActive(true);
         m_textBeforeImage.text = textBeforeImage;
@@ -85,11 +85,11 @@ public class TutorialDown : Singleton<TutorialDown> {
             m_imageKey.sprite = m_spriteKeyKeyBoardRightHanded;
     }
 
-    public IEnumerator LaunchTimer() {
+    public IEnumerator LaunchTimer(float timeBetweenCount) {
         for (int i = 3; i > 0; i -= 1)
         {
             m_textTimer.text = i.ToString();
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(timeBetweenCount);
         }
         m_textTimer.text = "";
     }
