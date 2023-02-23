@@ -123,6 +123,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &419671007 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8886066877544111961, guid: 2503abf66ac491e4fb51f1d745a88202, type: 3}
+  m_PrefabInstance: {fileID: 8886066877963580550}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &419671011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419671007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfa28ed23aa64d40b2f66e2275c9c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UI: {fileID: 1836358770}
 --- !u!1 &1836358770 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6028117645581341414, guid: 116765ca6108f8a4dac6cf8841757677, type: 3}
@@ -280,6 +298,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 6028117645581341414, guid: 116765ca6108f8a4dac6cf8841757677, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 116765ca6108f8a4dac6cf8841757677, type: 3}
 --- !u!1001 &8886066877963580550
@@ -341,5 +363,6 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 1836358770}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8886066878565669284, guid: 2503abf66ac491e4fb51f1d745a88202, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2503abf66ac491e4fb51f1d745a88202, type: 3}
