@@ -14,6 +14,8 @@ public class EndRoomPlayerController : MonoBehaviour
 
     public float jumpHeigt = 3f;
 
+    public Camera playerCam;
+
     public Transform groundCheck;
     public float groundRadiusCheck = 0.4f;
     public LayerMask layerMask;
