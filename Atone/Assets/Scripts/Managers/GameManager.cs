@@ -217,10 +217,11 @@ public class GameManager : Singleton<GameManager>
             currentSpamCount = 0;
             Invoke("StopOverclock", overclockDuration);
             //play overclocked ANimation
-            
+            PlayerManager.Instance.playerController.animationTrigger.PlayAnimation(AnimationEnum.Overclock);
             //set vignette effect
             
             //Add camera shake
+            CameraManager.Instance.ShakeCamera(CameraManager.CameraEffect.EffectType.WallrunHit);
         }
 
         lastTimeSpamCheck = currentTime;
