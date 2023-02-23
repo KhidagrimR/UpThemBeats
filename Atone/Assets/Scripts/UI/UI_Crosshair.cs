@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,8 +13,42 @@ public class UI_Crosshair : MonoBehaviour
     [SerializeField] private GameObject basicStyle;
     [SerializeField] private GameObject shorterStyle;
 
+    [Header("Button references")]
+    [SerializeField] private Toggle toggleBtn;
+    [SerializeField] private TMP_Dropdown styleBtn;
+    [SerializeField] private TMP_Dropdown colourBtn;
+    [SerializeField] private Slider opacityBtn;
+
     private Color colorPicked = Color.white;
     private float opacityPicked = 1;
+
+    private void Start()
+    {
+        LoadValues();
+    }
+
+    private void LoadValues()
+    {
+        // Debug.Log($"Loading crosshair settings: on {Atone_SettingsSaveAndLoadHandler.crosshair_isOn}, style {Atone_SettingsSaveAndLoadHandler.crosshair_style}, colour {Atone_SettingsSaveAndLoadHandler.crosshair_colour}, opacity {Atone_SettingsSaveAndLoadHandler.crosshair_opacity}");
+        
+        if(toggleBtn) {toggleBtn.isOn = Atone_SettingsSaveAndLoadHandler.crosshair_isOn == 1;}
+        else {ShowOrHideCrosshair(Atone_SettingsSaveAndLoadHandler.crosshair_isOn == 1);}
+        
+        if(styleBtn) {styleBtn.value = Atone_SettingsSaveAndLoadHandler.crosshair_style;}
+        else {ChangeCrosshair(Atone_SettingsSaveAndLoadHandler.crosshair_style);}
+        
+        if(colourBtn) {colourBtn.value = Atone_SettingsSaveAndLoadHandler.crosshair_colour;}
+        else {ChangeColor(Atone_SettingsSaveAndLoadHandler.crosshair_colour);}
+        
+        if(opacityBtn) {opacityBtn.value = Atone_SettingsSaveAndLoadHandler.crosshair_opacity;}
+        else {ChangeOpacity(Atone_SettingsSaveAndLoadHandler.crosshair_opacity);}
+    }
+
+    // Need to affect the object
+    public void ShowOrHideCrosshair(bool show)
+    {
+        Atone_SettingsSaveAndLoadHandler.crosshair_isOn = show? 1 : 0;
+    }
 
     public void ChangeCrosshair(int value)
     {
@@ -47,6 +81,8 @@ public class UI_Crosshair : MonoBehaviour
                 ApplyCrosshair(RealCrosshair, dotStyle);
                 break;
         }
+
+        Atone_SettingsSaveAndLoadHandler.crosshair_style = value;
     }
 
     GameObject ApplyCrosshair(GameObject crosshair, GameObject newStyle)
@@ -98,6 +134,7 @@ public class UI_Crosshair : MonoBehaviour
                 ApplyColor(RealCrosshair, Color.white);
                 break;
         }
+        Atone_SettingsSaveAndLoadHandler.crosshair_colour = value;
     }
 
     void ApplyColor(GameObject crosshair, Color color)
@@ -116,6 +153,8 @@ public class UI_Crosshair : MonoBehaviour
         opacityPicked = value;
         ApplyOpacity(CrosshairGroup, value);
         ApplyOpacity(RealCrosshair, value);
+
+        Atone_SettingsSaveAndLoadHandler.crosshair_opacity = value;
     }
 
     void ApplyOpacity(GameObject crosshair, float value)

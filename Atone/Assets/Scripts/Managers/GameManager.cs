@@ -21,6 +21,8 @@ public class GameManager : Singleton<GameManager>
 
     public delegate void OnMenu(GeneralGameState oldStateWeWantToLeave);
     public static event OnMenu onMenu; // Needs to be static to not mess things up when communicating to the additive scene 
+    public delegate void LoadSettings(bool resetAllSettings);
+    public static event LoadSettings loadSettings; 
 
     void Awake()
     {
@@ -39,8 +41,14 @@ public class GameManager : Singleton<GameManager>
         if( SceneManager.GetActiveScene().name == "Main_Menu_A1"
             && (uI_Loader != null))  
         {
-              StartCoroutine(StartMainMenuOnMainMenuScene());                                  
+            StartCoroutine(StartMainMenuOnMainMenuScene());    
+            StartCoroutine(LoadGameSettings(true));  // in main menu, load default settings                            
         }
+        else
+        {
+            StartCoroutine(LoadGameSettings(false));
+        }
+
     }
 
     IEnumerator Init()
@@ -138,6 +146,14 @@ public class GameManager : Singleton<GameManager>
         }
         onMenu?.Invoke(GeneralGameState.MAIN_MENU);
     }  
+    IEnumerator LoadGameSettings(bool resetAllSettings)
+    {
+        while(!Atone_SettingsSaveAndLoadHandler.areSubscriptionsDone)
+        {
+            yield return null;
+        }
+        loadSettings?.Invoke(resetAllSettings);
+    }
     public void HandleReturnKeyPress()
     {
         // Debug.Log(currentState);

@@ -47,6 +47,8 @@ namespace Atone_UI
             areSubscriptionsDone = true;
             // Debug.Log("Landing canvas controller start cycle done");
 
+            // Flash settings panel to initialize loading of saved settings
+            StartCoroutine(FlashSettingsPanelToLoadAndApplyValues());
         }
         private void OnDestroy()
         {
@@ -57,6 +59,12 @@ namespace Atone_UI
             areSubscriptionsDone = false;
         }
 
+        private IEnumerator FlashSettingsPanelToLoadAndApplyValues()
+        {
+            settingsLanding.SetActive(true);
+            yield return null;
+            settingsLanding.SetActive(false);
+        }
         // private void TogglePauseMenu(bool isGameBeingPaused)
         // {
         //     if (isGameBeingPaused)
@@ -89,6 +97,7 @@ namespace Atone_UI
                     {
                         // Debug.Log("Handling PAUSED oldstate to return to pause main panel");
                         HideSettingsPanel();
+                        Atone_SettingsSaveAndLoadHandler.Instance.SetAllSettings(); // When leaving settings panel, save all values to PlayerPrefs.
                         // SetLandingCanvas(MenuType.PAUSE_MENU);
                     }
                     else
