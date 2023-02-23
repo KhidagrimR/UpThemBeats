@@ -214,6 +214,7 @@ public class GameManager : Singleton<GameManager>
             // player spammed
             //Add overclocked Panel
             isOverclocked = true;
+            currentSpamCount = 0;
             Invoke("StopOverclock", overclockDuration);
             //play overclocked ANimation
             
