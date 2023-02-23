@@ -23,6 +23,9 @@
 			<destination>{85c04dd2-e19c-4a89-b0df-252f4db24211}</destination>
 		</relationship>
 		<relationship name="markerTracks">
+			<destination>{6dc1536e-cae4-4e06-8876-610dbf6e1ddc}</destination>
+			<destination>{ef34f964-fb40-4b82-a467-7f5873795333}</destination>
+			<destination>{827db64b-e3e2-4218-85fe-c117553c079a}</destination>
 			<destination>{bc4e1ae1-10e6-437c-a4e0-dc16d9d0cb76}</destination>
 		</relationship>
 		<relationship name="groupTracks">
@@ -60,6 +63,9 @@
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{85c04dd2-e19c-4a89-b0df-252f4db24211}" />
+	<object class="MarkerTrack" id="{6dc1536e-cae4-4e06-8876-610dbf6e1ddc}" />
+	<object class="MarkerTrack" id="{ef34f964-fb40-4b82-a467-7f5873795333}" />
+	<object class="MarkerTrack" id="{827db64b-e3e2-4218-85fe-c117553c079a}" />
 	<object class="MarkerTrack" id="{bc4e1ae1-10e6-437c-a4e0-dc16d9d0cb76}" />
 	<object class="GroupTrack" id="{b97235ba-206a-4965-aa66-2e3b2aec313f}">
 		<relationship name="modules">
@@ -102,6 +108,7 @@
 		</relationship>
 		<relationship name="markers">
 			<destination>{3abe571c-e58c-4ee7-8932-4c9b5c831611}</destination>
+			<destination>{1ebb5ef1-460f-47a5-aab7-ed907fa875ab}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{64692203-ee87-407c-b031-008eb7246c21}">
@@ -251,6 +258,20 @@
 		</relationship>
 		<relationship name="markerTrack">
 			<destination>{bc4e1ae1-10e6-437c-a4e0-dc16d9d0cb76}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{1ebb5ef1-460f-47a5-aab7-ed907fa875ab}">
+		<property name="position">
+			<value>32</value>
+		</property>
+		<property name="name">
+			<value>FadeOut</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{5c5caea6-5609-4dec-9d17-8f945b753b3f}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{6dc1536e-cae4-4e06-8876-610dbf6e1ddc}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{6b5dcb1d-7f1c-4950-8a29-338baeae951d}">

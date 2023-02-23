@@ -110,6 +110,14 @@ public class FirstPersonVisuals : MonoBehaviour
                 // Reset le bloom
                 PostProcessManager.Instance.ResetSagesBloomColor();
             }
+            else if (string.Compare(marker, "FadeIn") == 0)
+            {
+                SequenceManager.Instance.FadeInCamera(0.5f);
+            }
+            else if (string.Compare(marker, "FadeOut") == 0)
+            {
+                SequenceManager.Instance.FadeOutCamera(0.5f);
+            }
                 
             return;
         }
