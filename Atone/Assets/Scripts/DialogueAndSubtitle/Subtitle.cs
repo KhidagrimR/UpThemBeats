@@ -12,7 +12,7 @@ public class Subtitle : Singleton<Subtitle>
     public IEnumerator LaunchSubtitle(string whichDialogue)
     {
         //Debug.Log(Application.dataPath+"/Resources/Dialogues/");
-        StreamReader reader = new StreamReader(Application.dataPath+"/Dialogues/" + whichDialogue + ".txt");
+        StreamReader reader = new StreamReader(Application.streamingAssetsPath+"/Dialogues/" + whichDialogue + ".txt");
         string line;
         while((line = reader.ReadLine()) != null){
             string[] subtitles = line.Split(new string[] { " | " }, StringSplitOptions.None);
