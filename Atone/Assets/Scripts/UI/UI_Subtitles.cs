@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 
@@ -16,11 +16,36 @@ public class UI_Subtitles : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tutoFirstB;
     [SerializeField] private TextMeshProUGUI tutoSecondB;
 
+    [Header("Button references")]
+    [SerializeField] private Toggle toggleBtn;
+    [SerializeField] private TMP_Dropdown themeBtn;
+    [SerializeField] private Slider sizeBtn;
+
+    private void Start()
+    {
+        LoadValues();
+    }
+
+    private void LoadValues()
+    {
+        // Debug.Log($"Loading subtitles settings: on {Atone_SettingsSaveAndLoadHandler.subtitles_areOn}, theme {Atone_SettingsSaveAndLoadHandler.subtittles_theme}, size {Atone_SettingsSaveAndLoadHandler.subtitles_size}");
+        
+        if(toggleBtn) {toggleBtn.isOn = Atone_SettingsSaveAndLoadHandler.subtitles_areOn == 1;}
+        else {ShowOrHideSubs(Atone_SettingsSaveAndLoadHandler.subtitles_areOn == 1);}
+        
+        if(themeBtn) {themeBtn.value = Atone_SettingsSaveAndLoadHandler.subtittles_theme;}        
+        else {ChangeTheme(Atone_SettingsSaveAndLoadHandler.subtittles_theme);}
+        
+        if(sizeBtn) {sizeBtn.value = Atone_SettingsSaveAndLoadHandler.subtittles_theme;}
+        else {ChangeSize(Atone_SettingsSaveAndLoadHandler.subtitles_size);}
+    }
+
     public void ShowOrHideSubs(bool show)
     {
         SampleSub.enabled = show;
         subtitleInGameA.enabled = show;
         subtitleInGameB.enabled = show;
+        Atone_SettingsSaveAndLoadHandler.subtitles_areOn = show? 1 : 0;
     }
 
     public void ChangeTheme(int value)
@@ -40,10 +65,12 @@ public class UI_Subtitles : MonoBehaviour
                 ApplyTheme(Color.white, "#FFFFFF00");
                 break;
         }
+        Atone_SettingsSaveAndLoadHandler.subtittles_theme = value;
     }
 
     void ApplyTheme(Color textColor, string bgColor)
     {
+        // Debug.Log("Applying theme");
         string str1 = SampleSub.text;
         string str2 = subtitleInGameA.text;
         string str3 = subtitleInGameB.text;
@@ -100,5 +127,7 @@ public class UI_Subtitles : MonoBehaviour
         tutoSecondA.fontSize = sizeTuto[(int)value];
         tutoFirstB.fontSize = sizeTuto[(int)value];
         tutoSecondB.fontSize = sizeTuto[(int)value];
+
+        Atone_SettingsSaveAndLoadHandler.subtitles_size = value;
     }
 }
