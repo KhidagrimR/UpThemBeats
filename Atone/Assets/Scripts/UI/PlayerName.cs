@@ -14,19 +14,28 @@ public class PlayerName : Singleton<PlayerName>
     
 
     public void DisplayName(string name) {
-        string[] files = Directory.GetFiles(Checkpoint.path, "*.txt");
         bool isValidName = false;
-        if (name != ""){
-            isValidName = true;
-            foreach (string file in files)
-            {
-                if (name == file.Split("\\")[1].Split("_")[0])
+        if(Directory.Exists(Application.persistentDataPath + "/" + Leaderboard.path)){
+            string[] files = Directory.GetFiles(Application.persistentDataPath + "/" + Leaderboard.path, "*.txt");
+        
+            if (name != ""){
+                isValidName = true;
+                foreach (string file in files)
                 {
-                    isValidName = false;
-                    textError.SetActive(true);
+                    if (name == file.Split("\\")[1].Split("_")[0])
+                    {
+                        isValidName = false;
+                        textError.SetActive(true);
+                    }
                 }
             }
         }
+        else{
+            Directory.CreateDirectory(Application.persistentDataPath + "/" + Leaderboard.path);
+            isValidName = true;
+        }
+
+        
         print("isValideName : " + isValidName);
         if (isValidName){
             

@@ -17,15 +17,15 @@ public class Leaderboard : Singleton<Leaderboard>
 
     public GameObject containerLeaderBoard;
 
-    public static string path = "Assets/ScoreBoard/PlayerScore";
-    public static string pathLeaderboard = "Assets/ScoreBoard";
+    public static string path = "ScoreBoard/PlayerScore";
+    public static string pathLeaderboard = "ScoreBoard";
 
     public void Start() {
         finalScore = finalScoreEditor;
     }
 
     public void DisplayLeaderboard() {
-        StreamReader sr = new StreamReader(Checkpoint.pathLeaderboard + "/Leaderboard.txt");
+        StreamReader sr = new StreamReader(Application.persistentDataPath + "/" + pathLeaderboard + "/Leaderboard.txt");
 
         for(int i = 0; i < scorePlayerDisplays.Count; i+=1){
             string line = sr.ReadLine();
@@ -41,13 +41,12 @@ public class Leaderboard : Singleton<Leaderboard>
 
     public static void WriteScoreToFile(string name) {
 
-        if (!Directory.Exists(path))
-            Directory.CreateDirectory(path);
-
+        if (!Directory.Exists(Application.persistentDataPath + "/" + path))
+            Directory.CreateDirectory(Application.persistentDataPath + "/" + path);
 
         print("player name : " + name);
 
-        StreamWriter sw = new StreamWriter(path + "/" + name + "_Score.txt");
+        StreamWriter sw = new StreamWriter(Application.persistentDataPath + "/" + path + "/" + name + "_Score.txt");
 
         sw.WriteLine(name);
         sw.WriteLine();
@@ -69,10 +68,10 @@ public class Leaderboard : Singleton<Leaderboard>
     }
 
     public static void WriteLeaderBoard() {
-        if (!Directory.Exists(path))
-            print("Repertoire inexistant");
+        if (!Directory.Exists(Application.persistentDataPath + "/" + pathLeaderboard))
+            Directory.CreateDirectory(Application.persistentDataPath + "/" + pathLeaderboard);
 
-        string[] files = Directory.GetFiles(path, "*.txt");
+        string[] files = Directory.GetFiles(Application.persistentDataPath + "/" + path, "*.txt");
         Dictionary<string, float> leaderboard = new Dictionary<string, float>();
 
         foreach (string file in files)
@@ -88,7 +87,7 @@ public class Leaderboard : Singleton<Leaderboard>
             sr.Close();
         }
 
-        StreamWriter sw = new StreamWriter(pathLeaderboard + "/Leaderboard.txt");
+        StreamWriter sw = new StreamWriter(Application.persistentDataPath + "/" + pathLeaderboard + "/Leaderboard.txt");
         List<KeyValuePair<string, float>> sortedLeaderboard = leaderboard.ToList();
         sortedLeaderboard.Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value));
         if (sortedLeaderboard.Count > 30)
