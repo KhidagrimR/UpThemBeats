@@ -118,6 +118,30 @@ public class FirstPersonVisuals : MonoBehaviour
             {
                 SequenceManager.Instance.FadeOutCamera(0.5f);
             }
+            else if (marker.Contains("DisplaySageQuips_"))
+            {
+                // Changer le Bloom
+                if (string.Compare(marker.Substring(marker.Length - 1), "r") == 0)
+                {
+                    //red
+                    PlayerManager.Instance.playerController.DisplayRedSageQuips();
+                }
+                else if (string.Compare(marker.Substring(marker.Length - 1), "y") == 0)
+                {
+                    //yellow
+                    PlayerManager.Instance.playerController.DisplayYellowSageQuips();
+                }
+                else
+                {
+                    //blue
+                    PlayerManager.Instance.playerController.DisplayBlueSageQuips();
+                }
+
+            }
+            else if (string.Compare(marker, "HideSageQuips") == 0)
+            {
+                PlayerManager.Instance.playerController.HideSageQuips();
+            }
                 
             return;
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using FMODUnity;
 using Cinemachine;
+using UnityEngine.VFX;
 
 public class PlayerController : MonoBehaviour
 {
@@ -84,6 +85,16 @@ public class PlayerController : MonoBehaviour
     public GameObject playerVisual;
     public GameObject sages;
     public Collider playerCollider;
+
+    [Header("Quips")]
+    public GameObject quipsSagesBlue;
+    public GameObject quipsSagesRed;
+    public GameObject quipsSagesYellow;
+    public VisualEffect quipsSagesBlueVFX;
+    public VisualEffect quipsSagesRedVFX;
+    public VisualEffect quipsSagesYellowVFX;
+
+    [Header("FMOD")]
     public StudioEventEmitter patinDroitFMODEmitter;
     public StudioEventEmitter patinGaucheFMODEmitter;
     public StudioEventEmitter playerJumpSFX;
@@ -507,5 +518,33 @@ public class PlayerController : MonoBehaviour
         isIndestructible = true;
         yield return new WaitForSeconds(0.5f);
         isIndestructible = false;
+    }
+
+    public void DisplayRedSageQuips()
+    {
+        quipsSagesRed.SetActive(true);
+        quipsSagesRedVFX.Play();
+    }
+
+    public void DisplayBlueSageQuips()
+    {
+        quipsSagesBlue.SetActive(true);
+        quipsSagesBlueVFX.Play();
+    }
+
+    public void DisplayYellowSageQuips()
+    {
+        quipsSagesYellow.SetActive(true);
+        quipsSagesYellowVFX.Play();
+    }
+
+    public void HideSageQuips()
+    {
+        quipsSagesRedVFX.Stop();
+        quipsSagesBlueVFX.Stop();
+        quipsSagesYellowVFX.Stop();
+        quipsSagesYellow.SetActive(false);
+        quipsSagesBlue.SetActive(false);
+        quipsSagesRed.SetActive(false);
     }
 }
