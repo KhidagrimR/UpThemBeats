@@ -1,5 +1,162 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4432560699838096505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 419695125893053859}
+  - component: {fileID: 3355200253927004718}
+  m_Layer: 0
+  m_Name: WalkRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &419695125893053859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4432560699838096505}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3567316061593117421}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3355200253927004718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4432560699838096505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 219190468
+      Data2: 1197004395
+      Data3: -20348544
+      Data4: 1857720746
+    Path: event:/Patins/WalkR
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!1 &5307259645905502536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3567316061593117421}
+  m_Layer: 0
+  m_Name: SFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3567316061593117421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5307259645905502536}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.2223989, y: 1.7118744, z: -0.7546303}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7365131902548297404}
+  - {fileID: 419695125893053859}
+  m_Father: {fileID: 8886066877544111975}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8366839045563807468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7365131902548297404}
+  - component: {fileID: 7544833979006800817}
+  m_Layer: 0
+  m_Name: WalkLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7365131902548297404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8366839045563807468}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3567316061593117421}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7544833979006800817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8366839045563807468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 668561414
+      Data2: 1254226215
+      Data3: -1485601624
+      Data4: -732944412
+    Path: event:/Patins/WalkL
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &8886066877544111961
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,6 +191,7 @@ Transform:
   - {fileID: 8886066877985456847}
   - {fileID: 8886066878359793010}
   - {fileID: 8886066878004434251}
+  - {fileID: 3567316061593117421}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -77,6 +235,10 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 128
+  walk:
+  - {fileID: 7544833979006800817}
+  - {fileID: 3355200253927004718}
+  isRightWalk: 0
 --- !u!1 &8886066877985456846
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,16 +557,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: d9196cca3eae1b34899a6c7bfe7bbc1a, type: 3}
   m_PrefabInstance: {fileID: 8886066878609469105}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4694098120292057484 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -5010976000952504515, guid: d9196cca3eae1b34899a6c7bfe7bbc1a, type: 3}
-  m_PrefabInstance: {fileID: 8886066878609469105}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8093282191313830200 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 792840221222776713, guid: d9196cca3eae1b34899a6c7bfe7bbc1a, type: 3}
-  m_PrefabInstance: {fileID: 8886066878609469105}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8615614162840359904 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d9196cca3eae1b34899a6c7bfe7bbc1a, type: 3}
@@ -435,11 +587,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8abb0f14fd4c7df44b870e946e278abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAnimation: 0
-  cameraAnimation: {fileID: 4694098120292057484}
-  cameraPlayer: {fileID: 8886066878359793010}
-  playerAnimation: {fileID: 8093282191313830200}
-  player: {fileID: 8886066877544111975}
 --- !u!4 &8996819605588330842 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d9196cca3eae1b34899a6c7bfe7bbc1a, type: 3}
