@@ -5,16 +5,11 @@ using UnityEngine.EventSystems;
 
 public class LaunchEndGame : MonoBehaviour
 {
-    public GameObject UI;
+    
     public void OnTriggerEnter(Collider other) {
-        //Launch Ending Animation
-        DisplayInputName();
+        if (other.name == "Player")
+            other.GetComponent<EndRoomPlayerController>().animator.SetTrigger("FinalDoor");
     }
 
-    public void DisplayInputName() {
-        UI.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        PlayerName.Instance.container.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(PlayerName.Instance.selectableInputField);
-    }
+    
 }

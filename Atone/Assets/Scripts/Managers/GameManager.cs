@@ -177,6 +177,59 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = isGameCurrentlyPaused ? 0 : 1;
         // Debug.Log("Time.timeScale "+Time.timeScale); 
     }    
+
+    [InspectorReadOnly]
+    public int currentSpamCount = 0;
+    [InspectorReadOnly]
+    public float lastTimeSpamCheck = 0;
+    [InspectorReadOnly]
+    public float durationBeforeResetSpam = 3f;
+    [InspectorReadOnly]
+    public int amountOfSpamBeforeCooldown = 3;
+    [InspectorReadOnly]
+    public bool isOverclocked = false;
+    [InspectorReadOnly]
+    public float overclockDuration = 0.75f;
+
+    // GameManager.Instance.AddSpamInput();
+    public void AddSpamInput()
+    {
+        if(isOverclocked == true)
+        {
+            // play here sound if player try to hit obstacle while they are overclocked
+            // fmod sound
+            MusicManager.Instance.tutoTimer.Play();
+            return;
+        }
+
+        currentSpamCount++;
+        float currentTime = Time.time;
+        if(lastTimeSpamCheck + durationBeforeResetSpam < currentTime)
+        {
+            //reset
+            currentSpamCount = 0;
+        }
+        if(currentSpamCount >= amountOfSpamBeforeCooldown)
+        {
+            // player spammed
+            //Add overclocked Panel
+            isOverclocked = true;
+            currentSpamCount = 0;
+            Invoke("StopOverclock", overclockDuration);
+            //play overclocked ANimation
+            
+            //set vignette effect
+            
+            //Add camera shake
+        }
+
+        lastTimeSpamCheck = currentTime;
+    }
+
+    void StopOverclock()
+    {
+        isOverclocked = false;
+    }
 }
 
 public enum GeneralGameState
