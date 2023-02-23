@@ -16,7 +16,10 @@ public class EndRoomPlayerController : MonoBehaviour
     public Transform groundCheck;
     public float groundRadiusCheck = 0.4f;
     public LayerMask layerMask;
-    public static bool endAnimation = false;
+
+    public static bool canMove = false;
+    public static bool inAnimationFinalDoor = false;
+
 
     Vector3 velocity;
     bool isGrounded;
@@ -28,7 +31,7 @@ public class EndRoomPlayerController : MonoBehaviour
     }
     void Update()
     {
-        if (endAnimation){
+        if (canMove){
             isGrounded = Physics.CheckSphere(groundCheck.position, groundRadiusCheck, layerMask);
 
             if (isGrounded && velocity.y < 0)
@@ -48,6 +51,11 @@ public class EndRoomPlayerController : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
 
             characterController.Move(velocity * Time.deltaTime);
+        }
+        if (inAnimationFinalDoor){
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.O) ||
+               Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.JoystickButton3))
+                gameObject.GetComponent<DisplayScoreEndingRoom>().DisplayInputName();
         }
         
     }
