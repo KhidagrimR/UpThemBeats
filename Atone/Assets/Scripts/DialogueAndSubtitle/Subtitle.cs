@@ -16,9 +16,9 @@ public class Subtitle : Singleton<Subtitle>
         string line;
         while((line = reader.ReadLine()) != null){
             string[] subtitles = line.Split(new string[] { " | " }, StringSplitOptions.None);
-            subtitleTextUp.GetComponent<TextMeshProUGUI>().text = subtitles[0].Split(" \\n ")[0];
+            subtitleTextUp.GetComponent<TextMeshProUGUI>().text = "<mark=" + UI_Subtitles.backgroundColor + " padding='50,50,0,0'>" + subtitles[0].Split(" \\n ")[0] + "</mark>";
             if (subtitles[0].Split(" \\n ").Length > 1)
-                subtitleTextDown.GetComponent<TextMeshProUGUI>().text = subtitles[0].Split(" \\n ")[1];
+                subtitleTextDown.GetComponent<TextMeshProUGUI>().text = "<mark=" + UI_Subtitles.backgroundColor + " padding='50,50,0,0'>" + subtitles[0].Split(" \\n ")[1] + "</mark>";
 
             if(subtitles.Length >= 1)
             {

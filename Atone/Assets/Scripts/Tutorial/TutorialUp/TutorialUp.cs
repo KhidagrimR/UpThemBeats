@@ -44,7 +44,7 @@ public class TutorialUp : Singleton<TutorialUp>
             yield return new WaitForSeconds(timeBetweenCount*3);
         }
         containerText.SetActive(true);
-        m_textBeforeImage.text = textBeforeImage;
+        m_textBeforeImage.text = "<mark=" + UI_Subtitles.backgroundColor + " padding='50,50,0,0'>" + textBeforeImage + "</mark>";
 
         m_spriteKeyKeyBoardRightHanded = spriteKeyKeyBoardRightHanded;
         m_spriteAlternativeKeyKeyBoardRightHanded = spriteAlternativeKeyKeyBoardRightHanded;
@@ -73,7 +73,7 @@ public class TutorialUp : Singleton<TutorialUp>
             }
         }
         
-        m_textAfterImage.text = textAfterImage;
+        m_textAfterImage.text = "<mark=" + UI_Subtitles.backgroundColor + " padding='50,50,0,0'>" + textAfterImage + "</mark>";
         yield return new WaitForSeconds(timeToStayToScreen);
 
         if(containerAlternativeKey != null)

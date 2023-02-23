@@ -21,6 +21,8 @@ public class UI_Subtitles : MonoBehaviour
     [SerializeField] private TMP_Dropdown themeBtn;
     [SerializeField] private Slider sizeBtn;
 
+    public static string backgroundColor;
+
     private void Start()
     {
         LoadValues();
@@ -54,15 +56,19 @@ public class UI_Subtitles : MonoBehaviour
         {
             case 0:
                 ApplyTheme(Color.white, "#FFFFFF00");
+                backgroundColor = "#FFFFFF00";
                 break;
             case 1:
                 ApplyTheme(Color.white, "#00000050");
+                backgroundColor = "#00000050";
                 break;
             case 2:
                 ApplyTheme(Color.yellow, "#00000050");
+                backgroundColor = "#00000050";
                 break;
             default:
                 ApplyTheme(Color.white, "#FFFFFF00");
+                backgroundColor = "#FFFFFF00";
                 break;
         }
         Atone_SettingsSaveAndLoadHandler.subtittles_theme = value;
