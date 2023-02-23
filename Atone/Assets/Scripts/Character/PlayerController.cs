@@ -315,6 +315,7 @@ public class PlayerController : MonoBehaviour
     public void CheckIfWallToDestroy()
     {
         if (gameObjectsColliding.Count != 0)
+        {
             for (int i = 0; i < gameObjectsColliding.Count; i += 1)
             {
                 if (gameObjectsColliding[i].TryGetComponent<WallTrigger>(out WallTrigger wall))
@@ -334,14 +335,19 @@ public class PlayerController : MonoBehaviour
                 else
                     print("coolDown - mur raté PC");
             }
-
+        }
         else
-            print("cooldown");
+        {
+            GameManager.Instance.AddSpamInput();
+            //print("cooldown");
+        }
+            
     }
 
     public void CheckIfBopToDestroy()
     {
         if (gameObjectsColliding.Count != 0)
+        {
             for (int i = 0; i < gameObjectsColliding.Count; i += 1)
             {
                 if(gameObjectsColliding[i] != null)
@@ -362,12 +368,14 @@ public class PlayerController : MonoBehaviour
                             animationTrigger.PlayAnimation(AnimationEnum.SnapRight);
                     }
                 }
-                /*else
-                    print("coolDown - bop raté PC");*/
+                else
+                    print("coolDown - bop raté PC");
             }
-
-        /*else
-            print("cooldown");*/
+        }
+        else
+        {
+            GameManager.Instance.AddSpamInput();
+        }
     }
 
     public void CheckIfWall3ToDestroy()

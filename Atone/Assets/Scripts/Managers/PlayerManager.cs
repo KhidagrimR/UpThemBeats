@@ -46,8 +46,8 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         get
         {
-            // le joueur peut détruire un obstacle s' il, n'est pas en train de slider ou de wall run
-            return (!playerController.isChangingLane && playerCurrentLane == 1 && !playerController.isSliding); // 1 => center lane
+            // le joueur peut détruire un obstacle s' il, n'est pas en train de slider ou de wall run, et si le joueur n'est pas overclocked
+            return (!playerController.isChangingLane && playerCurrentLane == 1 && !playerController.isSliding && !GameManager.Instance.isOverclocked); // 1 => center lane
         }
     }
 
@@ -272,6 +272,9 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void MakePlayerDestroyWall()
     {
+        if(GameManager.Instance.isOverclocked) // call to add the 'spam' sound if player is overclocked
+            GameManager.Instance.AddSpamInput();
+
         if (isPlayerAbleToDestroyObstacles)
         {
             playerController.CheckIfWallToDestroy();
@@ -280,6 +283,9 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void MakePlayerDestroyBop()
     {
+        if(GameManager.Instance.isOverclocked) // call to add the 'spam' sound if player is overclocked
+            GameManager.Instance.AddSpamInput();
+
         if (isPlayerAbleToDestroyObstacles)
             playerController.CheckIfBopToDestroy();
     }
