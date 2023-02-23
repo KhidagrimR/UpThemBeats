@@ -153,6 +153,7 @@
 		<relationship name="markers">
 			<destination>{5fe3f23c-8c76-42ba-8dc0-ee570ebfdc66}</destination>
 			<destination>{0076a44d-8aaf-46fe-bf71-17e76a9014f1}</destination>
+			<destination>{13e1d0bb-27fd-4b02-9062-197a3772d289}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{8a9dd29b-b54f-4450-abd7-c40eaeb5a971}">
@@ -469,6 +470,20 @@
 		</relationship>
 		<relationship name="markerTrack">
 			<destination>{a1762ad1-5fd3-4097-a0b2-46749b7581a6}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{13e1d0bb-27fd-4b02-9062-197a3772d289}">
+		<property name="position">
+			<value>2.4000000000000004</value>
+		</property>
+		<property name="name">
+			<value>st_Quips_18</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{caece465-77c2-45be-889c-76180ffa7569}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{e37a3268-229d-45ae-addb-3b6056e8e47c}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{29fbbf05-c9b6-4253-b336-8e104c14d24c}">

@@ -145,6 +145,7 @@
 		<relationship name="markers">
 			<destination>{cdbe8cad-7489-4aa5-8d7e-b7f3fcbd4764}</destination>
 			<destination>{932dd65e-b2dd-4612-96af-4aed093c8e0c}</destination>
+			<destination>{8e930d63-da46-4397-8ba5-74cfcb131a9a}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{96636586-f771-4101-ae6f-3ec22d5ae1cc}">
@@ -278,7 +279,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{a3689df3-d70a-4113-a77a-ba902f07aca1}">
 		<property name="volume">
-			<value>-3</value>
+			<value>3</value>
 		</property>
 		<property name="name">
 			<value>Audio 4</value>
@@ -416,6 +417,20 @@
 		</property>
 		<property name="name">
 			<value>Start</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0732601a-7402-4c36-9a3a-5968965b8dba}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{1c69b6ab-222f-4793-ad05-96c438e6be42}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{8e930d63-da46-4397-8ba5-74cfcb131a9a}">
+		<property name="position">
+			<value>2.625</value>
+		</property>
+		<property name="name">
+			<value>st_Quips_16</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{0732601a-7402-4c36-9a3a-5968965b8dba}</destination>
