@@ -244,8 +244,14 @@ public class InputManager : Singleton<InputManager>
 
                     onController = true;
                 }
-                else
+                else{
                     onController = false;
+                    if (kc == KeyCode.O || kc == KeyCode.K || kc == KeyCode.L || kc == KeyCode.M || kc == KeyCode.RightShift) 
+                        isRightHanded = false;
+                    else
+                        isRightHanded = true;
+                }
+                    
             }
         }
     }

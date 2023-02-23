@@ -26,6 +26,8 @@ public class TutorialUp : Singleton<TutorialUp>
     public GameObject container;
     public GameObject containerText;
     public GameObject containerAlternativeKey;
+
+    public bool m_alternativeKey;
     public IEnumerator LaunchTutorial(float timeToStayToScreen, string textBeforeImage,
                                       Sprite spriteKeyKeyBoardRightHanded, Sprite spriteAlternativeKeyKeyBoardRightHanded,
                                       Sprite spriteKeyKeyBoardLeftHanded, Sprite spriteAlternativeKeyKeyBoardLeftHanded,
@@ -33,7 +35,8 @@ public class TutorialUp : Singleton<TutorialUp>
                                       string textAfterImage, bool timer, bool timerWithText, bool alternativeKey, float timeBetweenCount) 
     {
         container.SetActive(true);
-        if (containerAlternativeKey)
+        m_alternativeKey = alternativeKey;
+        if (m_alternativeKey)
             containerAlternativeKey.SetActive(true);
         if(timer)
             StartCoroutine(LaunchTimer(timeBetweenCount));
@@ -54,20 +57,22 @@ public class TutorialUp : Singleton<TutorialUp>
 
         if (InputManager.onController) {
             m_imageKey.sprite = m_spriteKeyController;
-            m_imageAlternativeKey.sprite = m_spriteAlternativeKeyController;
+            if(m_alternativeKey)
+                m_imageAlternativeKey.sprite = m_spriteAlternativeKeyController;
         }
         else{
             if (InputManager.isRightHanded){
                 m_imageKey.sprite = m_spriteKeyKeyBoardRightHanded;
-                m_imageAlternativeKey.sprite = m_spriteAlternativeKeyKeyBoardRightHanded;
+                if(m_alternativeKey)
+                    m_imageAlternativeKey.sprite = m_spriteAlternativeKeyKeyBoardRightHanded;
             }
             else {
                 m_imageKey.sprite = m_spriteKeyKeyBoardLeftHanded;
-                m_imageAlternativeKey.sprite = m_spriteAlternativeKeyKeyBoardLeftHanded;
+                if(m_alternativeKey)
+                    m_imageAlternativeKey.sprite = m_spriteAlternativeKeyKeyBoardLeftHanded;
             }
         }
         
-        m_imageKey.sprite = m_spriteKeyKeyBoardRightHanded;
         m_textAfterImage.text = textAfterImage;
         yield return new WaitForSeconds(timeToStayToScreen);
 
@@ -82,19 +87,22 @@ public class TutorialUp : Singleton<TutorialUp>
         if (InputManager.onController)
         {
             m_imageKey.sprite = m_spriteKeyController;
-            m_imageAlternativeKey.sprite = m_spriteAlternativeKeyController;
+            if(m_alternativeKey)
+                m_imageAlternativeKey.sprite = m_spriteAlternativeKeyController;
         }
         else
         {
             if (InputManager.isRightHanded)
             {
                 m_imageKey.sprite = m_spriteKeyKeyBoardRightHanded;
-                m_imageAlternativeKey.sprite = m_spriteAlternativeKeyKeyBoardRightHanded;
+                if(m_alternativeKey)
+                    m_imageAlternativeKey.sprite = m_spriteAlternativeKeyKeyBoardRightHanded;
             }
             else
             {
                 m_imageKey.sprite = m_spriteKeyKeyBoardLeftHanded;
-                m_imageAlternativeKey.sprite = m_spriteAlternativeKeyKeyBoardLeftHanded;
+                if(m_alternativeKey)
+                    m_imageAlternativeKey.sprite = m_spriteAlternativeKeyKeyBoardLeftHanded;
             }
         }
     }
