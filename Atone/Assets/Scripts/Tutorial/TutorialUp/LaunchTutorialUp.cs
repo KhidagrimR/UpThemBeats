@@ -6,12 +6,15 @@ public class LaunchTutorialUp : MonoBehaviour
 {
     public string textBeforeImage;
 
+    [Header("Sprite Key Right Handed")]
     public Sprite spriteKeyKeyBoardRightHanded;
     public Sprite spriteAlternativeKeyKeyBoardRightHanded;
 
+    [Header("Sprite Key Left Handed")]
     public Sprite spriteKeyKeyBoardLeftHanded;
     public Sprite spriteAlternativeKeyKeyBoardLeftHanded;
 
+    [Header("Sprite Key Controller")]
     public Sprite spriteKeyController;
     public Sprite spriteAlternativeKeyController;
 

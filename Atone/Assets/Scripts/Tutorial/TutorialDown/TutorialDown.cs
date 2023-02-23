@@ -9,12 +9,15 @@ public class TutorialDown : Singleton<TutorialDown> {
     public Image m_imageKey;
     public Image m_imageAlternativeKey;
 
+    
     private Sprite m_spriteKeyKeyBoardRightHanded;
     private Sprite m_spriteAlternativeKeyKeyBoardRightHanded;
 
+    
     private Sprite m_spriteKeyKeyBoardLeftHanded;
     private Sprite m_spriteAlternativeKeyKeyBoardLeftHanded;
 
+    
     private Sprite m_spriteKeyController;
     private Sprite m_spriteAlternativeKeyController;
 
