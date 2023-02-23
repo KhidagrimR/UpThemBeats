@@ -16,6 +16,7 @@ public class EndRoomCameraController : MonoBehaviour
 
     
     void Update(){
+        print("coordinates : " + gameObject.transform.position);
         if (EndRoomPlayerController.canMove){
             float mouseX = Input.GetAxis("MoveCameraX") * sensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("MoveCameraY") * sensitivity * Time.deltaTime;
