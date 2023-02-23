@@ -9,8 +9,6 @@ public class Checkpoint : MonoBehaviour
     public string sequence;
     public bool endGame = false;
 
-    public static string path = "Assets/ScoreBoard/PlayerScore";
-    public static string pathLeaderboard = "Assets/ScoreBoard";
     public void OnTriggerEnter(Collider other){
         Debug.Log(endGame + "end");
         if(!GameManager.Instance.isReady) {return;}

@@ -11,8 +11,8 @@ public class ChangeSelectableObjectCrosshairPart : MonoBehaviour
     public Selectable back;
     public void OnEnable() {
 
-        changeColor.navigation = NavigationInitialization.SetSelectObjectNavigation(changeColor, back, back, changeOpacity, changeOpacity);
-        changeOpacity.navigation = NavigationInitialization.SetSelectObjectNavigation(changeOpacity, next, next, changeColor, changeColor);
+        changeColor.navigation = NavigationInitialization.SetSelectObjectNavigation(changeColor, back, back, null, null);
+        changeOpacity.navigation = NavigationInitialization.SetSelectObjectNavigation(changeOpacity, next, next, null, null);
         next.navigation = NavigationInitialization.SetSelectObjectNavigation(next, changeOpacity, changeOpacity, back, back);
         back.navigation = NavigationInitialization.SetSelectObjectNavigation(back, changeColor, changeColor, next, next);
 
