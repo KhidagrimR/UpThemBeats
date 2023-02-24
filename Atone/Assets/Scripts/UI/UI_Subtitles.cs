@@ -59,12 +59,12 @@ public class UI_Subtitles : MonoBehaviour
                 backgroundColor = "#FFFFFF00";
                 break;
             case 1:
-                ApplyTheme(Color.white, "#00000090");
-                backgroundColor = "#00000050";
+                ApplyTheme(Color.white, "#000000BB");
+                backgroundColor = "#000000BB";
                 break;
             case 2:
-                ApplyTheme(Color.yellow, "#00000090");
-                backgroundColor = "#00000050";
+                ApplyTheme(Color.yellow, "#000000BB");
+                backgroundColor = "#000000BB";
                 break;
             default:
                 ApplyTheme(Color.white, "#FFFFFF00");

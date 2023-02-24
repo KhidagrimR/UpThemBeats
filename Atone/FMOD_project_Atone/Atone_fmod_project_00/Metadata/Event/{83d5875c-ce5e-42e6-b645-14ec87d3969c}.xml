@@ -130,8 +130,8 @@
 			<destination>{22547e39-2021-4a69-a94e-d090978c4faa}</destination>
 			<destination>{2b5d8b14-e03d-4061-ada5-88e4674a2f00}</destination>
 			<destination>{2dc63af2-3772-46f4-9ba8-815aec544c25}</destination>
-			<destination>{b8c2fdbf-aee9-44fe-bb12-47ef580e802e}</destination>
 			<destination>{2c85c912-0786-415d-90c3-276f5ed9901f}</destination>
+			<destination>{085fd0aa-2b16-4ec5-9a5d-17552df1dea3}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{fcec800c-47d7-42ff-ab48-6dbf34c678e0}">
@@ -388,20 +388,6 @@
 			<destination>{d4fa3960-2058-4311-9047-70fe30c954e9}</destination>
 		</relationship>
 	</object>
-	<object class="NamedMarker" id="{b8c2fdbf-aee9-44fe-bb12-47ef580e802e}">
-		<property name="position">
-			<value>7.5</value>
-		</property>
-		<property name="name">
-			<value>(InverseSnake)</value>
-		</property>
-		<relationship name="timeline">
-			<destination>{70e9389e-c7dc-45ae-8317-486efab72e39}</destination>
-		</relationship>
-		<relationship name="markerTrack">
-			<destination>{772ba378-91f1-4153-b16b-6222cdce23cb}</destination>
-		</relationship>
-	</object>
 	<object class="NamedMarker" id="{2c85c912-0786-415d-90c3-276f5ed9901f}">
 		<property name="position">
 			<value>7.125</value>
@@ -414,6 +400,20 @@
 		</relationship>
 		<relationship name="markerTrack">
 			<destination>{d4fa3960-2058-4311-9047-70fe30c954e9}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{085fd0aa-2b16-4ec5-9a5d-17552df1dea3}">
+		<property name="position">
+			<value>23.625</value>
+		</property>
+		<property name="name">
+			<value>ResetLong</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{70e9389e-c7dc-45ae-8317-486efab72e39}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{772ba378-91f1-4153-b16b-6222cdce23cb}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{88399b55-f578-41e1-ac79-9cba2f91500d}">

@@ -125,8 +125,9 @@
 		<relationship name="markers">
 			<destination>{3de4193b-10f0-4c46-a3e4-c1d2c5f1f457}</destination>
 			<destination>{5baa651a-2190-49de-a70b-034b20297cbe}</destination>
-			<destination>{d452c1de-91b9-4957-9b64-943410619382}</destination>
-			<destination>{fd7f0b4e-7838-4420-972c-8110f3fd870b}</destination>
+			<destination>{9e6164e1-eff2-42c5-8bf7-d988a5613cb6}</destination>
+			<destination>{51be65c0-2870-4121-9e8b-254e0d942b72}</destination>
+			<destination>{71a74460-c337-49ad-ad0b-e11550df7724}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{b6632c4a-0e05-4673-951d-9accc4d6a99c}">
@@ -324,12 +325,12 @@
 			<destination>{75507dcc-52a5-44e0-ae9b-f3bef82a889e}</destination>
 		</relationship>
 	</object>
-	<object class="NamedMarker" id="{d452c1de-91b9-4957-9b64-943410619382}">
+	<object class="NamedMarker" id="{9e6164e1-eff2-42c5-8bf7-d988a5613cb6}">
 		<property name="position">
 			<value>6</value>
 		</property>
 		<property name="name">
-			<value>(WTFLeft)</value>
+			<value>Top5</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{7da6681b-d5a7-411f-9028-d7f4c3c2d513}</destination>
@@ -338,18 +339,32 @@
 			<destination>{da94b4db-13e2-4acf-a512-57203e5921d5}</destination>
 		</relationship>
 	</object>
-	<object class="NamedMarker" id="{fd7f0b4e-7838-4420-972c-8110f3fd870b}">
+	<object class="NamedMarker" id="{51be65c0-2870-4121-9e8b-254e0d942b72}">
 		<property name="position">
-			<value>5.625</value>
+			<value>19.5</value>
 		</property>
 		<property name="name">
-			<value>LeftBot5</value>
+			<value>Bot5</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{7da6681b-d5a7-411f-9028-d7f4c3c2d513}</destination>
 		</relationship>
 		<relationship name="markerTrack">
-			<destination>{75507dcc-52a5-44e0-ae9b-f3bef82a889e}</destination>
+			<destination>{da94b4db-13e2-4acf-a512-57203e5921d5}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{71a74460-c337-49ad-ad0b-e11550df7724}">
+		<property name="position">
+			<value>25.5</value>
+		</property>
+		<property name="name">
+			<value>ResetLong</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{7da6681b-d5a7-411f-9028-d7f4c3c2d513}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{da94b4db-13e2-4acf-a512-57203e5921d5}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{0ff2b4dd-de36-48e9-b04e-df24685eb04c}">

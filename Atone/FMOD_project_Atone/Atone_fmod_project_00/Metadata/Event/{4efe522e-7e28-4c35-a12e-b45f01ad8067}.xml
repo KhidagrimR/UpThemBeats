@@ -123,6 +123,7 @@
 		<relationship name="markers">
 			<destination>{cdc1b6d7-a102-4f08-afa7-725e222a33d2}</destination>
 			<destination>{ade87cde-2a54-4809-99e5-38bba405b44d}</destination>
+			<destination>{a7fbc5cf-066e-4d73-bb09-137841682656}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{187aad9d-3159-4d47-be72-0b447cde73f9}">
@@ -343,6 +344,20 @@
 		</property>
 		<property name="name">
 			<value>Start</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{a3df52ad-29cb-48f9-9d03-91620e5038cb}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{66dc2e19-c29e-41e3-a370-482a76bea22a}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{a7fbc5cf-066e-4d73-bb09-137841682656}">
+		<property name="position">
+			<value>3</value>
+		</property>
+		<property name="name">
+			<value>WeakSpiral</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{a3df52ad-29cb-48f9-9d03-91620e5038cb}</destination>
