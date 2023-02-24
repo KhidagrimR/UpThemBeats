@@ -556,7 +556,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Joan.bank
   Name: Joan
   StudioPath: bank:/Joan
-  lastModified: 638127581116972767
+  lastModified: 638128055363866360
   FileSizes: []
   Exists: 1
 --- !u!114 &-7190894511463870970
@@ -709,7 +709,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Test_Julien.bank
   Name: Test_Julien
   StudioPath: bank:/Test_Julien
-  lastModified: 638127581132670256
+  lastModified: 638128055370126232
   FileSizes: []
   Exists: 1
 --- !u!114 &-6627390997265603239
@@ -836,7 +836,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Bank A.bank
   Name: Bank A
   StudioPath: bank:/Bank A
-  lastModified: 638126846231595465
+  lastModified: 638128055361773873
   FileSizes: []
   Exists: 1
 --- !u!114 &-6381996860971727754
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Dialogues.bank
   Name: Dialogues
   StudioPath: bank:/Dialogues
-  lastModified: 638127666460286003
+  lastModified: 638128055362962294
   FileSizes: []
   Exists: 1
 --- !u!114 &-5710406198503316092
@@ -1434,6 +1434,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2977
+--- !u!114 &-4869139846394573764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ObstacleRouge 2/Drop
+  m_EditorClassIdentifier: 
+  Path: event:/ObstacleRouge 2/Drop
+  Guid:
+    Data1: -936655035
+    Data2: 1129058865
+    Data3: -1987510363
+    Data4: 780624928
+  Banks:
+  - {fileID: -7214805819015735169}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1500
 --- !u!114 &-4829137026712022518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2304,7 +2331,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/ObstacleJauneSfx.bank
   Name: ObstacleJauneSfx
   StudioPath: bank:/ObstacleJauneSfx
-  lastModified: 638127581116982758
+  lastModified: 638128055364314666
   FileSizes: []
   Exists: 1
 --- !u!114 &-2551242534572219434
@@ -2484,10 +2511,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Test_Julien.strings.bank
   Name: Test_Julien.strings
   StudioPath: bank:/Test_Julien.strings
-  lastModified: 638127581132690180
+  lastModified: 638128055370146075
   FileSizes:
   - Name: 
-    Value: 7488
+    Value: 7670
   Exists: 1
 --- !u!114 &-2025767908811659132
 MonoBehaviour:
@@ -3229,6 +3256,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1250
+--- !u!114 &-553682272126058668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ObstacleRouge 2/Open
+  m_EditorClassIdentifier: 
+  Path: event:/ObstacleRouge 2/Open
+  Guid:
+    Data1: -1088635988
+    Data2: 1132072226
+    Data3: -689331804
+    Data4: -1357023736
+  Banks:
+  - {fileID: -7214805819015735169}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &-513260043451066932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3298,7 +3352,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Thomas.bank
   Name: Thomas
   StudioPath: bank:/Thomas
-  lastModified: 638126846239975235
+  lastModified: 638128055370674249
   FileSizes: []
   Exists: 1
 --- !u!114 &-396815375515441650
@@ -3705,12 +3759,16 @@ MonoBehaviour:
   - {fileID: 3045580980611606803}
   - {fileID: 6449739250404892180}
   - {fileID: -6017666674171195481}
+  - {fileID: -4869139846394573764}
+  - {fileID: -553682272126058668}
+  - {fileID: 654914727036839485}
+  - {fileID: 1243005813867444313}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6813153623395491876}
   StringsBanks:
   - {fileID: -2113541993637417861}
-  cacheTime: 638127666460286003
+  cacheTime: 638128055370991663
   cacheVersion: 131593
 --- !u!114 &25931307852792123
 MonoBehaviour:
@@ -4045,6 +4103,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 24000
+--- !u!114 &654914727036839485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ObstacleRouge 2/Destroy
+  m_EditorClassIdentifier: 
+  Path: event:/ObstacleRouge 2/Destroy
+  Guid:
+    Data1: 479357362
+    Data2: 1084655084
+    Data3: -383404642
+    Data4: -2014855604
+  Banks:
+  - {fileID: -7214805819015735169}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1218
 --- !u!114 &705643807600626353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4315,6 +4400,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 15000
+--- !u!114 &1243005813867444313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ObstacleRouge 2/Close
+  m_EditorClassIdentifier: 
+  Path: event:/ObstacleRouge 2/Close
+  Guid:
+    Data1: -106121741
+    Data2: 1177022350
+    Data3: -532500825
+    Data4: 932073546
+  Banks:
+  - {fileID: -7214805819015735169}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 996
 --- !u!114 &1306571839075853353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5923,7 +6035,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/ObstacleRouge_Sfx.bank
   Name: ObstacleRouge_Sfx
   StudioPath: bank:/ObstacleRouge_Sfx
-  lastModified: 638127581117128864
+  lastModified: 638128055364523734
   FileSizes: []
   Exists: 1
 --- !u!114 &5066398748585456459
@@ -6294,7 +6406,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Sequences.bank
   Name: Sequences
   StudioPath: bank:/Sequences
-  lastModified: 638127581126568111
+  lastModified: 638128055369222381
   FileSizes: []
   Exists: 1
 --- !u!114 &5968434637123566598
@@ -6799,7 +6911,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Narration.bank
   Name: Narration
   StudioPath: bank:/Narration
-  lastModified: 638126846232046255
+  lastModified: 638128055364113849
   FileSizes: []
   Exists: 1
 --- !u!114 &6804274364080374360
@@ -7276,7 +7388,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMODBanks/Desktop/Thomas2.bank
   Name: Thomas2
   StudioPath: bank:/Thomas2
-  lastModified: 638126846240022191
+  lastModified: 638128055370991663
   FileSizes: []
   Exists: 1
 --- !u!114 &8255044746089137236
