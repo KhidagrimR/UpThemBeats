@@ -90,6 +90,7 @@ namespace Atone_UI
                     if(creditsRoll.activeSelf) {creditsRoll.SetActive(false);}
                     SetLandingCanvas(MenuType.MAIN_MENU);
                     inGameUI.SetActive(false);
+                    GetComponent<UIMenuAudioHandler>().PlayMenuMusic();
                     Cursor.lockState = CursorLockMode.None;
                 break;
                 case GeneralGameState.PAUSED:
