@@ -155,6 +155,7 @@
 			<destination>{e46e3a32-0365-43d1-b78b-0ef3550af79f}</destination>
 			<destination>{a377616c-5cdf-4668-b9ba-ec976284e3e1}</destination>
 			<destination>{feea8481-5359-44ba-b84e-cc8ac1c9a839}</destination>
+			<destination>{ea6096d6-512d-4de9-9af9-4e55ba533386}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{73750b96-966d-48ff-8959-c6d4caadcb08}">
@@ -487,6 +488,20 @@
 		</relationship>
 		<relationship name="markerTrack">
 			<destination>{45a95dfd-13ad-454a-9147-d36bb228a1d5}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{ea6096d6-512d-4de9-9af9-4e55ba533386}">
+		<property name="position">
+			<value>22.875</value>
+		</property>
+		<property name="name">
+			<value>Reset</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{2dc336a2-ef9d-4b41-ba58-0b6073b6f9cd}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{f9f16271-cbb8-40a0-bd74-e75d76e29cf6}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{2cd25546-04c7-4b6e-ad38-04e71e530874}">

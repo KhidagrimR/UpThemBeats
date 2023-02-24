@@ -151,6 +151,8 @@
 		<relationship name="markers">
 			<destination>{ec0535d4-863f-4e35-8ffb-a4f199cf647e}</destination>
 			<destination>{cd9a65c7-9b0b-4352-adf9-19534c71a6a7}</destination>
+			<destination>{0812fd6e-dfc5-4a04-8a66-2aa33bad8e24}</destination>
+			<destination>{e63b585b-71c4-4c67-92a3-ed4e1ac56bc3}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{ca503b72-b8f8-49c7-b954-eb03d197bc09}">
@@ -438,6 +440,34 @@
 		</property>
 		<property name="name">
 			<value>Start</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{cd04cb06-a991-4bf1-9e45-ccbe14e02973}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{d9572f6a-bda6-455c-92fb-06af6ca37393}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{0812fd6e-dfc5-4a04-8a66-2aa33bad8e24}">
+		<property name="position">
+			<value>3</value>
+		</property>
+		<property name="name">
+			<value>RightTop1</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{cd04cb06-a991-4bf1-9e45-ccbe14e02973}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{d9572f6a-bda6-455c-92fb-06af6ca37393}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{e63b585b-71c4-4c67-92a3-ed4e1ac56bc3}">
+		<property name="position">
+			<value>17.625</value>
+		</property>
+		<property name="name">
+			<value>Top1</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{cd04cb06-a991-4bf1-9e45-ccbe14e02973}</destination>
