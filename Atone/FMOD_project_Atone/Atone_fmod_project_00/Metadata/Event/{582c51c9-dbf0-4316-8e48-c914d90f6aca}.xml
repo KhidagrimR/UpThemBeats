@@ -121,6 +121,7 @@
 			<destination>{8014077d-a809-4820-95e4-9f88d230f7e9}</destination>
 			<destination>{a8088c5b-b7d1-4f9d-ad0e-72f53b8df006}</destination>
 			<destination>{c85a1c3a-c565-4968-97a2-d91a17e54e1d}</destination>
+			<destination>{99d7fc6d-09d0-47a5-8f4a-76a7d3ef4bdf}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{8f283026-7303-45c7-8afd-4330f2c2eff4}">
@@ -313,6 +314,20 @@
 		</property>
 		<property name="name">
 			<value>RightBot5</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{05a1e062-3f97-4d86-9b5e-f24a3437c613}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{8ec32466-54a5-4ee6-898e-8d1e99f7b6fc}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{99d7fc6d-09d0-47a5-8f4a-76a7d3ef4bdf}">
+		<property name="position">
+			<value>14.837438423645319</value>
+		</property>
+		<property name="name">
+			<value>ResetLong</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{05a1e062-3f97-4d86-9b5e-f24a3437c613}</destination>

@@ -172,6 +172,8 @@
 			<destination>{d67b704a-c646-4773-87c5-f0253698d310}</destination>
 			<destination>{f6bfa0ab-7aec-4b5f-8a24-e55a74d93d3f}</destination>
 			<destination>{0fa707b7-5e30-426f-bb6d-ad816b628ec9}</destination>
+			<destination>{c3611803-cd55-4d74-a6ce-924aa195f648}</destination>
+			<destination>{63acbc5f-36ca-4637-ad8e-533705628220}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{26f2d8da-d5cb-4870-a138-5e4fecb6b679}">
@@ -523,6 +525,34 @@
 		</property>
 		<property name="name">
 			<value>st_Quips_12</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{9571a5c8-a7e0-4596-a6ea-a6b5ecde490b}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{8e810b42-56ee-4bab-b723-c43f96cd0dad}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{c3611803-cd55-4d74-a6ce-924aa195f648}">
+		<property name="position">
+			<value>12</value>
+		</property>
+		<property name="name">
+			<value>Top5</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{9571a5c8-a7e0-4596-a6ea-a6b5ecde490b}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{5c05a401-a0b2-41d3-b7de-3de45cfec1c2}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{63acbc5f-36ca-4637-ad8e-533705628220}">
+		<property name="position">
+			<value>23.25</value>
+		</property>
+		<property name="name">
+			<value>Reset</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{9571a5c8-a7e0-4596-a6ea-a6b5ecde490b}</destination>
