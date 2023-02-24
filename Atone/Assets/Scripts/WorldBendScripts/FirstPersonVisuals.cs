@@ -150,6 +150,7 @@ public class FirstPersonVisuals : MonoBehaviour
     }
     void SynchronizedTween(BendData bendData)
     {
+        Debug.Log("<color=green>Tween being read and is null ? "+bendData.GetType()+"</color>");
         float duration = bendData.beatDurationOfTween * MusicManager.Instance.SecPerBeat;
 
         if(bendData.affectCurvatureAxis) 
