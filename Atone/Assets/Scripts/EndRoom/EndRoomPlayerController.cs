@@ -7,7 +7,7 @@ public class EndRoomPlayerController : MonoBehaviour
 {
     public CharacterController characterController;
     public Animator animator;
-
+ public Animator cameraAnimator;
     public float speed = 12f;
 
     public float gravity = -9.81f;
@@ -27,7 +27,7 @@ public class EndRoomPlayerController : MonoBehaviour
 
     public List<StudioEventEmitter> walk;
     public bool isRightWalk = false;
-    
+
 
     Vector3 velocity;
     bool isGrounded;
@@ -35,7 +35,7 @@ public class EndRoomPlayerController : MonoBehaviour
     // Update is called once per frame
 
     public void Start() {
-        animator.SetTrigger("wakeUp");
+        //animator.SetTrigger("wakeUp");
     }
     void Update()
     {
@@ -51,7 +51,7 @@ public class EndRoomPlayerController : MonoBehaviour
                 float x = Input.GetAxis("Horizontal");
                 float z = Input.GetAxis("Vertical");
 
-                Vector3 move = transform.right * x + transform.forward * z;
+                Vector3 move = playerCam.transform.right * x + playerCam.transform.forward * z;
 
                 characterController.Move(move * speed * Time.deltaTime);
 

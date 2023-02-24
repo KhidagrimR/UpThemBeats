@@ -1,15 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class EndRoomCameraController : MonoBehaviour
 {
     public float sensitivity = 100f;
     public Transform playerTransform;
+    public GameObject playerMesh;
 
     public float xRotation = 0f;
-    
+    public CinemachineVirtualCamera cmvCamPlayer;
+    public CinemachineVirtualCamera cmvCamCinematic;
+
     void Start()
+    {
+        SetCinematicView();
+    }
+
+    public void SetCinematicView()
+    {
+        cmvCamPlayer.gameObject.SetActive(false);
+        cmvCamCinematic.gameObject.SetActive(true);
+        playerMesh.SetActive(true);
+    }
+
+    public void SetToPlayerView()
+    {
+        cmvCamPlayer.gameObject.SetActive(true);
+        cmvCamCinematic.gameObject.SetActive(false);
+        playerMesh.SetActive(false);
+    }
+    
+/*    void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -28,5 +51,5 @@ public class EndRoomCameraController : MonoBehaviour
             playerTransform.Rotate(Vector3.up * mouseX);  
         }
         
-    }
+    }*/
 }

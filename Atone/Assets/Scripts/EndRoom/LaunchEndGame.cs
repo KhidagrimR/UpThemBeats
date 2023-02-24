@@ -11,7 +11,8 @@ public class LaunchEndGame : MonoBehaviour
         if (other.name == "Player")
         {
             other.GetComponent<EndRoomPlayerController>().animator.SetTrigger("FinalDoor");
-            other.GetComponent<EndRoomPlayerController>().playerCam.GetComponent<Animator>().SetTrigger("FinalDoor");
+            other.GetComponent<EndRoomPlayerController>().cameraAnimator.SetTrigger("FinalDoor");
+            other.GetComponent<EndRoomPlayerController>().playerCam.GetComponent<EndRoomCameraController>().SetCinematicView();
         }
     }
 
