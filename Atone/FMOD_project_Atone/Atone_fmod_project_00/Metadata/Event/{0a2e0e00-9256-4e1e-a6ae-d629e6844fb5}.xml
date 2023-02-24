@@ -126,6 +126,7 @@
 			<destination>{06280ad4-e853-435c-96e0-c1341208fa19}</destination>
 			<destination>{aaa2e36d-ff35-44af-aa3e-9ecbaf4fece7}</destination>
 			<destination>{8d1f3c9b-ed60-43b2-ba6e-8fa0aa5ebbdc}</destination>
+			<destination>{dfb360e4-3f56-4dc8-9d34-2454a44a0e68}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{d680c002-224a-4d02-85d3-7fccaf24775c}">
@@ -335,6 +336,20 @@
 		</property>
 		<property name="name">
 			<value>st_Quips_20</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{dfd7a541-1e6b-49ce-b3c2-7494aff1cace}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{efd62615-3e4e-44f1-8bf3-f40e81c294ea}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{dfb360e4-3f56-4dc8-9d34-2454a44a0e68}">
+		<property name="position">
+			<value>5.3570000000000002</value>
+		</property>
+		<property name="name">
+			<value>Bot5</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{dfd7a541-1e6b-49ce-b3c2-7494aff1cace}</destination>

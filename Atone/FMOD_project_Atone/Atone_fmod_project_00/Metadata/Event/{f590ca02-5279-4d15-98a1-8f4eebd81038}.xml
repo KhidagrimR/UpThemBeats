@@ -189,8 +189,9 @@
 		<relationship name="markers">
 			<destination>{89969981-f9fc-4fbe-8b37-98dd8d343e20}</destination>
 			<destination>{636367b3-64bb-439d-bc2b-e502cc8f2070}</destination>
-			<destination>{11bda051-a310-426a-a75b-ca190e29151a}</destination>
-			<destination>{8594b5a3-4a9d-4de2-9984-c04aaeac83a8}</destination>
+			<destination>{6402ee98-8263-47e2-a146-2fc6753f61a6}</destination>
+			<destination>{a85dce93-22ea-4001-8374-a1adb9e6a858}</destination>
+			<destination>{e0ce0317-83a2-428f-b163-5730040220d1}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{948b3c96-0345-4c65-b82b-a4abf081c458}">
@@ -611,26 +612,40 @@
 			<destination>{27459632-bd3f-4fcb-a3b6-74f9b1c0eeea}</destination>
 		</relationship>
 	</object>
-	<object class="NamedMarker" id="{11bda051-a310-426a-a75b-ca190e29151a}">
+	<object class="NamedMarker" id="{6402ee98-8263-47e2-a146-2fc6753f61a6}">
 		<property name="position">
-			<value>6</value>
+			<value>3.375</value>
 		</property>
 		<property name="name">
-			<value>(WTFLeft)</value>
+			<value>Top1</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{a81bda33-eaef-44b8-b906-6dfe719467d8}</destination>
 		</relationship>
 		<relationship name="markerTrack">
-			<destination>{4004f4b6-cde9-440e-acdf-a5cb628527df}</destination>
+			<destination>{27459632-bd3f-4fcb-a3b6-74f9b1c0eeea}</destination>
 		</relationship>
 	</object>
-	<object class="NamedMarker" id="{8594b5a3-4a9d-4de2-9984-c04aaeac83a8}">
+	<object class="NamedMarker" id="{a85dce93-22ea-4001-8374-a1adb9e6a858}">
 		<property name="position">
-			<value>5.625</value>
+			<value>14.625</value>
 		</property>
 		<property name="name">
-			<value>LeftBot5</value>
+			<value>RightTop1</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{a81bda33-eaef-44b8-b906-6dfe719467d8}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{27459632-bd3f-4fcb-a3b6-74f9b1c0eeea}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{e0ce0317-83a2-428f-b163-5730040220d1}">
+		<property name="position">
+			<value>18.75</value>
+		</property>
+		<property name="name">
+			<value>ResetLong</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{a81bda33-eaef-44b8-b906-6dfe719467d8}</destination>

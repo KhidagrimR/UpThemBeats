@@ -291,9 +291,8 @@
 		<relationship name="markers">
 			<destination>{ac422cf3-41a9-4b7a-8821-cae5176ed09a}</destination>
 			<destination>{1209f2c4-20e0-4820-809c-83c35ac4c1a4}</destination>
-			<destination>{64a54705-1d58-4bd3-ad66-0d4c844cf37c}</destination>
-			<destination>{099bad7c-f49b-455a-acf1-15fac464ae44}</destination>
 			<destination>{0c8cf901-7000-4927-9eed-949a3545c9de}</destination>
+			<destination>{c003c2db-16c4-424f-a98f-e8f1be30c15a}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{887fc071-a562-48d0-be6b-807f73068fcf}">
@@ -1050,34 +1049,6 @@
 			<destination>{eedb0dc7-feb7-4163-bbcc-501ff765f14c}</destination>
 		</relationship>
 	</object>
-	<object class="NamedMarker" id="{64a54705-1d58-4bd3-ad66-0d4c844cf37c}">
-		<property name="position">
-			<value>6</value>
-		</property>
-		<property name="name">
-			<value>(WTFLeft)</value>
-		</property>
-		<relationship name="timeline">
-			<destination>{5731656f-3176-4f62-95a0-36fe51848905}</destination>
-		</relationship>
-		<relationship name="markerTrack">
-			<destination>{55560b85-e89f-4069-be68-956a9cc75cbb}</destination>
-		</relationship>
-	</object>
-	<object class="NamedMarker" id="{099bad7c-f49b-455a-acf1-15fac464ae44}">
-		<property name="position">
-			<value>5.625</value>
-		</property>
-		<property name="name">
-			<value>LeftBot5</value>
-		</property>
-		<relationship name="timeline">
-			<destination>{5731656f-3176-4f62-95a0-36fe51848905}</destination>
-		</relationship>
-		<relationship name="markerTrack">
-			<destination>{eedb0dc7-feb7-4163-bbcc-501ff765f14c}</destination>
-		</relationship>
-	</object>
 	<object class="NamedMarker" id="{0c8cf901-7000-4927-9eed-949a3545c9de}">
 		<property name="position">
 			<value>0.40625</value>
@@ -1090,6 +1061,20 @@
 		</relationship>
 		<relationship name="markerTrack">
 			<destination>{c3b3c4af-669b-4016-9ee5-c38fa51282ec}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{c003c2db-16c4-424f-a98f-e8f1be30c15a}">
+		<property name="position">
+			<value>6</value>
+		</property>
+		<property name="name">
+			<value>FuriousTopInverseSpiral</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{5731656f-3176-4f62-95a0-36fe51848905}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{55560b85-e89f-4069-be68-956a9cc75cbb}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{23fe16db-0075-445a-bb5a-059d9b62b35b}">

@@ -149,6 +149,9 @@
 		<relationship name="markers">
 			<destination>{fbb1f544-289f-4ba3-8610-a5da2b61a425}</destination>
 			<destination>{dff0c683-41a4-4e1c-9f19-3cecf167dd33}</destination>
+			<destination>{6203d2d1-c2b1-4570-85f3-6009827119f5}</destination>
+			<destination>{a9598636-0648-4031-8947-881f93a05c74}</destination>
+			<destination>{01959727-e5ff-4c2e-bcb2-e71d20f946f0}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{d513d5be-96b0-48ae-b938-88d54fce3494}">
@@ -439,6 +442,48 @@
 		</property>
 		<property name="name">
 			<value>Start</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{ad1df5f0-c42c-45c0-a9a3-35947bb1bdf0}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{bf31d7a3-1fee-4eeb-8b9a-0d1f7447bff0}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{6203d2d1-c2b1-4570-85f3-6009827119f5}">
+		<property name="position">
+			<value>2.25</value>
+		</property>
+		<property name="name">
+			<value>Right1</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{ad1df5f0-c42c-45c0-a9a3-35947bb1bdf0}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{318ccd37-2c09-4a3a-9d8a-8b8c213162f9}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{a9598636-0648-4031-8947-881f93a05c74}">
+		<property name="position">
+			<value>6</value>
+		</property>
+		<property name="name">
+			<value>LeftBot5</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{ad1df5f0-c42c-45c0-a9a3-35947bb1bdf0}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{bf31d7a3-1fee-4eeb-8b9a-0d1f7447bff0}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{01959727-e5ff-4c2e-bcb2-e71d20f946f0}">
+		<property name="position">
+			<value>22.875</value>
+		</property>
+		<property name="name">
+			<value>Reset</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{ad1df5f0-c42c-45c0-a9a3-35947bb1bdf0}</destination>
