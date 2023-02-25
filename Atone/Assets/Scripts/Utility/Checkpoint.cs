@@ -30,6 +30,7 @@ public class Checkpoint : MonoBehaviour
             PlayerManager.scoreBoard[niveau].Add(sequence, PlayerManager.scoreSequence);
             
         if (endGame){
+            print("white Room");
             //Load White Room
             SceneManager.LoadScene("White Room");
         }

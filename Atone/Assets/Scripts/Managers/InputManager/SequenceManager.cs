@@ -109,8 +109,11 @@ public class SequenceManager : Singleton<SequenceManager>
                 startingSequenceIndex++;
             }
         }
-        LoadTargetSequenceByIndex(startingSequenceIndex);
-        StartSequence();
+        if(startingSequenceIndex < sequencesPrefab.Count){
+            LoadTargetSequenceByIndex(startingSequenceIndex);
+            StartSequence();
+        }
+        
     }
 
     public IEnumerator RestartCurrentSequence()
