@@ -15,6 +15,7 @@ public class EndRoomCameraController : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         SetCinematicView();
     }
 

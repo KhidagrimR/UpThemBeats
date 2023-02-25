@@ -6,6 +6,8 @@ using FMODUnity;
 public class LinkAnimationToPlayer : MonoBehaviour
 {
     public EndRoomCameraController cameraController;
+    public GameObject player;
+    public GameObject positionEndWakeUp;
 
     public StudioEventEmitter redwall1;
 
@@ -21,6 +23,8 @@ public class LinkAnimationToPlayer : MonoBehaviour
     public void setWakeUpEndAnimation()
     {
         EndRoomPlayerController.canMove = true;
+        //player.transform.position = positionEndWakeUp.transform.position;
+        //player.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
         cameraController.SetToPlayerView();
     }
 

@@ -11,6 +11,8 @@ public class PlayerName : Singleton<PlayerName>
     public GameObject container;
     public GameObject textError;
 
+    public GameObject AtoneTitle;
+
     
 
     public void DisplayName(string name) {
@@ -38,7 +40,7 @@ public class PlayerName : Singleton<PlayerName>
         
         print("isValideName : " + isValidName);
         if (isValidName){
-            
+            AtoneTitle.SetActive(false);
             Leaderboard.WriteScoreToFile(name);
             Leaderboard.WriteLeaderBoard();
             Leaderboard.Instance.containerFinalScore.SetActive(true);
