@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.IO;
+using UnityEngine.EventSystems;
 
 public class PlayerName : Singleton<PlayerName>
 {
     public GameObject selectableInputField;
     public GameObject container;
     public GameObject textError;
+    public GameObject continuerButton;
 
     public GameObject AtoneTitle;
 
@@ -45,6 +47,7 @@ public class PlayerName : Singleton<PlayerName>
             Leaderboard.WriteLeaderBoard();
             Leaderboard.Instance.containerFinalScore.SetActive(true);
             container.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(continuerButton); 
         }
             
     }

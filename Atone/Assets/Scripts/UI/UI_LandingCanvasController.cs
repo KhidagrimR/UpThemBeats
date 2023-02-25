@@ -139,6 +139,10 @@ namespace Atone_UI
             Application.Quit();
         }
 
+        public void ReturnMenu() {
+            SceneManager.LoadScene("Main_Menu_A1");
+        }
+
         private void SetLandingCanvas(MenuType menuType)
         {
             if(pauseMenuLanding != null)
