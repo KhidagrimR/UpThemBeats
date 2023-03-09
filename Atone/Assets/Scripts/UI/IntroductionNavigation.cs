@@ -79,6 +79,7 @@ public class IntroductionNavigation : MonoBehaviour
             titleCard.SetActive(true);
             title.SetActive(false);
             back.interactable = false;
+            EventSystem.current.SetSelectedGameObject(next.gameObject);
         }
         cards[nb].SetActive(false);
         cards[nb + 1].SetActive(false);

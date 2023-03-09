@@ -109,8 +109,11 @@ public class SequenceManager : Singleton<SequenceManager>
                 startingSequenceIndex++;
             }
         }
-        LoadTargetSequenceByIndex(startingSequenceIndex);
-        StartSequence();
+        if(startingSequenceIndex < sequencesPrefab.Count){
+            LoadTargetSequenceByIndex(startingSequenceIndex);
+            StartSequence();
+        }
+        
     }
 
     public IEnumerator RestartCurrentSequence()
@@ -132,16 +135,21 @@ public class SequenceManager : Singleton<SequenceManager>
         player.transform.position = new Vector3(0, 1.07f, player.currentCheckpoint.z);
 
         // load current Sequence once more
-        LoadTargetSequenceByIndex(startingSequenceIndex);
-        StartSequence();
-
-        //Make player move again
-        player.canPlayerMove = true;
+        RestartSequence();
 
         FadeOutCamera(sequenceFadeDuration);
 
         isDeathRestartingMusic = false;
         GameManager.Instance.isPlayerDead = false;
+    }
+
+    void RestartSequence()
+    {
+        LoadTargetSequenceByIndex(startingSequenceIndex);
+        StartSequence();
+
+        //Make player move again
+        PlayerManager.Instance.playerController.canPlayerMove = true;
     }
 
     public void FadeInCamera(float transitionDuration)

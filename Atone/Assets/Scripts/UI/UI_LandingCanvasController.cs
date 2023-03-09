@@ -90,6 +90,7 @@ namespace Atone_UI
                     if(creditsRoll.activeSelf) {creditsRoll.SetActive(false);}
                     SetLandingCanvas(MenuType.MAIN_MENU);
                     inGameUI.SetActive(false);
+                    GetComponent<UIMenuAudioHandler>().PlayMenuMusic();
                     Cursor.lockState = CursorLockMode.None;
                 break;
                 case GeneralGameState.PAUSED:
@@ -136,6 +137,10 @@ namespace Atone_UI
         public void Quit()
         {
             Application.Quit();
+        }
+
+        public void ReturnMenu() {
+            SceneManager.LoadScene("Main_Menu_A1");
         }
 
         private void SetLandingCanvas(MenuType menuType)
