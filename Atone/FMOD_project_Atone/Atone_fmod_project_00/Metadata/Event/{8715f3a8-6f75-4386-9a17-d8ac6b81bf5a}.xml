@@ -37,6 +37,9 @@
 			<destination>{65591e59-40e6-4956-af3c-e2d9814be8a4}</destination>
 			<destination>{0995ebc8-c44b-4c0f-88db-5bd3e9fc39ad}</destination>
 		</relationship>
+		<relationship name="returnTracks">
+			<destination>{6a49004a-5d5b-4abc-ab62-d9981ce2d8fc}</destination>
+		</relationship>
 		<relationship name="timeline">
 			<destination>{5c5caea6-5609-4dec-9d17-8f945b753b3f}</destination>
 		</relationship>
@@ -124,6 +127,11 @@
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{8c940dea-be16-45de-83c0-a64ed38fadf5}</destination>
+		</relationship>
+	</object>
+	<object class="ReturnTrack" id="{6a49004a-5d5b-4abc-ab62-d9981ce2d8fc}">
+		<relationship name="mixerReturn">
+			<destination>{edc47ce9-20a4-4306-9b2f-2368104f894e}</destination>
 		</relationship>
 	</object>
 	<object class="Timeline" id="{5c5caea6-5609-4dec-9d17-8f945b753b3f}">
@@ -387,6 +395,20 @@
 			<destination>{64692203-ee87-407c-b031-008eb7246c21}</destination>
 		</relationship>
 	</object>
+	<object class="EventMixerReturn" id="{edc47ce9-20a4-4306-9b2f-2368104f894e}">
+		<property name="name">
+			<value>A</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{6068c9fd-e4d7-41de-a429-658b54f41bfe}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{c5ac8116-647b-4928-949c-d63991c5c809}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{64692203-ee87-407c-b031-008eb7246c21}</destination>
+		</relationship>
+	</object>
 	<object class="NamedMarker" id="{3abe571c-e58c-4ee7-8932-4c9b5c831611}">
 		<property name="position">
 			<value>2</value>
@@ -427,6 +449,7 @@
 			<destination>{54b7978c-1d15-4af7-be2c-6cf4dfffe70b}</destination>
 			<destination>{800ffbd0-b833-4e3e-b855-7a59bd5e3815}</destination>
 			<destination>{bf1fb8f6-95f5-4c4d-aded-a4f88a9ea7b4}</destination>
+			<destination>{4349e7ae-cb22-48bb-a37c-94ff7b4f6805}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{350f5ae3-3d3e-4a14-aae6-f9ddf4ae4899}" />
@@ -546,20 +569,38 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{90ef75e2-6a76-479e-a5eb-12bce3849d66}" />
+	<object class="MixerBusEffectChain" id="{6068c9fd-e4d7-41de-a429-658b54f41bfe}">
+		<relationship name="effects">
+			<destination>{401b1ed2-d26d-4929-b12a-c80eec2c10ef}</destination>
+			<destination>{0bacf362-f789-4028-9a62-1bac30c177bd}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{c5ac8116-647b-4928-949c-d63991c5c809}" />
 	<object class="MixerBusFader" id="{f347cb9d-bc74-4201-9184-5f6b54e95ba4}" />
 	<object class="MixerBusFader" id="{54b7978c-1d15-4af7-be2c-6cf4dfffe70b}" />
 	<object class="SFXReverbEffect" id="{800ffbd0-b833-4e3e-b855-7a59bd5e3815}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<property name="decayTime">
-			<value>1000</value>
+			<value>2200</value>
 		</property>
 		<property name="wetLevel">
-			<value>-5.5</value>
-		</property>
-		<property name="dryLevel">
-			<value>-0.5</value>
+			<value>0</value>
 		</property>
 	</object>
 	<object class="DistortionEffect" id="{bf1fb8f6-95f5-4c4d-aded-a4f88a9ea7b4}" />
+	<object class="MixerSend" id="{4349e7ae-cb22-48bb-a37c-94ff7b4f6805}">
+		<property name="level">
+			<value>-16.5</value>
+		</property>
+		<property name="inputFormat">
+			<value>1</value>
+		</property>
+		<relationship name="mixerReturn">
+			<destination>{edc47ce9-20a4-4306-9b2f-2368104f894e}</destination>
+		</relationship>
+	</object>
 	<object class="AutomationPoint" id="{c580332f-6d25-4e8c-bdee-708f469628c1}">
 		<property name="position">
 			<value>0</value>
@@ -756,4 +797,22 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{296fb43e-082f-4f20-ae2b-1966305a9901}" />
+	<object class="MixerBusFader" id="{401b1ed2-d26d-4929-b12a-c80eec2c10ef}" />
+	<object class="SFXReverbEffect" id="{0bacf362-f789-4028-9a62-1bac30c177bd}">
+		<property name="decayTime">
+			<value>2200</value>
+		</property>
+		<property name="earlyDelay">
+			<value>16</value>
+		</property>
+		<property name="HFDecayRatio">
+			<value>61</value>
+		</property>
+		<property name="wetLevel">
+			<value>10</value>
+		</property>
+		<property name="dryLevel">
+			<value>-80</value>
+		</property>
+	</object>
 </objects>
