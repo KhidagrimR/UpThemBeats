@@ -92,6 +92,9 @@
 		<property name="length">
 			<value>2.6880000000000002</value>
 		</property>
+		<relationship name="fadeOutCurve">
+			<destination>{2b2696bb-75ea-45e6-84ed-d68232b4b077}</destination>
+		</relationship>
 		<relationship name="audioFile">
 			<destination>{7fc574e1-2e57-4b62-93fe-892208580d1d}</destination>
 		</relationship>
@@ -117,12 +120,48 @@
 	</object>
 	<object class="MixerBusPanner" id="{1818fef5-baa7-423f-874f-5aad23d3086c}" />
 	<object class="MixerBusFader" id="{64d51353-7490-400a-b7d9-c689ed518758}" />
+	<object class="FadeCurve" id="{2b2696bb-75ea-45e6-84ed-d68232b4b077}">
+		<relationship name="startPoint">
+			<destination>{cff78c19-5bda-497e-8065-4c8a2598a738}</destination>
+		</relationship>
+		<relationship name="endPoint">
+			<destination>{0ea75732-b701-487e-881a-330834de92e5}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{da69dfe6-28f8-4854-b7ed-0821565d6fc1}">
 		<relationship name="effects">
 			<destination>{864186e4-0352-4e91-8512-f0693be14d91}</destination>
+			<destination>{98ef1b99-785c-4215-a031-10bebe50763a}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{85db93cf-acf2-4c2e-b68d-45fc46846477}" />
 	<object class="MixerBusFader" id="{016874b4-0961-4425-9f6a-4daafb816c85}" />
+	<object class="AutomationPoint" id="{cff78c19-5bda-497e-8065-4c8a2598a738}">
+		<property name="position">
+			<value>1.6875</value>
+		</property>
+		<property name="value">
+			<value>1</value>
+		</property>
+		<property name="curveShape">
+			<value>-0.368517011</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{0ea75732-b701-487e-881a-330834de92e5}">
+		<property name="position">
+			<value>2.6880000000000002</value>
+		</property>
+		<property name="value">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{864186e4-0352-4e91-8512-f0693be14d91}" />
+	<object class="CompressorEffect" id="{98ef1b99-785c-4215-a031-10bebe50763a}">
+		<property name="threshold">
+			<value>-10.5</value>
+		</property>
+		<property name="gain">
+			<value>2</value>
+		</property>
+	</object>
 </objects>

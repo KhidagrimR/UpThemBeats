@@ -399,6 +399,7 @@
 	<object class="MixerBusEffectChain" id="{0e8b1fb1-c61d-407b-8801-3ab720866a46}">
 		<relationship name="effects">
 			<destination>{71353aae-ada6-47d8-af71-bc2b4370d6b9}</destination>
+			<destination>{d068d7fa-f791-4fc6-87b1-675e5e0ddda9}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{0427f11b-0c68-4e5f-acde-4b094073186a}" />
@@ -406,6 +407,7 @@
 	<object class="MixerBusEffectChain" id="{83336246-0687-47ee-a9a5-62694afdd4c8}">
 		<relationship name="effects">
 			<destination>{7a289da6-379d-450d-bb3e-5a0aea4356c4}</destination>
+			<destination>{7ffd3460-9efb-4e00-adb1-37352eb21123}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{9cdcc436-6af2-4f96-8a7b-cf33d4fb741f}" />
@@ -474,7 +476,47 @@
 	</object>
 	<object class="MixerBusPanner" id="{53e20b70-1c4b-49ec-ad6f-58b02a64204a}" />
 	<object class="MixerBusFader" id="{71353aae-ada6-47d8-af71-bc2b4370d6b9}" />
+	<object class="MultibandEqEffect" id="{d068d7fa-f791-4fc6-87b1-675e5e0ddda9}">
+		<property name="filterTypeA">
+			<value>4</value>
+		</property>
+		<property name="filterTypeD">
+			<value>8</value>
+		</property>
+		<property name="frequencyA">
+			<value>35.7256165</value>
+		</property>
+		<property name="frequencyD">
+			<value>1136.78809</value>
+		</property>
+		<property name="qualityA">
+			<value>0.372103453</value>
+		</property>
+		<property name="gainD">
+			<value>3.62068892</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{7a289da6-379d-450d-bb3e-5a0aea4356c4}" />
+	<object class="MultibandEqEffect" id="{7ffd3460-9efb-4e00-adb1-37352eb21123}">
+		<property name="filterTypeA">
+			<value>4</value>
+		</property>
+		<property name="filterTypeB">
+			<value>8</value>
+		</property>
+		<property name="frequencyA">
+			<value>81.8291092</value>
+		</property>
+		<property name="frequencyB">
+			<value>1869.11658</value>
+		</property>
+		<property name="qualityA">
+			<value>0.56048274</value>
+		</property>
+		<property name="gainB">
+			<value>3.10344815</value>
+		</property>
+	</object>
 	<object class="AutomationPoint" id="{3c75f376-e1f7-4147-ab0b-e866fb693be5}">
 		<property name="position">
 			<value>20.625</value>

@@ -337,7 +337,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{2c6b280e-13ca-48f3-bd66-22c5ffbe34e8}">
 		<property name="volume">
-			<value>-7</value>
+			<value>-3</value>
 		</property>
 		<property name="name">
 			<value>Audio 7</value>
@@ -362,7 +362,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{26b0a355-ec04-42c9-a947-104c5a1c5404}">
 		<property name="volume">
-			<value>-9</value>
+			<value>-5.5</value>
 		</property>
 		<property name="name">
 			<value>Audio 1</value>
@@ -387,7 +387,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{67d050f4-6534-4400-b1ae-033d186947b8}">
 		<property name="volume">
-			<value>-13.5</value>
+			<value>-10.5</value>
 		</property>
 		<property name="name">
 			<value>Audio 4</value>
@@ -571,6 +571,7 @@
 	<object class="MixerBusEffectChain" id="{e774d663-d22f-4da3-a65a-5686799ff369}">
 		<relationship name="effects">
 			<destination>{858d5a5e-115c-4969-801d-61abfb034cc7}</destination>
+			<destination>{33e2d458-da23-48f8-9d20-316439189878}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{aaa1e4c7-a340-4d15-bfc5-cd8c70723c6a}" />
@@ -630,6 +631,14 @@
 	<object class="MixerBusPanner" id="{a2da7c3a-6358-4c1c-b321-72e06b2c8387}" />
 	<object class="MixerBusFader" id="{db34c984-1e97-4fce-b95b-6bd3039c2fd7}" />
 	<object class="MixerBusFader" id="{858d5a5e-115c-4969-801d-61abfb034cc7}" />
+	<object class="CompressorEffect" id="{33e2d458-da23-48f8-9d20-316439189878}">
+		<property name="threshold">
+			<value>-10.5</value>
+		</property>
+		<property name="gain">
+			<value>2</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{933beaa3-6019-419c-8842-5ce9d9289dbd}" />
 	<object class="MixerBusFader" id="{eece7242-501a-46a2-a4f2-e067d710beb4}" />
 	<object class="MixerBusFader" id="{31bbfd96-aff9-43cc-bf68-c750ef5ad91a}" />

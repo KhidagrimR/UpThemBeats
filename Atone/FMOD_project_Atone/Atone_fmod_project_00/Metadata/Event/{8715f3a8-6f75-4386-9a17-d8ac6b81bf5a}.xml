@@ -447,7 +447,6 @@
 	<object class="MixerBusEffectChain" id="{8f7c665e-dd3d-4d53-8a4e-33d2df91746c}">
 		<relationship name="effects">
 			<destination>{54b7978c-1d15-4af7-be2c-6cf4dfffe70b}</destination>
-			<destination>{800ffbd0-b833-4e3e-b855-7a59bd5e3815}</destination>
 			<destination>{bf1fb8f6-95f5-4c4d-aded-a4f88a9ea7b4}</destination>
 			<destination>{4349e7ae-cb22-48bb-a37c-94ff7b4f6805}</destination>
 		</relationship>
@@ -578,18 +577,11 @@
 	<object class="MixerBusPanner" id="{c5ac8116-647b-4928-949c-d63991c5c809}" />
 	<object class="MixerBusFader" id="{f347cb9d-bc74-4201-9184-5f6b54e95ba4}" />
 	<object class="MixerBusFader" id="{54b7978c-1d15-4af7-be2c-6cf4dfffe70b}" />
-	<object class="SFXReverbEffect" id="{800ffbd0-b833-4e3e-b855-7a59bd5e3815}">
-		<property name="bypass">
-			<value>true</value>
-		</property>
-		<property name="decayTime">
-			<value>2200</value>
-		</property>
-		<property name="wetLevel">
-			<value>0</value>
+	<object class="DistortionEffect" id="{bf1fb8f6-95f5-4c4d-aded-a4f88a9ea7b4}">
+		<property name="level">
+			<value>0.545000017</value>
 		</property>
 	</object>
-	<object class="DistortionEffect" id="{bf1fb8f6-95f5-4c4d-aded-a4f88a9ea7b4}" />
 	<object class="MixerSend" id="{4349e7ae-cb22-48bb-a37c-94ff7b4f6805}">
 		<property name="level">
 			<value>-16.5</value>

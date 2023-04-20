@@ -120,9 +120,18 @@
 	<object class="MixerBusEffectChain" id="{d71b1419-f912-4a09-9cd1-9dbd00c9a713}">
 		<relationship name="effects">
 			<destination>{b300f523-ea10-4a1a-926e-f77c5a1c5a7d}</destination>
+			<destination>{c743ca3f-ab24-4f2e-80fa-564809427704}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{9196e4de-4f93-4d05-a091-b21dbeefdc03}" />
 	<object class="MixerBusFader" id="{83f7c5c5-d43e-40bd-83a5-8682791ccb22}" />
 	<object class="MixerBusFader" id="{b300f523-ea10-4a1a-926e-f77c5a1c5a7d}" />
+	<object class="CompressorEffect" id="{c743ca3f-ab24-4f2e-80fa-564809427704}">
+		<property name="threshold">
+			<value>-10.5</value>
+		</property>
+		<property name="gain">
+			<value>2</value>
+		</property>
+	</object>
 </objects>
